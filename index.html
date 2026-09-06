@@ -1,524 +1,448 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<title>MK Youth Mobilizers Media Team Tarauni</title>
 
-<title>MK Youth Mobilizers | Media Team Tarauni</title>
+<meta name="description" content="MK Youth Mobilizers Media Team Tarauni - Latest news, updates, photos and videos.">
 
-<meta
-name="description"
-content="MK Youth Mobilizers Media Team Tarauni. Connecting, inspiring and empowering young people."
->
-
-<meta
-name="keywords"
-content="MK Youth Mobilizers, Media Team Tarauni, Youth Mobilizers, Tarauni, Nigeria"
->
-
-<meta
-name="author"
-content="MK Youth Mobilizers Media Team Tarauni"
->
-
-<meta
-name="robots"
-content="index, follow"
->
-
-<link
-rel="canonical"
-href="https://mkyouthmobilizers.github.io/mk-youth-mobilizers-media-team-tarauni/"
->
-
-<meta
-property="og:title"
-content="MK Youth Mobilizers | Media Team Tarauni"
->
-
-<meta
-property="og:description"
-content="Connecting, inspiring and empowering young people."
->
-
-<meta
-property="og:type"
-content="website"
->
-
-<meta
-property="og:url"
-content="https://mkyouthmobilizers.github.io/mk-youth-mobilizers-media-team-tarauni/"
->
-
-<meta
-property="og:image"
-content="https://mkyouthmobilizers.github.io/mk-youth-mobilizers-media-team-tarauni/IMG_3240.jpeg"
->
-
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
 
 *{
-box-sizing:border-box;
-margin:0;
-padding:0;
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
 body{
-font-family:Arial,sans-serif;
-background:#f4f7f5;
-color:#222;
-line-height:1.6;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f3f4f6;
+  color:#111827;
 }
-
 
 /* HEADER */
 
 header{
-background:linear-gradient(
-135deg,
-#075b32,
-#0b7a43
-);
-color:white;
-text-align:center;
-padding:35px 15px;
+  background:#111827;
+  color:white;
+  padding:14px 16px;
+  position:sticky;
+  top:0;
+  z-index:1000;
+  box-shadow:0 2px 8px rgba(0,0,0,.2);
+}
+
+.header-inner{
+  max-width:1050px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  gap:12px;
 }
 
 .logo{
-width:110px;
-height:110px;
-object-fit:cover;
-border-radius:50%;
-border:4px solid white;
-background:white;
-margin-bottom:12px;
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  object-fit:cover;
+  background:white;
 }
 
-header h1{
-font-size:30px;
-margin-bottom:5px;
+.site-name{
+  font-size:19px;
+  font-weight:bold;
 }
 
-header p{
-font-size:16px;
+.site-subtitle{
+  font-size:12px;
+  opacity:.75;
+  margin-top:3px;
 }
 
+/* MAIN */
 
-/* NAV */
-
-nav{
-background:white;
-padding:15px;
-text-align:center;
-box-shadow:0 2px 10px rgba(0,0,0,.08);
-position:sticky;
-top:0;
-z-index:10;
+.container{
+  max-width:1050px;
+  margin:auto;
+  padding:20px 12px 50px;
 }
-
-nav a{
-color:#075b32;
-text-decoration:none;
-font-weight:bold;
-}
-
-
-/* HERO */
-
-.hero{
-max-width:900px;
-margin:auto;
-padding:40px 20px;
-text-align:center;
-}
-
-.hero h2{
-color:#075b32;
-font-size:28px;
-margin-bottom:12px;
-}
-
-.hero p{
-color:#555;
-font-size:16px;
-}
-
-
-/* VISITORS */
-
-.visitor-box{
-max-width:500px;
-margin:0 auto 35px;
-padding:18px;
-background:white;
-border-radius:15px;
-text-align:center;
-box-shadow:0 4px 18px rgba(0,0,0,.08);
-}
-
-.visitor-box .icon{
-font-size:30px;
-}
-
-.visitor-box h3{
-color:#075b32;
-margin-top:5px;
-font-size:20px;
-}
-
-#visitorCount{
-font-size:30px;
-font-weight:bold;
-color:#075b32;
-margin-top:5px;
-}
-
 
 /* LIVE */
 
-.live-section{
-max-width:1000px;
-margin:0 auto 40px;
-padding:0 15px;
-}
-
 .live-box{
-background:white;
-border-radius:16px;
-padding:20px;
-box-shadow:0 4px 18px rgba(0,0,0,.10);
-text-align:center;
+  background:white;
+  border-radius:12px;
+  margin-bottom:20px;
+  overflow:hidden;
+  box-shadow:0 2px 10px rgba(0,0,0,.08);
 }
 
-.live-title{
-color:#b00020;
-font-size:24px;
-font-weight:bold;
-margin-bottom:10px;
+.live-header{
+  padding:14px 16px;
+  font-weight:bold;
+  border-bottom:1px solid #eee;
 }
 
 .live-status{
-color:#777;
-margin-bottom:15px;
-font-weight:bold;
+  padding:8px 16px;
+  font-size:13px;
+  color:#666;
 }
 
-.live-frame{
-width:100%;
-aspect-ratio:16/9;
-border:0;
-border-radius:12px;
-display:none;
-background:#000;
+.live-video{
+  width:100%;
+  aspect-ratio:16/9;
+  border:0;
+  display:none;
 }
 
+/* VISITOR */
 
-/* POSTS */
-
-.posts-section{
-max-width:1100px;
-margin:auto;
-padding:10px 15px 50px;
+.visitor-box{
+  background:white;
+  border-radius:10px;
+  padding:13px 16px;
+  margin-bottom:20px;
+  text-align:center;
+  box-shadow:0 2px 8px rgba(0,0,0,.06);
+  font-weight:bold;
 }
 
-.posts-section>h2{
-text-align:center;
-color:#075b32;
-font-size:28px;
-margin-bottom:25px;
+/* NEWS */
+
+.section-title{
+  font-size:23px;
+  font-weight:bold;
+  margin:8px 0 15px;
 }
 
-#posts{
-display:grid;
-grid-template-columns:
-repeat(auto-fit,minmax(280px,1fr));
-gap:22px;
+.posts{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
 }
-
-
-/* POST */
 
 .post-card{
-background:white;
-border-radius:15px;
-overflow:hidden;
-box-shadow:
-0 4px 18px rgba(0,0,0,.10);
+  background:white;
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 2px 10px rgba(0,0,0,.08);
+  cursor:pointer;
+  transition:.2s;
 }
 
-.post-card img{
-width:100%;
-max-height:450px;
-object-fit:cover;
-display:block;
+.post-card:hover{
+  transform:translateY(-2px);
+  box-shadow:0 5px 16px rgba(0,0,0,.13);
 }
 
-.post-card video{
-width:100%;
-max-height:450px;
-display:block;
-background:#000;
+.post-media{
+  width:100%;
+  height:210px;
+  object-fit:cover;
+  display:block;
+  background:#ddd;
 }
 
-.post-content{
-padding:18px;
+.post-info{
+  padding:15px;
 }
 
-.post-content h3{
-color:#075b32;
-font-size:21px;
-margin-bottom:8px;
+.post-title{
+  font-size:19px;
+  line-height:1.3;
+  margin-bottom:8px;
 }
 
-.post-content p{
-color:#555;
-white-space:pre-wrap;
-word-break:break-word;
+.post-date{
+  color:#777;
+  font-size:12px;
+  margin-bottom:10px;
 }
 
+.post-preview{
+  color:#444;
+  font-size:14px;
+  line-height:1.5;
+}
+
+.read-more{
+  display:inline-block;
+  margin-top:12px;
+  font-weight:bold;
+  color:#075985;
+  font-size:14px;
+}
+
+/* FULL ARTICLE */
+
+.article-page{
+  display:none;
+  background:white;
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 2px 10px rgba(0,0,0,.08);
+}
+
+.article-media{
+  width:100%;
+  max-height:600px;
+  object-fit:contain;
+  background:#111;
+  display:block;
+}
+
+.article-content{
+  padding:20px;
+}
+
+.article-title{
+  font-size:30px;
+  line-height:1.25;
+  margin-bottom:10px;
+}
+
+.article-date{
+  color:#777;
+  font-size:13px;
+  margin-bottom:20px;
+}
+
+.article-text{
+  white-space:pre-line;
+  font-size:17px;
+  line-height:1.8;
+  color:#222;
+}
+
+.back-button{
+  display:inline-block;
+  margin-bottom:15px;
+  padding:10px 15px;
+  border:0;
+  border-radius:8px;
+  background:#111827;
+  color:white;
+  cursor:pointer;
+  font-size:14px;
+}
 
 /* LOADING */
 
-.loading{
-text-align:center;
-padding:35px;
-color:#075b32;
-font-weight:bold;
+.loading,
+.empty,
+.error{
+  background:white;
+  padding:25px;
+  border-radius:10px;
+  text-align:center;
 }
-
-
-/* EMPTY */
-
-.empty{
-background:white;
-border-radius:12px;
-padding:30px;
-text-align:center;
-color:#777;
-}
-
-
-/* ERROR */
 
 .error{
-background:white;
-border-radius:12px;
-padding:30px;
-text-align:center;
-color:#b00020;
+  color:#b91c1c;
 }
-
 
 /* FOOTER */
 
 footer{
-background:#075b32;
-color:white;
-text-align:center;
-padding:28px 15px;
-margin-top:30px;
+  background:#111827;
+  color:white;
+  margin-top:30px;
+  padding:25px 15px;
+  text-align:center;
 }
 
-footer p{
-margin:3px 0;
+.footer-title{
+  font-weight:bold;
+  margin-bottom:8px;
 }
 
+.footer-text{
+  font-size:13px;
+  opacity:.75;
+  line-height:1.5;
+}
 
 /* MOBILE */
 
+@media(max-width:800px){
+
+  .posts{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+}
+
 @media(max-width:600px){
 
-header{
-padding:28px 15px;
-}
+  .container{
+    padding:15px 10px 40px;
+  }
 
-header h1{
-font-size:24px;
-}
+  .posts{
+    grid-template-columns:1fr;
+  }
 
-.logo{
-width:95px;
-height:95px;
-}
+  .post-media{
+    height:230px;
+  }
 
-.hero h2{
-font-size:23px;
-}
+  .article-title{
+    font-size:25px;
+  }
 
-#posts{
-grid-template-columns:1fr;
-}
+  .article-text{
+    font-size:16px;
+  }
+
+  .site-name{
+    font-size:16px;
+  }
 
 }
 
 </style>
-
 </head>
 
-
 <body>
-
 
 <!-- HEADER -->
 
 <header>
 
-<img
-src="IMG_3240.jpeg"
-alt="MK Youth Mobilizers Logo"
-class="logo"
-onerror="this.style.display='none'"
->
+  <div class="header-inner">
 
-<h1>
-MK Youth Mobilizers
-</h1>
+    <img
+      src="IMG_3240.jpeg"
+      class="logo"
+      alt="MK Youth Mobilizers">
 
-<p>
-Media Team Tarauni
-</p>
+    <div>
+
+      <div class="site-name">
+        MK Youth Mobilizers
+      </div>
+
+      <div class="site-subtitle">
+        Media Team Tarauni
+      </div>
+
+    </div>
+
+  </div>
 
 </header>
 
 
-<!-- NAV -->
-
-<nav>
-
-<a href="#live">
-🔴 Live
-</a>
-
-&nbsp;&nbsp;&nbsp;
-
-<a href="#latest-posts">
-Latest Posts
-</a>
-
-</nav>
-
-
-<!-- HERO -->
-
-<section class="hero">
-
-<h2>
-Welcome to MK Youth Mobilizers
-</h2>
-
-<p>
-MK Youth Mobilizers is a youth-focused platform
-dedicated to connecting, inspiring and empowering
-young people. We promote unity, leadership,
-teamwork and positive development.
-</p>
-
-</section>
+<main class="container">
 
 
 <!-- VISITOR COUNTER -->
 
 <div class="visitor-box">
 
-<div class="icon">
-👥
-</div>
-
-<h3>
-Website Visitors
-</h3>
-
-<div id="visitorCount">
-Loading...
-</div>
+  👥 Website Visitors:
+  <span id="visitorCount">Loading...</span>
 
 </div>
 
 
 <!-- LIVE -->
 
-<section
-class="live-section"
-id="live"
->
-
 <div class="live-box">
 
-<div class="live-title">
-🔴 YouTube LIVE
+  <div class="live-header">
+    🔴 YouTube LIVE
+  </div>
+
+  <div
+    id="liveStatus"
+    class="live-status">
+    Checking live status...
+  </div>
+
+  <iframe
+    id="liveVideo"
+    class="live-video"
+    allow="autoplay; encrypted-media"
+    allowfullscreen>
+  </iframe>
+
 </div>
 
-<div
-id="liveStatus"
-class="live-status"
->
-Checking Live status...
-</div>
 
-<iframe
-id="liveFrame"
-class="live-frame"
-allow="autoplay; encrypted-media; picture-in-picture"
-allowfullscreen
-></iframe>
+<!-- NEWS LIST -->
 
-</div>
+<section id="newsPage">
+
+  <div class="section-title">
+    📰 Latest News
+  </div>
+
+  <div
+    id="posts"
+    class="posts">
+
+    <div class="loading">
+      Loading posts...
+    </div>
+
+  </div>
 
 </section>
 
 
-<!-- POSTS -->
+<!-- ARTICLE -->
 
 <section
-class="posts-section"
-id="latest-posts"
->
+  id="articlePage"
+  class="article-page">
 
-<h2>
-Latest Posts
-</h2>
+  <div class="article-content">
 
-<div id="posts">
+    <button
+      id="backButton"
+      class="back-button">
 
-<div class="loading">
-Loading posts...
-</div>
+      ← Back to News
 
-</div>
+    </button>
+
+    <div id="articleContainer"></div>
+
+  </div>
 
 </section>
+
+
+</main>
 
 
 <!-- FOOTER -->
 
 <footer>
 
-<p>
-© 2026 MK Youth Mobilizers
-</p>
+  <div class="footer-title">
+    MK Youth Mobilizers Media Team Tarauni
+  </div>
 
-<p>
-Media Team Tarauni
-</p>
+  <div class="footer-text">
+    Connecting, inspiring and empowering young people.
+    <br>
+    © 2026 MK Youth Mobilizers. All rights reserved.
+  </div>
 
 </footer>
 
 
-<!-- SUPABASE -->
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-
 <script>
 
-
 /* =========================
-SUPABASE
+   SUPABASE
 ========================= */
 
 const SUPABASE_URL =
@@ -527,15 +451,16 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
 "sb_publishable_hsMkfMvXMbAXXt8Z7LvAvg_52miDaJe";
 
-
 const client =
 window.supabase.createClient(
-SUPABASE_URL,
-SUPABASE_KEY
+  SUPABASE_URL,
+  SUPABASE_KEY
 );
 
 
-/* ELEMENTS */
+/* =========================
+   ELEMENTS
+========================= */
 
 const postsContainer =
 document.getElementById("posts");
@@ -546,417 +471,601 @@ document.getElementById("visitorCount");
 const liveStatus =
 document.getElementById("liveStatus");
 
-const liveFrame =
-document.getElementById("liveFrame");
+const liveVideo =
+document.getElementById("liveVideo");
+
+const newsPage =
+document.getElementById("newsPage");
+
+const articlePage =
+document.getElementById("articlePage");
+
+const articleContainer =
+document.getElementById("articleContainer");
+
+const backButton =
+document.getElementById("backButton");
 
 
 /* =========================
-LOAD POSTS
+   DATE FORMAT
+========================= */
+
+function formatDate(dateString){
+
+  const date =
+    new Date(dateString);
+
+  if(isNaN(date.getTime())){
+    return "";
+  }
+
+  return date.toLocaleString(
+    "en-GB",
+    {
+      day:"numeric",
+      month:"long",
+      year:"numeric",
+      hour:"2-digit",
+      minute:"2-digit"
+    }
+  );
+
+}
+
+
+/* =========================
+   SHORT TEXT
+========================= */
+
+function shortText(text){
+
+  if(!text){
+    return "";
+  }
+
+  const max = 140;
+
+  if(text.length <= max){
+    return text;
+  }
+
+  return text.substring(0,max) + "...";
+
+}
+
+
+/* =========================
+   MEDIA TYPE
+========================= */
+
+function isVideo(url){
+
+  if(!url){
+    return false;
+  }
+
+  const lower =
+    url.toLowerCase();
+
+  return (
+    lower.includes(".mp4") ||
+    lower.includes(".webm") ||
+    lower.includes(".mov") ||
+    lower.includes(".m4v")
+  );
+
+}
+
+
+/* =========================
+   LOAD POSTS
 ========================= */
 
 async function loadPosts(){
 
-postsContainer.innerHTML = `
-<div class="loading">
-Loading posts...
-</div>
-`;
+  postsContainer.innerHTML =
+    '<div class="loading">Loading posts...</div>';
 
-try{
+  try{
 
-const {data,error} =
-await client
-.from("posts")
-.select("*")
-.order(
-"id",
-{
-ascending:false
-}
-);
+    const result =
+      await client
+      .from("posts")
+      .select(
+        "id,Title,Content,Image_url,created_at"
+      )
+      .order(
+        "created_at",
+        {
+          ascending:false
+        }
+      );
 
-if(error){
-throw error;
-}
+    if(result.error){
 
-const posts =
-data || [];
+      console.error(
+        "Posts error:",
+        result.error
+      );
 
-if(posts.length === 0){
+      postsContainer.innerHTML =
+        '<div class="error">❌ Unable to load posts.</div>';
 
-postsContainer.innerHTML = `
-<div class="empty">
-No posts yet.
-</div>
-`;
+      return;
 
-return;
+    }
 
-}
+    const posts =
+      result.data || [];
 
-postsContainer.innerHTML = "";
+    if(posts.length === 0){
 
+      postsContainer.innerHTML =
+        '<div class="empty">No posts yet.</div>';
 
-posts.forEach(function(post){
+      return;
 
-const card =
-document.createElement("article");
+    }
 
-card.className =
-"post-card";
+    postsContainer.innerHTML = "";
 
+    posts.forEach(
+      function(post){
 
-if(post.Image_url){
+        const card =
+          document.createElement("article");
 
-const url =
-post.Image_url;
+        card.className =
+          "post-card";
 
-const lower =
-url.toLowerCase();
+        /* MEDIA */
 
+        if(post.Image_url){
 
-const isVideo =
-lower.includes(".mp4") ||
-lower.includes(".webm") ||
-lower.includes(".mov") ||
-lower.includes(".m4v");
+          if(isVideo(post.Image_url)){
 
+            const video =
+              document.createElement("video");
 
-if(isVideo){
+            video.className =
+              "post-media";
 
-const video =
-document.createElement("video");
+            video.src =
+              post.Image_url;
 
-video.src =
-url;
+            video.controls = true;
 
-video.controls =
-true;
+            video.preload = "metadata";
 
-video.playsInline =
-true;
+            card.appendChild(video);
 
-video.preload =
-"metadata";
+          }else{
 
-card.appendChild(video);
+            const img =
+              document.createElement("img");
 
-}
+            img.className =
+              "post-media";
 
-else{
+            img.src =
+              post.Image_url;
 
-const img =
-document.createElement("img");
+            img.alt =
+              post.Title || "Post";
 
-img.src =
-url;
+            img.loading =
+              "lazy";
 
-img.alt =
-post.Title ||
-"MK Youth Mobilizers";
+            card.appendChild(img);
 
-img.loading =
-"lazy";
+          }
 
-card.appendChild(img);
-
-}
-
-}
+        }
 
 
-const content =
-document.createElement("div");
+        /* INFO */
 
-content.className =
-"post-content";
+        const info =
+          document.createElement("div");
 
-
-const title =
-document.createElement("h3");
-
-title.textContent =
-post.Title ||
-"Untitled Post";
+        info.className =
+          "post-info";
 
 
-const text =
-document.createElement("p");
+        const title =
+          document.createElement("h2");
 
-text.textContent =
-post.Content ||
-"";
+        title.className =
+          "post-title";
+
+        title.textContent =
+          post.Title || "Untitled";
 
 
-content.appendChild(title);
+        const date =
+          document.createElement("div");
 
-content.appendChild(text);
+        date.className =
+          "post-date";
 
-card.appendChild(content);
+        date.textContent =
+          "📅 " +
+          formatDate(post.created_at);
 
-postsContainer.appendChild(card);
 
-});
+        const preview =
+          document.createElement("div");
 
-}
+        preview.className =
+          "post-preview";
 
-catch(error){
+        preview.textContent =
+          shortText(post.Content);
 
-console.error(
-"Posts error:",
-error
-);
 
-postsContainer.innerHTML = `
-<div class="error">
-❌ Unable to load posts.
-<br><br>
-${error.message}
-</div>
-`;
+        const readMore =
+          document.createElement("div");
 
-}
+        readMore.className =
+          "read-more";
+
+        readMore.textContent =
+          "Read full story →";
+
+
+        info.appendChild(title);
+
+        info.appendChild(date);
+
+        info.appendChild(preview);
+
+        info.appendChild(readMore);
+
+        card.appendChild(info);
+
+
+        /* OPEN ARTICLE */
+
+        card.addEventListener(
+          "click",
+          function(event){
+
+            /*
+              If user clicks video controls,
+              don't open article.
+            */
+
+            if(
+              event.target.tagName ===
+              "VIDEO"
+            ){
+
+              return;
+
+            }
+
+            openArticle(post);
+
+          }
+        );
+
+
+        postsContainer.appendChild(card);
+
+      }
+    );
+
+  }catch(error){
+
+    console.error(error);
+
+    postsContainer.innerHTML =
+      '<div class="error">❌ Something went wrong.</div>';
+
+  }
 
 }
 
 
 /* =========================
-VISITOR COUNTER
+   OPEN ARTICLE
+========================= */
+
+function openArticle(post){
+
+  newsPage.style.display =
+    "none";
+
+  articlePage.style.display =
+    "block";
+
+  articleContainer.innerHTML =
+    "";
+
+  /* MEDIA */
+
+  if(post.Image_url){
+
+    if(isVideo(post.Image_url)){
+
+      const video =
+        document.createElement("video");
+
+      video.className =
+        "article-media";
+
+      video.src =
+        post.Image_url;
+
+      video.controls = true;
+
+      video.autoplay = false;
+
+      articleContainer.appendChild(
+        video
+      );
+
+    }else{
+
+      const img =
+        document.createElement("img");
+
+      img.className =
+        "article-media";
+
+      img.src =
+        post.Image_url;
+
+      img.alt =
+        post.Title || "Post";
+
+      articleContainer.appendChild(
+        img
+      );
+
+    }
+
+  }
+
+
+  /* TITLE */
+
+  const title =
+    document.createElement("h1");
+
+  title.className =
+    "article-title";
+
+  title.textContent =
+    post.Title || "Untitled";
+
+
+  /* DATE */
+
+  const date =
+    document.createElement("div");
+
+  date.className =
+    "article-date";
+
+  date.textContent =
+    "📅 Published: " +
+    formatDate(post.created_at);
+
+
+  /* CONTENT */
+
+  const content =
+    document.createElement("div");
+
+  content.className =
+    "article-text";
+
+  content.textContent =
+    post.Content || "";
+
+
+  articleContainer.appendChild(
+    title
+  );
+
+  articleContainer.appendChild(
+    date
+  );
+
+  articleContainer.appendChild(
+    content
+  );
+
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+/* =========================
+   BACK BUTTON
+========================= */
+
+backButton.addEventListener(
+  "click",
+  function(){
+
+    articlePage.style.display =
+      "none";
+
+    newsPage.style.display =
+      "block";
+
+    window.scrollTo({
+      top:0,
+      behavior:"smooth"
+    });
+
+  }
+);
+
+
+/* =========================
+   VISITOR COUNTER
 ========================= */
 
 async function updateVisitorCounter(){
 
-visitorCount.textContent =
-"Loading...";
+  visitorCount.textContent =
+    "Loading...";
+
+  try{
+
+    const insertResult =
+      await client
+      .from("visitors")
+      .insert({});
+
+    if(insertResult.error){
+
+      console.error(
+        "Visitor insert error:",
+        insertResult.error
+      );
+
+    }
 
 
-try{
+    const countResult =
+      await client
+      .from("visitors")
+      .select(
+        "*",
+        {
+          count:"exact",
+          head:true
+        }
+      );
 
+    if(countResult.error){
 
-/* ADD VISITOR */
+      console.error(
+        "Visitor count error:",
+        countResult.error
+      );
 
-const {error:insertError} =
-await client
-.from("visitors")
-.insert({});
+      visitorCount.textContent =
+        "—";
 
+      return;
 
-if(insertError){
+    }
 
-console.error(
-"Visitor insert error:",
-insertError
-);
+    visitorCount.textContent =
+      Number(
+        countResult.count || 0
+      ).toLocaleString();
 
-}
+  }catch(error){
 
+    console.error(
+      "Visitor error:",
+      error
+    );
 
-/* COUNT */
+    visitorCount.textContent =
+      "—";
 
-const {count,error:countError} =
-await client
-.from("visitors")
-.select(
-"*",
-{
-count:"exact",
-head:true
-}
-);
-
-
-if(countError){
-
-console.error(
-"Visitor count error:",
-countError
-);
-
-visitorCount.textContent =
-"—";
-
-return;
-
-}
-
-
-/* SHOW NUMBER */
-
-visitorCount.textContent =
-Number(
-count || 0
-).toLocaleString();
-
-}
-
-catch(error){
-
-console.error(
-"Visitor error:",
-error
-);
-
-visitorCount.textContent =
-"—";
-
-}
+  }
 
 }
 
 
 /* =========================
-YOUTUBE ID
-========================= */
-
-function getYouTubeId(url){
-
-try{
-
-const parsed =
-new URL(url);
-
-
-if(
-parsed.hostname.includes(
-"youtube.com"
-)
-){
-
-return parsed.searchParams.get(
-"v"
-);
-
-}
-
-
-if(
-parsed.hostname ===
-"youtu.be"
-){
-
-return parsed.pathname
-.substring(1);
-
-}
-
-
-return null;
-
-}
-
-catch(error){
-
-return null;
-
-}
-
-}
-
-
-/* =========================
-LOAD LIVE
+   YOUTUBE LIVE
 ========================= */
 
 async function loadLive(){
 
-liveStatus.textContent =
-"Checking Live status...";
+  try{
 
-liveFrame.style.display =
-"none";
-
-liveFrame.src =
-"";
-
-
-try{
-
-const {data,error} =
-await client
-.from("live_stream")
-.select(
-"id,youtube_id,active"
-)
-.eq(
-"id",
-1
-)
-.maybeSingle();
+    const result =
+      await client
+      .from("live_stream")
+      .select(
+        "id,youtube_id,active"
+      )
+      .eq("id",1)
+      .maybeSingle();
 
 
-if(error){
+    if(result.error){
 
-console.error(
-"Live error:",
-error
-);
+      console.error(
+        "Live error:",
+        result.error
+      );
 
-liveStatus.textContent =
-"Live is currently unavailable.";
+      liveStatus.textContent =
+        "Live system unavailable.";
 
-return;
+      return;
 
-}
-
-
-if(
-data &&
-data.active === true &&
-data.youtube_id
-){
-
-const videoId =
-data.youtube_id;
+    }
 
 
-liveStatus.textContent =
-"🔴 LIVE NOW";
+    const data =
+      result.data;
 
 
-liveFrame.src =
-"https://www.youtube.com/embed/" +
-videoId +
-"?autoplay=1";
+    if(
+      data &&
+      data.active &&
+      data.youtube_id
+    ){
 
+      liveStatus.textContent =
+        "🔴 LIVE IS ACTIVE";
 
-liveFrame.style.display =
-"block";
+      liveVideo.src =
+        "https://www.youtube.com/embed/" +
+        data.youtube_id +
+        "?autoplay=1";
 
-}
+      liveVideo.style.display =
+        "block";
 
-else{
+    }else{
 
-liveStatus.textContent =
-"Live is currently OFF";
+      liveStatus.textContent =
+        "Live is currently OFF";
 
-}
+      liveVideo.style.display =
+        "none";
 
-}
+    }
 
-catch(error){
+  }catch(error){
 
-console.error(
-"Live error:",
-error
-);
+    console.error(error);
 
-liveStatus.textContent =
-"Live is currently unavailable.";
+    liveStatus.textContent =
+      "Live system unavailable.";
 
-}
+  }
 
 }
 
 
 /* =========================
-START
+   START WEBSITE
 ========================= */
 
 loadPosts();
 
-updateVisitorCounter();
-
 loadLive();
+
+updateVisitorCounter();
 
 </script>
 
