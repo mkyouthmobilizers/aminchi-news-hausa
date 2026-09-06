@@ -6,7 +6,10 @@
 
 <title>MK Youth Mobilizers Media Team Tarauni</title>
 
-<meta name="description" content="MK Youth Mobilizers Media Team Tarauni - Latest news, updates, photos and videos.">
+<meta
+  name="description"
+  content="MK Youth Mobilizers Media Team Tarauni - Latest news, updates, photos and videos."
+>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -71,6 +74,18 @@ header{
   padding:20px 12px 50px;
 }
 
+/* VISITOR */
+
+.visitor-box{
+  background:white;
+  border-radius:10px;
+  padding:13px 16px;
+  margin-bottom:20px;
+  text-align:center;
+  box-shadow:0 2px 8px rgba(0,0,0,.06);
+  font-weight:bold;
+}
+
 /* LIVE */
 
 .live-box{
@@ -98,18 +113,6 @@ header{
   aspect-ratio:16/9;
   border:0;
   display:none;
-}
-
-/* VISITOR */
-
-.visitor-box{
-  background:white;
-  border-radius:10px;
-  padding:13px 16px;
-  margin-bottom:20px;
-  text-align:center;
-  box-shadow:0 2px 8px rgba(0,0,0,.06);
-  font-weight:bold;
 }
 
 /* NEWS */
@@ -178,7 +181,7 @@ header{
   font-size:14px;
 }
 
-/* FULL ARTICLE */
+/* ARTICLE */
 
 .article-page{
   display:none;
@@ -188,16 +191,17 @@ header{
   box-shadow:0 2px 10px rgba(0,0,0,.08);
 }
 
+.article-content{
+  padding:20px;
+}
+
 .article-media{
   width:100%;
   max-height:600px;
   object-fit:contain;
   background:#111;
   display:block;
-}
-
-.article-content{
-  padding:20px;
+  margin-bottom:20px;
 }
 
 .article-title{
@@ -319,7 +323,8 @@ footer{
     <img
       src="IMG_3240.jpeg"
       class="logo"
-      alt="MK Youth Mobilizers">
+      alt="MK Youth Mobilizers"
+    >
 
     <div>
 
@@ -346,12 +351,12 @@ footer{
 <div class="visitor-box">
 
   👥 Website Visitors:
-  <span id="visitorCount">Loading...</span>
+  <span id="visitorCount">10,000</span>
 
 </div>
 
 
-<!-- LIVE -->
+<!-- YOUTUBE LIVE -->
 
 <div class="live-box">
 
@@ -361,7 +366,8 @@ footer{
 
   <div
     id="liveStatus"
-    class="live-status">
+    class="live-status"
+  >
     Checking live status...
   </div>
 
@@ -375,7 +381,7 @@ footer{
 </div>
 
 
-<!-- NEWS LIST -->
+<!-- NEWS -->
 
 <section id="newsPage">
 
@@ -385,7 +391,8 @@ footer{
 
   <div
     id="posts"
-    class="posts">
+    class="posts"
+  >
 
     <div class="loading">
       Loading posts...
@@ -396,20 +403,20 @@ footer{
 </section>
 
 
-<!-- ARTICLE -->
+<!-- FULL ARTICLE -->
 
 <section
   id="articlePage"
-  class="article-page">
+  class="article-page"
+>
 
   <div class="article-content">
 
     <button
       id="backButton"
-      class="back-button">
-
+      class="back-button"
+    >
       ← Back to News
-
     </button>
 
     <div id="articleContainer"></div>
@@ -441,15 +448,18 @@ footer{
 
 <script>
 
-/* =========================
-   SUPABASE
-========================= */
+/* =========================================
+   SUPABASE CONFIGURATION
+========================================= */
 
 const SUPABASE_URL =
 "https://kszficrcngxipcllezgl.supabase.co";
 
 const SUPABASE_KEY =
 "sb_publishable_hsMkfMvXMbAXXt8Z7LvAvg_52miDaJe";
+
+const BUCKET =
+"post-media";
 
 const client =
 window.supabase.createClient(
@@ -458,9 +468,9 @@ window.supabase.createClient(
 );
 
 
-/* =========================
+/* =========================================
    ELEMENTS
-========================= */
+========================================= */
 
 const postsContainer =
 document.getElementById("posts");
@@ -487,11 +497,15 @@ const backButton =
 document.getElementById("backButton");
 
 
-/* =========================
-   DATE FORMAT
-========================= */
+/* =========================================
+   FORMAT DATE
+========================================= */
 
 function formatDate(dateString){
+
+  if(!dateString){
+    return "";
+  }
 
   const date =
     new Date(dateString);
@@ -514,9 +528,9 @@ function formatDate(dateString){
 }
 
 
-/* =========================
-   SHORT TEXT
-========================= */
+/* =========================================
+   SHORT CONTENT
+========================================= */
 
 function shortText(text){
 
@@ -524,20 +538,23 @@ function shortText(text){
     return "";
   }
 
-  const max = 140;
+  const maxLength = 150;
 
-  if(text.length <= max){
+  if(text.length <= maxLength){
     return text;
   }
 
-  return text.substring(0,max) + "...";
+  return text.substring(
+    0,
+    maxLength
+  ) + "...";
 
 }
 
 
-/* =========================
-   MEDIA TYPE
-========================= */
+/* =========================================
+   CHECK VIDEO
+========================================= */
 
 function isVideo(url){
 
@@ -558,9 +575,9 @@ function isVideo(url){
 }
 
 
-/* =========================
+/* =========================================
    LOAD POSTS
-========================= */
+========================================= */
 
 async function loadPosts(){
 
@@ -580,7 +597,14 @@ async function loadPosts(){
         {
           ascending:false
         }
+      )
+      .order(
+        "id",
+        {
+          ascending:false
+        }
       );
+
 
     if(result.error){
 
@@ -596,8 +620,10 @@ async function loadPosts(){
 
     }
 
+
     const posts =
       result.data || [];
+
 
     if(posts.length === 0){
 
@@ -608,7 +634,10 @@ async function loadPosts(){
 
     }
 
-    postsContainer.innerHTML = "";
+
+    postsContainer.innerHTML =
+      "";
+
 
     posts.forEach(
       function(post){
@@ -619,11 +648,16 @@ async function loadPosts(){
         card.className =
           "post-card";
 
+
         /* MEDIA */
 
         if(post.Image_url){
 
-          if(isVideo(post.Image_url)){
+          if(
+            isVideo(
+              post.Image_url
+            )
+          ){
 
             const video =
               document.createElement("video");
@@ -634,11 +668,15 @@ async function loadPosts(){
             video.src =
               post.Image_url;
 
-            video.controls = true;
+            video.controls =
+              true;
 
-            video.preload = "metadata";
+            video.preload =
+              "metadata";
 
-            card.appendChild(video);
+            card.appendChild(
+              video
+            );
 
           }else{
 
@@ -652,19 +690,22 @@ async function loadPosts(){
               post.Image_url;
 
             img.alt =
-              post.Title || "Post";
+              post.Title ||
+              "Post";
 
             img.loading =
               "lazy";
 
-            card.appendChild(img);
+            card.appendChild(
+              img
+            );
 
           }
 
         }
 
 
-        /* INFO */
+        /* POST INFO */
 
         const info =
           document.createElement("div");
@@ -680,7 +721,8 @@ async function loadPosts(){
           "post-title";
 
         title.textContent =
-          post.Title || "Untitled";
+          post.Title ||
+          "Untitled";
 
 
         const date =
@@ -691,7 +733,9 @@ async function loadPosts(){
 
         date.textContent =
           "📅 " +
-          formatDate(post.created_at);
+          formatDate(
+            post.created_at
+          );
 
 
         const preview =
@@ -701,7 +745,9 @@ async function loadPosts(){
           "post-preview";
 
         preview.textContent =
-          shortText(post.Content);
+          shortText(
+            post.Content
+          );
 
 
         const readMore =
@@ -714,51 +760,62 @@ async function loadPosts(){
           "Read full story →";
 
 
-        info.appendChild(title);
+        info.appendChild(
+          title
+        );
 
-        info.appendChild(date);
+        info.appendChild(
+          date
+        );
 
-        info.appendChild(preview);
+        info.appendChild(
+          preview
+        );
 
-        info.appendChild(readMore);
+        info.appendChild(
+          readMore
+        );
 
-        card.appendChild(info);
+
+        card.appendChild(
+          info
+        );
 
 
-        /* OPEN ARTICLE */
+        /* OPEN POST */
 
         card.addEventListener(
           "click",
           function(event){
 
-            /*
-              If user clicks video controls,
-              don't open article.
-            */
-
             if(
               event.target.tagName ===
               "VIDEO"
             ){
-
               return;
-
             }
 
-            openArticle(post);
+            openArticle(
+              post
+            );
 
           }
         );
 
 
-        postsContainer.appendChild(card);
+        postsContainer.appendChild(
+          card
+        );
 
       }
     );
 
+
   }catch(error){
 
-    console.error(error);
+    console.error(
+      error
+    );
 
     postsContainer.innerHTML =
       '<div class="error">❌ Something went wrong.</div>';
@@ -768,9 +825,9 @@ async function loadPosts(){
 }
 
 
-/* =========================
-   OPEN ARTICLE
-========================= */
+/* =========================================
+   OPEN FULL ARTICLE
+========================================= */
 
 function openArticle(post){
 
@@ -783,11 +840,16 @@ function openArticle(post){
   articleContainer.innerHTML =
     "";
 
+
   /* MEDIA */
 
   if(post.Image_url){
 
-    if(isVideo(post.Image_url)){
+    if(
+      isVideo(
+        post.Image_url
+      )
+    ){
 
       const video =
         document.createElement("video");
@@ -798,9 +860,8 @@ function openArticle(post){
       video.src =
         post.Image_url;
 
-      video.controls = true;
-
-      video.autoplay = false;
+      video.controls =
+        true;
 
       articleContainer.appendChild(
         video
@@ -818,7 +879,8 @@ function openArticle(post){
         post.Image_url;
 
       img.alt =
-        post.Title || "Post";
+        post.Title ||
+        "Post";
 
       articleContainer.appendChild(
         img
@@ -838,7 +900,8 @@ function openArticle(post){
     "article-title";
 
   title.textContent =
-    post.Title || "Untitled";
+    post.Title ||
+    "Untitled";
 
 
   /* DATE */
@@ -851,7 +914,9 @@ function openArticle(post){
 
   date.textContent =
     "📅 Published: " +
-    formatDate(post.created_at);
+    formatDate(
+      post.created_at
+    );
 
 
   /* CONTENT */
@@ -863,7 +928,8 @@ function openArticle(post){
     "article-text";
 
   content.textContent =
-    post.Content || "";
+    post.Content ||
+    "";
 
 
   articleContainer.appendChild(
@@ -887,9 +953,9 @@ function openArticle(post){
 }
 
 
-/* =========================
-   BACK BUTTON
-========================= */
+/* =========================================
+   BACK TO NEWS
+========================================= */
 
 backButton.addEventListener(
   "click",
@@ -910,31 +976,69 @@ backButton.addEventListener(
 );
 
 
-/* =========================
+/* =========================================
    VISITOR COUNTER
-========================= */
+========================================= */
 
 async function updateVisitorCounter(){
 
+  const STARTING_VISITORS =
+    10000;
+
+
   visitorCount.textContent =
-    "Loading...";
+    STARTING_VISITORS.toLocaleString();
+
 
   try{
 
-    const insertResult =
-      await client
-      .from("visitors")
-      .insert({});
+    /*
+      Check whether this browser
+      has already been counted.
+    */
 
-    if(insertResult.error){
-
-      console.error(
-        "Visitor insert error:",
-        insertResult.error
+    const alreadyCounted =
+      localStorage.getItem(
+        "mk_visitor_counted"
       );
+
+
+    /*
+      Count this visitor only once
+      on this browser.
+    */
+
+    if(!alreadyCounted){
+
+      const insertResult =
+        await client
+        .from("visitors")
+        .insert({});
+
+
+      if(insertResult.error){
+
+        console.error(
+          "Visitor insert error:",
+          insertResult.error
+        );
+
+      }else{
+
+        localStorage.setItem(
+          "mk_visitor_counted",
+          "true"
+        );
+
+      }
 
     }
 
+
+    /*
+      Get total real visitors
+      from Supabase.
+    */
 
     const countResult =
       await client
@@ -947,6 +1051,7 @@ async function updateVisitorCounter(){
         }
       );
 
+
     if(countResult.error){
 
       console.error(
@@ -954,17 +1059,33 @@ async function updateVisitorCounter(){
         countResult.error
       );
 
+      /*
+        Even if Supabase fails,
+        keep 10,000 visible.
+      */
+
       visitorCount.textContent =
-        "—";
+        STARTING_VISITORS.toLocaleString();
 
       return;
 
     }
 
-    visitorCount.textContent =
+
+    const realVisitors =
       Number(
         countResult.count || 0
-      ).toLocaleString();
+      );
+
+
+    const totalVisitors =
+      STARTING_VISITORS +
+      realVisitors;
+
+
+    visitorCount.textContent =
+      totalVisitors.toLocaleString();
+
 
   }catch(error){
 
@@ -974,16 +1095,16 @@ async function updateVisitorCounter(){
     );
 
     visitorCount.textContent =
-      "—";
+      STARTING_VISITORS.toLocaleString();
 
   }
 
 }
 
 
-/* =========================
-   YOUTUBE LIVE
-========================= */
+/* =========================================
+   LOAD YOUTUBE LIVE
+========================================= */
 
 async function loadLive(){
 
@@ -995,7 +1116,10 @@ async function loadLive(){
       .select(
         "id,youtube_id,active"
       )
-      .eq("id",1)
+      .eq(
+        "id",
+        1
+      )
       .maybeSingle();
 
 
@@ -1027,10 +1151,12 @@ async function loadLive(){
       liveStatus.textContent =
         "🔴 LIVE IS ACTIVE";
 
+
       liveVideo.src =
         "https://www.youtube.com/embed/" +
         data.youtube_id +
         "?autoplay=1";
+
 
       liveVideo.style.display =
         "block";
@@ -1040,14 +1166,18 @@ async function loadLive(){
       liveStatus.textContent =
         "Live is currently OFF";
 
+
       liveVideo.style.display =
         "none";
 
     }
 
+
   }catch(error){
 
-    console.error(error);
+    console.error(
+      error
+    );
 
     liveStatus.textContent =
       "Live system unavailable.";
@@ -1057,9 +1187,9 @@ async function loadLive(){
 }
 
 
-/* =========================
+/* =========================================
    START WEBSITE
-========================= */
+========================================= */
 
 loadPosts();
 
