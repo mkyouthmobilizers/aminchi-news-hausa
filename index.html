@@ -16,7 +16,7 @@
     }
 
     body{
-      font-family:Arial, sans-serif;
+      font-family:Arial,sans-serif;
       background:#f4f6f8;
       color:#111;
     }
@@ -97,7 +97,43 @@
       line-height:1.6;
     }
 
+    /* SEARCH */
+
+    .search-box{
+      background:white;
+      padding:15px;
+      border-radius:12px;
+      margin-bottom:20px;
+      box-shadow:0 2px 8px rgba(0,0,0,.08);
+    }
+
+    .search-wrapper{
+      position:relative;
+    }
+
+    #searchInput{
+      width:100%;
+      padding:14px 45px 14px 15px;
+      border:1px solid #ddd;
+      border-radius:10px;
+      font-size:16px;
+      outline:none;
+    }
+
+    #searchInput:focus{
+      border-color:#111;
+    }
+
+    .search-icon{
+      position:absolute;
+      right:15px;
+      top:50%;
+      transform:translateY(-50%);
+      font-size:20px;
+    }
+
     /* VISITOR */
+
     .visitor-box{
       background:#111;
       color:white;
@@ -114,6 +150,7 @@
     }
 
     /* LIVE */
+
     .live-section{
       background:white;
       padding:18px;
@@ -144,6 +181,7 @@
     }
 
     /* CATEGORY */
+
     .category-section{
       margin-bottom:20px;
     }
@@ -167,11 +205,6 @@
       cursor:pointer;
       font-weight:bold;
       box-shadow:0 1px 5px rgba(0,0,0,.12);
-      transition:.2s;
-    }
-
-    .category-btn:hover{
-      transform:translateY(-1px);
     }
 
     .category-btn.active{
@@ -180,6 +213,7 @@
     }
 
     /* NEWS */
+
     .section-title{
       display:flex;
       justify-content:space-between;
@@ -212,7 +246,6 @@
 
     .post-card:hover{
       transform:translateY(-3px);
-      box-shadow:0 5px 15px rgba(0,0,0,.15);
     }
 
     .post-media{
@@ -267,6 +300,7 @@
     }
 
     /* ACTIONS */
+
     .actions{
       display:flex;
       gap:8px;
@@ -290,6 +324,7 @@
     }
 
     /* COMMENTS */
+
     .comment-area{
       display:none;
       margin-top:12px;
@@ -348,6 +383,7 @@
     }
 
     /* FULL ARTICLE */
+
     .full-article{
       display:none;
       position:fixed;
@@ -397,7 +433,6 @@
       border-radius:8px;
     }
 
-    /* LOADING / ERROR */
     .message{
       background:white;
       padding:25px;
@@ -427,6 +462,7 @@
     }
 
     @media(max-width:600px){
+
       .header-inner{
         padding:8px 10px;
       }
@@ -466,18 +502,24 @@
 <body>
 
 <header>
+
   <div class="header-inner">
 
     <div class="brand">
+
       <img
         src="561F33DB-6D50-45C9-8940-5E77FF098DDE.png"
         class="logo"
         alt="MK Youth Mobilizers">
 
       <div class="brand-text">
+
         <h1>MK Youth Mobilizers</h1>
+
         <p>Media Team Tarauni</p>
+
       </div>
+
     </div>
 
     <div class="live-top">
@@ -485,30 +527,69 @@
     </div>
 
   </div>
+
 </header>
 
 
 <main class="container">
 
+
   <section class="welcome">
-    <h2>MK Youth Mobilizers Media Team Tarauni</h2>
+
+    <h2>
+      MK Youth Mobilizers Media Team Tarauni
+    </h2>
 
     <p>
-      MK Youth Mobilizers is a youth-focused platform dedicated to
-      connecting, inspiring and empowering young people.
-      We promote unity, leadership, teamwork and positive development.
+      MK Youth Mobilizers is a youth-focused platform
+      dedicated to connecting, inspiring and empowering
+      young people. We promote unity, leadership,
+      teamwork and positive development.
     </p>
+
   </section>
 
 
-  <!-- VISITOR COUNTER -->
+  <!-- SEARCH -->
+
+  <section class="search-box">
+
+    <div class="search-wrapper">
+
+      <input
+        type="search"
+        id="searchInput"
+        placeholder="🔎 Nemi labari, siyasa, wasanni..."
+        autocomplete="off">
+
+      <span class="search-icon">
+        🔎
+      </span>
+
+    </div>
+
+  </section>
+
+
+  <!-- VISITOR -->
+
   <section class="visitor-box">
-    <div>👥 Masu ziyartar website</div>
-    <div class="visitor-number" id="visitorCount">Loading...</div>
+
+    <div>
+      👥 Masu ziyartar website
+    </div>
+
+    <div
+      class="visitor-number"
+      id="visitorCount">
+      Loading...
+    </div>
+
   </section>
 
 
   <!-- YOUTUBE LIVE -->
+
   <section class="live-section">
 
     <div class="live-title">
@@ -516,46 +597,65 @@
     </div>
 
     <div id="liveContainer">
+
       <div class="offline-live">
         Babu Live yanzu.
       </div>
+
     </div>
 
   </section>
 
 
   <!-- CATEGORIES -->
+
   <section class="category-section">
 
-    <h2>Categories</h2>
+    <h2>
+      Categories
+    </h2>
 
     <div class="category-buttons">
 
-      <button class="category-btn active" data-category="Duka">
+      <button
+        class="category-btn active"
+        data-category="Duka">
         🏠 Duka
       </button>
 
-      <button class="category-btn" data-category="Labarai">
+      <button
+        class="category-btn"
+        data-category="Labarai">
         📰 Labarai
       </button>
 
-      <button class="category-btn" data-category="Siyasa">
+      <button
+        class="category-btn"
+        data-category="Siyasa">
         🏛️ Siyasa
       </button>
 
-      <button class="category-btn" data-category="Wasanni">
+      <button
+        class="category-btn"
+        data-category="Wasanni">
         ⚽ Wasanni
       </button>
 
-      <button class="category-btn" data-category="Nishaɗi">
+      <button
+        class="category-btn"
+        data-category="Nishaɗi">
         🎤 Nishaɗi
       </button>
 
-      <button class="category-btn" data-category="Hotuna">
+      <button
+        class="category-btn"
+        data-category="Hotuna">
         📸 Hotuna
       </button>
 
-      <button class="category-btn" data-category="Bidiyo">
+      <button
+        class="category-btn"
+        data-category="Bidiyo">
         🎥 Bidiyo
       </button>
 
@@ -565,15 +665,21 @@
 
 
   <!-- NEWS -->
+
   <div class="section-title">
 
-    <h2>Latest News</h2>
+    <h2>
+      Latest News
+    </h2>
 
     <span id="postCount"></span>
 
   </div>
 
-  <section id="postsContainer" class="posts-grid">
+
+  <section
+    id="postsContainer"
+    class="posts-grid">
 
     <div class="message">
       Ana loda labarai...
@@ -581,11 +687,15 @@
 
   </section>
 
+
 </main>
 
 
 <!-- FULL ARTICLE -->
-<div id="fullArticle" class="full-article">
+
+<div
+  id="fullArticle"
+  class="full-article">
 
   <div class="article-box">
 
@@ -597,7 +707,10 @@
         ✕
       </button>
 
-      <div id="articleCategory" class="category-badge"></div>
+      <div
+        id="articleCategory"
+        class="category-badge">
+      </div>
 
       <h2 id="articleTitle"></h2>
 
@@ -653,6 +766,8 @@ let allPosts = [];
 
 let currentCategory = "Duka";
 
+let currentSearch = "";
+
 
 /* =========================
    DATE
@@ -660,56 +775,75 @@ let currentCategory = "Duka";
 
 function formatDate(date){
 
-  const d = new Date(date);
+  const d =
+    new Date(date);
 
-  return d.toLocaleString("ha-NG", {
+  return d.toLocaleString("ha-NG",{
+
     day:"2-digit",
+
     month:"long",
+
     year:"numeric",
+
     hour:"2-digit",
+
     minute:"2-digit"
+
   });
 
 }
 
 
 /* =========================
-   SHORT STORY
+   SHORT TEXT
 ========================= */
 
-function shortText(text, words = 35){
+function shortText(
+  text,
+  words = 35
+){
 
-  if(!text) return "";
+  if(!text)
+    return "";
 
-  const parts = text.trim().split(/\s+/);
+  const parts =
+    text.trim().split(/\s+/);
 
-  if(parts.length <= words){
-
+  if(parts.length <= words)
     return text;
 
-  }
-
-  return parts.slice(0,words).join(" ") + "...";
+  return parts
+    .slice(0,words)
+    .join(" ") + "...";
 
 }
 
 
 /* =========================
-   VIDEO CHECK
+   VIDEO
 ========================= */
 
 function isVideo(url){
 
-  if(!url) return false;
+  if(!url)
+    return false;
 
   const cleanUrl =
-    url.split("?")[0].toLowerCase();
+    url
+      .split("?")[0]
+      .toLowerCase();
 
   return (
+
     cleanUrl.endsWith(".mp4") ||
+
     cleanUrl.endsWith(".webm") ||
+
     cleanUrl.endsWith(".mov") ||
+
     cleanUrl.endsWith(".m4v")
+
   );
 
 }
@@ -722,23 +856,39 @@ function isVideo(url){
 async function loadPosts(){
 
   const container =
-    document.getElementById("postsContainer");
+    document.getElementById(
+      "postsContainer"
+    );
 
   container.innerHTML =
-    `<div class="message">Ana loda labarai...</div>`;
+    `<div class="message">
+      Ana loda labarai...
+    </div>`;
 
-  const { data, error } =
+
+  const {data,error} =
     await supabaseClient
+
       .from("posts")
+
       .select(
         "id,Title,Content,Image_url,category,created_at"
       )
-      .order("created_at", {
-        ascending:false
-      })
-      .order("id", {
-        ascending:false
-      });
+
+      .order(
+        "created_at",
+        {
+          ascending:false
+        }
+      )
+
+      .order(
+        "id",
+        {
+          ascending:false
+        }
+      );
+
 
   if(error){
 
@@ -746,18 +896,96 @@ async function loadPosts(){
 
     container.innerHTML =
       `<div class="message">
+
         An kasa loda labarai.
+
         <br><br>
-        ${error.message}
+
+        ${escapeHtml(error.message)}
+
       </div>`;
 
     return;
 
   }
 
-  allPosts = data || [];
+
+  allPosts =
+    data || [];
 
   renderPosts();
+
+}
+
+
+/* =========================
+   FILTER POSTS
+========================= */
+
+function getFilteredPosts(){
+
+  let posts =
+    allPosts;
+
+
+  /* CATEGORY */
+
+  if(currentCategory !== "Duka"){
+
+    posts =
+      posts.filter(post =>
+
+        (post.category || "Labarai")
+          .toLowerCase() ===
+        currentCategory.toLowerCase()
+
+      );
+
+  }
+
+
+  /* SEARCH */
+
+  if(currentSearch.trim() !== ""){
+
+    const search =
+      currentSearch
+        .trim()
+        .toLowerCase();
+
+
+    posts =
+      posts.filter(post => {
+
+        const title =
+          (post.Title || "")
+            .toLowerCase();
+
+        const content =
+          (post.Content || "")
+            .toLowerCase();
+
+        const category =
+          (post.category || "Labarai")
+            .toLowerCase();
+
+
+        return (
+
+          title.includes(search) ||
+
+          content.includes(search) ||
+
+          category.includes(search)
+
+        );
+
+      });
+
+  }
+
+
+  return posts;
 
 }
 
@@ -769,77 +997,98 @@ async function loadPosts(){
 function renderPosts(){
 
   const container =
-    document.getElementById("postsContainer");
-
-  let posts = allPosts;
-
-  if(currentCategory !== "Duka"){
-
-    posts = allPosts.filter(post =>
-
-      (post.category || "Labarai")
-        .toLowerCase() ===
-      currentCategory.toLowerCase()
-
+    document.getElementById(
+      "postsContainer"
     );
 
-  }
 
-  document.getElementById("postCount").textContent =
+  const posts =
+    getFilteredPosts();
+
+
+  document.getElementById(
+    "postCount"
+  ).textContent =
     `${posts.length} post${posts.length === 1 ? "" : "s"}`;
+
 
   if(posts.length === 0){
 
     container.innerHTML =
       `<div class="message">
-        Babu post a wannan category.
+
+        🔎 Babu labarin da ya dace
+        da abin da ka nema.
+
       </div>`;
 
     return;
 
   }
 
+
   container.innerHTML = "";
+
 
   posts.forEach(post => {
 
     const card =
-      document.createElement("article");
+      document.createElement(
+        "article"
+      );
 
-    card.className = "post-card";
+    card.className =
+      "post-card";
+
+
+    /* MEDIA */
 
     const media =
-      document.createElement("div");
+      document.createElement(
+        "div"
+      );
+
 
     if(post.Image_url){
 
       if(isVideo(post.Image_url)){
 
         const video =
-          document.createElement("video");
+          document.createElement(
+            "video"
+          );
 
-        video.className = "post-media";
+        video.className =
+          "post-media";
 
-        video.src = post.Image_url;
+        video.src =
+          post.Image_url;
 
         video.controls = true;
 
-        video.preload = "metadata";
+        video.preload =
+          "metadata";
 
         media.appendChild(video);
 
       }else{
 
         const img =
-          document.createElement("img");
+          document.createElement(
+            "img"
+          );
 
-        img.className = "post-media";
+        img.className =
+          "post-media";
 
-        img.src = post.Image_url;
+        img.src =
+          post.Image_url;
 
-        img.alt = post.Title || "Post";
+        img.alt =
+          post.Title || "Post";
 
-        img.loading = "lazy";
+        img.loading =
+          "lazy";
 
         media.appendChild(img);
 
@@ -847,11 +1096,16 @@ function renderPosts(){
 
     }
 
+
     card.appendChild(media);
 
 
+    /* CONTENT */
+
     const content =
-      document.createElement("div");
+      document.createElement(
+        "div"
+      );
 
     content.className =
       "post-content";
@@ -860,7 +1114,9 @@ function renderPosts(){
     /* CATEGORY */
 
     const category =
-      document.createElement("div");
+      document.createElement(
+        "div"
+      );
 
     category.className =
       "category-badge";
@@ -868,60 +1124,89 @@ function renderPosts(){
     category.textContent =
       post.category || "Labarai";
 
-    content.appendChild(category);
+    content.appendChild(
+      category
+    );
 
 
     /* TITLE */
 
     const title =
-      document.createElement("h3");
+      document.createElement(
+        "h3"
+      );
 
     title.className =
       "post-title";
 
     title.textContent =
-      post.Title || "Ba tare da suna ba";
+      post.Title ||
+      "Ba tare da suna ba";
 
-    content.appendChild(title);
+    content.appendChild(
+      title
+    );
 
 
     /* DATE */
 
     const date =
-      document.createElement("div");
+      document.createElement(
+        "div"
+      );
 
     date.className =
       "post-date";
 
     date.textContent =
-      "📅 " + formatDate(post.created_at);
+      "📅 " +
+      formatDate(
+        post.created_at
+      );
 
-    content.appendChild(date);
+    content.appendChild(
+      date
+    );
 
 
     /* TEXT */
 
     const text =
-      document.createElement("div");
+      document.createElement(
+        "div"
+      );
 
     text.className =
       "post-text";
 
     text.textContent =
-      shortText(post.Content,35);
+      shortText(
+        post.Content,
+        35
+      );
 
-    content.appendChild(text);
+    content.appendChild(
+      text
+    );
 
 
     /* READ MORE */
 
     if(
+
       post.Content &&
-      post.Content.trim().split(/\s+/).length > 35
+
+      post.Content
+        .trim()
+        .split(/\s+/)
+        .length > 35
+
     ){
 
       const readMore =
-        document.createElement("button");
+        document.createElement(
+          "button"
+        );
 
       readMore.className =
         "read-more";
@@ -929,10 +1214,12 @@ function renderPosts(){
       readMore.textContent =
         "Karanta cikakken labari →";
 
-      readMore.onclick = () =>
-        openArticle(post);
+      readMore.onclick =
+        () => openArticle(post);
 
-      content.appendChild(readMore);
+      content.appendChild(
+        readMore
+      );
 
     }
 
@@ -940,7 +1227,9 @@ function renderPosts(){
     /* ACTIONS */
 
     const actions =
-      document.createElement("div");
+      document.createElement(
+        "div"
+      );
 
     actions.className =
       "actions";
@@ -949,7 +1238,9 @@ function renderPosts(){
     /* LIKE */
 
     const likeBtn =
-      document.createElement("button");
+      document.createElement(
+        "button"
+      );
 
     likeBtn.className =
       "action-btn";
@@ -957,16 +1248,24 @@ function renderPosts(){
     likeBtn.innerHTML =
       "👍 <span>Like</span>";
 
-    likeBtn.onclick = () =>
-      handleLike(post.id, likeBtn);
+    likeBtn.onclick =
+      () =>
+        handleLike(
+          post.id,
+          likeBtn
+        );
 
-    actions.appendChild(likeBtn);
+    actions.appendChild(
+      likeBtn
+    );
 
 
     /* COMMENT */
 
     const commentBtn =
-      document.createElement("button");
+      document.createElement(
+        "button"
+      );
 
     commentBtn.className =
       "action-btn";
@@ -974,16 +1273,23 @@ function renderPosts(){
     commentBtn.innerHTML =
       "💬 Comment";
 
-    commentBtn.onclick = () =>
-      toggleComments(post.id);
+    commentBtn.onclick =
+      () =>
+        toggleComments(
+          post.id
+        );
 
-    actions.appendChild(commentBtn);
+    actions.appendChild(
+      commentBtn
+    );
 
 
     /* SHARE */
 
     const shareBtn =
-      document.createElement("button");
+      document.createElement(
+        "button"
+      );
 
     shareBtn.className =
       "action-btn";
@@ -991,19 +1297,26 @@ function renderPosts(){
     shareBtn.innerHTML =
       "🔄 Share";
 
-    shareBtn.onclick = () =>
-      sharePost(post);
+    shareBtn.onclick =
+      () =>
+        sharePost(post);
 
-    actions.appendChild(shareBtn);
+    actions.appendChild(
+      shareBtn
+    );
 
 
-    content.appendChild(actions);
+    content.appendChild(
+      actions
+    );
 
 
-    /* COMMENT AREA */
+    /* COMMENTS */
 
     const commentArea =
-      document.createElement("div");
+      document.createElement(
+        "div"
+      );
 
     commentArea.className =
       "comment-area";
@@ -1040,15 +1353,22 @@ function renderPosts(){
     `;
 
 
-    content.appendChild(commentArea);
+    content.appendChild(
+      commentArea
+    );
+
+    card.appendChild(
+      content
+    );
+
+    container.appendChild(
+      card
+    );
 
 
-    card.appendChild(content);
-
-    container.appendChild(card);
-
-
-    loadComments(post.id);
+    loadComments(
+      post.id
+    );
 
   });
 
@@ -1056,36 +1376,63 @@ function renderPosts(){
 
 
 /* =========================
-   CATEGORY FILTER
+   SEARCH
 ========================= */
 
 document
-  .querySelectorAll(".category-btn")
-  .forEach(button => {
+  .getElementById(
+    "searchInput"
+  )
+  .addEventListener(
+    "input",
+    function(){
 
-    button.addEventListener("click", () => {
-
-      currentCategory =
-        button.dataset.category;
-
-      document
-        .querySelectorAll(".category-btn")
-        .forEach(btn =>
-          btn.classList.remove("active")
-        );
-
-      button.classList.add("active");
+      currentSearch =
+        this.value;
 
       renderPosts();
 
-      window.scrollTo({
-        top:
-          document.querySelector(".category-section")
-            .offsetTop - 80,
-        behavior:"smooth"
-      });
+    }
+  );
 
-    });
+
+/* =========================
+   CATEGORY
+========================= */
+
+document
+  .querySelectorAll(
+    ".category-btn"
+  )
+  .forEach(button => {
+
+    button.addEventListener(
+      "click",
+      () => {
+
+        currentCategory =
+          button.dataset.category;
+
+
+        document
+          .querySelectorAll(
+            ".category-btn"
+          )
+          .forEach(btn =>
+            btn.classList
+              .remove("active")
+          );
+
+
+        button.classList.add(
+          "active"
+        );
+
+
+        renderPosts();
+
+      }
+    );
 
   });
 
@@ -1094,25 +1441,40 @@ document
    COMMENTS
 ========================= */
 
-async function loadComments(postId){
+async function loadComments(
+  postId
+){
 
   const list =
     document.getElementById(
       `comment-list-${postId}`
     );
 
-  if(!list) return;
+  if(!list)
+    return;
 
-  const { data, error } =
+
+  const {data,error} =
     await supabaseClient
+
       .from("post_comments")
+
       .select(
         "id,name,comment,created_at"
       )
-      .eq("post_id",postId)
-      .order("created_at",{
-        ascending:false
-      });
+
+      .eq(
+        "post_id",
+        postId
+      )
+
+      .order(
+        "created_at",
+        {
+          ascending:false
+        }
+      );
+
 
   if(error){
 
@@ -1122,9 +1484,14 @@ async function loadComments(postId){
 
   }
 
+
   list.innerHTML = "";
 
-  if(!data || data.length === 0){
+
+  if(
+    !data ||
+    data.length === 0
+  ){
 
     list.innerHTML =
       `<small style="color:#888;">
@@ -1135,29 +1502,61 @@ async function loadComments(postId){
 
   }
 
+
   data.forEach(comment => {
 
     const item =
-      document.createElement("div");
+      document.createElement(
+        "div"
+      );
 
     item.className =
       "comment-item";
 
-    item.innerHTML = `
 
-      <div class="comment-name">
-        ${escapeHtml(comment.name)}
-      </div>
+    const name =
+      document.createElement(
+        "div"
+      );
 
-      <div class="comment-text">
-        ${escapeHtml(comment.comment)}
-      </div>
+    name.className =
+      "comment-name";
 
-      <div class="comment-date">
-        ${formatDate(comment.created_at)}
-      </div>
+    name.textContent =
+      comment.name;
 
-    `;
+
+    const text =
+      document.createElement(
+        "div"
+      );
+
+    text.className =
+      "comment-text";
+
+    text.textContent =
+      comment.comment;
+
+
+    const date =
+      document.createElement(
+        "div"
+      );
+
+    date.className =
+      "comment-date";
+
+    date.textContent =
+      formatDate(
+        comment.created_at
+      );
+
+
+    item.appendChild(name);
+
+    item.appendChild(text);
+
+    item.appendChild(date);
 
     list.appendChild(item);
 
@@ -1166,14 +1565,19 @@ async function loadComments(postId){
 }
 
 
-function toggleComments(postId){
+function toggleComments(
+  postId
+){
 
   const area =
     document.getElementById(
       `comments-${postId}`
     );
 
-  if(!area) return;
+
+  if(!area)
+    return;
+
 
   area.style.display =
     area.style.display === "block"
@@ -1183,7 +1587,9 @@ function toggleComments(postId){
 }
 
 
-async function submitComment(postId){
+async function submitComment(
+  postId
+){
 
   const nameInput =
     document.getElementById(
@@ -1195,24 +1601,30 @@ async function submitComment(postId){
       `comment-${postId}`
     );
 
+
   const name =
     nameInput.value.trim();
 
   const comment =
     commentInput.value.trim();
 
+
   if(!name || !comment){
 
-    alert("Rubuta suna da comment.");
+    alert(
+      "Rubuta suna da comment."
+    );
 
     return;
 
   }
 
+
   let visitorId =
     localStorage.getItem(
       "mk_visitor_id"
     );
+
 
   if(!visitorId){
 
@@ -1226,9 +1638,12 @@ async function submitComment(postId){
 
   }
 
-  const { error } =
+
+  const {error} =
     await supabaseClient
+
       .from("post_comments")
+
       .insert([{
 
         post_id:postId,
@@ -1241,9 +1656,8 @@ async function submitComment(postId){
 
       }]);
 
-  if(error){
 
-    console.error(error);
+  if(error){
 
     alert(
       "An kasa tura comment: " +
@@ -1254,11 +1668,15 @@ async function submitComment(postId){
 
   }
 
+
   nameInput.value = "";
 
   commentInput.value = "";
 
-  await loadComments(postId);
+
+  await loadComments(
+    postId
+  );
 
 }
 
@@ -1267,12 +1685,16 @@ async function submitComment(postId){
    LIKE
 ========================= */
 
-async function handleLike(postId, button){
+async function handleLike(
+  postId,
+  button
+){
 
   let visitorId =
     localStorage.getItem(
       "mk_visitor_id"
     );
+
 
   if(!visitorId){
 
@@ -1286,30 +1708,51 @@ async function handleLike(postId, button){
 
   }
 
-  const { data: existing } =
+
+  const {data:existing} =
     await supabaseClient
+
       .from("post_likes")
+
       .select("id")
-      .eq("post_id",postId)
-      .eq("visitor_id",visitorId)
+
+      .eq(
+        "post_id",
+        postId
+      )
+
+      .eq(
+        "visitor_id",
+        visitorId
+      )
+
       .maybeSingle();
 
 
   if(existing){
 
     await supabaseClient
+
       .from("post_likes")
+
       .delete()
-      .eq("id",existing.id);
+
+      .eq(
+        "id",
+        existing.id
+      );
+
 
     button.innerHTML =
       "👍 <span>Like</span>";
 
   }else{
 
-    const { error } =
+    const {error} =
       await supabaseClient
+
         .from("post_likes")
+
         .insert([{
 
           post_id:postId,
@@ -1318,9 +1761,8 @@ async function handleLike(postId, button){
 
         }]);
 
-    if(error){
 
-      console.error(error);
+    if(error){
 
       alert(
         "Like bai yi ba."
@@ -1329,6 +1771,7 @@ async function handleLike(postId, button){
       return;
 
     }
+
 
     button.innerHTML =
       "👍 <span>Liked</span>";
@@ -1342,14 +1785,18 @@ async function handleLike(postId, button){
    SHARE
 ========================= */
 
-async function sharePost(post){
+async function sharePost(
+  post
+){
 
   const url =
     `${window.location.origin}${window.location.pathname}#post-${post.id}`;
 
+
   const shareData = {
 
-    title:post.Title,
+    title:
+      post.Title,
 
     text:
       `${post.Title}\n\nMK Youth Mobilizers`,
@@ -1411,22 +1858,30 @@ async function sharePost(post){
    FULL ARTICLE
 ========================= */
 
-function openArticle(post){
+function openArticle(
+  post
+){
 
   document.getElementById(
     "articleCategory"
   ).textContent =
-    post.category || "Labarai";
+    post.category ||
+    "Labarai";
+
 
   document.getElementById(
     "articleTitle"
   ).textContent =
     post.Title || "";
 
+
   document.getElementById(
     "articleDate"
   ).textContent =
-    "📅 " + formatDate(post.created_at);
+    "📅 " +
+    formatDate(
+      post.created_at
+    );
 
 
   const body =
@@ -1434,35 +1889,50 @@ function openArticle(post){
       "articleBody"
     );
 
+
   body.innerHTML = "";
 
 
   if(post.Image_url){
 
-    if(isVideo(post.Image_url)){
+    if(
+      isVideo(
+        post.Image_url
+      )
+    ){
 
       const video =
-        document.createElement("video");
+        document.createElement(
+          "video"
+        );
 
       video.src =
         post.Image_url;
 
-      video.controls = true;
+      video.controls =
+        true;
 
-      body.appendChild(video);
+      body.appendChild(
+        video
+      );
 
     }else{
 
       const img =
-        document.createElement("img");
+        document.createElement(
+          "img"
+        );
 
       img.src =
         post.Image_url;
 
       img.alt =
-        post.Title || "Post";
+        post.Title ||
+        "Post";
 
-      body.appendChild(img);
+      body.appendChild(
+        img
+      );
 
     }
 
@@ -1470,17 +1940,23 @@ function openArticle(post){
 
 
   const text =
-    document.createElement("div");
+    document.createElement(
+      "div"
+    );
 
   text.textContent =
     post.Content || "";
 
-  body.appendChild(text);
+
+  body.appendChild(
+    text
+  );
 
 
   document.getElementById(
     "fullArticle"
-  ).style.display = "block";
+  ).style.display =
+    "block";
 
 
   document.body.style.overflow =
@@ -1500,10 +1976,13 @@ function closeArticle(){
 
   document.getElementById(
     "fullArticle"
-  ).style.display = "none";
+  ).style.display =
+    "none";
+
 
   document.body.style.overflow =
     "";
+
 
   history.replaceState(
     null,
@@ -1515,7 +1994,7 @@ function closeArticle(){
 
 
 /* =========================
-   HASH OPEN POST
+   HASH
 ========================= */
 
 function checkHash(){
@@ -1523,22 +2002,36 @@ function checkHash(){
   const hash =
     window.location.hash;
 
-  if(!hash.startsWith("#post-"))
+
+  if(
+    !hash.startsWith(
+      "#post-"
+    )
+  )
     return;
+
 
   const id =
     Number(
-      hash.replace("#post-","")
+      hash.replace(
+        "#post-",
+        ""
+      )
     );
+
 
   const post =
     allPosts.find(
-      p => Number(p.id) === id
+      p =>
+        Number(p.id) === id
     );
+
 
   if(post){
 
-    openArticle(post);
+    openArticle(
+      post
+    );
 
   }
 
@@ -1556,6 +2049,7 @@ async function loadVisitors(){
       "visitorCount"
     );
 
+
   const alreadyCounted =
     localStorage.getItem(
       "mk_visitor_counted"
@@ -1567,14 +2061,18 @@ async function loadVisitors(){
     const visitorId =
       crypto.randomUUID();
 
-    const { error } =
+
+    const {error} =
       await supabaseClient
+
         .from("visitors")
+
         .insert([{
 
           visitor_id:visitorId
 
         }]);
+
 
     if(!error){
 
@@ -1588,21 +2086,25 @@ async function loadVisitors(){
   }
 
 
-  const { count, error } =
+  const {count,error} =
     await supabaseClient
+
       .from("visitors")
-      .select("id",{
-        count:"exact",
-        head:true
-      });
+
+      .select(
+        "id",
+        {
+          count:"exact",
+          head:true
+        }
+      );
 
 
   if(error){
 
-    console.error(error);
-
     visitorElement.textContent =
-      STARTING_VISITORS.toLocaleString();
+      STARTING_VISITORS
+        .toLocaleString();
 
     return;
 
@@ -1631,23 +2133,31 @@ async function loadLive(){
       "liveContainer"
     );
 
-  const { data, error } =
+
+  const {data,error} =
     await supabaseClient
+
       .from("live_stream")
+
       .select(
         "id,youtube_id,active"
       )
-      .eq("id",1)
+
+      .eq(
+        "id",
+        1
+      )
+
       .maybeSingle();
 
 
   if(error){
 
-    console.error(error);
-
     container.innerHTML =
       `<div class="offline-live">
+
         Babu Live yanzu.
+
       </div>`;
 
     return;
@@ -1656,9 +2166,13 @@ async function loadLive(){
 
 
   if(
+
     data &&
+
     data.active &&
+
     data.youtube_id
+
   ){
 
     container.innerHTML = `
@@ -1702,23 +2216,47 @@ async function loadLive(){
 
 
 /* =========================
-   SECURITY
+   ESCAPE HTML
 ========================= */
 
-function escapeHtml(value){
+function escapeHtml(
+  value
+){
 
-  return String(value || "")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+  return String(
+    value || ""
+  )
+
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+
+    .replace(
+      /</g,
+      "&lt;"
+    )
+
+    .replace(
+      />/g,
+      "&gt;"
+    )
+
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+
+    .replace(
+      /'/g,
+      "&#039;"
+    );
 
 }
 
 
 /* =========================
-   START
+   START WEBSITE
 ========================= */
 
 document.addEventListener(
@@ -1737,25 +2275,34 @@ document.addEventListener(
 );
 
 
+/* HASH CHANGE */
+
 window.addEventListener(
   "hashchange",
   checkHash
 );
 
 
-/* CLOSE ARTICLE WHEN CLICKING OUTSIDE */
+/* CLOSE ARTICLE OUTSIDE */
 
 document
-  .getElementById("fullArticle")
-  .addEventListener("click", function(e){
+  .getElementById(
+    "fullArticle"
+  )
+  .addEventListener(
+    "click",
+    function(e){
 
-    if(e.target === this){
+      if(
+        e.target === this
+      ){
 
-      closeArticle();
+        closeArticle();
+
+      }
 
     }
-
-  });
+  );
 
 </script>
 
