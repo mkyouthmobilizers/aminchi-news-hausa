@@ -1,443 +1,618 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ha">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>MK Youth Mobilizers Media Team Tarauni</title>
+  <title>MK Youth Mobilizers Media Team Tarauni</title>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<style>
+  <style>
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
 
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
+    body{
+      font-family:Arial, sans-serif;
+      background:#f4f6f8;
+      color:#111;
+    }
 
-body{
-  font-family:Arial,Helvetica,sans-serif;
-  background:#f1f3f6;
-  color:#111;
-}
+    header{
+      background:#111;
+      color:white;
+      position:sticky;
+      top:0;
+      z-index:1000;
+      box-shadow:0 2px 8px rgba(0,0,0,.25);
+    }
 
-header{
-  background:#111827;
-  color:white;
-  padding:14px 18px;
-  position:sticky;
-  top:0;
-  z-index:1000;
-  box-shadow:0 2px 8px rgba(0,0,0,.25);
-}
+    .header-inner{
+      max-width:1200px;
+      margin:auto;
+      padding:10px 15px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:15px;
+    }
 
-.header-inner{
-  max-width:1100px;
-  margin:auto;
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
 
-.logo{
-  width:48px;
-  height:48px;
-  border-radius:50%;
-  object-fit:cover;
-  background:white;
-}
+    .logo{
+      width:52px;
+      height:52px;
+      object-fit:cover;
+      border-radius:50%;
+      background:white;
+    }
 
-.header-title{
-  font-size:18px;
-  font-weight:bold;
-}
+    .brand-text h1{
+      font-size:18px;
+      margin-bottom:3px;
+    }
 
-.header-subtitle{
-  font-size:13px;
-  opacity:.8;
-  margin-top:3px;
-}
+    .brand-text p{
+      font-size:12px;
+      color:#ccc;
+    }
 
-.container{
-  max-width:1100px;
-  margin:auto;
-  padding:18px;
-}
+    .live-top{
+      background:red;
+      color:white;
+      padding:8px 12px;
+      border-radius:20px;
+      font-size:12px;
+      font-weight:bold;
+    }
 
-.visitor-box{
-  background:white;
-  border-radius:12px;
-  padding:14px;
-  margin-bottom:15px;
-  text-align:center;
-  box-shadow:0 2px 7px rgba(0,0,0,.08);
-  font-weight:bold;
-}
+    .container{
+      max-width:1200px;
+      margin:auto;
+      padding:20px 15px;
+    }
 
-.live-box{
-  background:white;
-  border-radius:12px;
-  padding:15px;
-  margin-bottom:20px;
-  box-shadow:0 2px 7px rgba(0,0,0,.08);
-}
+    .welcome{
+      background:white;
+      padding:22px;
+      border-radius:12px;
+      margin-bottom:20px;
+      box-shadow:0 2px 8px rgba(0,0,0,.08);
+    }
 
-.live-title{
-  font-weight:bold;
-  margin-bottom:10px;
-}
+    .welcome h2{
+      font-size:25px;
+      margin-bottom:8px;
+    }
 
-.live-off{
-  color:#d00;
-  font-weight:bold;
-}
+    .welcome p{
+      color:#555;
+      line-height:1.6;
+    }
 
-.live-video{
-  width:100%;
-  aspect-ratio:16/9;
-  border:0;
-  border-radius:10px;
-  margin-top:10px;
-}
+    /* VISITOR */
+    .visitor-box{
+      background:#111;
+      color:white;
+      border-radius:12px;
+      padding:18px;
+      margin-bottom:20px;
+      text-align:center;
+    }
 
-.section-title{
-  font-size:22px;
-  margin:15px 0;
-}
+    .visitor-number{
+      font-size:32px;
+      font-weight:bold;
+      margin-top:5px;
+    }
 
-.posts{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:18px;
-}
+    /* LIVE */
+    .live-section{
+      background:white;
+      padding:18px;
+      border-radius:12px;
+      margin-bottom:25px;
+      box-shadow:0 2px 8px rgba(0,0,0,.08);
+    }
 
-.post{
-  background:white;
-  border-radius:12px;
-  overflow:hidden;
-  box-shadow:0 2px 8px rgba(0,0,0,.1);
-}
+    .live-title{
+      font-size:20px;
+      font-weight:bold;
+      margin-bottom:15px;
+    }
 
-.post-header{
-  display:flex;
-  align-items:center;
-  padding:12px;
-  gap:10px;
-}
+    #liveContainer iframe{
+      width:100%;
+      height:420px;
+      border:0;
+      border-radius:10px;
+    }
 
-.author-img{
-  width:42px;
-  height:42px;
-  border-radius:50%;
-  object-fit:cover;
-  border:1px solid #ddd;
-}
+    .offline-live{
+      padding:30px;
+      text-align:center;
+      background:#f1f1f1;
+      border-radius:10px;
+      color:#666;
+    }
 
-.author-name{
-  font-weight:bold;
-  font-size:14px;
-}
+    /* CATEGORY */
+    .category-section{
+      margin-bottom:20px;
+    }
 
-.post-date{
-  color:#777;
-  font-size:12px;
-  margin-top:3px;
-}
+    .category-section h2{
+      margin-bottom:12px;
+    }
 
-.post-media{
-  width:100%;
-  display:block;
-  max-height:520px;
-  object-fit:cover;
-  background:#000;
-}
+    .category-buttons{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
 
-.post-body{
-  padding:14px;
-}
+    .category-btn{
+      border:none;
+      background:white;
+      color:#222;
+      padding:9px 15px;
+      border-radius:20px;
+      cursor:pointer;
+      font-weight:bold;
+      box-shadow:0 1px 5px rgba(0,0,0,.12);
+      transition:.2s;
+    }
 
-.post-title{
-  font-size:19px;
-  font-weight:bold;
-  margin-bottom:8px;
-}
+    .category-btn:hover{
+      transform:translateY(-1px);
+    }
 
-.post-content{
-  color:#333;
-  line-height:1.55;
-  font-size:15px;
-}
+    .category-btn.active{
+      background:#111;
+      color:white;
+    }
 
-.read-more{
-  border:0;
-  background:none;
-  color:#1877f2;
-  font-weight:bold;
-  cursor:pointer;
-  padding:6px 0;
-  font-size:14px;
-}
+    /* NEWS */
+    .section-title{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin:20px 0 15px;
+    }
 
-.actions{
-  display:flex;
-  border-top:1px solid #eee;
-  margin-top:12px;
-}
+    .section-title h2{
+      font-size:24px;
+    }
 
-.action-btn{
-  flex:1;
-  border:0;
-  background:white;
-  padding:12px 5px;
-  font-size:14px;
-  cursor:pointer;
-  font-weight:bold;
-}
+    #postCount{
+      color:#777;
+      font-size:14px;
+    }
 
-.action-btn:hover{
-  background:#f3f4f6;
-}
+    .posts-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:20px;
+    }
 
-.like-btn.liked{
-  color:#1877f2;
-}
+    .post-card{
+      background:white;
+      border-radius:12px;
+      overflow:hidden;
+      box-shadow:0 2px 9px rgba(0,0,0,.10);
+      transition:.2s;
+    }
 
-.comments{
-  display:none;
-  border-top:1px solid #eee;
-  padding:12px;
-  background:#fafafa;
-}
+    .post-card:hover{
+      transform:translateY(-3px);
+      box-shadow:0 5px 15px rgba(0,0,0,.15);
+    }
 
-.comments.show{
-  display:block;
-}
+    .post-media{
+      width:100%;
+      height:220px;
+      object-fit:cover;
+      display:block;
+      background:#ddd;
+    }
 
-.comment-form input,
-.comment-form textarea{
-  width:100%;
-  border:1px solid #ccc;
-  border-radius:8px;
-  padding:11px;
-  margin-bottom:8px;
-  font-family:inherit;
-  font-size:14px;
-  outline:none;
-}
+    .post-content{
+      padding:16px;
+    }
 
-.comment-form input:focus,
-.comment-form textarea:focus{
-  border-color:#1877f2;
-}
+    .category-badge{
+      display:inline-block;
+      background:#111;
+      color:white;
+      padding:5px 9px;
+      border-radius:5px;
+      font-size:11px;
+      font-weight:bold;
+      margin-bottom:8px;
+    }
 
-.comment-form textarea{
-  min-height:80px;
-  resize:vertical;
-}
+    .post-title{
+      font-size:19px;
+      line-height:1.35;
+      margin-bottom:8px;
+    }
 
-.comment-submit{
-  width:100%;
-  border:0;
-  border-radius:8px;
-  padding:11px;
-  background:#111827;
-  color:white;
-  cursor:pointer;
-  font-weight:bold;
-}
+    .post-date{
+      color:#777;
+      font-size:12px;
+      margin-bottom:12px;
+    }
 
-.comment-submit:disabled{
-  opacity:.6;
-}
+    .post-text{
+      color:#444;
+      line-height:1.6;
+      font-size:14px;
+      margin-bottom:12px;
+    }
 
-.comment-list{
-  margin-top:12px;
-}
+    .read-more{
+      color:#0066cc;
+      font-weight:bold;
+      cursor:pointer;
+      border:none;
+      background:none;
+      padding:0;
+    }
 
-.comment{
-  background:white;
-  border-radius:8px;
-  padding:10px;
-  margin-bottom:8px;
-}
+    /* ACTIONS */
+    .actions{
+      display:flex;
+      gap:8px;
+      margin-top:15px;
+      border-top:1px solid #eee;
+      padding-top:12px;
+    }
 
-.comment-name{
-  font-weight:bold;
-  font-size:13px;
-}
+    .action-btn{
+      flex:1;
+      border:1px solid #ddd;
+      background:#fafafa;
+      padding:9px 5px;
+      border-radius:7px;
+      cursor:pointer;
+      font-size:13px;
+    }
 
-.comment-text{
-  margin-top:4px;
-  font-size:14px;
-  line-height:1.4;
-}
+    .action-btn:hover{
+      background:#eee;
+    }
 
-.comment-date{
-  color:#888;
-  font-size:11px;
-  margin-top:5px;
-}
+    /* COMMENTS */
+    .comment-area{
+      display:none;
+      margin-top:12px;
+    }
 
-.empty-comments{
-  color:#777;
-  font-size:13px;
-  margin-top:10px;
-}
+    .comment-area input,
+    .comment-area textarea{
+      width:100%;
+      border:1px solid #ddd;
+      padding:10px;
+      border-radius:7px;
+      margin-bottom:7px;
+      font-family:inherit;
+    }
 
-.article{
-  display:none;
-  background:white;
-  border-radius:12px;
-  overflow:hidden;
-  box-shadow:0 2px 8px rgba(0,0,0,.1);
-}
+    .comment-area textarea{
+      resize:vertical;
+      min-height:70px;
+    }
 
-.back-btn{
-  border:0;
-  background:#111827;
-  color:white;
-  padding:10px 16px;
-  border-radius:8px;
-  margin-bottom:15px;
-  cursor:pointer;
-  font-weight:bold;
-}
+    .comment-submit{
+      background:#111;
+      color:white;
+      border:none;
+      padding:9px 14px;
+      border-radius:7px;
+      cursor:pointer;
+    }
 
-.article-title{
-  font-size:28px;
-  margin-bottom:10px;
-}
+    .comments-list{
+      margin-top:12px;
+    }
 
-.article-date{
-  color:#777;
-  font-size:13px;
-  margin-bottom:18px;
-}
+    .comment-item{
+      background:#f5f5f5;
+      padding:9px;
+      border-radius:8px;
+      margin-bottom:7px;
+    }
 
-.article-content{
-  white-space:pre-wrap;
-  line-height:1.7;
-  font-size:17px;
-}
+    .comment-name{
+      font-weight:bold;
+      font-size:13px;
+    }
 
-.article-body{
-  padding:18px;
-}
+    .comment-text{
+      font-size:13px;
+      margin-top:3px;
+      line-height:1.5;
+    }
 
-.article-actions{
-  display:flex;
-  border-top:1px solid #eee;
-  border-bottom:1px solid #eee;
-  margin:18px 0;
-}
+    .comment-date{
+      color:#888;
+      font-size:10px;
+      margin-top:4px;
+    }
 
-.article-action{
-  flex:1;
-  border:0;
-  background:white;
-  padding:13px;
-  font-weight:bold;
-  cursor:pointer;
-}
+    /* FULL ARTICLE */
+    .full-article{
+      display:none;
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.75);
+      z-index:2000;
+      overflow-y:auto;
+      padding:30px 15px;
+    }
 
-footer{
-  text-align:center;
-  padding:30px 15px;
-  color:#777;
-  font-size:13px;
-}
+    .article-box{
+      background:white;
+      max-width:850px;
+      margin:auto;
+      border-radius:12px;
+      overflow:hidden;
+    }
 
-@media(max-width:700px){
+    .article-header{
+      padding:18px;
+      border-bottom:1px solid #eee;
+    }
 
-  .posts{
-    grid-template-columns:1fr;
-  }
+    .article-close{
+      float:right;
+      background:#111;
+      color:white;
+      border:none;
+      width:34px;
+      height:34px;
+      border-radius:50%;
+      cursor:pointer;
+    }
 
-  .container{
-    padding:10px;
-  }
+    .article-body{
+      padding:20px;
+      line-height:1.8;
+      white-space:pre-wrap;
+    }
 
-  .article-title{
-    font-size:23px;
-  }
+    .article-body img,
+    .article-body video{
+      width:100%;
+      max-height:550px;
+      object-fit:contain;
+      margin-bottom:20px;
+      border-radius:8px;
+    }
 
-}
+    /* LOADING / ERROR */
+    .message{
+      background:white;
+      padding:25px;
+      text-align:center;
+      border-radius:10px;
+      color:#777;
+    }
 
-</style>
+    footer{
+      margin-top:40px;
+      background:#111;
+      color:white;
+      text-align:center;
+      padding:25px 15px;
+    }
+
+    footer p{
+      font-size:13px;
+      color:#ccc;
+      line-height:1.6;
+    }
+
+    @media(max-width:900px){
+      .posts-grid{
+        grid-template-columns:repeat(2,1fr);
+      }
+    }
+
+    @media(max-width:600px){
+      .header-inner{
+        padding:8px 10px;
+      }
+
+      .brand-text h1{
+        font-size:14px;
+      }
+
+      .brand-text p{
+        font-size:10px;
+      }
+
+      .logo{
+        width:45px;
+        height:45px;
+      }
+
+      .posts-grid{
+        grid-template-columns:1fr;
+      }
+
+      #liveContainer iframe{
+        height:240px;
+      }
+
+      .welcome h2{
+        font-size:21px;
+      }
+
+      .section-title h2{
+        font-size:20px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
 <header>
-
   <div class="header-inner">
 
-    <img
-      src="561F33DB-6D50-45C9-8940-5E77FF098DDE.png"
-      class="logo"
-      alt="MK Youth Mobilizers">
+    <div class="brand">
+      <img
+        src="561F33DB-6D50-45C9-8940-5E77FF098DDE.png"
+        class="logo"
+        alt="MK Youth Mobilizers">
 
-    <div>
-      <div class="header-title">
-        MK Youth Mobilizers
-      </div>
-
-      <div class="header-subtitle">
-        Media Team Tarauni
+      <div class="brand-text">
+        <h1>MK Youth Mobilizers</h1>
+        <p>Media Team Tarauni</p>
       </div>
     </div>
 
-  </div>
+    <div class="live-top">
+      🔴 LIVE
+    </div>
 
+  </div>
 </header>
 
 
-<div class="container">
+<main class="container">
 
-  <div class="visitor-box">
-    👥 Website Visitors:
-    <span id="visitorCount">—</span>
-  </div>
+  <section class="welcome">
+    <h2>MK Youth Mobilizers Media Team Tarauni</h2>
+
+    <p>
+      MK Youth Mobilizers is a youth-focused platform dedicated to
+      connecting, inspiring and empowering young people.
+      We promote unity, leadership, teamwork and positive development.
+    </p>
+  </section>
 
 
-  <div class="live-box">
+  <!-- VISITOR COUNTER -->
+  <section class="visitor-box">
+    <div>👥 Masu ziyartar website</div>
+    <div class="visitor-number" id="visitorCount">Loading...</div>
+  </section>
+
+
+  <!-- YOUTUBE LIVE -->
+  <section class="live-section">
 
     <div class="live-title">
-      🔴 YouTube LIVE
+      🔴 YouTube Live
     </div>
 
-    <div id="liveStatus">
-      Checking live status...
+    <div id="liveContainer">
+      <div class="offline-live">
+        Babu Live yanzu.
+      </div>
     </div>
 
-    <div id="liveContainer"></div>
+  </section>
+
+
+  <!-- CATEGORIES -->
+  <section class="category-section">
+
+    <h2>Categories</h2>
+
+    <div class="category-buttons">
+
+      <button class="category-btn active" data-category="Duka">
+        🏠 Duka
+      </button>
+
+      <button class="category-btn" data-category="Labarai">
+        📰 Labarai
+      </button>
+
+      <button class="category-btn" data-category="Siyasa">
+        🏛️ Siyasa
+      </button>
+
+      <button class="category-btn" data-category="Wasanni">
+        ⚽ Wasanni
+      </button>
+
+      <button class="category-btn" data-category="Nishaɗi">
+        🎤 Nishaɗi
+      </button>
+
+      <button class="category-btn" data-category="Hotuna">
+        📸 Hotuna
+      </button>
+
+      <button class="category-btn" data-category="Bidiyo">
+        🎥 Bidiyo
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- NEWS -->
+  <div class="section-title">
+
+    <h2>Latest News</h2>
+
+    <span id="postCount"></span>
 
   </div>
 
+  <section id="postsContainer" class="posts-grid">
 
-  <div id="newsSection">
-
-    <h2 class="section-title">
-      📰 Latest News
-    </h2>
-
-    <div id="posts" class="posts">
-      Loading posts...
+    <div class="message">
+      Ana loda labarai...
     </div>
 
-  </div>
+  </section>
+
+</main>
 
 
-  <div id="articleSection" class="article">
+<!-- FULL ARTICLE -->
+<div id="fullArticle" class="full-article">
 
-    <button
-      class="back-btn"
-      onclick="closeArticle()">
-      ← Back
-    </button>
+  <div class="article-box">
 
-    <div id="articleContent"></div>
+    <div class="article-header">
+
+      <button
+        class="article-close"
+        onclick="closeArticle()">
+        ✕
+      </button>
+
+      <div id="articleCategory" class="category-badge"></div>
+
+      <h2 id="articleTitle"></h2>
+
+      <div
+        id="articleDate"
+        class="post-date"
+        style="margin-top:8px;">
+      </div>
+
+    </div>
+
+    <div
+      id="articleBody"
+      class="article-body">
+    </div>
 
   </div>
 
@@ -445,169 +620,38 @@ footer{
 
 
 <footer>
-  © 2026 MK Youth Mobilizers Media Team Tarauni
+
+  <p>
+    © 2026 MK Youth Mobilizers Media Team Tarauni
+  </p>
+
+  <p>
+    All rights reserved.
+  </p>
+
 </footer>
 
 
 <script>
 
-/* =========================
-   SUPABASE
-========================= */
-
 const SUPABASE_URL =
-"https://kszficrcngxipcllezgl.supabase.co";
+  "https://kszficrcngxipcllezgl.supabase.co";
 
 const SUPABASE_KEY =
-"sb_publishable_hsMkfMvXMbAXXt8Z7LvAvg_52miDaJe";
+  "sb_publishable_hsMkfMvXMbAXXt8Z7LvAvg_52miDaJe";
 
-const client =
-window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
-);
-
-
-/* =========================
-   ELEMENTS
-========================= */
-
-const postsContainer =
-document.getElementById("posts");
-
-const visitorCount =
-document.getElementById("visitorCount");
-
-const liveStatus =
-document.getElementById("liveStatus");
-
-const liveContainer =
-document.getElementById("liveContainer");
-
-const newsSection =
-document.getElementById("newsSection");
-
-const articleSection =
-document.getElementById("articleSection");
-
-const articleContent =
-document.getElementById("articleContent");
+const supabaseClient =
+  supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
 
 
-/* =========================
-   VISITOR ID
-========================= */
+const STARTING_VISITORS = 10000;
 
-function getVisitorId(){
+let allPosts = [];
 
-  let id =
-  localStorage.getItem("mk_visitor_id");
-
-  if(!id){
-
-    if(
-      window.crypto &&
-      crypto.randomUUID
-    ){
-
-      id = crypto.randomUUID();
-
-    }else{
-
-      id =
-      Date.now() +
-      "-" +
-      Math.random()
-      .toString(36)
-      .substring(2);
-
-    }
-
-    localStorage.setItem(
-      "mk_visitor_id",
-      id
-    );
-
-  }
-
-  return id;
-}
-
-
-/* =========================
-   VISITOR COUNTER
-========================= */
-
-async function updateVisitorCounter(){
-
-  const STARTING_VISITORS = 10000;
-
-  visitorCount.textContent =
-  STARTING_VISITORS.toLocaleString();
-
-
-  try{
-
-    const alreadyCounted =
-    localStorage.getItem(
-      "mk_visitor_counted"
-    );
-
-
-    if(!alreadyCounted){
-
-      const insertResult =
-      await client
-      .from("visitors")
-      .insert({});
-
-
-      if(!insertResult.error){
-
-        localStorage.setItem(
-          "mk_visitor_counted",
-          "true"
-        );
-
-      }
-
-    }
-
-
-    const countResult =
-    await client
-    .from("visitors")
-    .select("*",{
-      count:"exact",
-      head:true
-    });
-
-
-    if(countResult.error){
-
-      return;
-
-    }
-
-
-    const realVisitors =
-    Number(countResult.count || 0);
-
-
-    visitorCount.textContent =
-    (
-      STARTING_VISITORS +
-      realVisitors
-    ).toLocaleString();
-
-
-  }catch(error){
-
-    console.error(error);
-
-  }
-
-}
+let currentCategory = "Duka";
 
 
 /* =========================
@@ -616,57 +660,15 @@ async function updateVisitorCounter(){
 
 function formatDate(date){
 
-  if(!date) return "";
+  const d = new Date(date);
 
-  return new Date(date)
-  .toLocaleString(
-    "en-GB",
-    {
-      day:"numeric",
-      month:"long",
-      year:"numeric",
-      hour:"2-digit",
-      minute:"2-digit"
-    }
-  );
-
-}
-
-
-/* =========================
-   VIDEO
-========================= */
-
-function isVideo(url){
-
-  if(!url) return false;
-
-  const clean =
-  url.split("?")[0].toLowerCase();
-
-  return (
-    clean.endsWith(".mp4") ||
-    clean.endsWith(".webm") ||
-    clean.endsWith(".mov") ||
-    clean.endsWith(".m4v")
-  );
-
-}
-
-
-/* =========================
-   ESCAPE
-========================= */
-
-function escapeHtml(text){
-
-  const div =
-  document.createElement("div");
-
-  div.textContent =
-  text || "";
-
-  return div.innerHTML;
+  return d.toLocaleString("ha-NG", {
+    day:"2-digit",
+    month:"long",
+    year:"numeric",
+    hour:"2-digit",
+    minute:"2-digit"
+  });
 
 }
 
@@ -675,573 +677,588 @@ function escapeHtml(text){
    SHORT STORY
 ========================= */
 
-function shortStory(text){
+function shortText(text, words = 35){
 
   if(!text) return "";
 
-  const words =
-  text.trim().split(/\s+/);
+  const parts = text.trim().split(/\s+/);
 
-  if(words.length <= 35){
+  if(parts.length <= words){
 
     return text;
 
   }
 
+  return parts.slice(0,words).join(" ") + "...";
+
+}
+
+
+/* =========================
+   VIDEO CHECK
+========================= */
+
+function isVideo(url){
+
+  if(!url) return false;
+
+  const cleanUrl =
+    url.split("?")[0].toLowerCase();
+
   return (
-    words.slice(0,35).join(" ") +
-    "..."
+    cleanUrl.endsWith(".mp4") ||
+    cleanUrl.endsWith(".webm") ||
+    cleanUrl.endsWith(".mov") ||
+    cleanUrl.endsWith(".m4v")
   );
 
 }
 
 
 /* =========================
-   POSTS
+   LOAD POSTS
 ========================= */
-
-let allPosts = [];
-
 
 async function loadPosts(){
 
-  postsContainer.innerHTML =
-  "Loading posts...";
+  const container =
+    document.getElementById("postsContainer");
 
+  container.innerHTML =
+    `<div class="message">Ana loda labarai...</div>`;
 
-  const result =
-  await client
-  .from("posts")
-  .select(
-    "id,Title,Content,Image_url,created_at"
-  )
-  .order(
-    "created_at",
-    {ascending:false}
-  )
-  .order(
-    "id",
-    {ascending:false}
-  );
+  const { data, error } =
+    await supabaseClient
+      .from("posts")
+      .select(
+        "id,Title,Content,Image_url,category,created_at"
+      )
+      .order("created_at", {
+        ascending:false
+      })
+      .order("id", {
+        ascending:false
+      });
 
+  if(error){
 
-  if(result.error){
+    console.error(error);
 
-    console.error(result.error);
-
-    postsContainer.innerHTML =
-    "<p>Unable to load posts.</p>";
-
-    return;
-
-  }
-
-
-  allPosts =
-  result.data || [];
-
-
-  if(!allPosts.length){
-
-    postsContainer.innerHTML =
-    "<p>No posts yet.</p>";
+    container.innerHTML =
+      `<div class="message">
+        An kasa loda labarai.
+        <br><br>
+        ${error.message}
+      </div>`;
 
     return;
 
   }
 
+  allPosts = data || [];
 
-  postsContainer.innerHTML = "";
-
-
-  allPosts.forEach(
-    post => {
-
-      const card =
-      createPostCard(post);
-
-      postsContainer.appendChild(
-        card
-      );
-
-      loadEngagement(
-        post,
-        card
-      );
-
-    }
-  );
-
-
-  if(
-    window.location.hash
-    .startsWith("#post-")
-  ){
-
-    const id =
-    Number(
-      window.location.hash
-      .replace("#post-","")
-    );
-
-    const post =
-    allPosts.find(
-      p => Number(p.id) === id
-    );
-
-    if(post){
-
-      openArticle(post);
-
-    }
-
-  }
+  renderPosts();
 
 }
 
 
 /* =========================
-   CREATE POST
+   RENDER POSTS
 ========================= */
 
-function createPostCard(post){
+function renderPosts(){
 
-  const card =
-  document.createElement("article");
+  const container =
+    document.getElementById("postsContainer");
 
-  card.className =
-  "post";
+  let posts = allPosts;
 
+  if(currentCategory !== "Duka"){
 
-  const header =
-  document.createElement("div");
+    posts = allPosts.filter(post =>
 
-  header.className =
-  "post-header";
+      (post.category || "Labarai")
+        .toLowerCase() ===
+      currentCategory.toLowerCase()
 
-
-  header.innerHTML = `
-
-    <img
-      src="561F33DB-6D50-45C9-8940-5E77FF098DDE.png"
-      class="author-img"
-      alt="MK Youth Mobilizers">
-
-    <div>
-
-      <div class="author-name">
-        MK Youth Mobilizers
-      </div>
-
-      <div class="post-date">
-        ${escapeHtml(
-          formatDate(post.created_at)
-        )}
-      </div>
-
-    </div>
-
-  `;
-
-
-  card.appendChild(header);
-
-
-  /* MEDIA */
-
-  if(post.Image_url){
-
-    if(isVideo(post.Image_url)){
-
-      const video =
-      document.createElement("video");
-
-      video.className =
-      "post-media";
-
-      video.src =
-      post.Image_url;
-
-      video.controls =
-      true;
-
-      video.playsInline =
-      true;
-
-      video.addEventListener(
-        "click",
-        e => e.stopPropagation()
-      );
-
-      card.appendChild(video);
-
-    }else{
-
-      const img =
-      document.createElement("img");
-
-      img.className =
-      "post-media";
-
-      img.src =
-      post.Image_url;
-
-      img.alt =
-      post.Title || "Post";
-
-      img.loading =
-      "lazy";
-
-      img.addEventListener(
-        "click",
-        e => {
-
-          e.stopPropagation();
-
-          openArticle(post);
-
-        }
-      );
-
-      card.appendChild(img);
-
-    }
+    );
 
   }
 
+  document.getElementById("postCount").textContent =
+    `${posts.length} post${posts.length === 1 ? "" : "s"}`;
 
-  /* BODY */
+  if(posts.length === 0){
 
-  const body =
-  document.createElement("div");
+    container.innerHTML =
+      `<div class="message">
+        Babu post a wannan category.
+      </div>`;
 
-  body.className =
-  "post-body";
+    return;
+
+  }
+
+  container.innerHTML = "";
+
+  posts.forEach(post => {
+
+    const card =
+      document.createElement("article");
+
+    card.className = "post-card";
+
+    const media =
+      document.createElement("div");
+
+    if(post.Image_url){
+
+      if(isVideo(post.Image_url)){
+
+        const video =
+          document.createElement("video");
+
+        video.className = "post-media";
+
+        video.src = post.Image_url;
+
+        video.controls = true;
+
+        video.preload = "metadata";
+
+        media.appendChild(video);
+
+      }else{
+
+        const img =
+          document.createElement("img");
+
+        img.className = "post-media";
+
+        img.src = post.Image_url;
+
+        img.alt = post.Title || "Post";
+
+        img.loading = "lazy";
+
+        media.appendChild(img);
+
+      }
+
+    }
+
+    card.appendChild(media);
 
 
-  const title =
-  document.createElement("div");
+    const content =
+      document.createElement("div");
 
-  title.className =
-  "post-title";
-
-  title.textContent =
-  post.Title || "";
+    content.className =
+      "post-content";
 
 
-  const content =
-  document.createElement("div");
+    /* CATEGORY */
 
-  content.className =
-  "post-content";
+    const category =
+      document.createElement("div");
 
-  const fullText =
-  post.Content || "";
+    category.className =
+      "category-badge";
 
-  const words =
-  fullText.trim().split(/\s+/);
+    category.textContent =
+      post.category || "Labarai";
 
-
-  if(words.length > 35){
-
-    content.textContent =
-    shortStory(fullText);
+    content.appendChild(category);
 
 
-    const readMore =
-    document.createElement("button");
+    /* TITLE */
 
-    readMore.className =
-    "read-more";
+    const title =
+      document.createElement("h3");
 
-    readMore.textContent =
-    "Read more";
+    title.className =
+      "post-title";
+
+    title.textContent =
+      post.Title || "Ba tare da suna ba";
+
+    content.appendChild(title);
 
 
-    readMore.addEventListener(
-      "click",
-      e => {
+    /* DATE */
 
-        e.stopPropagation();
+    const date =
+      document.createElement("div");
 
+    date.className =
+      "post-date";
+
+    date.textContent =
+      "📅 " + formatDate(post.created_at);
+
+    content.appendChild(date);
+
+
+    /* TEXT */
+
+    const text =
+      document.createElement("div");
+
+    text.className =
+      "post-text";
+
+    text.textContent =
+      shortText(post.Content,35);
+
+    content.appendChild(text);
+
+
+    /* READ MORE */
+
+    if(
+      post.Content &&
+      post.Content.trim().split(/\s+/).length > 35
+    ){
+
+      const readMore =
+        document.createElement("button");
+
+      readMore.className =
+        "read-more";
+
+      readMore.textContent =
+        "Karanta cikakken labari →";
+
+      readMore.onclick = () =>
         openArticle(post);
 
-      }
-    );
-
-
-    body.appendChild(title);
-
-    body.appendChild(content);
-
-    body.appendChild(readMore);
-
-  }else{
-
-    content.textContent =
-    fullText;
-
-    body.appendChild(title);
-
-    body.appendChild(content);
-
-  }
-
-
-  /* ACTIONS */
-
-  const actions =
-  document.createElement("div");
-
-  actions.className =
-  "actions";
-
-
-  const likeBtn =
-  document.createElement("button");
-
-  likeBtn.className =
-  "action-btn like-btn";
-
-  likeBtn.innerHTML =
-  "👍 Like <span>0</span>";
-
-
-  likeBtn.addEventListener(
-    "click",
-    async e => {
-
-      e.stopPropagation();
-
-      await toggleLike(
-        post,
-        likeBtn
-      );
+      content.appendChild(readMore);
 
     }
-  );
 
 
-  const commentBtn =
-  document.createElement("button");
+    /* ACTIONS */
 
-  commentBtn.className =
-  "action-btn";
+    const actions =
+      document.createElement("div");
 
-  commentBtn.innerHTML =
-  "💬 Comment <span>0</span>";
-
-
-  commentBtn.addEventListener(
-    "click",
-    e => {
-
-      e.stopPropagation();
-
-      const box =
-      card.querySelector(
-        ".comments"
-      );
-
-      box.classList.add("show");
-
-      const input =
-      box.querySelector(
-        ".comment-name"
-      );
-
-      if(input){
-
-        input.focus();
-
-      }
-
-    }
-  );
+    actions.className =
+      "actions";
 
 
-  const shareBtn =
-  document.createElement("button");
+    /* LIKE */
 
-  shareBtn.className =
-  "action-btn";
+    const likeBtn =
+      document.createElement("button");
 
-  shareBtn.innerHTML =
-  "🔄 Share";
+    likeBtn.className =
+      "action-btn";
+
+    likeBtn.innerHTML =
+      "👍 <span>Like</span>";
+
+    likeBtn.onclick = () =>
+      handleLike(post.id, likeBtn);
+
+    actions.appendChild(likeBtn);
 
 
-  shareBtn.addEventListener(
-    "click",
-    e => {
+    /* COMMENT */
 
-      e.stopPropagation();
+    const commentBtn =
+      document.createElement("button");
 
+    commentBtn.className =
+      "action-btn";
+
+    commentBtn.innerHTML =
+      "💬 Comment";
+
+    commentBtn.onclick = () =>
+      toggleComments(post.id);
+
+    actions.appendChild(commentBtn);
+
+
+    /* SHARE */
+
+    const shareBtn =
+      document.createElement("button");
+
+    shareBtn.className =
+      "action-btn";
+
+    shareBtn.innerHTML =
+      "🔄 Share";
+
+    shareBtn.onclick = () =>
       sharePost(post);
 
-    }
-  );
+    actions.appendChild(shareBtn);
 
 
-  actions.appendChild(
-    likeBtn
-  );
-
-  actions.appendChild(
-    commentBtn
-  );
-
-  actions.appendChild(
-    shareBtn
-  );
+    content.appendChild(actions);
 
 
-  body.appendChild(
-    actions
-  );
+    /* COMMENT AREA */
+
+    const commentArea =
+      document.createElement("div");
+
+    commentArea.className =
+      "comment-area";
+
+    commentArea.id =
+      `comments-${post.id}`;
 
 
-  /* COMMENTS */
+    commentArea.innerHTML = `
 
-  const comments =
-  createCommentsSection(
-    post,
-    commentBtn
-  );
+      <input
+        type="text"
+        id="name-${post.id}"
+        placeholder="Sunanka">
+
+      <textarea
+        id="comment-${post.id}"
+        placeholder="Rubuta comment...">
+      </textarea>
+
+      <button
+        class="comment-submit"
+        onclick="submitComment(${post.id})">
+
+        Tura Comment
+
+      </button>
+
+      <div
+        class="comments-list"
+        id="comment-list-${post.id}">
+      </div>
+
+    `;
 
 
-  body.appendChild(
-    comments
-  );
+    content.appendChild(commentArea);
 
 
-  card.appendChild(
-    body
-  );
+    card.appendChild(content);
+
+    container.appendChild(card);
 
 
-  /* OPEN FULL POST */
+    loadComments(post.id);
 
-  card.addEventListener(
-    "click",
-    () => openArticle(post)
-  );
-
-
-  return card;
+  });
 
 }
 
 
 /* =========================
-   ENGAGEMENT
+   CATEGORY FILTER
 ========================= */
 
-async function loadEngagement(
-  post,
-  card
-){
+document
+  .querySelectorAll(".category-btn")
+  .forEach(button => {
 
-  const likeBtn =
-  card.querySelector(
-    ".like-btn"
-  );
+    button.addEventListener("click", () => {
 
+      currentCategory =
+        button.dataset.category;
 
-  const commentBtn =
-  card.querySelector(
-    ".action-btn:nth-child(2)"
-  );
+      document
+        .querySelectorAll(".category-btn")
+        .forEach(btn =>
+          btn.classList.remove("active")
+        );
 
+      button.classList.add("active");
 
-  /* LIKE COUNT */
+      renderPosts();
 
-  const likes =
-  await client
-  .from("post_likes")
-  .select(
-    "id",
-    {
-      count:"exact",
-      head:true
-    }
-  )
-  .eq(
-    "post_id",
-    post.id
-  );
+      window.scrollTo({
+        top:
+          document.querySelector(".category-section")
+            .offsetTop - 80,
+        behavior:"smooth"
+      });
+
+    });
+
+  });
 
 
-  if(!likes.error){
+/* =========================
+   COMMENTS
+========================= */
 
-    likeBtn.querySelector(
-      "span"
-    ).textContent =
-    likes.count || 0;
+async function loadComments(postId){
+
+  const list =
+    document.getElementById(
+      `comment-list-${postId}`
+    );
+
+  if(!list) return;
+
+  const { data, error } =
+    await supabaseClient
+      .from("post_comments")
+      .select(
+        "id,name,comment,created_at"
+      )
+      .eq("post_id",postId)
+      .order("created_at",{
+        ascending:false
+      });
+
+  if(error){
+
+    console.error(error);
+
+    return;
 
   }
 
+  list.innerHTML = "";
 
-  /* CHECK LIKE */
+  if(!data || data.length === 0){
 
-  const liked =
-  await client
-  .from("post_likes")
-  .select("id")
-  .eq(
-    "post_id",
-    post.id
-  )
-  .eq(
-    "visitor_id",
-    getVisitorId()
-  )
-  .maybeSingle();
+    list.innerHTML =
+      `<small style="color:#888;">
+        Babu comment tukuna.
+      </small>`;
+
+    return;
+
+  }
+
+  data.forEach(comment => {
+
+    const item =
+      document.createElement("div");
+
+    item.className =
+      "comment-item";
+
+    item.innerHTML = `
+
+      <div class="comment-name">
+        ${escapeHtml(comment.name)}
+      </div>
+
+      <div class="comment-text">
+        ${escapeHtml(comment.comment)}
+      </div>
+
+      <div class="comment-date">
+        ${formatDate(comment.created_at)}
+      </div>
+
+    `;
+
+    list.appendChild(item);
+
+  });
+
+}
 
 
-  if(
-    !liked.error &&
-    liked.data
-  ){
+function toggleComments(postId){
 
-    likeBtn.classList.add(
-      "liked"
+  const area =
+    document.getElementById(
+      `comments-${postId}`
+    );
+
+  if(!area) return;
+
+  area.style.display =
+    area.style.display === "block"
+      ? "none"
+      : "block";
+
+}
+
+
+async function submitComment(postId){
+
+  const nameInput =
+    document.getElementById(
+      `name-${postId}`
+    );
+
+  const commentInput =
+    document.getElementById(
+      `comment-${postId}`
+    );
+
+  const name =
+    nameInput.value.trim();
+
+  const comment =
+    commentInput.value.trim();
+
+  if(!name || !comment){
+
+    alert("Rubuta suna da comment.");
+
+    return;
+
+  }
+
+  let visitorId =
+    localStorage.getItem(
+      "mk_visitor_id"
+    );
+
+  if(!visitorId){
+
+    visitorId =
+      crypto.randomUUID();
+
+    localStorage.setItem(
+      "mk_visitor_id",
+      visitorId
     );
 
   }
 
+  const { error } =
+    await supabaseClient
+      .from("post_comments")
+      .insert([{
 
-  /* COMMENT COUNT */
+        post_id:postId,
 
-  const comments =
-  await client
-  .from("post_comments")
-  .select(
-    "id",
-    {
-      count:"exact",
-      head:true
-    }
-  )
-  .eq(
-    "post_id",
-    post.id
-  );
+        visitor_id:visitorId,
 
+        name:name,
 
-  if(!comments.error){
+        comment:comment
 
-    commentBtn.querySelector(
-      "span"
-    ).textContent =
-    comments.count || 0;
+      }]);
+
+  if(error){
+
+    console.error(error);
+
+    alert(
+      "An kasa tura comment: " +
+      error.message
+    );
+
+    return;
 
   }
 
+  nameInput.value = "";
 
-  loadComments(
-    post,
-    card
-  );
+  commentInput.value = "";
+
+  await loadComments(postId);
 
 }
 
@@ -1250,464 +1267,73 @@ async function loadEngagement(
    LIKE
 ========================= */
 
-async function toggleLike(
-  post,
-  button
-){
+async function handleLike(postId, button){
 
-  const visitorId =
-  getVisitorId();
-
-
-  const existing =
-  await client
-  .from("post_likes")
-  .select("id")
-  .eq(
-    "post_id",
-    post.id
-  )
-  .eq(
-    "visitor_id",
-    visitorId
-  )
-  .maybeSingle();
-
-
-  if(existing.error){
-
-    alert(
-      "Unable to check Like."
+  let visitorId =
+    localStorage.getItem(
+      "mk_visitor_id"
     );
 
-    return;
+  if(!visitorId){
+
+    visitorId =
+      crypto.randomUUID();
+
+    localStorage.setItem(
+      "mk_visitor_id",
+      visitorId
+    );
 
   }
 
-
-  if(existing.data){
-
-    const result =
-    await client
-    .from("post_likes")
-    .delete()
-    .eq(
-      "id",
-      existing.data.id
-    );
+  const { data: existing } =
+    await supabaseClient
+      .from("post_likes")
+      .select("id")
+      .eq("post_id",postId)
+      .eq("visitor_id",visitorId)
+      .maybeSingle();
 
 
-    if(result.error){
+  if(existing){
 
-      alert(
-        "Unable to remove Like."
-      );
+    await supabaseClient
+      .from("post_likes")
+      .delete()
+      .eq("id",existing.id);
 
-      return;
-
-    }
-
-
-    button.classList.remove(
-      "liked"
-    );
-
+    button.innerHTML =
+      "👍 <span>Like</span>";
 
   }else{
 
-    const result =
-    await client
-    .from("post_likes")
-    .insert({
+    const { error } =
+      await supabaseClient
+        .from("post_likes")
+        .insert([{
 
-      post_id:post.id,
+          post_id:postId,
 
-      visitor_id:visitorId
+          visitor_id:visitorId
 
-    });
+        }]);
 
+    if(error){
 
-    if(result.error){
-
-      console.error(
-        result.error
-      );
+      console.error(error);
 
       alert(
-        "Unable to Like this post."
+        "Like bai yi ba."
       );
 
       return;
 
     }
 
-
-    button.classList.add(
-      "liked"
-    );
+    button.innerHTML =
+      "👍 <span>Liked</span>";
 
   }
-
-
-  const count =
-  await client
-  .from("post_likes")
-  .select(
-    "id",
-    {
-      count:"exact",
-      head:true
-    }
-  )
-  .eq(
-    "post_id",
-    post.id
-  );
-
-
-  if(!count.error){
-
-    button.querySelector(
-      "span"
-    ).textContent =
-    count.count || 0;
-
-  }
-
-}
-
-
-/* =========================
-   COMMENTS
-========================= */
-
-function createCommentsSection(
-  post,
-  commentBtn
-){
-
-  const section =
-  document.createElement("div");
-
-  section.className =
-  "comments";
-
-
-  const form =
-  document.createElement("div");
-
-  form.className =
-  "comment-form";
-
-
-  const name =
-  document.createElement("input");
-
-  name.className =
-  "comment-name";
-
-  name.placeholder =
-  "Your name";
-
-
-  const textarea =
-  document.createElement("textarea");
-
-  textarea.className =
-  "comment-textarea";
-
-  textarea.placeholder =
-  "Write your comment...";
-
-
-  const submit =
-  document.createElement("button");
-
-  submit.className =
-  "comment-submit";
-
-  submit.textContent =
-  "Post Comment";
-
-
-  submit.addEventListener(
-    "click",
-    async e => {
-
-      e.stopPropagation();
-
-
-      const userName =
-      name.value.trim();
-
-      const comment =
-      textarea.value.trim();
-
-
-      if(!userName){
-
-        alert(
-          "Please enter your name."
-        );
-
-        name.focus();
-
-        return;
-
-      }
-
-
-      if(!comment){
-
-        alert(
-          "Please write your comment."
-        );
-
-        textarea.focus();
-
-        return;
-
-      }
-
-
-      submit.disabled =
-      true;
-
-      submit.textContent =
-      "Posting...";
-
-
-      const result =
-      await client
-      .from("post_comments")
-      .insert({
-
-        post_id:post.id,
-
-        visitor_id:
-        getVisitorId(),
-
-        name:userName,
-
-        comment:comment
-
-      });
-
-
-      submit.disabled =
-      false;
-
-      submit.textContent =
-      "Post Comment";
-
-
-      if(result.error){
-
-        console.error(
-          result.error
-        );
-
-        alert(
-          "Comment could not be posted."
-        );
-
-        return;
-
-      }
-
-
-      name.value =
-      "";
-
-      textarea.value =
-      "";
-
-
-      await loadComments(
-        post,
-        section.closest(".post")
-      );
-
-
-      const count =
-      await client
-      .from("post_comments")
-      .select(
-        "id",
-        {
-          count:"exact",
-          head:true
-        }
-      )
-      .eq(
-        "post_id",
-        post.id
-      );
-
-
-      if(!count.error){
-
-        commentBtn.querySelector(
-          "span"
-        ).textContent =
-        count.count || 0;
-
-      }
-
-    }
-  );
-
-
-  form.appendChild(name);
-
-  form.appendChild(textarea);
-
-  form.appendChild(submit);
-
-
-  section.appendChild(form);
-
-
-  const list =
-  document.createElement("div");
-
-  list.className =
-  "comment-list";
-
-
-  section.appendChild(list);
-
-
-  return section;
-
-}
-
-
-/* =========================
-   LOAD COMMENTS
-========================= */
-
-async function loadComments(
-  post,
-  card
-){
-
-  if(!card) return;
-
-
-  const list =
-  card.querySelector(
-    ".comment-list"
-  );
-
-
-  if(!list) return;
-
-
-  const result =
-  await client
-  .from("post_comments")
-  .select(
-    "id,name,comment,created_at"
-  )
-  .eq(
-    "post_id",
-    post.id
-  )
-  .order(
-    "created_at",
-    {ascending:false}
-  );
-
-
-  if(result.error){
-
-    console.error(
-      result.error
-    );
-
-    return;
-
-  }
-
-
-  list.innerHTML = "";
-
-
-  if(
-    !result.data ||
-    !result.data.length
-  ){
-
-    list.innerHTML =
-    '<div class="empty-comments">No comments yet.</div>';
-
-    return;
-
-  }
-
-
-  result.data.forEach(
-    item => {
-
-      const div =
-      document.createElement(
-        "div"
-      );
-
-      div.className =
-      "comment";
-
-
-      const name =
-      document.createElement(
-        "div"
-      );
-
-      name.className =
-      "comment-name";
-
-      name.textContent =
-      item.name;
-
-
-      const text =
-      document.createElement(
-        "div"
-      );
-
-      text.className =
-      "comment-text";
-
-      text.textContent =
-      item.comment;
-
-
-      const date =
-      document.createElement(
-        "div"
-      );
-
-      date.className =
-      "comment-date";
-
-      date.textContent =
-      formatDate(
-        item.created_at
-      );
-
-
-      div.appendChild(name);
-
-      div.appendChild(text);
-
-      div.appendChild(date);
-
-
-      list.appendChild(div);
-
-    }
-  );
 
 }
 
@@ -1718,25 +1344,17 @@ async function loadComments(
 
 async function sharePost(post){
 
-  const shareUrl =
-  window.location.origin +
-  window.location.pathname +
-  "#post-" +
-  post.id;
-
+  const url =
+    `${window.location.origin}${window.location.pathname}#post-${post.id}`;
 
   const shareData = {
 
-    title:
-    post.Title ||
-    "MK Youth Mobilizers",
+    title:post.Title,
 
     text:
-    post.Content
-      ? post.Content.substring(0,180)
-      : "MK Youth Mobilizers",
+      `${post.Title}\n\nMK Youth Mobilizers`,
 
-    url:shareUrl
+    url:url
 
   };
 
@@ -1753,14 +1371,9 @@ async function sharePost(post){
 
     }catch(error){
 
-      if(
-        error.name ===
-        "AbortError"
-      ){
-
-        return;
-
-      }
+      console.log(
+        "Share cancelled"
+      );
 
     }
 
@@ -1770,22 +1383,19 @@ async function sharePost(post){
   try{
 
     await navigator.clipboard.writeText(
-      shareUrl
+      url
     );
 
     alert(
-      "Post link copied successfully."
+      "An kwafi link din post."
     );
 
   }catch(error){
 
     const whatsapp =
-    "https://wa.me/?text=" +
-    encodeURIComponent(
-      shareData.title +
-      "\n\n" +
-      shareUrl
-    );
+      `https://wa.me/?text=${encodeURIComponent(
+        post.Title + "\n" + url
+      )}`;
 
     window.open(
       whatsapp,
@@ -1803,366 +1413,246 @@ async function sharePost(post){
 
 function openArticle(post){
 
-  newsSection.style.display =
-  "none";
+  document.getElementById(
+    "articleCategory"
+  ).textContent =
+    post.category || "Labarai";
 
-  articleSection.style.display =
-  "block";
+  document.getElementById(
+    "articleTitle"
+  ).textContent =
+    post.Title || "";
+
+  document.getElementById(
+    "articleDate"
+  ).textContent =
+    "📅 " + formatDate(post.created_at);
 
 
-  let media = "";
+  const body =
+    document.getElementById(
+      "articleBody"
+    );
+
+  body.innerHTML = "";
 
 
   if(post.Image_url){
 
     if(isVideo(post.Image_url)){
 
-      media = `
+      const video =
+        document.createElement("video");
 
-        <video
-          class="post-media"
-          controls
-          playsinline
-          src="${escapeHtml(
-            post.Image_url
-          )}">
-        </video>
+      video.src =
+        post.Image_url;
 
-      `;
+      video.controls = true;
+
+      body.appendChild(video);
 
     }else{
 
-      media = `
+      const img =
+        document.createElement("img");
 
-        <img
-          class="post-media"
-          src="${escapeHtml(
-            post.Image_url
-          )}"
-          alt="${escapeHtml(
-            post.Title
-          )}">
+      img.src =
+        post.Image_url;
 
-      `;
+      img.alt =
+        post.Title || "Post";
+
+      body.appendChild(img);
 
     }
 
   }
 
 
-  articleContent.innerHTML = `
+  const text =
+    document.createElement("div");
 
-    ${media}
+  text.textContent =
+    post.Content || "";
 
-    <div class="article-body">
-
-      <h1 class="article-title">
-        ${escapeHtml(
-          post.Title
-        )}
-      </h1>
-
-      <div class="article-date">
-        ${escapeHtml(
-          formatDate(
-            post.created_at
-          )
-        )}
-      </div>
-
-      <div class="article-content">
-        ${escapeHtml(
-          post.Content
-        )}
-      </div>
-
-      <div class="article-actions">
-
-        <button
-          class="article-action"
-          onclick="toggleArticleLike(${post.id})">
-
-          👍 Like
-
-        </button>
-
-        <button
-          class="article-action"
-          onclick="focusArticleComment()">
-
-          💬 Comment
-
-        </button>
-
-        <button
-          class="article-action"
-          onclick='sharePost(${JSON.stringify(post).replace(/'/g,"&#39;")})'>
-
-          🔄 Share
-
-        </button>
-
-      </div>
-
-      <div id="articleCommentBox"></div>
-
-    </div>
-
-  `;
+  body.appendChild(text);
 
 
-  history.pushState(
+  document.getElementById(
+    "fullArticle"
+  ).style.display = "block";
+
+
+  document.body.style.overflow =
+    "hidden";
+
+
+  history.replaceState(
     null,
     "",
-    "#post-" + post.id
+    `#post-${post.id}`
   );
-
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
 
 }
 
-
-/* =========================
-   ARTICLE COMMENT
-========================= */
-
-function focusArticleComment(){
-
-  const box =
-  document.getElementById(
-    "articleCommentBox"
-  );
-
-  if(!box) return;
-
-
-  box.innerHTML = `
-
-    <div class="comments show">
-
-      <div class="comment-form">
-
-        <input
-          id="articleName"
-          placeholder="Your name">
-
-        <textarea
-          id="articleText"
-          placeholder="Write your comment..."></textarea>
-
-        <button
-          class="comment-submit"
-          onclick="submitArticleComment()">
-
-          Post Comment
-
-        </button>
-
-      </div>
-
-    </div>
-
-  `;
-
-
-  document.getElementById(
-    "articleName"
-  ).focus();
-
-}
-
-
-async function submitArticleComment(){
-
-  const id =
-  Number(
-    window.location.hash
-    .replace("#post-","")
-  );
-
-
-  const name =
-  document.getElementById(
-    "articleName"
-  ).value.trim();
-
-
-  const comment =
-  document.getElementById(
-    "articleText"
-  ).value.trim();
-
-
-  if(!name){
-
-    alert(
-      "Please enter your name."
-    );
-
-    return;
-
-  }
-
-
-  if(!comment){
-
-    alert(
-      "Please write your comment."
-    );
-
-    return;
-
-  }
-
-
-  const result =
-  await client
-  .from("post_comments")
-  .insert({
-
-    post_id:id,
-
-    visitor_id:
-    getVisitorId(),
-
-    name:name,
-
-    comment:comment
-
-  });
-
-
-  if(result.error){
-
-    console.error(
-      result.error
-    );
-
-    alert(
-      "Comment could not be posted."
-    );
-
-    return;
-
-  }
-
-
-  alert(
-    "Comment posted successfully."
-  );
-
-
-  document.getElementById(
-    "articleName"
-  ).value = "";
-
-  document.getElementById(
-    "articleText"
-  ).value = "";
-
-}
-
-
-/* =========================
-   ARTICLE LIKE
-========================= */
-
-async function toggleArticleLike(id){
-
-  const post =
-  allPosts.find(
-    p => Number(p.id) === id
-  );
-
-  if(post){
-
-    const fakeButton =
-    document.createElement("button");
-
-    await toggleLike(
-      post,
-      fakeButton
-    );
-
-  }
-
-}
-
-
-/* =========================
-   CLOSE ARTICLE
-========================= */
 
 function closeArticle(){
 
-  articleSection.style.display =
-  "none";
+  document.getElementById(
+    "fullArticle"
+  ).style.display = "none";
 
-  newsSection.style.display =
-  "block";
+  document.body.style.overflow =
+    "";
 
-
-  history.pushState(
+  history.replaceState(
     null,
     "",
     window.location.pathname
   );
 
+}
 
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
+
+/* =========================
+   HASH OPEN POST
+========================= */
+
+function checkHash(){
+
+  const hash =
+    window.location.hash;
+
+  if(!hash.startsWith("#post-"))
+    return;
+
+  const id =
+    Number(
+      hash.replace("#post-","")
+    );
+
+  const post =
+    allPosts.find(
+      p => Number(p.id) === id
+    );
+
+  if(post){
+
+    openArticle(post);
+
+  }
 
 }
 
 
 /* =========================
-   LIVE
+   VISITOR COUNTER
 ========================= */
 
-async function loadLive(){
+async function loadVisitors(){
 
-  liveStatus.innerHTML =
-  "Checking live status...";
-
-  liveContainer.innerHTML =
-  "";
-
-
-  const result =
-  await client
-  .from("live_stream")
-  .select(
-    "id,youtube_id,active"
-  )
-  .eq(
-    "id",
-    1
-  )
-  .maybeSingle();
-
-
-  if(result.error){
-
-    console.error(
-      result.error
+  const visitorElement =
+    document.getElementById(
+      "visitorCount"
     );
 
-    liveStatus.innerHTML =
-    "Unable to load Live status.";
+  const alreadyCounted =
+    localStorage.getItem(
+      "mk_visitor_counted"
+    );
+
+
+  if(!alreadyCounted){
+
+    const visitorId =
+      crypto.randomUUID();
+
+    const { error } =
+      await supabaseClient
+        .from("visitors")
+        .insert([{
+
+          visitor_id:visitorId
+
+        }]);
+
+    if(!error){
+
+      localStorage.setItem(
+        "mk_visitor_counted",
+        "true"
+      );
+
+    }
+
+  }
+
+
+  const { count, error } =
+    await supabaseClient
+      .from("visitors")
+      .select("id",{
+        count:"exact",
+        head:true
+      });
+
+
+  if(error){
+
+    console.error(error);
+
+    visitorElement.textContent =
+      STARTING_VISITORS.toLocaleString();
 
     return;
 
   }
 
 
-  const data =
-  result.data;
+  const total =
+    STARTING_VISITORS +
+    (count || 0);
+
+
+  visitorElement.textContent =
+    total.toLocaleString();
+
+}
+
+
+/* =========================
+   YOUTUBE LIVE
+========================= */
+
+async function loadLive(){
+
+  const container =
+    document.getElementById(
+      "liveContainer"
+    );
+
+  const { data, error } =
+    await supabaseClient
+      .from("live_stream")
+      .select(
+        "id,youtube_id,active"
+      )
+      .eq("id",1)
+      .maybeSingle();
+
+
+  if(error){
+
+    console.error(error);
+
+    container.innerHTML =
+      `<div class="offline-live">
+        Babu Live yanzu.
+      </div>`;
+
+    return;
+
+  }
 
 
   if(
@@ -2171,42 +1661,58 @@ async function loadLive(){
     data.youtube_id
   ){
 
-    liveStatus.innerHTML =
-    '<span style="color:red;font-weight:bold;">🔴 LIVE NOW</span>';
+    container.innerHTML = `
 
+      <iframe
 
-    const iframe =
-    document.createElement(
-      "iframe"
-    );
+        src="https://www.youtube.com/embed/${encodeURIComponent(
+          data.youtube_id
+        )}?autoplay=1"
 
-    iframe.className =
-    "live-video";
+        title="MK Youth Mobilizers Live"
 
-    iframe.src =
-    "https://www.youtube.com/embed/" +
-    encodeURIComponent(
-      data.youtube_id
-    ) +
-    "?autoplay=1";
+        allow="
+          autoplay;
+          encrypted-media;
+          picture-in-picture
+        "
 
-    iframe.allow =
-    "autoplay; encrypted-media; picture-in-picture";
+        allowfullscreen>
 
-    iframe.allowFullscreen =
-    true;
+      </iframe>
 
-
-    liveContainer.appendChild(
-      iframe
-    );
+    `;
 
   }else{
 
-    liveStatus.innerHTML =
-    '<span class="live-off">🔴 Live is currently OFF</span>';
+    container.innerHTML =
+      `<div class="offline-live">
+
+        🔴 Babu Live yanzu.
+
+        <br><br>
+
+        Za mu sanar da ku idan an fara Live.
+
+      </div>`;
 
   }
+
+}
+
+
+/* =========================
+   SECURITY
+========================= */
+
+function escapeHtml(value){
+
+  return String(value || "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
 
 }
 
@@ -2215,11 +1721,41 @@ async function loadLive(){
    START
 ========================= */
 
-updateVisitorCounter();
+document.addEventListener(
+  "DOMContentLoaded",
+  async () => {
 
-loadPosts();
+    await loadPosts();
 
-loadLive();
+    await loadVisitors();
+
+    await loadLive();
+
+    checkHash();
+
+  }
+);
+
+
+window.addEventListener(
+  "hashchange",
+  checkHash
+);
+
+
+/* CLOSE ARTICLE WHEN CLICKING OUTSIDE */
+
+document
+  .getElementById("fullArticle")
+  .addEventListener("click", function(e){
+
+    if(e.target === this){
+
+      closeArticle();
+
+    }
+
+  });
 
 </script>
 
