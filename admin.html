@@ -55,12 +55,14 @@ label{
 }
 
 input,
-textarea{
+textarea,
+select{
   width:100%;
   padding:14px;
   border:1px solid #ccc;
   border-radius:9px;
   font-size:16px;
+  background:white;
 }
 
 textarea{
@@ -153,6 +155,17 @@ button:disabled{
   margin-bottom:12px;
 }
 
+.category-badge{
+  display:inline-block;
+  background:#075b32;
+  color:white;
+  padding:6px 10px;
+  border-radius:20px;
+  font-size:13px;
+  font-weight:bold;
+  margin-bottom:10px;
+}
+
 .actions{
   display:flex;
   gap:10px;
@@ -238,9 +251,7 @@ button:disabled{
 <div class="container">
 
 
-<!-- =========================
-LOGIN
-========================= -->
+<!-- LOGIN -->
 
 <div class="box" id="loginArea">
 
@@ -289,16 +300,12 @@ class="message"
 </div>
 
 
-<!-- =========================
-ADMIN AREA
-========================= -->
+<!-- ADMIN AREA -->
 
 <div id="adminArea">
 
 
-<!-- =========================
-POST
-========================= -->
+<!-- CREATE / EDIT POST -->
 
 <div class="box">
 
@@ -322,6 +329,39 @@ type="text"
 id="title"
 placeholder="Enter post title"
 >
+
+<label>
+Category
+</label>
+
+<select id="category">
+
+<option value="Labarai">
+📰 Labarai
+</option>
+
+<option value="Siyasa">
+🏛️ Siyasa
+</option>
+
+<option value="Wasanni">
+⚽ Wasanni
+</option>
+
+<option value="Nishaɗi">
+🎤 Nishaɗi
+</option>
+
+<option value="Hotuna">
+📸 Hotuna
+</option>
+
+<option value="Bidiyo">
+🎥 Bidiyo
+</option>
+
+</select>
+
 
 <label>
 Post Content
@@ -368,9 +408,7 @@ class="message"
 </div>
 
 
-<!-- =========================
-YOUTUBE LIVE
-========================= -->
+<!-- YOUTUBE LIVE -->
 
 <div class="box">
 
@@ -424,9 +462,7 @@ Checking live status...
 </div>
 
 
-<!-- =========================
-MANAGE POSTS
-========================= -->
+<!-- MANAGE POSTS -->
 
 <div class="box">
 
@@ -448,9 +484,7 @@ Loading posts...
 </div>
 
 
-<!-- =========================
-LOGOUT
-========================= -->
+<!-- LOGOUT -->
 
 <div class="box">
 
@@ -477,18 +511,12 @@ href="index.html"
 </div>
 
 
-<!-- =========================
-SUPABASE
-========================= -->
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
 
 
-/* =========================
-SUPABASE CONFIG
-========================= */
+/* SUPABASE CONFIG */
 
 const SUPABASE_URL =
 "https://kszficrcngxipcllezgl.supabase.co";
@@ -507,9 +535,7 @@ SUPABASE_KEY
 );
 
 
-/* =========================
-ELEMENTS
-========================= */
+/* ELEMENTS */
 
 const loginArea =
 document.getElementById("loginArea");
@@ -534,6 +560,9 @@ document.getElementById("logoutBtn");
 
 const titleInput =
 document.getElementById("title");
+
+const categoryInput =
+document.getElementById("category");
 
 const contentInput =
 document.getElementById("content");
@@ -580,9 +609,7 @@ let editingId = null;
 let oldMediaUrl = null;
 
 
-/* =========================
-MESSAGES
-========================= */
+/* MESSAGES */
 
 function loginMsg(text,type){
 
@@ -617,9 +644,7 @@ liveMessage.className =
 }
 
 
-/* =========================
-LOGIN
-========================= */
+/* LOGIN */
 
 loginBtn.addEventListener(
 "click",
@@ -699,9 +724,7 @@ false;
 });
 
 
-/* =========================
-SHOW ADMIN
-========================= */
+/* SHOW ADMIN */
 
 function showAdmin(){
 
@@ -718,9 +741,7 @@ loadLive();
 }
 
 
-/* =========================
-LOGOUT
-========================= */
+/* LOGOUT */
 
 logoutBtn.addEventListener(
 "click",
@@ -740,9 +761,7 @@ loginPassword.value =
 });
 
 
-/* =========================
-SESSION
-========================= */
+/* SESSION */
 
 async function checkSession(){
 
@@ -760,9 +779,7 @@ showAdmin();
 checkSession();
 
 
-/* =========================
-FILE PREVIEW
-========================= */
+/* FILE PREVIEW */
 
 mediaInput.addEventListener(
 "change",
@@ -842,9 +859,7 @@ preview.appendChild(video);
 });
 
 
-/* =========================
-UPLOAD MEDIA
-========================= */
+/* UPLOAD MEDIA */
 
 async function uploadMedia(file){
 
@@ -898,9 +913,7 @@ return publicResult
 }
 
 
-/* =========================
-CREATE / UPDATE POST
-========================= */
+/* CREATE / UPDATE POST */
 
 publishBtn.addEventListener(
 "click",
@@ -908,6 +921,9 @@ async function(){
 
 const title =
 titleInput.value.trim();
+
+const category =
+categoryInput.value;
 
 const content =
 contentInput.value.trim();
@@ -972,6 +988,8 @@ await client
 
 Title:title,
 
+category:category,
+
 Content:content,
 
 Image_url:
@@ -1013,6 +1031,8 @@ await client
 .insert([{
 
 Title:title,
+
+category:category,
 
 Content:content,
 
@@ -1064,9 +1084,7 @@ false;
 });
 
 
-/* =========================
-LOAD POSTS
-========================= */
+/* LOAD POSTS */
 
 async function loadPosts(){
 
@@ -1126,6 +1144,25 @@ card.className =
 "post-card";
 
 
+/* CATEGORY */
+
+const categoryBadge =
+document.createElement("div");
+
+categoryBadge.className =
+"category-badge";
+
+categoryBadge.textContent =
+post.category ||
+"Labarai";
+
+card.appendChild(
+categoryBadge
+);
+
+
+/* MEDIA */
+
 if(post.Image_url){
 
 const url =
@@ -1178,6 +1215,8 @@ card.appendChild(img);
 }
 
 
+/* TITLE */
+
 const title =
 document.createElement("h3");
 
@@ -1185,6 +1224,8 @@ title.textContent =
 post.Title ||
 "Untitled";
 
+
+/* CONTENT */
 
 const content =
 document.createElement("p");
@@ -1255,9 +1296,7 @@ postsContainer.appendChild(card);
 }
 
 
-/* =========================
-EDIT
-========================= */
+/* EDIT */
 
 function startEdit(post){
 
@@ -1274,6 +1313,11 @@ post.Title ||
 "";
 
 
+categoryInput.value =
+post.category ||
+"Labarai";
+
+
 contentInput.value =
 post.Content ||
 "";
@@ -1281,7 +1325,6 @@ post.Content ||
 
 mediaInput.value =
 "";
-
 
 preview.innerHTML =
 "";
@@ -1310,9 +1353,7 @@ behavior:"smooth"
 }
 
 
-/* =========================
-CANCEL EDIT
-========================= */
+/* CANCEL EDIT */
 
 cancelBtn.addEventListener(
 "click",
@@ -1330,6 +1371,9 @@ null;
 
 titleInput.value =
 "";
+
+categoryInput.value =
+"Labarai";
 
 contentInput.value =
 "";
@@ -1352,9 +1396,7 @@ cancelBtn.style.display =
 }
 
 
-/* =========================
-DELETE
-========================= */
+/* DELETE */
 
 async function deletePost(post){
 
@@ -1414,9 +1456,7 @@ error.message,
 }
 
 
-/* =========================
-YOUTUBE ID
-========================= */
+/* YOUTUBE ID */
 
 function getYouTubeId(url){
 
@@ -1426,8 +1466,6 @@ const parsed =
 new URL(url);
 
 
-/* YouTube watch link */
-
 if(
 parsed.hostname.includes("youtube.com")
 ){
@@ -1436,8 +1474,6 @@ return parsed.searchParams.get("v");
 
 }
 
-
-/* YouTube short link */
 
 if(
 parsed.hostname === "youtu.be"
@@ -1462,9 +1498,7 @@ return null;
 }
 
 
-/* =========================
-ACTIVATE LIVE
-========================= */
+/* ACTIVATE LIVE */
 
 saveLiveBtn.addEventListener(
 "click",
@@ -1570,9 +1604,7 @@ false;
 });
 
 
-/* =========================
-END LIVE
-========================= */
+/* END LIVE */
 
 removeLiveBtn.addEventListener(
 "click",
@@ -1632,9 +1664,7 @@ error.message,
 });
 
 
-/* =========================
-LOAD LIVE
-========================= */
+/* LOAD LIVE */
 
 async function loadLive(){
 
@@ -1713,7 +1743,6 @@ error.message;
 }
 
 }
-
 
 </script>
 
