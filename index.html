@@ -117,7 +117,6 @@ header{
   border-radius:12px;
   overflow:hidden;
   box-shadow:0 2px 8px rgba(0,0,0,.1);
-  cursor:pointer;
 }
 
 .post-header{
@@ -170,6 +169,16 @@ header{
   font-size:15px;
 }
 
+.read-more{
+  border:0;
+  background:none;
+  color:#1877f2;
+  font-weight:bold;
+  cursor:pointer;
+  padding:6px 0;
+  font-size:14px;
+}
+
 .actions{
   display:flex;
   border-top:1px solid #eee;
@@ -191,7 +200,7 @@ header{
 }
 
 .like-btn.liked{
-  color:#e11d48;
+  color:#1877f2;
 }
 
 .comments{
@@ -208,15 +217,22 @@ header{
 .comment-form input,
 .comment-form textarea{
   width:100%;
-  border:1px solid #ddd;
+  border:1px solid #ccc;
   border-radius:8px;
-  padding:10px;
+  padding:11px;
   margin-bottom:8px;
   font-family:inherit;
+  font-size:14px;
+  outline:none;
+}
+
+.comment-form input:focus,
+.comment-form textarea:focus{
+  border-color:#1877f2;
 }
 
 .comment-form textarea{
-  min-height:75px;
+  min-height:80px;
   resize:vertical;
 }
 
@@ -224,11 +240,15 @@ header{
   width:100%;
   border:0;
   border-radius:8px;
-  padding:10px;
+  padding:11px;
   background:#111827;
   color:white;
   cursor:pointer;
   font-weight:bold;
+}
+
+.comment-submit:disabled{
+  opacity:.6;
 }
 
 .comment-list{
@@ -284,10 +304,6 @@ header{
   font-weight:bold;
 }
 
-.article-body{
-  padding:18px;
-}
-
 .article-title{
   font-size:28px;
   margin-bottom:10px;
@@ -303,6 +319,26 @@ header{
   white-space:pre-wrap;
   line-height:1.7;
   font-size:17px;
+}
+
+.article-body{
+  padding:18px;
+}
+
+.article-actions{
+  display:flex;
+  border-top:1px solid #eee;
+  border-bottom:1px solid #eee;
+  margin:18px 0;
+}
+
+.article-action{
+  flex:1;
+  border:0;
+  background:white;
+  padding:13px;
+  font-weight:bold;
+  cursor:pointer;
 }
 
 footer{
@@ -359,17 +395,11 @@ footer{
 
 <div class="container">
 
-  <!-- VISITOR COUNTER -->
-
   <div class="visitor-box">
-
     👥 Website Visitors:
     <span id="visitorCount">—</span>
-
   </div>
 
-
-  <!-- LIVE -->
 
   <div class="live-box">
 
@@ -386,8 +416,6 @@ footer{
   </div>
 
 
-  <!-- POSTS -->
-
   <div id="newsSection">
 
     <h2 class="section-title">
@@ -401,21 +429,15 @@ footer{
   </div>
 
 
-  <!-- FULL ARTICLE -->
-
   <div id="articleSection" class="article">
 
-    <div class="article-body">
+    <button
+      class="back-btn"
+      onclick="closeArticle()">
+      ← Back
+    </button>
 
-      <button
-        class="back-btn"
-        onclick="closeArticle()">
-        ← Back
-      </button>
-
-      <div id="articleContent"></div>
-
-    </div>
+    <div id="articleContent"></div>
 
   </div>
 
@@ -423,9 +445,7 @@ footer{
 
 
 <footer>
-
   © 2026 MK Youth Mobilizers Media Team Tarauni
-
 </footer>
 
 
@@ -436,16 +456,16 @@ footer{
 ========================= */
 
 const SUPABASE_URL =
-  "https://kszficrcngxipcllezgl.supabase.co";
+"https://kszficrcngxipcllezgl.supabase.co";
 
 const SUPABASE_KEY =
-  "sb_publishable_hsMkfMvXMbAXXt8Z7LvAvg_52miDaJe";
+"sb_publishable_hsMkfMvXMbAXXt8Z7LvAvg_52miDaJe";
 
 const client =
-  window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-  );
+window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
 
 
 /* =========================
@@ -453,25 +473,25 @@ const client =
 ========================= */
 
 const postsContainer =
-  document.getElementById("posts");
+document.getElementById("posts");
 
 const visitorCount =
-  document.getElementById("visitorCount");
+document.getElementById("visitorCount");
 
 const liveStatus =
-  document.getElementById("liveStatus");
+document.getElementById("liveStatus");
 
 const liveContainer =
-  document.getElementById("liveContainer");
+document.getElementById("liveContainer");
 
 const newsSection =
-  document.getElementById("newsSection");
+document.getElementById("newsSection");
 
 const articleSection =
-  document.getElementById("articleSection");
+document.getElementById("articleSection");
 
 const articleContent =
-  document.getElementById("articleContent");
+document.getElementById("articleContent");
 
 
 /* =========================
@@ -481,7 +501,7 @@ const articleContent =
 function getVisitorId(){
 
   let id =
-    localStorage.getItem("mk_visitor_id");
+  localStorage.getItem("mk_visitor_id");
 
   if(!id){
 
@@ -495,11 +515,11 @@ function getVisitorId(){
     }else{
 
       id =
-        Date.now() +
-        "-" +
-        Math.random()
-          .toString(36)
-          .substring(2);
+      Date.now() +
+      "-" +
+      Math.random()
+      .toString(36)
+      .substring(2);
 
     }
 
@@ -511,7 +531,6 @@ function getVisitorId(){
   }
 
   return id;
-
 }
 
 
@@ -524,32 +543,26 @@ async function updateVisitorCounter(){
   const STARTING_VISITORS = 10000;
 
   visitorCount.textContent =
-    STARTING_VISITORS.toLocaleString();
+  STARTING_VISITORS.toLocaleString();
 
 
   try{
 
     const alreadyCounted =
-      localStorage.getItem(
-        "mk_visitor_counted"
-      );
+    localStorage.getItem(
+      "mk_visitor_counted"
+    );
 
 
     if(!alreadyCounted){
 
       const insertResult =
-        await client
-          .from("visitors")
-          .insert({});
+      await client
+      .from("visitors")
+      .insert({});
 
-      if(insertResult.error){
 
-        console.error(
-          "Visitor insert error:",
-          insertResult.error
-        );
-
-      }else{
+      if(!insertResult.error){
 
         localStorage.setItem(
           "mk_visitor_counted",
@@ -562,23 +575,15 @@ async function updateVisitorCounter(){
 
 
     const countResult =
-      await client
-        .from("visitors")
-        .select("*",{
-          count:"exact",
-          head:true
-        });
+    await client
+    .from("visitors")
+    .select("*",{
+      count:"exact",
+      head:true
+    });
 
 
     if(countResult.error){
-
-      console.error(
-        "Visitor count error:",
-        countResult.error
-      );
-
-      visitorCount.textContent =
-        STARTING_VISITORS.toLocaleString();
 
       return;
 
@@ -586,27 +591,19 @@ async function updateVisitorCounter(){
 
 
     const realVisitors =
-      Number(countResult.count || 0);
-
-
-    const totalVisitors =
-      STARTING_VISITORS +
-      realVisitors;
+    Number(countResult.count || 0);
 
 
     visitorCount.textContent =
-      totalVisitors.toLocaleString();
+    (
+      STARTING_VISITORS +
+      realVisitors
+    ).toLocaleString();
 
 
   }catch(error){
 
-    console.error(
-      "Visitor error:",
-      error
-    );
-
-    visitorCount.textContent =
-      STARTING_VISITORS.toLocaleString();
+    console.error(error);
 
   }
 
@@ -614,21 +611,15 @@ async function updateVisitorCounter(){
 
 
 /* =========================
-   FORMAT DATE
+   DATE
 ========================= */
 
 function formatDate(date){
 
-  if(!date){
+  if(!date) return "";
 
-    return "";
-
-  }
-
-  const d =
-    new Date(date);
-
-  return d.toLocaleString(
+  return new Date(date)
+  .toLocaleString(
     "en-GB",
     {
       day:"numeric",
@@ -643,20 +634,15 @@ function formatDate(date){
 
 
 /* =========================
-   VIDEO CHECK
+   VIDEO
 ========================= */
 
 function isVideo(url){
 
-  if(!url){
-
-    return false;
-
-  }
+  if(!url) return false;
 
   const clean =
-    url.split("?")[0]
-      .toLowerCase();
+  url.split("?")[0].toLowerCase();
 
   return (
     clean.endsWith(".mp4") ||
@@ -669,16 +655,16 @@ function isVideo(url){
 
 
 /* =========================
-   ESCAPE HTML
+   ESCAPE
 ========================= */
 
 function escapeHtml(text){
 
   const div =
-    document.createElement("div");
+  document.createElement("div");
 
   div.textContent =
-    text || "";
+  text || "";
 
   return div.innerHTML;
 
@@ -686,7 +672,32 @@ function escapeHtml(text){
 
 
 /* =========================
-   LOAD POSTS
+   SHORT STORY
+========================= */
+
+function shortStory(text){
+
+  if(!text) return "";
+
+  const words =
+  text.trim().split(/\s+/);
+
+  if(words.length <= 35){
+
+    return text;
+
+  }
+
+  return (
+    words.slice(0,35).join(" ") +
+    "..."
+  );
+
+}
+
+
+/* =========================
+   POSTS
 ========================= */
 
 let allPosts = [];
@@ -695,33 +706,31 @@ let allPosts = [];
 async function loadPosts(){
 
   postsContainer.innerHTML =
-    "Loading posts...";
+  "Loading posts...";
 
 
   const result =
-    await client
-      .from("posts")
-      .select(
-        "id,Title,Content,Image_url,created_at"
-      )
-      .order(
-        "created_at",
-        {ascending:false}
-      )
-      .order(
-        "id",
-        {ascending:false}
-      );
+  await client
+  .from("posts")
+  .select(
+    "id,Title,Content,Image_url,created_at"
+  )
+  .order(
+    "created_at",
+    {ascending:false}
+  )
+  .order(
+    "id",
+    {ascending:false}
+  );
 
 
   if(result.error){
 
-    console.error(
-      result.error
-    );
+    console.error(result.error);
 
     postsContainer.innerHTML =
-      "<p>Unable to load posts.</p>";
+    "<p>Unable to load posts.</p>";
 
     return;
 
@@ -729,13 +738,13 @@ async function loadPosts(){
 
 
   allPosts =
-    result.data || [];
+  result.data || [];
 
 
   if(!allPosts.length){
 
     postsContainer.innerHTML =
-      "<p>No posts yet.</p>";
+    "<p>No posts yet.</p>";
 
     return;
 
@@ -745,34 +754,40 @@ async function loadPosts(){
   postsContainer.innerHTML = "";
 
 
-  for(const post of allPosts){
+  allPosts.forEach(
+    post => {
 
-    const card =
+      const card =
       createPostCard(post);
 
-    postsContainer.appendChild(card);
+      postsContainer.appendChild(
+        card
+      );
 
-    loadEngagement(post,card);
+      loadEngagement(
+        post,
+        card
+      );
 
-  }
+    }
+  );
 
 
-  /* OPEN POST FROM URL HASH */
-
-  const hash =
-    window.location.hash;
-
-  if(hash.startsWith("#post-")){
+  if(
+    window.location.hash
+    .startsWith("#post-")
+  ){
 
     const id =
-      Number(
-        hash.replace("#post-","")
-      );
+    Number(
+      window.location.hash
+      .replace("#post-","")
+    );
 
     const post =
-      allPosts.find(
-        p => Number(p.id) === id
-      );
+    allPosts.find(
+      p => Number(p.id) === id
+    );
 
     if(post){
 
@@ -786,33 +801,23 @@ async function loadPosts(){
 
 
 /* =========================
-   CREATE POST CARD
+   CREATE POST
 ========================= */
 
 function createPostCard(post){
 
   const card =
-    document.createElement("article");
+  document.createElement("article");
 
   card.className =
-    "post";
-
-
-  card.addEventListener(
-    "click",
-    function(){
-
-      openArticle(post);
-
-    }
-  );
+  "post";
 
 
   const header =
-    document.createElement("div");
+  document.createElement("div");
 
   header.className =
-    "post-header";
+  "post-header";
 
 
   header.innerHTML = `
@@ -849,19 +854,19 @@ function createPostCard(post){
     if(isVideo(post.Image_url)){
 
       const video =
-        document.createElement("video");
+      document.createElement("video");
 
       video.className =
-        "post-media";
+      "post-media";
 
       video.src =
-        post.Image_url;
+      post.Image_url;
 
       video.controls =
-        true;
+      true;
 
       video.playsInline =
-        true;
+      true;
 
       video.addEventListener(
         "click",
@@ -873,19 +878,19 @@ function createPostCard(post){
     }else{
 
       const img =
-        document.createElement("img");
+      document.createElement("img");
 
       img.className =
-        "post-media";
+      "post-media";
 
       img.src =
-        post.Image_url;
+      post.Image_url;
 
       img.alt =
-        post.Title || "Post";
+      post.Title || "Post";
 
       img.loading =
-        "lazy";
+      "lazy";
 
       img.addEventListener(
         "click",
@@ -908,59 +913,103 @@ function createPostCard(post){
   /* BODY */
 
   const body =
-    document.createElement("div");
+  document.createElement("div");
 
   body.className =
-    "post-body";
+  "post-body";
 
 
   const title =
-    document.createElement("div");
+  document.createElement("div");
 
   title.className =
-    "post-title";
+  "post-title";
 
   title.textContent =
-    post.Title || "";
+  post.Title || "";
 
 
   const content =
-    document.createElement("div");
+  document.createElement("div");
 
   content.className =
-    "post-content";
+  "post-content";
 
-  content.textContent =
-    post.Content || "";
+  const fullText =
+  post.Content || "";
+
+  const words =
+  fullText.trim().split(/\s+/);
 
 
-  body.appendChild(title);
+  if(words.length > 35){
 
-  body.appendChild(content);
+    content.textContent =
+    shortStory(fullText);
+
+
+    const readMore =
+    document.createElement("button");
+
+    readMore.className =
+    "read-more";
+
+    readMore.textContent =
+    "Read more";
+
+
+    readMore.addEventListener(
+      "click",
+      e => {
+
+        e.stopPropagation();
+
+        openArticle(post);
+
+      }
+    );
+
+
+    body.appendChild(title);
+
+    body.appendChild(content);
+
+    body.appendChild(readMore);
+
+  }else{
+
+    content.textContent =
+    fullText;
+
+    body.appendChild(title);
+
+    body.appendChild(content);
+
+  }
 
 
   /* ACTIONS */
 
   const actions =
-    document.createElement("div");
+  document.createElement("div");
 
   actions.className =
-    "actions";
+  "actions";
 
 
   const likeBtn =
-    document.createElement("button");
+  document.createElement("button");
 
   likeBtn.className =
-    "action-btn like-btn";
+  "action-btn like-btn";
 
   likeBtn.innerHTML =
-    "❤️ Like <span>0</span>";
+  "👍 Like <span>0</span>";
 
 
   likeBtn.addEventListener(
     "click",
-    async function(e){
+    async e => {
 
       e.stopPropagation();
 
@@ -974,47 +1023,56 @@ function createPostCard(post){
 
 
   const commentBtn =
-    document.createElement("button");
+  document.createElement("button");
 
   commentBtn.className =
-    "action-btn";
+  "action-btn";
 
   commentBtn.innerHTML =
-    "💬 Comment <span>0</span>";
+  "💬 Comment <span>0</span>";
 
 
   commentBtn.addEventListener(
     "click",
-    function(e){
+    e => {
 
       e.stopPropagation();
 
-      const comments =
-        card.querySelector(
-          ".comments"
-        );
-
-      comments.classList.toggle(
-        "show"
+      const box =
+      card.querySelector(
+        ".comments"
       );
+
+      box.classList.add("show");
+
+      const input =
+      box.querySelector(
+        ".comment-name"
+      );
+
+      if(input){
+
+        input.focus();
+
+      }
 
     }
   );
 
 
   const shareBtn =
-    document.createElement("button");
+  document.createElement("button");
 
   shareBtn.className =
-    "action-btn";
+  "action-btn";
 
   shareBtn.innerHTML =
-    "🔄 Share";
+  "🔄 Share";
 
 
   shareBtn.addEventListener(
     "click",
-    function(e){
+    e => {
 
       e.stopPropagation();
 
@@ -1024,29 +1082,49 @@ function createPostCard(post){
   );
 
 
-  actions.appendChild(likeBtn);
+  actions.appendChild(
+    likeBtn
+  );
 
-  actions.appendChild(commentBtn);
+  actions.appendChild(
+    commentBtn
+  );
 
-  actions.appendChild(shareBtn);
+  actions.appendChild(
+    shareBtn
+  );
 
 
-  body.appendChild(actions);
+  body.appendChild(
+    actions
+  );
 
 
   /* COMMENTS */
 
   const comments =
-    createCommentsSection(
-      post,
-      commentBtn
-    );
+  createCommentsSection(
+    post,
+    commentBtn
+  );
 
 
-  body.appendChild(comments);
+  body.appendChild(
+    comments
+  );
 
 
-  card.appendChild(body);
+  card.appendChild(
+    body
+  );
+
+
+  /* OPEN FULL POST */
+
+  card.addEventListener(
+    "click",
+    () => openArticle(post)
+  );
 
 
   return card;
@@ -1055,7 +1133,7 @@ function createPostCard(post){
 
 
 /* =========================
-   LOAD ENGAGEMENT
+   ENGAGEMENT
 ========================= */
 
 async function loadEngagement(
@@ -1064,72 +1142,65 @@ async function loadEngagement(
 ){
 
   const likeBtn =
-    card.querySelector(
-      ".like-btn"
-    );
+  card.querySelector(
+    ".like-btn"
+  );
+
 
   const commentBtn =
-    card.querySelector(
-      ".action-btn:nth-child(2)"
-    );
+  card.querySelector(
+    ".action-btn:nth-child(2)"
+  );
 
 
-  /* LIKES */
+  /* LIKE COUNT */
 
-  const likesResult =
-    await client
-      .from("post_likes")
-      .select(
-        "id",
-        {
-          count:"exact",
-          head:true
-        }
-      )
-      .eq(
-        "post_id",
-        post.id
-      );
+  const likes =
+  await client
+  .from("post_likes")
+  .select(
+    "id",
+    {
+      count:"exact",
+      head:true
+    }
+  )
+  .eq(
+    "post_id",
+    post.id
+  );
 
 
-  if(!likesResult.error){
+  if(!likes.error){
 
-    const count =
-      likesResult.count || 0;
-
-    const span =
-      likeBtn.querySelector("span");
-
-    span.textContent =
-      count;
+    likeBtn.querySelector(
+      "span"
+    ).textContent =
+    likes.count || 0;
 
   }
 
 
-  /* CHECK USER LIKE */
+  /* CHECK LIKE */
 
-  const visitorId =
-    getVisitorId();
-
-
-  const likedResult =
-    await client
-      .from("post_likes")
-      .select("id")
-      .eq(
-        "post_id",
-        post.id
-      )
-      .eq(
-        "visitor_id",
-        visitorId
-      )
-      .maybeSingle();
+  const liked =
+  await client
+  .from("post_likes")
+  .select("id")
+  .eq(
+    "post_id",
+    post.id
+  )
+  .eq(
+    "visitor_id",
+    getVisitorId()
+  )
+  .maybeSingle();
 
 
   if(
-    !likedResult.error &&
-    likedResult.data
+    !liked.error &&
+    liked.data
   ){
 
     likeBtn.classList.add(
@@ -1139,47 +1210,44 @@ async function loadEngagement(
   }
 
 
-  /* COMMENTS */
+  /* COMMENT COUNT */
 
-  const commentsResult =
-    await client
-      .from("post_comments")
-      .select(
-        "id",
-        {
-          count:"exact",
-          head:true
-        }
-      )
-      .eq(
-        "post_id",
-        post.id
-      );
+  const comments =
+  await client
+  .from("post_comments")
+  .select(
+    "id",
+    {
+      count:"exact",
+      head:true
+    }
+  )
+  .eq(
+    "post_id",
+    post.id
+  );
 
 
-  if(!commentsResult.error){
+  if(!comments.error){
 
-    const count =
-      commentsResult.count || 0;
-
-    const span =
-      commentBtn.querySelector(
-        "span"
-      );
-
-    span.textContent =
-      count;
+    commentBtn.querySelector(
+      "span"
+    ).textContent =
+    comments.count || 0;
 
   }
 
 
-  loadComments(post,card);
+  loadComments(
+    post,
+    card
+  );
 
 }
 
 
 /* =========================
-   TOGGLE LIKE
+   LIKE
 ========================= */
 
 async function toggleLike(
@@ -1188,32 +1256,28 @@ async function toggleLike(
 ){
 
   const visitorId =
-    getVisitorId();
+  getVisitorId();
 
 
   const existing =
-    await client
-      .from("post_likes")
-      .select("id")
-      .eq(
-        "post_id",
-        post.id
-      )
-      .eq(
-        "visitor_id",
-        visitorId
-      )
-      .maybeSingle();
+  await client
+  .from("post_likes")
+  .select("id")
+  .eq(
+    "post_id",
+    post.id
+  )
+  .eq(
+    "visitor_id",
+    visitorId
+  )
+  .maybeSingle();
 
 
   if(existing.error){
 
     alert(
       "Unable to check Like."
-    );
-
-    console.error(
-      existing.error
     );
 
     return;
@@ -1223,23 +1287,17 @@ async function toggleLike(
 
   if(existing.data){
 
-    /* REMOVE LIKE */
-
     const result =
-      await client
-        .from("post_likes")
-        .delete()
-        .eq(
-          "id",
-          existing.data.id
-        );
+    await client
+    .from("post_likes")
+    .delete()
+    .eq(
+      "id",
+      existing.data.id
+    );
 
 
     if(result.error){
-
-      console.error(
-        result.error
-      );
 
       alert(
         "Unable to remove Like."
@@ -1257,15 +1315,16 @@ async function toggleLike(
 
   }else{
 
-    /* ADD LIKE */
-
     const result =
-      await client
-        .from("post_likes")
-        .insert({
-          post_id:post.id,
-          visitor_id:visitorId
-        });
+    await client
+    .from("post_likes")
+    .insert({
+
+      post_id:post.id,
+
+      visitor_id:visitorId
+
+    });
 
 
     if(result.error){
@@ -1290,30 +1349,28 @@ async function toggleLike(
   }
 
 
-  /* UPDATE COUNT */
-
-  const countResult =
-    await client
-      .from("post_likes")
-      .select(
-        "id",
-        {
-          count:"exact",
-          head:true
-        }
-      )
-      .eq(
-        "post_id",
-        post.id
-      );
+  const count =
+  await client
+  .from("post_likes")
+  .select(
+    "id",
+    {
+      count:"exact",
+      head:true
+    }
+  )
+  .eq(
+    "post_id",
+    post.id
+  );
 
 
-  if(!countResult.error){
+  if(!count.error){
 
     button.querySelector(
       "span"
     ).textContent =
-      countResult.count || 0;
+    count.count || 0;
 
   }
 
@@ -1321,7 +1378,7 @@ async function toggleLike(
 
 
 /* =========================
-   COMMENTS SECTION
+   COMMENTS
 ========================= */
 
 function createCommentsSection(
@@ -1330,55 +1387,61 @@ function createCommentsSection(
 ){
 
   const section =
-    document.createElement("div");
+  document.createElement("div");
 
   section.className =
-    "comments";
+  "comments";
 
 
   const form =
-    document.createElement("div");
+  document.createElement("div");
 
   form.className =
-    "comment-form";
+  "comment-form";
 
 
   const name =
-    document.createElement("input");
+  document.createElement("input");
+
+  name.className =
+  "comment-name";
 
   name.placeholder =
-    "Your name";
+  "Your name";
 
 
   const textarea =
-    document.createElement("textarea");
+  document.createElement("textarea");
+
+  textarea.className =
+  "comment-textarea";
 
   textarea.placeholder =
-    "Write a comment...";
+  "Write your comment...";
 
 
   const submit =
-    document.createElement("button");
+  document.createElement("button");
 
   submit.className =
-    "comment-submit";
+  "comment-submit";
 
   submit.textContent =
-    "Post Comment";
+  "Post Comment";
 
 
   submit.addEventListener(
     "click",
-    async function(e){
+    async e => {
 
       e.stopPropagation();
 
 
       const userName =
-        name.value.trim();
+      name.value.trim();
 
       const comment =
-        textarea.value.trim();
+      textarea.value.trim();
 
 
       if(!userName){
@@ -1386,6 +1449,8 @@ function createCommentsSection(
         alert(
           "Please enter your name."
         );
+
+        name.focus();
 
         return;
 
@@ -1395,8 +1460,10 @@ function createCommentsSection(
       if(!comment){
 
         alert(
-          "Please write a comment."
+          "Please write your comment."
         );
+
+        textarea.focus();
 
         return;
 
@@ -1404,34 +1471,34 @@ function createCommentsSection(
 
 
       submit.disabled =
-        true;
+      true;
 
       submit.textContent =
-        "Posting...";
+      "Posting...";
 
 
       const result =
-        await client
-          .from("post_comments")
-          .insert({
+      await client
+      .from("post_comments")
+      .insert({
 
-            post_id:post.id,
+        post_id:post.id,
 
-            visitor_id:
-              getVisitorId(),
+        visitor_id:
+        getVisitorId(),
 
-            name:userName,
+        name:userName,
 
-            comment:comment
+        comment:comment
 
-          });
+      });
 
 
       submit.disabled =
-        false;
+      false;
 
       submit.textContent =
-        "Post Comment";
+      "Post Comment";
 
 
       if(result.error){
@@ -1450,10 +1517,10 @@ function createCommentsSection(
 
 
       name.value =
-        "";
+      "";
 
       textarea.value =
-        "";
+      "";
 
 
       await loadComments(
@@ -1462,28 +1529,28 @@ function createCommentsSection(
       );
 
 
-      const countResult =
-        await client
-          .from("post_comments")
-          .select(
-            "id",
-            {
-              count:"exact",
-              head:true
-            }
-          )
-          .eq(
-            "post_id",
-            post.id
-          );
+      const count =
+      await client
+      .from("post_comments")
+      .select(
+        "id",
+        {
+          count:"exact",
+          head:true
+        }
+      )
+      .eq(
+        "post_id",
+        post.id
+      );
 
 
-      if(!countResult.error){
+      if(!count.error){
 
         commentBtn.querySelector(
           "span"
         ).textContent =
-          countResult.count || 0;
+        count.count || 0;
 
       }
 
@@ -1502,10 +1569,10 @@ function createCommentsSection(
 
 
   const list =
-    document.createElement("div");
+  document.createElement("div");
 
   list.className =
-    "comment-list";
+  "comment-list";
 
 
   section.appendChild(list);
@@ -1525,40 +1592,32 @@ async function loadComments(
   card
 ){
 
-  if(!card){
-
-    return;
-
-  }
+  if(!card) return;
 
 
   const list =
-    card.querySelector(
-      ".comment-list"
-    );
+  card.querySelector(
+    ".comment-list"
+  );
 
 
-  if(!list){
-
-    return;
-
-  }
+  if(!list) return;
 
 
   const result =
-    await client
-      .from("post_comments")
-      .select(
-        "id,name,comment,created_at"
-      )
-      .eq(
-        "post_id",
-        post.id
-      )
-      .order(
-        "created_at",
-        {ascending:false}
-      );
+  await client
+  .from("post_comments")
+  .select(
+    "id,name,comment,created_at"
+  )
+  .eq(
+    "post_id",
+    post.id
+  )
+  .order(
+    "created_at",
+    {ascending:false}
+  );
 
 
   if(result.error){
@@ -1572,15 +1631,16 @@ async function loadComments(
   }
 
 
-  list.innerHTML =
-    "";
+  list.innerHTML = "";
 
 
-  if(!result.data ||
-     !result.data.length){
+  if(
+    !result.data ||
+    !result.data.length
+  ){
 
     list.innerHTML =
-      '<div class="empty-comments">No comments yet.</div>';
+    '<div class="empty-comments">No comments yet.</div>';
 
     return;
 
@@ -1588,63 +1648,63 @@ async function loadComments(
 
 
   result.data.forEach(
-    comment => {
+    item => {
 
-      const item =
-        document.createElement(
-          "div"
-        );
+      const div =
+      document.createElement(
+        "div"
+      );
 
-      item.className =
-        "comment";
+      div.className =
+      "comment";
 
 
       const name =
-        document.createElement(
-          "div"
-        );
+      document.createElement(
+        "div"
+      );
 
       name.className =
-        "comment-name";
+      "comment-name";
 
       name.textContent =
-        comment.name;
+      item.name;
 
 
       const text =
-        document.createElement(
-          "div"
-        );
+      document.createElement(
+        "div"
+      );
 
       text.className =
-        "comment-text";
+      "comment-text";
 
       text.textContent =
-        comment.comment;
+      item.comment;
 
 
       const date =
-        document.createElement(
-          "div"
-        );
+      document.createElement(
+        "div"
+      );
 
       date.className =
-        "comment-date";
+      "comment-date";
 
       date.textContent =
-        formatDate(
-          comment.created_at
-        );
+      formatDate(
+        item.created_at
+      );
 
 
-      item.appendChild(name);
+      div.appendChild(name);
 
-      item.appendChild(text);
+      div.appendChild(text);
 
-      item.appendChild(date);
+      div.appendChild(date);
 
 
-      list.appendChild(item);
+      list.appendChild(div);
 
     }
   );
@@ -1653,39 +1713,35 @@ async function loadComments(
 
 
 /* =========================
-   SHARE POST
+   SHARE
 ========================= */
 
 async function sharePost(post){
 
   const shareUrl =
-    window.location.origin +
-    window.location.pathname +
-    "#post-" +
-    post.id;
+  window.location.origin +
+  window.location.pathname +
+  "#post-" +
+  post.id;
 
 
   const shareData = {
 
     title:
-      post.Title ||
-      "MK Youth Mobilizers",
+    post.Title ||
+    "MK Youth Mobilizers",
 
     text:
-      post.Content
-        ? post.Content.substring(0,180)
-        : "MK Youth Mobilizers",
+    post.Content
+      ? post.Content.substring(0,180)
+      : "MK Youth Mobilizers",
 
     url:shareUrl
 
   };
 
 
-  /* iPhone / Android Native Share */
-
-  if(
-    navigator.share
-  ){
+  if(navigator.share){
 
     try{
 
@@ -1711,8 +1767,6 @@ async function sharePost(post){
   }
 
 
-  /* COPY LINK */
-
   try{
 
     await navigator.clipboard.writeText(
@@ -1725,19 +1779,16 @@ async function sharePost(post){
 
   }catch(error){
 
-    /* WhatsApp fallback */
-
-    const whatsappUrl =
-      "https://wa.me/?text=" +
-      encodeURIComponent(
-        shareData.title +
-        "\n\n" +
-        shareUrl
-      );
-
+    const whatsapp =
+    "https://wa.me/?text=" +
+    encodeURIComponent(
+      shareData.title +
+      "\n\n" +
+      shareUrl
+    );
 
     window.open(
-      whatsappUrl,
+      whatsapp,
       "_blank"
     );
 
@@ -1747,47 +1798,56 @@ async function sharePost(post){
 
 
 /* =========================
-   OPEN ARTICLE
+   FULL ARTICLE
 ========================= */
 
 function openArticle(post){
 
   newsSection.style.display =
-    "none";
+  "none";
 
   articleSection.style.display =
-    "block";
+  "block";
 
 
-  const media =
-    post.Image_url
-      ? (
-        isVideo(post.Image_url)
+  let media = "";
 
-          ? `
-            <video
-              class="post-media"
-              controls
-              playsinline
-              src="${escapeHtml(
-                post.Image_url
-              )}">
-            </video>
-          `
 
-          : `
-            <img
-              class="post-media"
-              src="${escapeHtml(
-                post.Image_url
-              )}"
-              alt="${escapeHtml(
-                post.Title
-              )}">
-          `
-      )
+  if(post.Image_url){
 
-      : "";
+    if(isVideo(post.Image_url)){
+
+      media = `
+
+        <video
+          class="post-media"
+          controls
+          playsinline
+          src="${escapeHtml(
+            post.Image_url
+          )}">
+        </video>
+
+      `;
+
+    }else{
+
+      media = `
+
+        <img
+          class="post-media"
+          src="${escapeHtml(
+            post.Image_url
+          )}"
+          alt="${escapeHtml(
+            post.Title
+          )}">
+
+      `;
+
+    }
+
+  }
 
 
   articleContent.innerHTML = `
@@ -1816,6 +1876,36 @@ function openArticle(post){
         )}
       </div>
 
+      <div class="article-actions">
+
+        <button
+          class="article-action"
+          onclick="toggleArticleLike(${post.id})">
+
+          👍 Like
+
+        </button>
+
+        <button
+          class="article-action"
+          onclick="focusArticleComment()">
+
+          💬 Comment
+
+        </button>
+
+        <button
+          class="article-action"
+          onclick='sharePost(${JSON.stringify(post).replace(/'/g,"&#39;")})'>
+
+          🔄 Share
+
+        </button>
+
+      </div>
+
+      <div id="articleCommentBox"></div>
+
     </div>
 
   `;
@@ -1837,16 +1927,183 @@ function openArticle(post){
 
 
 /* =========================
+   ARTICLE COMMENT
+========================= */
+
+function focusArticleComment(){
+
+  const box =
+  document.getElementById(
+    "articleCommentBox"
+  );
+
+  if(!box) return;
+
+
+  box.innerHTML = `
+
+    <div class="comments show">
+
+      <div class="comment-form">
+
+        <input
+          id="articleName"
+          placeholder="Your name">
+
+        <textarea
+          id="articleText"
+          placeholder="Write your comment..."></textarea>
+
+        <button
+          class="comment-submit"
+          onclick="submitArticleComment()">
+
+          Post Comment
+
+        </button>
+
+      </div>
+
+    </div>
+
+  `;
+
+
+  document.getElementById(
+    "articleName"
+  ).focus();
+
+}
+
+
+async function submitArticleComment(){
+
+  const id =
+  Number(
+    window.location.hash
+    .replace("#post-","")
+  );
+
+
+  const name =
+  document.getElementById(
+    "articleName"
+  ).value.trim();
+
+
+  const comment =
+  document.getElementById(
+    "articleText"
+  ).value.trim();
+
+
+  if(!name){
+
+    alert(
+      "Please enter your name."
+    );
+
+    return;
+
+  }
+
+
+  if(!comment){
+
+    alert(
+      "Please write your comment."
+    );
+
+    return;
+
+  }
+
+
+  const result =
+  await client
+  .from("post_comments")
+  .insert({
+
+    post_id:id,
+
+    visitor_id:
+    getVisitorId(),
+
+    name:name,
+
+    comment:comment
+
+  });
+
+
+  if(result.error){
+
+    console.error(
+      result.error
+    );
+
+    alert(
+      "Comment could not be posted."
+    );
+
+    return;
+
+  }
+
+
+  alert(
+    "Comment posted successfully."
+  );
+
+
+  document.getElementById(
+    "articleName"
+  ).value = "";
+
+  document.getElementById(
+    "articleText"
+  ).value = "";
+
+}
+
+
+/* =========================
+   ARTICLE LIKE
+========================= */
+
+async function toggleArticleLike(id){
+
+  const post =
+  allPosts.find(
+    p => Number(p.id) === id
+  );
+
+  if(post){
+
+    const fakeButton =
+    document.createElement("button");
+
+    await toggleLike(
+      post,
+      fakeButton
+    );
+
+  }
+
+}
+
+
+/* =========================
    CLOSE ARTICLE
 ========================= */
 
 function closeArticle(){
 
   articleSection.style.display =
-    "none";
+  "none";
 
   newsSection.style.display =
-    "block";
+  "block";
 
 
   history.pushState(
@@ -1865,40 +2122,39 @@ function closeArticle(){
 
 
 /* =========================
-   YOUTUBE LIVE
+   LIVE
 ========================= */
 
 async function loadLive(){
 
   liveStatus.innerHTML =
-    "Checking live status...";
+  "Checking live status...";
 
   liveContainer.innerHTML =
-    "";
+  "";
 
 
   const result =
-    await client
-      .from("live_stream")
-      .select(
-        "id,youtube_id,active"
-      )
-      .eq(
-        "id",
-        1
-      )
-      .maybeSingle();
+  await client
+  .from("live_stream")
+  .select(
+    "id,youtube_id,active"
+  )
+  .eq(
+    "id",
+    1
+  )
+  .maybeSingle();
 
 
   if(result.error){
 
     console.error(
-      "Live error:",
       result.error
     );
 
     liveStatus.innerHTML =
-      "Unable to load Live status.";
+    "Unable to load Live status.";
 
     return;
 
@@ -1906,7 +2162,7 @@ async function loadLive(){
 
 
   const data =
-    result.data;
+  result.data;
 
 
   if(
@@ -1916,29 +2172,29 @@ async function loadLive(){
   ){
 
     liveStatus.innerHTML =
-      '<span style="color:red;font-weight:bold;">🔴 LIVE NOW</span>';
+    '<span style="color:red;font-weight:bold;">🔴 LIVE NOW</span>';
 
 
     const iframe =
-      document.createElement(
-        "iframe"
-      );
+    document.createElement(
+      "iframe"
+    );
 
     iframe.className =
-      "live-video";
+    "live-video";
 
     iframe.src =
-      "https://www.youtube.com/embed/" +
-      encodeURIComponent(
-        data.youtube_id
-      ) +
-      "?autoplay=1";
+    "https://www.youtube.com/embed/" +
+    encodeURIComponent(
+      data.youtube_id
+    ) +
+    "?autoplay=1";
 
     iframe.allow =
-      "autoplay; encrypted-media; picture-in-picture";
+    "autoplay; encrypted-media; picture-in-picture";
 
     iframe.allowFullscreen =
-      true;
+    true;
 
 
     liveContainer.appendChild(
@@ -1948,7 +2204,7 @@ async function loadLive(){
   }else{
 
     liveStatus.innerHTML =
-      '<span class="live-off">🔴 Live is currently OFF</span>';
+    '<span class="live-off">🔴 Live is currently OFF</span>';
 
   }
 
