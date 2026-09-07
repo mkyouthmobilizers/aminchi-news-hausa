@@ -758,7 +758,6 @@ supabase.createClient(
   SUPABASE_KEY
 );
 
-
 let allPosts = [];
 
 let currentCategory = "Duka";
@@ -1010,7 +1009,7 @@ async function loadMostReadPeriod(
 
   }
 
-  const posts =
+  let posts =
     data
     .map(item =>
       allPosts.find(
@@ -1020,6 +1019,31 @@ async function loadMostReadPeriod(
       )
     )
     .filter(Boolean);
+
+  /*
+    MU GUJI DUPLICATE:
+    Idan ana son Most Read ya kasance
+    daban da Latest News, sai mu cire
+    duplicate cards a nan.
+  */
+
+  const usedIds = new Set();
+
+  posts = posts.filter(post => {
+
+    const id =
+      Number(post.id);
+
+    if(usedIds.has(id)){
+      return false;
+    }
+
+    usedIds.add(id);
+
+    return true;
+
+  });
+
 
   if(!posts.length){
 
@@ -1038,6 +1062,12 @@ async function loadMostReadPeriod(
       createPostCard(post)
     )
     .join("");
+
+
+  /*
+    Load likes/comments ba tare da
+    sake render page ba.
+  */
 
   posts.forEach(post => {
 
@@ -1156,6 +1186,7 @@ function renderPosts(){
       createPostCard(post)
     )
     .join("");
+
 
   posts.forEach(post => {
 
@@ -1672,6 +1703,13 @@ async function openArticle(
   post
 ){
 
+  /*
+    IMPORTANT:
+    Ba za mu yi renderPosts() a nan ba.
+    Wannan shi ne abin da yake sa article
+    ya sake bayyana a kasa.
+  */
+
   const increased =
     await incrementView(
       post.id
@@ -1684,13 +1722,22 @@ async function openArticle(
         post.views || 0
       ) + 1;
 
-    renderPosts();
+    /*
+      Sabunta Trending kawai.
+      Kada a sake gina Latest News.
+    */
 
     renderTrending();
+
+    /*
+      Sabunta Most Read.
+      Wannan baya kiran renderPosts().
+    */
 
     await loadMostRead();
 
   }
+
 
   const modal =
     document.getElementById(
@@ -1791,11 +1838,13 @@ async function openArticle(
 
   `;
 
+
   modal.style.display =
     "block";
 
   document.body.style.overflow =
     "hidden";
+
 
   history.replaceState(
     null,
