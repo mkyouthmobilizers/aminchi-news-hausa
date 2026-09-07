@@ -76,6 +76,8 @@ header{
   padding:20px 15px;
 }
 
+/* LIVE */
+
 .live-box{
   background:#111;
   color:white;
@@ -106,6 +108,8 @@ header{
   text-align:center;
 }
 
+/* SEARCH */
+
 .search-box{
   margin-bottom:15px;
 }
@@ -122,6 +126,8 @@ header{
 .search-box input:focus{
   border-color:#111;
 }
+
+/* CATEGORIES */
 
 .categories{
   display:flex;
@@ -147,12 +153,16 @@ header{
   color:white;
 }
 
+/* SECTION */
+
 .section-title{
   font-size:25px;
   margin:25px 0 15px;
   border-left:5px solid #111;
   padding-left:10px;
 }
+
+/* TRENDING */
 
 .trending{
   display:grid;
@@ -197,6 +207,8 @@ header{
   font-size:13px;
   margin-top:7px;
 }
+
+/* POSTS */
 
 .posts{
   display:grid;
@@ -290,6 +302,8 @@ header{
   font-weight:bold;
 }
 
+/* COMMENTS */
+
 .comment-box{
   display:none;
   margin-top:10px;
@@ -334,6 +348,8 @@ header{
 .comment-name{
   font-weight:bold;
 }
+
+/* STATES */
 
 .empty{
   text-align:center;
@@ -415,6 +431,12 @@ header{
 .article-date{
   color:#777;
   font-size:14px;
+  margin-bottom:10px;
+}
+
+.article-views{
+  color:#666;
+  font-size:14px;
   margin-bottom:15px;
 }
 
@@ -424,11 +446,7 @@ header{
   line-height:1.8;
 }
 
-.article-views{
-  color:#666;
-  font-size:14px;
-  margin-bottom:15px;
-}
+/* FOOTER */
 
 footer{
   margin-top:40px;
@@ -439,6 +457,7 @@ footer{
 }
 
 @media(max-width:900px){
+
   .posts{
     grid-template-columns:repeat(2,1fr);
   }
@@ -446,9 +465,11 @@ footer{
   .trending{
     grid-template-columns:repeat(3,1fr);
   }
+
 }
 
 @media(max-width:600px){
+
   .header-inner{
     align-items:flex-start;
   }
@@ -476,6 +497,7 @@ footer{
   .article-title{
     font-size:25px;
   }
+
 }
 </style>
 </head>
@@ -483,128 +505,203 @@ footer{
 <body>
 
 <header>
+
   <div class="header-inner">
 
     <div class="brand">
+
       <img
         src="561F33DB-6D50-45C9-8940-5E77FF098DDE.png"
         class="logo"
         alt="MK Youth Mobilizers">
 
       <div>
-        <h1>MK Youth Mobilizers</h1>
-        <small>Media Team Tarauni</small>
+
+        <h1>
+          MK Youth Mobilizers
+        </h1>
+
+        <small>
+          Media Team Tarauni
+        </small>
+
       </div>
+
     </div>
 
     <div class="visitor">
+
       👥 Visitors<br>
-      <strong id="visitorCount">10,000</strong>
+
+      <strong id="visitorCount">
+        10,000
+      </strong>
+
     </div>
 
   </div>
+
 </header>
+
 
 <main class="container">
 
-  <!-- YOUTUBE LIVE -->
 
-  <div class="live-box">
+<!-- YOUTUBE LIVE -->
 
-    <div class="live-title">
-      🔴 LIVE
-    </div>
+<div class="live-box">
 
-    <div id="liveContainer">
-      <div class="no-live">
-        YouTube Live ba ya fara ba tukuna.
-      </div>
-    </div>
-
+  <div class="live-title">
+    🔴 LIVE
   </div>
 
+  <div id="liveContainer">
 
-  <!-- SEARCH -->
-
-  <div class="search-box">
-
-    <input
-      type="search"
-      id="searchInput"
-      placeholder="🔎 Nemi labari..."
-    >
-
-  </div>
-
-
-  <!-- CATEGORIES -->
-
-  <div class="categories">
-
-    <button class="category-btn active" data-category="Duka">
-      🏠 Duka
-    </button>
-
-    <button class="category-btn" data-category="Labarai">
-      📰 Labarai
-    </button>
-
-    <button class="category-btn" data-category="Siyasa">
-      🏛️ Siyasa
-    </button>
-
-    <button class="category-btn" data-category="Wasanni">
-      ⚽ Wasanni
-    </button>
-
-    <button class="category-btn" data-category="Nishaɗi">
-      🎤 Nishaɗi
-    </button>
-
-    <button class="category-btn" data-category="Hotuna">
-      📸 Hotuna
-    </button>
-
-    <button class="category-btn" data-category="Bidiyo">
-      🎥 Bidiyo
-    </button>
-
-  </div>
-
-
-  <!-- TRENDING -->
-
-  <h2 class="section-title">
-    🔥 Trending News
-  </h2>
-
-  <div id="trendingPosts" class="trending">
-    <div class="loading">
-      Ana ɗauko Trending News...
-    </div>
-  </div>
-
-
-  <!-- LATEST NEWS -->
-
-  <h2 class="section-title">
-    📰 Latest News
-  </h2>
-
-  <div id="posts" class="posts">
-
-    <div class="loading">
-      Ana ɗauko labarai...
+    <div class="no-live">
+      YouTube Live ba ya fara ba tukuna.
     </div>
 
   </div>
+
+</div>
+
+
+<!-- SEARCH -->
+
+<div class="search-box">
+
+  <input
+    type="search"
+    id="searchInput"
+    placeholder="🔎 Nemi labari...">
+
+</div>
+
+
+<!-- CATEGORIES -->
+
+<div class="categories">
+
+  <button
+    class="category-btn active"
+    data-category="Duka">
+    🏠 Duka
+  </button>
+
+  <button
+    class="category-btn"
+    data-category="Labarai">
+    📰 Labarai
+  </button>
+
+  <button
+    class="category-btn"
+    data-category="Siyasa">
+    🏛️ Siyasa
+  </button>
+
+  <button
+    class="category-btn"
+    data-category="Wasanni">
+    ⚽ Wasanni
+  </button>
+
+  <button
+    class="category-btn"
+    data-category="Nishaɗi">
+    🎤 Nishaɗi
+  </button>
+
+  <button
+    class="category-btn"
+    data-category="Hotuna">
+    📸 Hotuna
+  </button>
+
+  <button
+    class="category-btn"
+    data-category="Bidiyo">
+    🎥 Bidiyo
+  </button>
+
+</div>
+
+
+<!-- TRENDING -->
+
+<h2 class="section-title">
+  🔥 Trending News
+</h2>
+
+<div
+  id="trendingPosts"
+  class="trending">
+
+  <div class="loading">
+    Ana ɗauko Trending News...
+  </div>
+
+</div>
+
+
+<!-- MOST READ TODAY -->
+
+<h2 class="section-title">
+  📅 Most Read Today
+</h2>
+
+<div
+  id="todayPosts"
+  class="posts">
+
+  <div class="loading">
+    Ana ɗauko Most Read Today...
+  </div>
+
+</div>
+
+
+<!-- MOST READ THIS WEEK -->
+
+<h2 class="section-title">
+  🗓️ Most Read This Week
+</h2>
+
+<div
+  id="weekPosts"
+  class="posts">
+
+  <div class="loading">
+    Ana ɗauko Most Read This Week...
+  </div>
+
+</div>
+
+
+<!-- LATEST NEWS -->
+
+<h2 class="section-title">
+  📰 Latest News
+</h2>
+
+<div
+  id="posts"
+  class="posts">
+
+  <div class="loading">
+    Ana ɗauko labarai...
+  </div>
+
+</div>
 
 </main>
 
 
 <!-- ARTICLE MODAL -->
 
-<div id="articleModal" class="modal">
+<div
+  id="articleModal"
+  class="modal">
 
   <div class="modal-content">
 
@@ -616,8 +713,7 @@ footer{
 
       <span
         class="close"
-        onclick="closeArticle()"
-      >
+        onclick="closeArticle()">
         ×
       </span>
 
@@ -679,7 +775,9 @@ const STARTING_VISITORS = 10000;
 async function countVisitor(){
 
   const counted =
-    localStorage.getItem("mk_visitor_counted");
+    localStorage.getItem(
+      "mk_visitor_counted"
+    );
 
   if(!counted){
 
@@ -690,7 +788,7 @@ async function countVisitor(){
       await supabaseClient
       .from("visitors")
       .insert({
-        visitor_id: visitorId
+        visitor_id:visitorId
       });
 
     if(!error){
@@ -707,7 +805,7 @@ async function countVisitor(){
   const { count } =
     await supabaseClient
     .from("visitors")
-    .select("*", {
+    .select("*",{
       count:"exact",
       head:true
     });
@@ -715,28 +813,32 @@ async function countVisitor(){
   document.getElementById(
     "visitorCount"
   ).textContent =
-    (STARTING_VISITORS + (count || 0))
-    .toLocaleString();
+    (
+      STARTING_VISITORS +
+      (count || 0)
+    ).toLocaleString();
 
 }
 
 
 /* =========================
-   LIVE STREAM
+   YOUTUBE LIVE
 ========================= */
 
 async function loadLive(){
 
-  const { data, error } =
+  const { data,error } =
     await supabaseClient
     .from("live_stream")
-    .select("id,youtube_id,active")
+    .select(
+      "id,youtube_id,active"
+    )
     .eq("id",1)
     .maybeSingle();
 
   if(error){
 
-    console.log(error);
+    console.error(error);
 
     return;
 
@@ -785,17 +887,17 @@ async function loadLive(){
 
 async function loadPosts(){
 
-  const postsContainer =
+  const container =
     document.getElementById(
       "posts"
     );
 
-  postsContainer.innerHTML =
+  container.innerHTML =
     `<div class="loading">
       Ana ɗauko labarai...
     </div>`;
 
-  const { data, error } =
+  const { data,error } =
     await supabaseClient
     .from("posts")
     .select(
@@ -818,7 +920,7 @@ async function loadPosts(){
 
     console.error(error);
 
-    postsContainer.innerHTML =
+    container.innerHTML =
       `<div class="empty">
         An samu matsala wajen ɗauko labarai.
       </div>`;
@@ -837,7 +939,152 @@ async function loadPosts(){
 
 
 /* =========================
-   FILTER POSTS
+   MOST READ
+========================= */
+
+async function loadMostRead(){
+
+  await loadMostReadPeriod(
+    1,
+    "todayPosts"
+  );
+
+  await loadMostReadPeriod(
+    7,
+    "weekPosts"
+  );
+
+}
+
+
+async function loadMostReadPeriod(
+  days,
+  containerId
+){
+
+  const container =
+    document.getElementById(
+      containerId
+    );
+
+  if(!container){
+    return;
+  }
+
+  const { data,error } =
+    await supabaseClient
+    .rpc(
+      "get_most_read_posts",
+      {
+        days_back:days
+      }
+    );
+
+  if(error){
+
+    console.error(
+      "Most read error:",
+      error
+    );
+
+    container.innerHTML =
+      `<div class="empty">
+        An kasa ɗauko Most Read.
+      </div>`;
+
+    return;
+
+  }
+
+  if(
+    !data ||
+    !data.length
+  ){
+
+    container.innerHTML =
+      `<div class="empty">
+        Babu views tukuna.
+      </div>`;
+
+    return;
+
+  }
+
+  const posts =
+    data
+    .map(item =>
+      allPosts.find(
+        post =>
+          Number(post.id) ===
+          Number(item.post_id)
+      )
+    )
+    .filter(Boolean);
+
+  if(!posts.length){
+
+    container.innerHTML =
+      `<div class="empty">
+        Babu posts tukuna.
+      </div>`;
+
+    return;
+
+  }
+
+  container.innerHTML =
+    posts
+    .map(post =>
+      createPostCard(post)
+    )
+    .join("");
+
+  posts.forEach(post => {
+
+    const card =
+      document.getElementById(
+        `post-${post.id}`
+      );
+
+    if(!card){
+      return;
+    }
+
+    const likeButton =
+      card.querySelector(
+        ".action-btn"
+      );
+
+    if(likeButton){
+
+      loadLikeCount(
+        post.id,
+        likeButton
+      );
+
+    }
+
+    const commentCount =
+      card.querySelector(
+        `#comment-count-${post.id}`
+      );
+
+    if(commentCount){
+
+      loadCommentCount(
+        post.id,
+        commentCount
+      );
+
+    }
+
+  });
+
+}
+
+
+/* =========================
+   FILTER
 ========================= */
 
 function getFilteredPosts(){
@@ -855,20 +1102,23 @@ function getFilteredPosts(){
 
     const searchMatch =
       !search ||
+
       (post.Title || "")
-        .toLowerCase()
-        .includes(search) ||
+      .toLowerCase()
+      .includes(search) ||
 
       (post.Content || "")
-        .toLowerCase()
-        .includes(search) ||
+      .toLowerCase()
+      .includes(search) ||
 
       (post.category || "")
-        .toLowerCase()
-        .includes(search);
+      .toLowerCase()
+      .includes(search);
 
-    return categoryMatch &&
-           searchMatch;
+    return (
+      categoryMatch &&
+      searchMatch
+    );
 
   });
 
@@ -901,9 +1151,52 @@ function renderPosts(){
   }
 
   container.innerHTML =
-    posts.map(post =>
+    posts
+    .map(post =>
       createPostCard(post)
-    ).join("");
+    )
+    .join("");
+
+  posts.forEach(post => {
+
+    const card =
+      document.getElementById(
+        `post-${post.id}`
+      );
+
+    if(!card){
+      return;
+    }
+
+    const likeButton =
+      card.querySelector(
+        ".action-btn"
+      );
+
+    if(likeButton){
+
+      loadLikeCount(
+        post.id,
+        likeButton
+      );
+
+    }
+
+    const commentCount =
+      card.querySelector(
+        `#comment-count-${post.id}`
+      );
+
+    if(commentCount){
+
+      loadCommentCount(
+        post.id,
+        commentCount
+      );
+
+    }
+
+  });
 
 }
 
@@ -915,13 +1208,20 @@ function renderPosts(){
 function createPostCard(post){
 
   const date =
-    formatDate(post.created_at);
+    formatDate(
+      post.created_at
+    );
 
   const preview =
-    makePreview(post.Content,35);
+    makePreview(
+      post.Content,
+      35
+    );
 
   const views =
-    Number(post.views || 0);
+    Number(
+      post.views || 0
+    );
 
   let media = "";
 
@@ -930,22 +1230,35 @@ function createPostCard(post){
     if(isVideo(post.Image_url)){
 
       media = `
+
         <video
           class="post-media"
           controls
           preload="metadata">
-          <source src="${escapeHtml(post.Image_url)}">
+
+          <source
+            src="${escapeHtml(
+              post.Image_url
+            )}">
+
         </video>
+
       `;
 
     }else{
 
       media = `
+
         <img
           class="post-media"
-          src="${escapeHtml(post.Image_url)}"
-          alt="${escapeHtml(post.Title)}"
+          src="${escapeHtml(
+            post.Image_url
+          )}"
+          alt="${escapeHtml(
+            post.Title
+          )}"
           loading="lazy">
+
       `;
 
     }
@@ -953,6 +1266,7 @@ function createPostCard(post){
   }else{
 
     media = `
+
       <div
         class="post-media"
         style="
@@ -961,8 +1275,11 @@ function createPostCard(post){
           justify-content:center;
           font-size:50px;
         ">
+
         📰
+
       </div>
+
     `;
 
   }
@@ -979,29 +1296,47 @@ function createPostCard(post){
       <div class="post-body">
 
         <span class="category-badge">
-          ${escapeHtml(post.category || "Labarai")}
+
+          ${escapeHtml(
+            post.category ||
+            "Labarai"
+          )}
+
         </span>
 
         <h3 class="post-title">
-          ${escapeHtml(post.Title)}
+
+          ${escapeHtml(
+            post.Title
+          )}
+
         </h3>
 
         <div class="post-date">
+
           📅 ${date}
+
         </div>
 
         <div class="post-preview">
-          ${escapeHtml(preview)}
+
+          ${escapeHtml(
+            preview
+          )}
+
         </div>
 
         <div class="post-stats">
 
           <span>
-            👁️ ${views.toLocaleString()}
+            👁️
+            ${views.toLocaleString()}
           </span>
 
           <span>
-            💬 <span id="comment-count-${post.id}">
+            💬
+            <span
+              id="comment-count-${post.id}">
               0
             </span>
           </span>
@@ -1012,32 +1347,46 @@ function createPostCard(post){
 
           <button
             class="action-btn"
-            onclick="likePost(${post.id},this)">
+            onclick="likePost(
+              ${post.id},
+              this
+            )">
+
             👍 <span>0</span>
+
           </button>
 
           <button
             class="action-btn"
-            onclick="toggleComments(${post.id})">
+            onclick="toggleComments(
+              ${post.id}
+            )">
+
             💬 Comment
+
           </button>
 
           <button
             class="action-btn"
-            onclick="sharePost(${post.id})">
+            onclick="sharePost(
+              ${post.id}
+            )">
+
             🔄 Share
+
           </button>
 
         </div>
 
         <button
           class="read-more"
-          onclick="openArticleById(${post.id})">
+          onclick="openArticleById(
+            ${post.id}
+          )">
 
           📖 Read more
 
         </button>
-
 
         <div
           id="comments-${post.id}"
@@ -1054,7 +1403,9 @@ function createPostCard(post){
 
           <button
             class="comment-submit"
-            onclick="submitComment(${post.id})">
+            onclick="submitComment(
+              ${post.id}
+            )">
 
             Tura Comment
 
@@ -1087,7 +1438,7 @@ function renderTrending(){
       "trendingPosts"
     );
 
-  let posts =
+  const posts =
     [...allPosts]
     .sort(
       (a,b) =>
@@ -1108,30 +1459,41 @@ function renderTrending(){
   }
 
   container.innerHTML =
-    posts.map(
+    posts
+    .map(
       (post,index) => {
 
         let media = "";
 
         if(post.Image_url){
 
-          if(isVideo(post.Image_url)){
+          if(isVideo(
+            post.Image_url
+          )){
 
             media = `
+
               <video
-                src="${escapeHtml(post.Image_url)}"
+                src="${escapeHtml(
+                  post.Image_url
+                )}"
                 muted
                 preload="metadata">
               </video>
+
             `;
 
           }else{
 
             media = `
+
               <img
-                src="${escapeHtml(post.Image_url)}"
+                src="${escapeHtml(
+                  post.Image_url
+                )}"
                 alt=""
                 loading="lazy">
+
             `;
 
           }
@@ -1139,6 +1501,7 @@ function renderTrending(){
         }else{
 
           media = `
+
             <div
               style="
                 height:120px;
@@ -1148,8 +1511,11 @@ function renderTrending(){
                 font-size:40px;
                 background:#ddd;
               ">
+
               📰
+
             </div>
+
           `;
 
         }
@@ -1158,25 +1524,36 @@ function renderTrending(){
 
           <div
             class="trending-card"
-            onclick="openArticleById(${post.id})">
+            onclick="openArticleById(
+              ${post.id}
+            )">
 
             ${media}
 
             <div class="trending-content">
 
               <div class="trending-rank">
+
                 #${index + 1} 🔥
+
               </div>
 
               <div class="trending-title">
-                ${escapeHtml(post.Title)}
+
+                ${escapeHtml(
+                  post.Title
+                )}
+
               </div>
 
               <div class="trending-views">
+
                 👁️
-                ${Number(post.views || 0)
-                  .toLocaleString()}
+                ${Number(
+                  post.views || 0
+                ).toLocaleString()}
                 views
+
               </div>
 
             </div>
@@ -1186,7 +1563,8 @@ function renderTrending(){
         `;
 
       }
-    ).join("");
+    )
+    .join("");
 
 }
 
@@ -1195,38 +1573,61 @@ function renderTrending(){
    INCREMENT VIEW
 ========================= */
 
-async function incrementView(postId){
+async function incrementView(
+  postId
+){
 
   const viewKey =
     `mk_viewed_${postId}`;
 
-  /*
-    Wannan yana hana browser daya
-    ƙara view sau da yawa a session
-  */
-
   if(
-    sessionStorage.getItem(viewKey)
+    sessionStorage.getItem(
+      viewKey
+    )
   ){
 
     return false;
 
   }
 
+  const visitorId =
+    getVisitorId();
+
   const { error } =
     await supabaseClient
-    .rpc(
-      "increment_post_view",
-      {
-        post_id_input: postId
-      }
-    );
+    .from("post_views")
+    .insert({
+      post_id:postId,
+      visitor_id:visitorId
+    });
 
   if(error){
 
     console.error(
-      "View error:",
+      "View history error:",
       error
+    );
+
+    return false;
+
+  }
+
+  const {
+    error:rpcError
+  } =
+    await supabaseClient
+    .rpc(
+      "increment_post_view",
+      {
+        post_id_input:postId
+      }
+    );
+
+  if(rpcError){
+
+    console.error(
+      "View counter error:",
+      rpcError
     );
 
     return false;
@@ -1247,17 +1648,19 @@ async function incrementView(postId){
    OPEN ARTICLE
 ========================= */
 
-async function openArticleById(postId){
+async function openArticleById(
+  postId
+){
 
   const post =
     allPosts.find(
-      p => Number(p.id) === Number(postId)
+      p =>
+        Number(p.id) ===
+        Number(postId)
     );
 
   if(!post){
-
     return;
-
   }
 
   await openArticle(post);
@@ -1265,23 +1668,27 @@ async function openArticleById(postId){
 }
 
 
-/* =========================
-   ARTICLE
-========================= */
-
-async function openArticle(post){
+async function openArticle(
+  post
+){
 
   const increased =
-    await incrementView(post.id);
+    await incrementView(
+      post.id
+    );
 
   if(increased){
 
     post.views =
-      Number(post.views || 0) + 1;
+      Number(
+        post.views || 0
+      ) + 1;
 
     renderPosts();
 
     renderTrending();
+
+    await loadMostRead();
 
   }
 
@@ -1299,22 +1706,34 @@ async function openArticle(post){
 
   if(post.Image_url){
 
-    if(isVideo(post.Image_url)){
+    if(isVideo(
+      post.Image_url
+    )){
 
       media = `
+
         <video
           controls
           autoplay
-          src="${escapeHtml(post.Image_url)}">
+          src="${escapeHtml(
+            post.Image_url
+          )}">
         </video>
+
       `;
 
     }else{
 
       media = `
+
         <img
-          src="${escapeHtml(post.Image_url)}"
-          alt="${escapeHtml(post.Title)}">
+          src="${escapeHtml(
+            post.Image_url
+          )}"
+          alt="${escapeHtml(
+            post.Title
+          )}">
+
       `;
 
     }
@@ -1325,32 +1744,55 @@ async function openArticle(post){
   body.innerHTML = `
 
     <span class="article-category">
-      ${escapeHtml(post.category || "Labarai")}
+
+      ${escapeHtml(
+        post.category ||
+        "Labarai"
+      )}
+
     </span>
 
     <h1 class="article-title">
-      ${escapeHtml(post.Title)}
+
+      ${escapeHtml(
+        post.Title
+      )}
+
     </h1>
 
     <div class="article-date">
-      📅 ${formatDate(post.created_at)}
+
+      📅
+      ${formatDate(
+        post.created_at
+      )}
+
     </div>
 
     <div class="article-views">
+
       👁️
-      ${Number(post.views || 0).toLocaleString()}
+      ${Number(
+        post.views || 0
+      ).toLocaleString()}
       views
+
     </div>
 
     ${media}
 
     <div class="article-content">
-      ${escapeHtml(post.Content)}
+
+      ${escapeHtml(
+        post.Content
+      )}
+
     </div>
 
   `;
 
-  modal.style.display = "block";
+  modal.style.display =
+    "block";
 
   document.body.style.overflow =
     "hidden";
@@ -1372,13 +1814,16 @@ function closeArticle(){
 
   document.getElementById(
     "articleModal"
-  ).style.display = "none";
+  ).style.display =
+    "none";
 
   document.body.style.overflow =
     "";
 
   if(
-    location.hash.startsWith("#post-")
+    location.hash.startsWith(
+      "#post-"
+    )
   ){
 
     history.replaceState(
@@ -1429,11 +1874,13 @@ document.getElementById(
 
 
 /* =========================
-   CATEGORIES
+   CATEGORY
 ========================= */
 
 document
-.querySelectorAll(".category-btn")
+.querySelectorAll(
+  ".category-btn"
+)
 .forEach(button => {
 
   button.addEventListener(
@@ -1445,10 +1892,14 @@ document
         ".category-btn"
       )
       .forEach(btn =>
-        btn.classList.remove("active")
+        btn.classList.remove(
+          "active"
+        )
       );
 
-      this.classList.add("active");
+      this.classList.add(
+        "active"
+      );
 
       currentCategory =
         this.dataset.category;
@@ -1473,12 +1924,20 @@ async function likePost(
   const visitorId =
     getVisitorId();
 
-  const { data: existing } =
+  const {
+    data:existing
+  } =
     await supabaseClient
     .from("post_likes")
     .select("id")
-    .eq("post_id",postId)
-    .eq("visitor_id",visitorId)
+    .eq(
+      "post_id",
+      postId
+    )
+    .eq(
+      "visitor_id",
+      visitorId
+    )
     .maybeSingle();
 
   if(existing){
@@ -1486,10 +1945,10 @@ async function likePost(
     await supabaseClient
     .from("post_likes")
     .delete()
-    .eq("id",existing.id);
-
-    button.innerHTML =
-      "👍 <span>0</span>";
+    .eq(
+      "id",
+      existing.id
+    );
 
   }else{
 
@@ -1499,9 +1958,6 @@ async function likePost(
       post_id:postId,
       visitor_id:visitorId
     });
-
-    button.innerHTML =
-      "❤️ <span>1</span>";
 
   }
 
@@ -1525,10 +1981,15 @@ async function loadLikeCount(
       count:"exact",
       head:true
     })
-    .eq("post_id",postId);
+    .eq(
+      "post_id",
+      postId
+    );
 
   button.innerHTML =
-    `👍 <span>${count || 0}</span>`;
+    `👍 <span>${
+      count || 0
+    }</span>`;
 
 }
 
@@ -1565,7 +2026,9 @@ function getVisitorId(){
    COMMENTS
 ========================= */
 
-function toggleComments(postId){
+function toggleComments(
+  postId
+){
 
   const box =
     document.getElementById(
@@ -1577,7 +2040,10 @@ function toggleComments(postId){
       ? "none"
       : "block";
 
-  if(box.style.display === "block"){
+  if(
+    box.style.display ===
+    "block"
+  ){
 
     loadComments(postId);
 
@@ -1586,7 +2052,9 @@ function toggleComments(postId){
 }
 
 
-async function submitComment(postId){
+async function submitComment(
+  postId
+){
 
   const name =
     document.getElementById(
@@ -1646,7 +2114,9 @@ async function submitComment(postId){
 }
 
 
-async function loadComments(postId){
+async function loadComments(
+  postId
+){
 
   const list =
     document.getElementById(
@@ -1658,13 +2128,16 @@ async function loadComments(postId){
       `comment-count-${postId}`
     );
 
-  const { data, error } =
+  const { data,error } =
     await supabaseClient
     .from("post_comments")
     .select(
       "id,name,comment,created_at"
     )
-    .eq("post_id",postId)
+    .eq(
+      "post_id",
+      postId
+    )
     .order(
       "created_at",
       {
@@ -1684,23 +2157,56 @@ async function loadComments(postId){
     data.length;
 
   list.innerHTML =
-    data.map(
+    data
+    .map(
       c => `
 
         <div class="comment-item">
 
           <div class="comment-name">
-            ${escapeHtml(c.name)}
+
+            ${escapeHtml(
+              c.name
+            )}
+
           </div>
 
           <div>
-            ${escapeHtml(c.comment)}
+
+            ${escapeHtml(
+              c.comment
+            )}
+
           </div>
 
         </div>
 
       `
-    ).join("");
+    )
+    .join("");
+
+}
+
+
+async function loadCommentCount(
+  postId,
+  element
+){
+
+  const { count } =
+    await supabaseClient
+    .from("post_comments")
+    .select("*",{
+      count:"exact",
+      head:true
+    })
+    .eq(
+      "post_id",
+      postId
+    );
+
+  element.textContent =
+    count || 0;
 
 }
 
@@ -1709,17 +2215,19 @@ async function loadComments(postId){
    SHARE
 ========================= */
 
-async function sharePost(postId){
+async function sharePost(
+  postId
+){
 
   const post =
     allPosts.find(
-      p => Number(p.id) === Number(postId)
+      p =>
+        Number(p.id) ===
+        Number(postId)
     );
 
   if(!post){
-
     return;
-
   }
 
   const url =
@@ -1727,7 +2235,8 @@ async function sharePost(postId){
 
   const shareData = {
 
-    title:post.Title,
+    title:
+      post.Title,
 
     text:
       `${post.Title}\n\nMK Youth Mobilizers Media`,
@@ -1765,9 +2274,13 @@ async function sharePost(postId){
   }catch(e){
 
     window.open(
-      `https://wa.me/?text=${encodeURIComponent(
-        post.Title + "\n" + url
-      )}`,
+      `https://wa.me/?text=${
+        encodeURIComponent(
+          post.Title +
+          "\n" +
+          url
+        )
+      }`,
       "_blank"
     );
 
@@ -1780,12 +2293,12 @@ async function sharePost(postId){
    HELPERS
 ========================= */
 
-function formatDate(dateString){
+function formatDate(
+  dateString
+){
 
   if(!dateString){
-
     return "";
-
   }
 
   const date =
@@ -1811,38 +2324,44 @@ function makePreview(
 ){
 
   if(!text){
-
     return "";
-
   }
 
   const arr =
-    text.trim().split(/\s+/);
+    text
+    .trim()
+    .split(/\s+/);
 
-  if(arr.length <= words){
+  if(
+    arr.length <= words
+  ){
 
     return text;
 
   }
 
   return (
-    arr.slice(0,words).join(" ")
-    + "..."
+    arr
+    .slice(0,words)
+    .join(" ") +
+    "..."
   );
 
 }
 
 
-function isVideo(url){
+function isVideo(
+  url
+){
 
   if(!url){
-
     return false;
-
   }
 
   const clean =
-    url.split("?")[0].toLowerCase();
+    url
+    .split("?")[0]
+    .toLowerCase();
 
   return (
     clean.endsWith(".mp4") ||
@@ -1854,33 +2373,54 @@ function isVideo(url){
 }
 
 
-function escapeHtml(value){
+function escapeHtml(
+  value
+){
 
-  if(value === null ||
-     value === undefined){
+  if(
+    value === null ||
+    value === undefined
+  ){
 
     return "";
 
   }
 
   return String(value)
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+    .replace(
+      /</g,
+      "&lt;"
+    )
+    .replace(
+      />/g,
+      "&gt;"
+    )
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+    .replace(
+      /'/g,
+      "&#039;"
+    );
 
 }
 
 
 /* =========================
-   HASH OPEN
+   HASH
 ========================= */
 
 function openHashPost(){
 
   if(
-    location.hash.startsWith("#post-")
+    location.hash.startsWith(
+      "#post-"
+    )
   ){
 
     const id =
@@ -1891,7 +2431,9 @@ function openHashPost(){
 
     const post =
       allPosts.find(
-        p => String(p.id) === String(id)
+        p =>
+          String(p.id) ===
+          String(id)
       );
 
     if(post){
@@ -1917,78 +2459,9 @@ async function start(){
 
   await loadPosts();
 
-  document
-  .querySelectorAll(".post-card")
-  .forEach(card => {
-
-    const id =
-      card.id.replace(
-        "post-",
-        ""
-      );
-
-    const post =
-      allPosts.find(
-        p => String(p.id) === String(id)
-      );
-
-    if(!post){
-
-      return;
-
-    }
-
-    const likeButton =
-      card.querySelector(
-        ".action-btn"
-      );
-
-    if(likeButton){
-
-      loadLikeCount(
-        post.id,
-        likeButton
-      );
-
-    }
-
-    const commentCount =
-      card.querySelector(
-        `#comment-count-${post.id}`
-      );
-
-    if(commentCount){
-
-      loadCommentCount(
-        post.id,
-        commentCount
-      );
-
-    }
-
-  });
+  await loadMostRead();
 
   openHashPost();
-
-}
-
-
-async function loadCommentCount(
-  postId,
-  element
-){
-
-  const { count } =
-    await supabaseClient
-    .from("post_comments")
-    .select("*",{
-      count:"exact",
-      head:true
-    })
-    .eq("post_id",postId);
-
-  element.textContent =
-    count || 0;
 
 }
 
