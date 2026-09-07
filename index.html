@@ -3,451 +3,556 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>MK Youth Mobilizers Media Team Tarauni</title>
-
 <style>
 *{
   box-sizing:border-box;
   margin:0;
   padding:0;
 }
-
 body{
   font-family:Arial,Helvetica,sans-serif;
-  background:#f4f4f4;
+  background:#f1f2f4;
   color:#111;
 }
-
+/* ================= HEADER ================= */
 header{
   background:#111;
   color:white;
   position:sticky;
   top:0;
   z-index:1000;
-  box-shadow:0 2px 8px rgba(0,0,0,.3);
+  box-shadow:0 2px 10px rgba(0,0,0,.35);
 }
-
 .header-inner{
-  max-width:1200px;
+  max-width:1250px;
   margin:auto;
-  padding:12px 15px;
+  padding:10px 15px;
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:15px;
 }
-
 .brand{
   display:flex;
   align-items:center;
   gap:10px;
 }
-
 .logo{
-  width:48px;
-  height:48px;
+  width:52px;
+  height:52px;
   border-radius:50%;
   object-fit:cover;
   background:white;
 }
-
 .brand h1{
-  font-size:18px;
+  font-size:20px;
   line-height:1.2;
 }
-
 .brand small{
   color:#bbb;
+  font-size:12px;
 }
-
 .visitor{
-  font-size:13px;
+  font-size:12px;
   text-align:right;
 }
-
 .visitor strong{
   color:#ffcc00;
+  font-size:15px;
 }
-
+/* ================= CONTAINER ================= */
 .container{
-  max-width:1200px;
+  max-width:1250px;
   margin:auto;
-  padding:20px 15px;
+  padding:15px;
 }
-
-/* LIVE */
-
+/* ================= BREAKING NEWS ================= */
+.breaking{
+  background:#c90000;
+  color:white;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+  border-radius:5px;
+  margin-bottom:15px;
+  min-height:42px;
+}
+.breaking-label{
+  background:#111;
+  padding:12px 15px;
+  font-size:13px;
+  font-weight:bold;
+  white-space:nowrap;
+  z-index:2;
+}
+.breaking-track{
+  overflow:hidden;
+  flex:1;
+  white-space:nowrap;
+}
+.breaking-text{
+  display:inline-block;
+  padding-left:100%;
+  animation:ticker 28s linear infinite;
+  font-weight:bold;
+  cursor:pointer;
+}
+@keyframes ticker{
+  from{
+    transform:translateX(0);
+  }
+  to{
+    transform:translateX(-100%);
+  }
+}
+/* ================= LIVE ================= */
 .live-box{
   background:#111;
   color:white;
-  border-radius:10px;
-  padding:15px;
-  margin-bottom:20px;
+  border-radius:8px;
+  padding:12px;
+  margin-bottom:18px;
 }
-
 .live-title{
   color:#ff3333;
-  font-size:20px;
+  font-size:18px;
   font-weight:bold;
-  margin-bottom:10px;
+  margin-bottom:9px;
 }
-
 .live-video{
   width:100%;
   aspect-ratio:16/9;
   border:0;
-  border-radius:8px;
+  border-radius:7px;
+  display:block;
 }
-
 .no-live{
   background:#222;
-  padding:20px;
-  border-radius:8px;
-  color:#bbb;
+  padding:18px;
+  border-radius:7px;
+  color:#aaa;
   text-align:center;
 }
-
-/* SEARCH */
-
+/* ================= SEARCH ================= */
 .search-box{
-  margin-bottom:15px;
+  margin-bottom:12px;
 }
-
 .search-box input{
   width:100%;
-  padding:14px;
+  padding:13px 15px;
   border:1px solid #ccc;
-  border-radius:8px;
+  border-radius:6px;
   font-size:16px;
   outline:none;
+  background:white;
 }
-
 .search-box input:focus{
   border-color:#111;
 }
-
-/* CATEGORIES */
-
+/* ================= CATEGORIES ================= */
 .categories{
   display:flex;
-  gap:8px;
+  gap:7px;
   overflow-x:auto;
-  padding-bottom:8px;
-  margin-bottom:20px;
+  padding-bottom:7px;
+  margin-bottom:18px;
 }
-
 .category-btn{
   border:0;
-  padding:10px 14px;
-  border-radius:20px;
+  padding:9px 13px;
+  border-radius:18px;
   background:white;
   cursor:pointer;
   white-space:nowrap;
   font-weight:bold;
-  box-shadow:0 1px 4px rgba(0,0,0,.1);
+  box-shadow:0 1px 4px rgba(0,0,0,.12);
 }
-
 .category-btn.active{
   background:#111;
   color:white;
 }
-
-/* SECTION */
-
+/* ================= SECTION ================= */
 .section-title{
-  font-size:25px;
-  margin:25px 0 15px;
-  border-left:5px solid #111;
+  font-size:22px;
+  margin:22px 0 12px;
   padding-left:10px;
+  border-left:5px solid #c90000;
 }
-
-/* TRENDING */
-
-.trending{
+/* ================= HERO ================= */
+.hero-grid{
   display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:12px;
+  grid-template-columns:2fr 1fr;
+  gap:15px;
+  margin-bottom:22px;
 }
-
-.trending-card{
+.hero-main{
   background:white;
-  border-radius:9px;
+  border-radius:8px;
   overflow:hidden;
   cursor:pointer;
-  box-shadow:0 2px 8px rgba(0,0,0,.12);
+  box-shadow:0 2px 10px rgba(0,0,0,.15);
 }
-
-.trending-card img,
-.trending-card video{
+.hero-media{
   width:100%;
-  height:120px;
+  height:390px;
   object-fit:cover;
   display:block;
+  background:#222;
 }
-
-.trending-content{
-  padding:10px;
+.hero-body{
+  padding:18px;
 }
-
-.trending-rank{
-  color:#e00000;
+.hero-category{
+  display:inline-block;
+  background:#c90000;
+  color:white;
+  padding:5px 9px;
+  border-radius:4px;
+  font-size:12px;
   font-weight:bold;
-  font-size:14px;
+  margin-bottom:8px;
 }
-
-.trending-title{
+.hero-title{
+  font-size:30px;
+  line-height:1.15;
+  margin-bottom:8px;
+}
+.hero-preview{
+  color:#444;
+  line-height:1.55;
+  font-size:15px;
+}
+.hero-date{
+  color:#777;
+  font-size:12px;
+  margin-top:10px;
+}
+.hero-side{
+  display:grid;
+  grid-template-rows:1fr 1fr;
+  gap:15px;
+}
+.side-card{
+  background:white;
+  border-radius:8px;
+  overflow:hidden;
+  cursor:pointer;
+  display:grid;
+  grid-template-columns:42% 58%;
+  box-shadow:0 2px 8px rgba(0,0,0,.12);
+}
+.side-media{
+  width:100%;
+  height:100%;
+  min-height:150px;
+  object-fit:cover;
+  background:#ddd;
+}
+.side-body{
+  padding:12px;
+}
+.side-category{
+  color:#c90000;
+  font-size:11px;
   font-weight:bold;
-  margin-top:5px;
+}
+.side-title{
+  font-size:17px;
   line-height:1.3;
+  margin-top:5px;
 }
-
-.trending-views{
-  color:#666;
-  font-size:13px;
-  margin-top:7px;
+/* ================= MAIN LAYOUT ================= */
+.main-layout{
+  display:grid;
+  grid-template-columns:minmax(0,2fr) minmax(280px,1fr);
+  gap:20px;
+  align-items:start;
 }
-
-/* POSTS */
-
+/* ================= LATEST NEWS ================= */
 .posts{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:20px;
+  grid-template-columns:repeat(2,1fr);
+  gap:15px;
 }
-
 .post-card{
   background:white;
-  border-radius:10px;
+  border-radius:8px;
   overflow:hidden;
-  box-shadow:0 2px 10px rgba(0,0,0,.12);
+  box-shadow:0 2px 8px rgba(0,0,0,.11);
 }
-
 .post-media{
   width:100%;
-  height:220px;
+  height:210px;
   object-fit:cover;
   display:block;
   background:#ddd;
 }
-
 .post-body{
-  padding:15px;
+  padding:14px;
 }
-
 .category-badge{
   display:inline-block;
   background:#111;
   color:white;
-  padding:5px 9px;
-  border-radius:5px;
+  padding:4px 8px;
+  border-radius:4px;
+  font-size:11px;
+  margin-bottom:7px;
+}
+.post-title{
+  font-size:19px;
+  line-height:1.3;
+  margin-bottom:7px;
+}
+.post-date{
+  color:#777;
   font-size:12px;
   margin-bottom:8px;
 }
-
-.post-title{
-  font-size:20px;
-  line-height:1.3;
-  margin-bottom:8px;
-}
-
-.post-date{
-  color:#777;
-  font-size:13px;
-  margin-bottom:10px;
-}
-
 .post-preview{
   color:#333;
   line-height:1.5;
+  font-size:14px;
 }
-
 .post-stats{
   display:flex;
-  gap:15px;
+  gap:13px;
   color:#666;
-  font-size:13px;
-  margin-top:12px;
+  font-size:12px;
+  margin-top:10px;
 }
-
 .actions{
   display:flex;
-  gap:7px;
-  margin-top:14px;
+  gap:6px;
+  margin-top:12px;
 }
-
 .action-btn{
   flex:1;
   border:0;
   background:#eee;
-  padding:9px 5px;
-  border-radius:6px;
+  padding:8px 4px;
+  border-radius:5px;
   cursor:pointer;
-  font-size:13px;
+  font-size:12px;
 }
-
 .action-btn:hover{
   background:#ddd;
 }
-
 .read-more{
   width:100%;
-  margin-top:10px;
+  margin-top:8px;
   border:0;
   background:#111;
   color:white;
-  padding:11px;
-  border-radius:6px;
+  padding:10px;
+  border-radius:5px;
   cursor:pointer;
   font-weight:bold;
 }
-
-/* COMMENTS */
-
+/* ================= SIDEBAR ================= */
+.sidebar-box{
+  background:white;
+  border-radius:8px;
+  overflow:hidden;
+  margin-bottom:18px;
+  box-shadow:0 2px 8px rgba(0,0,0,.11);
+}
+.sidebar-heading{
+  background:#111;
+  color:white;
+  padding:11px 13px;
+  font-size:16px;
+  font-weight:bold;
+}
+.sidebar-item{
+  display:flex;
+  gap:10px;
+  padding:11px;
+  border-bottom:1px solid #eee;
+  cursor:pointer;
+}
+.sidebar-item:last-child{
+  border-bottom:0;
+}
+.sidebar-number{
+  font-size:20px;
+  font-weight:bold;
+  color:#c90000;
+  min-width:25px;
+}
+.sidebar-item-title{
+  font-size:14px;
+  line-height:1.35;
+  font-weight:bold;
+}
+.sidebar-views{
+  color:#777;
+  font-size:11px;
+  margin-top:5px;
+}
+/* ================= TRENDING ================= */
+.trending{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:10px;
+}
+.trending-card{
+  background:white;
+  border-radius:7px;
+  overflow:hidden;
+  cursor:pointer;
+  box-shadow:0 2px 7px rgba(0,0,0,.12);
+}
+.trending-card img,
+.trending-card video{
+  width:100%;
+  height:105px;
+  object-fit:cover;
+  display:block;
+}
+.trending-content{
+  padding:9px;
+}
+.trending-rank{
+  color:#c90000;
+  font-weight:bold;
+  font-size:12px;
+}
+.trending-title{
+  font-size:13px;
+  font-weight:bold;
+  line-height:1.3;
+  margin-top:4px;
+}
+.trending-views{
+  color:#777;
+  font-size:11px;
+  margin-top:6px;
+}
+/* ================= COMMENTS ================= */
 .comment-box{
   display:none;
-  margin-top:10px;
+  margin-top:9px;
 }
-
 .comment-box input,
 .comment-box textarea{
   width:100%;
-  padding:9px;
+  padding:8px;
   border:1px solid #ccc;
-  border-radius:6px;
-  margin-bottom:7px;
+  border-radius:5px;
+  margin-bottom:6px;
 }
-
 .comment-box textarea{
-  min-height:70px;
+  min-height:65px;
   resize:vertical;
 }
-
 .comment-submit{
   width:100%;
-  padding:9px;
+  padding:8px;
   border:0;
   background:#111;
   color:white;
-  border-radius:6px;
+  border-radius:5px;
   cursor:pointer;
 }
-
 .comments-list{
-  margin-top:10px;
+  margin-top:9px;
 }
-
 .comment-item{
   background:#f3f3f3;
   padding:8px;
-  border-radius:6px;
-  margin-bottom:6px;
-  font-size:13px;
+  border-radius:5px;
+  margin-bottom:5px;
+  font-size:12px;
 }
-
 .comment-name{
   font-weight:bold;
+  margin-bottom:3px;
 }
-
-/* STATES */
-
+/* ================= STATES ================= */
 .empty{
   text-align:center;
-  padding:40px 10px;
+  padding:35px 10px;
   color:#777;
   grid-column:1/-1;
 }
-
 .loading{
   text-align:center;
-  padding:40px;
+  padding:35px;
   color:#666;
   grid-column:1/-1;
 }
-
-/* MODAL */
-
+/* ================= MODAL ================= */
 .modal{
   display:none;
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.8);
+  background:rgba(0,0,0,.85);
   z-index:2000;
   overflow-y:auto;
-  padding:30px 15px;
+  padding:25px 12px;
 }
-
 .modal-content{
   max-width:850px;
   margin:auto;
   background:white;
-  border-radius:10px;
+  border-radius:8px;
   overflow:hidden;
 }
-
 .modal-header{
-  padding:15px;
+  padding:13px 15px;
   display:flex;
   justify-content:space-between;
-  gap:10px;
+  align-items:center;
   border-bottom:1px solid #ddd;
 }
-
 .close{
   font-size:28px;
   cursor:pointer;
   font-weight:bold;
 }
-
 .modal-body{
   padding:20px;
 }
-
 .modal-body img,
 .modal-body video{
   width:100%;
-  max-height:500px;
+  max-height:520px;
   object-fit:contain;
   background:#111;
-  border-radius:8px;
+  border-radius:7px;
   margin:15px 0;
 }
-
 .article-category{
   display:inline-block;
-  background:#111;
+  background:#c90000;
   color:white;
   padding:6px 10px;
-  border-radius:5px;
-  font-size:13px;
+  border-radius:4px;
+  font-size:12px;
 }
-
 .article-title{
   font-size:32px;
   line-height:1.2;
   margin:12px 0;
 }
-
 .article-date{
   color:#777;
-  font-size:14px;
-  margin-bottom:10px;
+  font-size:13px;
+  margin-bottom:8px;
 }
-
 .article-views{
   color:#666;
-  font-size:14px;
-  margin-bottom:15px;
+  font-size:13px;
+  margin-bottom:12px;
 }
-
 .article-content{
   white-space:pre-wrap;
   font-size:17px;
-  line-height:1.8;
+  line-height:1.85;
 }
-
-/* FOOTER */
-
+/* ================= FOOTER ================= */
 footer{
   margin-top:40px;
   background:#111;
@@ -455,2069 +560,1720 @@ footer{
   text-align:center;
   padding:25px 15px;
 }
-
-@media(max-width:900px){
-
-  .posts{
-    grid-template-columns:repeat(2,1fr);
+footer p{
+  margin:5px 0;
+}
+footer .muted{
+  color:#aaa;
+  font-size:13px;
+}
+/* ================= RESPONSIVE ================= */
+@media(max-width:950px){
+  .hero-grid{
+    grid-template-columns:1fr;
   }
-
+  .hero-main .hero-media{
+    height:330px;
+  }
+  .hero-side{
+    grid-template-columns:1fr 1fr;
+    grid-template-rows:auto;
+  }
+  .main-layout{
+    grid-template-columns:1fr;
+  }
   .trending{
     grid-template-columns:repeat(3,1fr);
   }
-
 }
-
-@media(max-width:600px){
-
+@media(max-width:650px){
   .header-inner{
-    align-items:flex-start;
+    padding:9px 10px;
   }
-
+  .logo{
+    width:45px;
+    height:45px;
+  }
   .brand h1{
     font-size:15px;
   }
-
+  .brand small{
+    font-size:10px;
+  }
   .visitor{
+    font-size:10px;
+  }
+  .visitor strong{
+    font-size:13px;
+  }
+  .breaking{
+    border-radius:0;
+    margin-left:-15px;
+    margin-right:-15px;
+  }
+  .breaking-label{
+    padding:11px 10px;
     font-size:11px;
   }
-
+  .hero-main .hero-media{
+    height:240px;
+  }
+  .hero-title{
+    font-size:24px;
+  }
+  .hero-side{
+    grid-template-columns:1fr;
+  }
+  .side-card{
+    grid-template-columns:40% 60%;
+  }
+  .side-media{
+    min-height:125px;
+  }
   .posts{
     grid-template-columns:1fr;
   }
-
   .trending{
     grid-template-columns:1fr 1fr;
   }
-
   .post-media{
     height:230px;
   }
-
   .article-title{
     font-size:25px;
   }
-
 }
 </style>
 </head>
-
 <body>
-
 <header>
+<div class="header-inner">
+<div class="brand">
+<div>
+<h1>MK Youth Mobilizers</h1>
 
-  <div class="header-inner">
+Media Team Tarauni
 
-    <div class="brand">
+</div>
+</div>
+<div class="visitor">
 
-      <img
-        src="561F33DB-6D50-45C9-8940-5E77FF098DDE.png"
-        class="logo"
-        alt="MK Youth Mobilizers">
+👥 Visitors
 
-      <div>
-
-        <h1>
-          MK Youth Mobilizers
-        </h1>
-
-        <small>
-          Media Team Tarauni
-        </small>
-
-      </div>
-
-    </div>
-
-    <div class="visitor">
-
-      👥 Visitors<br>
-
-      <strong id="visitorCount">
-        10,000
-      </strong>
-
-    </div>
-
-  </div>
-
+<strong id="visitorCount">
+10,000
+</strong>
+</div>
+</div>
 </header>
-
-
 <main class="container">
-
-
-<!-- YOUTUBE LIVE -->
-
+<!-- BREAKING NEWS -->
+<div class="breaking">
+<div class="breaking-label">
+🔴 BREAKING
+</div>
+<div class="breaking-track">
+<div
+id="breakingText"
+class="breaking-text">
+Ana ɗauko sabbin labarai...
+</div>
+</div>
+</div>
+<!-- LIVE -->
 <div class="live-box">
-
-  <div class="live-title">
-    🔴 LIVE
-  </div>
-
-  <div id="liveContainer">
-
-    <div class="no-live">
-      YouTube Live ba ya fara ba tukuna.
-    </div>
-
-  </div>
-
+<div class="live-title">
+🔴 LIVE
 </div>
-
-
+<div id="liveContainer">
+<div class="no-live">
+YouTube Live ba ya fara ba tukuna.
+</div>
+</div>
+</div>
 <!-- SEARCH -->
-
 <div class="search-box">
-
-  <input
-    type="search"
-    id="searchInput"
-    placeholder="🔎 Nemi labari...">
-
 </div>
-
-
 <!-- CATEGORIES -->
-
 <div class="categories">
 
-  <button
-    class="category-btn active"
-    data-category="Duka">
-    🏠 Duka
-  </button>
-
-  <button
-    class="category-btn"
-    data-category="Labarai">
-    📰 Labarai
-  </button>
-
-  <button
-    class="category-btn"
-    data-category="Siyasa">
-    🏛️ Siyasa
-  </button>
-
-  <button
-    class="category-btn"
-    data-category="Wasanni">
-    ⚽ Wasanni
-  </button>
-
-  <button
-    class="category-btn"
-    data-category="Nishaɗi">
-    🎤 Nishaɗi
-  </button>
-
-  <button
-    class="category-btn"
-    data-category="Hotuna">
-    📸 Hotuna
-  </button>
-
-  <button
-    class="category-btn"
-    data-category="Bidiyo">
-    🎥 Bidiyo
-  </button>
-
+🏠 Duka
+📰 Labarai
+🏛️ Siyasa
+⚽ Wasanni
+🎤 Nishaɗi
+📸 Hotuna
+🎥 Bidiyo
 </div>
-
-
+<!-- HERO -->
+<section id="heroSection">
+<h2 class="section-title">
+📰 Babban Labari
+</h2>
+<div
+id="heroArea"
+class="hero-grid">
+<div class="loading">
+Ana ɗauko babban labari...
+</div>
+</div>
+</section>
 <!-- TRENDING -->
-
 <h2 class="section-title">
-  🔥 Trending News
+🔥 Trending News
 </h2>
-
 <div
-  id="trendingPosts"
-  class="trending">
-
-  <div class="loading">
-    Ana ɗauko Trending News...
-  </div>
-
+id="trendingPosts"
+class="trending">
+<div class="loading">
+Ana ɗauko Trending News...
 </div>
-
-
-<!-- MOST READ TODAY -->
-
+</div>
+<!-- MAIN CONTENT -->
+<div class="main-layout">
+<div>
 <h2 class="section-title">
-  📅 Most Read Today
+📰 Latest News
 </h2>
-
 <div
-  id="todayPosts"
-  class="posts">
-
-  <div class="loading">
-    Ana ɗauko Most Read Today...
-  </div>
-
+id="posts"
+class="posts">
+<div class="loading">
+Ana ɗauko labarai...
 </div>
-
-
-<!-- MOST READ THIS WEEK -->
-
-<h2 class="section-title">
-  🗓️ Most Read This Week
-</h2>
-
-<div
-  id="weekPosts"
-  class="posts">
-
-  <div class="loading">
-    Ana ɗauko Most Read This Week...
-  </div>
-
 </div>
-
-
-<!-- LATEST NEWS -->
-
-<h2 class="section-title">
-  📰 Latest News
-</h2>
-
-<div
-  id="posts"
-  class="posts">
-
-  <div class="loading">
-    Ana ɗauko labarai...
-  </div>
-
 </div>
-
+<!-- SIDEBAR -->
+<aside>
+<div class="sidebar-box">
+<div class="sidebar-heading">
+📅 Most Read Today
+</div>
+<div id="todayPosts">
+<div class="loading">
+Ana ɗauko...
+</div>
+</div>
+</div>
+<div class="sidebar-box">
+<div class="sidebar-heading">
+🗓️ Most Read This Week
+</div>
+<div id="weekPosts">
+<div class="loading">
+Ana ɗauko...
+</div>
+</div>
+</div>
+</aside>
+</div>
 </main>
-
-
 <!-- ARTICLE MODAL -->
-
 <div
-  id="articleModal"
-  class="modal">
+id="articleModal"
+class="modal">
+<div class="modal-content">
+<div class="modal-header">
+<strong>
+MK Youth Mobilizers Media
+</strong>
 
-  <div class="modal-content">
-
-    <div class="modal-header">
-
-      <strong>
-        MK Youth Mobilizers Media
-      </strong>
-
-      <span
-        class="close"
-        onclick="closeArticle()">
-        ×
-      </span>
-
-    </div>
-
-    <div
-      id="articleBody"
-      class="modal-body">
-    </div>
-
-  </div>
-
+×
 </div>
-
-
+<div
+id="articleBody"
+class="modal-body">
+</div>
+</div>
+</div>
 <footer>
-
-  <p>
-    © 2026 MK Youth Mobilizers Media Team Tarauni
-  </p>
-
-  <p style="margin-top:8px;color:#aaa;">
-    Connecting • Inspiring • Empowering Youth
-  </p>
-
+<p>
+© 2026 MK Youth Mobilizers Media Team Tarauni
+</p>
+<p class="muted">
+Connecting • Inspiring • Empowering Youth
+</p>
 </footer>
-
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <script>
-
 const SUPABASE_URL =
 "https://kszficrcngxipcllezgl.supabase.co";
-
 const SUPABASE_KEY =
 "sb_publishable_hsMkfMvXMbAXXt8Z7LvAvg_52miDaJe";
-
 const supabaseClient =
 supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
+SUPABASE_URL,
+SUPABASE_KEY
+);
+let allPosts = [];
+let currentCategory = "Duka";
+let currentSearch = "";
+/* =========================
+VISITOR COUNTER
+========================= */
+const STARTING_VISITORS = 10000;
+async function countVisitor(){
+const counted =
+localStorage.getItem(
+"mk_visitor_counted"
+);
+if(!counted){
+const visitorId =
+crypto.randomUUID();
+const { error } =
+await supabaseClient
+.from("visitors")
+.insert({
+visitor_id:visitorId
+});
+if(!error){
+localStorage.setItem(
+"mk_visitor_counted",
+"true"
+);
+}
+}
+const { count } =
+await supabaseClient
+.from("visitors")
+.select("*",{
+count:"exact",
+head:true
+});
+document.getElementById(
+"visitorCount"
+).textContent =
+(
+STARTING_VISITORS +
+(count || 0)
+).toLocaleString();
+}
+/* =========================
+YOUTUBE LIVE
+========================= */
+async function loadLive(){
+const { data,error } =
+await supabaseClient
+.from("live_stream")
+.select(
+"id,youtube_id,active"
+)
+.eq("id",1)
+.maybeSingle();
+if(error){
+console.error(error);
+return;
+}
+const container =
+document.getElementById(
+"liveContainer"
+);
+if(
+data &&
+data.active &&
+data.youtube_id
+){
+container.innerHTML = `
+<iframe
+class="live-video"
+src="https://www.youtube.com/embed/${data.youtube_id}?autoplay=1"
+allow="autoplay; encrypted-media"
+allowfullscreen>
+</iframe>
+`;
+}else{
+container.innerHTML = `
+<div class="no-live">
+YouTube Live ba ya fara ba tukuna.
+</div>
+`;
+}
+}
+/* =========================
+LOAD POSTS
+========================= */
+async function loadPosts(){
+const { data,error } =
+await supabaseClient
+.from("posts")
+.select(
+"id,Title,Content,Image_url,category,views,created_at"
+)
+.order(
+"created_at",
+{
+ascending:false
+}
+)
+.order(
+"id",
+{
+ascending:false
+}
+);
+if(error){
+console.error(error);
+document.getElementById(
+"posts"
+).innerHTML =
+`<div class="empty">
+An samu matsala wajen ɗauko labarai.
+</div>`;
+return;
+}
+allPosts =
+data || [];
+renderHomepage();
+renderTrending();
+updateBreakingNews();
+}
+/* =========================
+FILTER
+========================= */
+function getFilteredPosts(){
+return allPosts.filter(post => {
+const categoryMatch =
+currentCategory === "Duka" ||
+post.category === currentCategory;
+const search =
+currentSearch
+.trim()
+.toLowerCase();
+const searchMatch =
+!search ||
+(post.Title || "")
+.toLowerCase()
+.includes(search) ||
+(post.Content || "")
+.toLowerCase()
+.includes(search) ||
+(post.category || "")
+.toLowerCase()
+.includes(search);
+return (
+categoryMatch &&
+searchMatch
+);
+});
+}
+/* =========================
+HOMEPAGE
+========================= */
+function renderHomepage(){
+const posts =
+getFilteredPosts();
+renderHero(posts);
+renderLatest(posts);
+}
+/* =========================
+HERO
+========================= */
+function renderHero(posts){
+const container =
+document.getElementById(
+"heroArea"
+);
+if(!posts.length){
+container.innerHTML =
+`<div class="empty">
+Babu wani labari.
+</div>`;
+return;
+}
+const hero =
+posts[0];
+const side =
+posts.slice(1,3);
+container.innerHTML = `
+<div
+class="hero-main"
+onclick="openArticleById(${hero.id})">
+${mediaHTML(
+hero,
+"hero-media"
+)}
+<div class="hero-body">
+<span class="hero-category">
+${escapeHtml(
+hero.category || "Labarai"
+)}
+</span>
+<h1 class="hero-title">
+${escapeHtml(hero.Title)}
+</h1>
+<div class="hero-preview">
+${escapeHtml(
+makePreview(hero.Content,45)
+)}
+</div>
+<div class="hero-date">
+📅 ${formatDate(hero.created_at)}
+&nbsp;&nbsp;
+👁️ ${Number(hero.views || 0).toLocaleString()}
+</div>
+</div>
+</div>
+<div class="hero-side">
+${side.map(post => `
+<div
+class="side-card"
+onclick="openArticleById(${post.id})">
+${mediaHTML(
+post,
+"side-media"
+)}
+<div class="side-body">
+<div class="side-category">
+${escapeHtml(
+post.category || "Labarai"
+)}
+</div>
+<div class="side-title">
+${escapeHtml(post.Title)}
+</div>
+</div>
+</div>
+`).join("")}
+</div>
+`;
+}
+/* =========================
+LATEST NEWS
+========================= */
+function renderLatest(posts){
+const container =
+document.getElementById(
+"posts"
+);
+if(!posts.length){
+container.innerHTML =
+`<div class="empty">
+Babu wani labari da ya dace da bincikenka.
+</div>`;
+return;
+}
+/*
+MU CIRE HERO DA SIDE POSTS
+DAGA LATEST NEWS DOMIN KADA SU
+SAKE MAIMAITUWA A NAN.
+*/
+const used =
+posts
+.slice(0,3)
+.map(
+p => Number(p.id)
+);
+const latest =
+posts.filter(
+p => !used.includes(
+Number(p.id)
+)
+);
+if(!latest.length){
+container.innerHTML =
+`<div class="empty">
+Babu ƙarin labarai tukuna.
+</div>`;
+return;
+}
+container.innerHTML =
+latest
+.map(
+post =>
+createPostCard(post)
+)
+.join("");
+loadCardStats(latest);
+}
+/* =========================
+CREATE CARD
+========================= */
+function createPostCard(post){
+const views =
+Number(post.views || 0);
+return `
+<article
+class="post-card"
+id="post-${post.id}">
+${mediaHTML(
+post,
+"post-media"
+)}
+<div class="post-body">
+<span class="category-badge">
+${escapeHtml(
+post.category || "Labarai"
+)}
+</span>
+<h3 class="post-title">
+${escapeHtml(post.Title)}
+</h3>
+<div class="post-date">
+📅 ${formatDate(post.created_at)}
+</div>
+<div class="post-preview">
+${escapeHtml(
+makePreview(post.Content,35)
+)}
+</div>
+<div class="post-stats">
+<span>
+👁️ ${views.toLocaleString()}
+</span>
+<span>
+💬
+<span id="comment-count-${post.id}">
+0
+</span>
+</span>
+</div>
+<div class="actions">
+<button
+class="action-btn"
+onclick="likePost(${post.id},this)">
+👍 <span>0</span>
+</button>
+<button
+class="action-btn"
+onclick="toggleComments(${post.id})">
+💬 Comment
+</button>
+<button
+class="action-btn"
+onclick="sharePost(${post.id})">
+🔄 Share
+</button>
+</div>
+<button
+class="read-more"
+onclick="openArticleById(${post.id})">
+📖 Karanta cikakken labari
+</button>
+<div
+id="comments-${post.id}"
+class="comment-box">
+<input
+id="name-${post.id}"
+placeholder="Sunanka">
+<textarea
+id="comment-${post.id}"
+placeholder="Rubuta comment...">
+</textarea>
+
+Tura Comment
+<div
+id="comments-list-${post.id}"
+class="comments-list">
+</div>
+</div>
+</div>
+</article>
+
+`;
+
+}
+
+/* =========================
+MEDIA
+========================= */
+
+function mediaHTML(post,className){
+
+if(!post.Image_url){
+
+return `
+
+<div
+class="${className}"
+style="
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:50px;
+background:#ddd;
+">
+📰
+</div>
+
+`;
+
+}
+
+if(isVideo(post.Image_url)){
+
+return `
+
+<source
+src="${escapeHtml(
+post.Image_url
+)}">
+</video>
+
+`;
+
+}
+
+return `
+
+`;
+
+}
+
+/* =========================
+CARD STATS
+========================= */
+
+function loadCardStats(posts){
+
+posts.forEach(post => {
+
+const card =
+document.getElementById(
+post-${post.id}
 );
 
-let allPosts = [];
+if(!card){
+return;
+}
 
-let currentCategory = "Duka";
+const likeButton =
+card.querySelector(
+“.action-btn”
+);
 
-let currentSearch = "";
+if(likeButton){
 
-
-/* =========================
-   VISITOR COUNTER
-========================= */
-
-const STARTING_VISITORS = 10000;
-
-async function countVisitor(){
-
-  const counted =
-    localStorage.getItem(
-      "mk_visitor_counted"
-    );
-
-  if(!counted){
-
-    const visitorId =
-      crypto.randomUUID();
-
-    const { error } =
-      await supabaseClient
-      .from("visitors")
-      .insert({
-        visitor_id:visitorId
-      });
-
-    if(!error){
-
-      localStorage.setItem(
-        "mk_visitor_counted",
-        "true"
-      );
-
-    }
-
-  }
-
-  const { count } =
-    await supabaseClient
-    .from("visitors")
-    .select("*",{
-      count:"exact",
-      head:true
-    });
-
-  document.getElementById(
-    "visitorCount"
-  ).textContent =
-    (
-      STARTING_VISITORS +
-      (count || 0)
-    ).toLocaleString();
+loadLikeCount(
+post.id,
+likeButton
+);
 
 }
 
+const commentCount =
+card.querySelector(
+#comment-count-${post.id}
+);
 
-/* =========================
-   YOUTUBE LIVE
-========================= */
+if(commentCount){
 
-async function loadLive(){
-
-  const { data,error } =
-    await supabaseClient
-    .from("live_stream")
-    .select(
-      "id,youtube_id,active"
-    )
-    .eq("id",1)
-    .maybeSingle();
-
-  if(error){
-
-    console.error(error);
-
-    return;
-
-  }
-
-  const container =
-    document.getElementById(
-      "liveContainer"
-    );
-
-  if(
-    data &&
-    data.active &&
-    data.youtube_id
-  ){
-
-    container.innerHTML = `
-
-      <iframe
-        class="live-video"
-        src="https://www.youtube.com/embed/${data.youtube_id}?autoplay=1"
-        allow="autoplay; encrypted-media"
-        allowfullscreen>
-      </iframe>
-
-    `;
-
-  }else{
-
-    container.innerHTML = `
-
-      <div class="no-live">
-        YouTube Live ba ya fara ba tukuna.
-      </div>
-
-    `;
-
-  }
+loadCommentCount(
+post.id,
+commentCount
+);
 
 }
 
-
-/* =========================
-   LOAD POSTS
-========================= */
-
-async function loadPosts(){
-
-  const container =
-    document.getElementById(
-      "posts"
-    );
-
-  container.innerHTML =
-    `<div class="loading">
-      Ana ɗauko labarai...
-    </div>`;
-
-  const { data,error } =
-    await supabaseClient
-    .from("posts")
-    .select(
-      "id,Title,Content,Image_url,category,views,created_at"
-    )
-    .order(
-      "created_at",
-      {
-        ascending:false
-      }
-    )
-    .order(
-      "id",
-      {
-        ascending:false
-      }
-    );
-
-  if(error){
-
-    console.error(error);
-
-    container.innerHTML =
-      `<div class="empty">
-        An samu matsala wajen ɗauko labarai.
-      </div>`;
-
-    return;
-
-  }
-
-  allPosts = data || [];
-
-  renderPosts();
-
-  renderTrending();
+});
 
 }
 
-
 /* =========================
-   MOST READ
-========================= */
-
-async function loadMostRead(){
-
-  await loadMostReadPeriod(
-    1,
-    "todayPosts"
-  );
-
-  await loadMostReadPeriod(
-    7,
-    "weekPosts"
-  );
-
-}
-
-
-async function loadMostReadPeriod(
-  days,
-  containerId
-){
-
-  const container =
-    document.getElementById(
-      containerId
-    );
-
-  if(!container){
-    return;
-  }
-
-  const { data,error } =
-    await supabaseClient
-    .rpc(
-      "get_most_read_posts",
-      {
-        days_back:days
-      }
-    );
-
-  if(error){
-
-    console.error(
-      "Most read error:",
-      error
-    );
-
-    container.innerHTML =
-      `<div class="empty">
-        An kasa ɗauko Most Read.
-      </div>`;
-
-    return;
-
-  }
-
-  if(
-    !data ||
-    !data.length
-  ){
-
-    container.innerHTML =
-      `<div class="empty">
-        Babu views tukuna.
-      </div>`;
-
-    return;
-
-  }
-
-  let posts =
-    data
-    .map(item =>
-      allPosts.find(
-        post =>
-          Number(post.id) ===
-          Number(item.post_id)
-      )
-    )
-    .filter(Boolean);
-
-  /*
-    MU GUJI DUPLICATE:
-    Idan ana son Most Read ya kasance
-    daban da Latest News, sai mu cire
-    duplicate cards a nan.
-  */
-
-  const usedIds = new Set();
-
-  posts = posts.filter(post => {
-
-    const id =
-      Number(post.id);
-
-    if(usedIds.has(id)){
-      return false;
-    }
-
-    usedIds.add(id);
-
-    return true;
-
-  });
-
-
-  if(!posts.length){
-
-    container.innerHTML =
-      `<div class="empty">
-        Babu posts tukuna.
-      </div>`;
-
-    return;
-
-  }
-
-  container.innerHTML =
-    posts
-    .map(post =>
-      createPostCard(post)
-    )
-    .join("");
-
-
-  /*
-    Load likes/comments ba tare da
-    sake render page ba.
-  */
-
-  posts.forEach(post => {
-
-    const card =
-      document.getElementById(
-        `post-${post.id}`
-      );
-
-    if(!card){
-      return;
-    }
-
-    const likeButton =
-      card.querySelector(
-        ".action-btn"
-      );
-
-    if(likeButton){
-
-      loadLikeCount(
-        post.id,
-        likeButton
-      );
-
-    }
-
-    const commentCount =
-      card.querySelector(
-        `#comment-count-${post.id}`
-      );
-
-    if(commentCount){
-
-      loadCommentCount(
-        post.id,
-        commentCount
-      );
-
-    }
-
-  });
-
-}
-
-
-/* =========================
-   FILTER
-========================= */
-
-function getFilteredPosts(){
-
-  return allPosts.filter(post => {
-
-    const categoryMatch =
-      currentCategory === "Duka" ||
-      post.category === currentCategory;
-
-    const search =
-      currentSearch
-      .trim()
-      .toLowerCase();
-
-    const searchMatch =
-      !search ||
-
-      (post.Title || "")
-      .toLowerCase()
-      .includes(search) ||
-
-      (post.Content || "")
-      .toLowerCase()
-      .includes(search) ||
-
-      (post.category || "")
-      .toLowerCase()
-      .includes(search);
-
-    return (
-      categoryMatch &&
-      searchMatch
-    );
-
-  });
-
-}
-
-
-/* =========================
-   RENDER POSTS
-========================= */
-
-function renderPosts(){
-
-  const container =
-    document.getElementById(
-      "posts"
-    );
-
-  const posts =
-    getFilteredPosts();
-
-  if(!posts.length){
-
-    container.innerHTML =
-      `<div class="empty">
-        Babu wani labari da ya dace da bincikenka.
-      </div>`;
-
-    return;
-
-  }
-
-  container.innerHTML =
-    posts
-    .map(post =>
-      createPostCard(post)
-    )
-    .join("");
-
-
-  posts.forEach(post => {
-
-    const card =
-      document.getElementById(
-        `post-${post.id}`
-      );
-
-    if(!card){
-      return;
-    }
-
-    const likeButton =
-      card.querySelector(
-        ".action-btn"
-      );
-
-    if(likeButton){
-
-      loadLikeCount(
-        post.id,
-        likeButton
-      );
-
-    }
-
-    const commentCount =
-      card.querySelector(
-        `#comment-count-${post.id}`
-      );
-
-    if(commentCount){
-
-      loadCommentCount(
-        post.id,
-        commentCount
-      );
-
-    }
-
-  });
-
-}
-
-
-/* =========================
-   CREATE POST CARD
-========================= */
-
-function createPostCard(post){
-
-  const date =
-    formatDate(
-      post.created_at
-    );
-
-  const preview =
-    makePreview(
-      post.Content,
-      35
-    );
-
-  const views =
-    Number(
-      post.views || 0
-    );
-
-  let media = "";
-
-  if(post.Image_url){
-
-    if(isVideo(post.Image_url)){
-
-      media = `
-
-        <video
-          class="post-media"
-          controls
-          preload="metadata">
-
-          <source
-            src="${escapeHtml(
-              post.Image_url
-            )}">
-
-        </video>
-
-      `;
-
-    }else{
-
-      media = `
-
-        <img
-          class="post-media"
-          src="${escapeHtml(
-            post.Image_url
-          )}"
-          alt="${escapeHtml(
-            post.Title
-          )}"
-          loading="lazy">
-
-      `;
-
-    }
-
-  }else{
-
-    media = `
-
-      <div
-        class="post-media"
-        style="
-          display:flex;
-          align-items:center;
-          justify-content:center;
-          font-size:50px;
-        ">
-
-        📰
-
-      </div>
-
-    `;
-
-  }
-
-
-  return `
-
-    <article
-      class="post-card"
-      id="post-${post.id}">
-
-      ${media}
-
-      <div class="post-body">
-
-        <span class="category-badge">
-
-          ${escapeHtml(
-            post.category ||
-            "Labarai"
-          )}
-
-        </span>
-
-        <h3 class="post-title">
-
-          ${escapeHtml(
-            post.Title
-          )}
-
-        </h3>
-
-        <div class="post-date">
-
-          📅 ${date}
-
-        </div>
-
-        <div class="post-preview">
-
-          ${escapeHtml(
-            preview
-          )}
-
-        </div>
-
-        <div class="post-stats">
-
-          <span>
-            👁️
-            ${views.toLocaleString()}
-          </span>
-
-          <span>
-            💬
-            <span
-              id="comment-count-${post.id}">
-              0
-            </span>
-          </span>
-
-        </div>
-
-        <div class="actions">
-
-          <button
-            class="action-btn"
-            onclick="likePost(
-              ${post.id},
-              this
-            )">
-
-            👍 <span>0</span>
-
-          </button>
-
-          <button
-            class="action-btn"
-            onclick="toggleComments(
-              ${post.id}
-            )">
-
-            💬 Comment
-
-          </button>
-
-          <button
-            class="action-btn"
-            onclick="sharePost(
-              ${post.id}
-            )">
-
-            🔄 Share
-
-          </button>
-
-        </div>
-
-        <button
-          class="read-more"
-          onclick="openArticleById(
-            ${post.id}
-          )">
-
-          📖 Read more
-
-        </button>
-
-        <div
-          id="comments-${post.id}"
-          class="comment-box">
-
-          <input
-            id="name-${post.id}"
-            placeholder="Sunanka">
-
-          <textarea
-            id="comment-${post.id}"
-            placeholder="Rubuta comment...">
-          </textarea>
-
-          <button
-            class="comment-submit"
-            onclick="submitComment(
-              ${post.id}
-            )">
-
-            Tura Comment
-
-          </button>
-
-          <div
-            id="comments-list-${post.id}"
-            class="comments-list">
-          </div>
-
-        </div>
-
-      </div>
-
-    </article>
-
-  `;
-
-}
-
-
-/* =========================
-   TRENDING
+TRENDING
 ========================= */
 
 function renderTrending(){
 
-  const container =
-    document.getElementById(
-      "trendingPosts"
-    );
+const container =
+document.getElementById(
+“trendingPosts”
+);
 
-  const posts =
-    [...allPosts]
-    .sort(
-      (a,b) =>
-        Number(b.views || 0) -
-        Number(a.views || 0)
-    )
-    .slice(0,5);
+const posts =
+[…allPosts]
+.sort(
+(a,b) =>
+Number(b.views || 0) -
+Number(a.views || 0)
+)
+.slice(0,5);
 
-  if(!posts.length){
+if(!posts.length){
 
-    container.innerHTML =
-      `<div class="empty">
-        Babu Trending News tukuna.
-      </div>`;
+container.innerHTML =
+`
+Babu Trending News tukuna.
 
-    return;
+</div>`;
 
-  }
-
-  container.innerHTML =
-    posts
-    .map(
-      (post,index) => {
-
-        let media = "";
-
-        if(post.Image_url){
-
-          if(isVideo(
-            post.Image_url
-          )){
-
-            media = `
-
-              <video
-                src="${escapeHtml(
-                  post.Image_url
-                )}"
-                muted
-                preload="metadata">
-              </video>
-
-            `;
-
-          }else{
-
-            media = `
-
-              <img
-                src="${escapeHtml(
-                  post.Image_url
-                )}"
-                alt=""
-                loading="lazy">
-
-            `;
-
-          }
-
-        }else{
-
-          media = `
-
-            <div
-              style="
-                height:120px;
-                display:flex;
-                align-items:center;
-                justify-content:center;
-                font-size:40px;
-                background:#ddd;
-              ">
-
-              📰
-
-            </div>
-
-          `;
-
-        }
-
-        return `
-
-          <div
-            class="trending-card"
-            onclick="openArticleById(
-              ${post.id}
-            )">
-
-            ${media}
-
-            <div class="trending-content">
-
-              <div class="trending-rank">
-
-                #${index + 1} 🔥
-
-              </div>
-
-              <div class="trending-title">
-
-                ${escapeHtml(
-                  post.Title
-                )}
-
-              </div>
-
-              <div class="trending-views">
-
-                👁️
-                ${Number(
-                  post.views || 0
-                ).toLocaleString()}
-                views
-
-              </div>
-
-            </div>
-
-          </div>
-
-        `;
-
-      }
-    )
-    .join("");
+return;
 
 }
 
+container.innerHTML =
+posts.map(
+(post,index) => `
+
+<div
+class="trending-card"
+onclick="openArticleById(${post.id})">
+
+${mediaHTML(
+post,
+“”
+)}
+
+<div class="trending-content">
+<div class="trending-rank">
+#${index+1} 🔥
+</div>
+<div class="trending-title">
+${escapeHtml(post.Title)}
+</div>
+<div class="trending-views">
+👁️
+${Number(
+post.views || 0
+).toLocaleString()}
+views
+</div>
+</div>
+</div>
+
+`
+).join(””);
+
+}
 
 /* =========================
-   INCREMENT VIEW
+BREAKING NEWS
 ========================= */
 
-async function incrementView(
-  postId
-){
+function updateBreakingNews(){
 
-  const viewKey =
-    `mk_viewed_${postId}`;
+const element =
+document.getElementById(
+“breakingText”
+);
 
-  if(
-    sessionStorage.getItem(
-      viewKey
-    )
-  ){
+if(!allPosts.length){
 
-    return false;
+element.textContent =
+“Babu sabon labari tukuna.”;
 
-  }
-
-  const visitorId =
-    getVisitorId();
-
-  const { error } =
-    await supabaseClient
-    .from("post_views")
-    .insert({
-      post_id:postId,
-      visitor_id:visitorId
-    });
-
-  if(error){
-
-    console.error(
-      "View history error:",
-      error
-    );
-
-    return false;
-
-  }
-
-  const {
-    error:rpcError
-  } =
-    await supabaseClient
-    .rpc(
-      "increment_post_view",
-      {
-        post_id_input:postId
-      }
-    );
-
-  if(rpcError){
-
-    console.error(
-      "View counter error:",
-      rpcError
-    );
-
-    return false;
-
-  }
-
-  sessionStorage.setItem(
-    viewKey,
-    "true"
-  );
-
-  return true;
+return;
 
 }
 
+const titles =
+allPosts
+.slice(0,6)
+.map(
+post => post.Title
+)
+.join(”  •  “);
+
+element.textContent =
+titles;
+
+}
 
 /* =========================
-   OPEN ARTICLE
+MOST READ
 ========================= */
 
-async function openArticleById(
-  postId
-){
+async function loadMostRead(){
 
-  const post =
-    allPosts.find(
-      p =>
-        Number(p.id) ===
-        Number(postId)
-    );
+await loadMostReadPeriod(
+1,
+“todayPosts”
+);
 
-  if(!post){
-    return;
-  }
-
-  await openArticle(post);
+await loadMostReadPeriod(
+7,
+“weekPosts”
+);
 
 }
 
-
-async function openArticle(
-  post
+async function loadMostReadPeriod(
+days,
+containerId
 ){
 
-  /*
-    IMPORTANT:
-    Ba za mu yi renderPosts() a nan ba.
-    Wannan shi ne abin da yake sa article
-    ya sake bayyana a kasa.
-  */
+const container =
+document.getElementById(
+containerId
+);
 
-  const increased =
-    await incrementView(
-      post.id
-    );
+if(!container){
+return;
+}
 
-  if(increased){
+const { data,error } =
+await supabaseClient
+.rpc(
+“get_most_read_posts”,
+{
+days_back:days
+}
+);
 
-    post.views =
-      Number(
-        post.views || 0
-      ) + 1;
+if(error){
 
-    /*
-      Sabunta Trending kawai.
-      Kada a sake gina Latest News.
-    */
+console.error(
+“Most read error:”,
+error
+);
 
-    renderTrending();
+container.innerHTML =
+`
+An kasa ɗauko Most Read.
 
-    /*
-      Sabunta Most Read.
-      Wannan baya kiran renderPosts().
-    */
+</div>`;
 
-    await loadMostRead();
-
-  }
-
-
-  const modal =
-    document.getElementById(
-      "articleModal"
-    );
-
-  const body =
-    document.getElementById(
-      "articleBody"
-    );
-
-  let media = "";
-
-  if(post.Image_url){
-
-    if(isVideo(
-      post.Image_url
-    )){
-
-      media = `
-
-        <video
-          controls
-          autoplay
-          src="${escapeHtml(
-            post.Image_url
-          )}">
-        </video>
-
-      `;
-
-    }else{
-
-      media = `
-
-        <img
-          src="${escapeHtml(
-            post.Image_url
-          )}"
-          alt="${escapeHtml(
-            post.Title
-          )}">
-
-      `;
-
-    }
-
-  }
-
-
-  body.innerHTML = `
-
-    <span class="article-category">
-
-      ${escapeHtml(
-        post.category ||
-        "Labarai"
-      )}
-
-    </span>
-
-    <h1 class="article-title">
-
-      ${escapeHtml(
-        post.Title
-      )}
-
-    </h1>
-
-    <div class="article-date">
-
-      📅
-      ${formatDate(
-        post.created_at
-      )}
-
-    </div>
-
-    <div class="article-views">
-
-      👁️
-      ${Number(
-        post.views || 0
-      ).toLocaleString()}
-      views
-
-    </div>
-
-    ${media}
-
-    <div class="article-content">
-
-      ${escapeHtml(
-        post.Content
-      )}
-
-    </div>
-
-  `;
-
-
-  modal.style.display =
-    "block";
-
-  document.body.style.overflow =
-    "hidden";
-
-
-  history.replaceState(
-    null,
-    "",
-    `#post-${post.id}`
-  );
+return;
 
 }
 
+if(
+!data ||
+!data.length
+){
+
+container.innerHTML =
+`
+Babu views tukuna.
+
+</div>`;
+
+return;
+
+}
+
+const posts =
+data
+.map(item =>
+allPosts.find(
+post =>
+Number(post.id) ===
+Number(item.post_id)
+)
+)
+.filter(Boolean);
+
+container.innerHTML =
+posts.map(
+(post,index) => `
+
+<div
+class="sidebar-item"
+onclick="openArticleById(${post.id})">
+<div class="sidebar-number">
+${index+1}
+</div>
+<div>
+<div class="sidebar-item-title">
+${escapeHtml(post.Title)}
+</div>
+<div class="sidebar-views">
+👁️
+${Number(
+itemViews(post.id,data)
+).toLocaleString()}
+views
+</div>
+</div>
+</div>
+
+`
+).join(””);
+
+}
+
+function itemViews(
+postId,
+data
+){
+
+const item =
+data.find(
+x =>
+Number(x.post_id) ===
+Number(postId)
+);
+
+return item
+? Number(item.view_count || 0)
+: 0;
+
+}
 
 /* =========================
-   CLOSE ARTICLE
+VIEW
+========================= */
+
+async function incrementView(postId){
+
+const viewKey =
+mk_viewed_${postId};
+
+if(
+sessionStorage.getItem(viewKey)
+){
+
+return false;
+
+}
+
+const visitorId =
+getVisitorId();
+
+const { error } =
+await supabaseClient
+.from(“post_views”)
+.insert({
+post_id:postId,
+visitor_id:visitorId
+});
+
+if(error){
+
+console.error(
+“View history error:”,
+error
+);
+
+return false;
+
+}
+
+const {
+error:rpcError
+} =
+await supabaseClient
+.rpc(
+“increment_post_view”,
+{
+post_id_input:postId
+}
+);
+
+if(rpcError){
+
+console.error(
+“View counter error:”,
+rpcError
+);
+
+return false;
+
+}
+
+sessionStorage.setItem(
+viewKey,
+“true”
+);
+
+return true;
+
+}
+
+/* =========================
+OPEN ARTICLE
+========================= */
+
+async function openArticleById(postId){
+
+const post =
+allPosts.find(
+p =>
+Number(p.id) ===
+Number(postId)
+);
+
+if(!post){
+return;
+}
+
+await openArticle(post);
+
+}
+
+async function openArticle(post){
+
+const increased =
+await incrementView(
+post.id
+);
+
+if(increased){
+
+post.views =
+Number(post.views || 0) + 1;
+
+renderTrending();
+
+await loadMostRead();
+
+}
+
+/*
+MU BA MU SAKA renderHomepage()
+KO renderLatest()
+A NAN.
+WANNAN SHI NE YAKE HANA
+ARTICLE YA SAKE BAYYANA A KASA.
+*/
+
+const modal =
+document.getElementById(
+“articleModal”
+);
+
+const body =
+document.getElementById(
+“articleBody”
+);
+
+let media = “”;
+
+if(post.Image_url){
+
+if(isVideo(post.Image_url)){
+
+media = `
+
+`;
+
+}else{
+
+media = `
+
+`;
+
+}
+
+}
+
+body.innerHTML = `
+
+<span class="article-category">
+${escapeHtml(
+post.category || "Labarai"
+)}
+</span>
+<h1 class="article-title">
+${escapeHtml(post.Title)}
+</h1>
+<div class="article-date">
+📅 ${formatDate(post.created_at)}
+</div>
+<div class="article-views">
+👁️
+${Number(
+post.views || 0
+).toLocaleString()}
+views
+</div>
+
+${media}
+
+<div class="article-content">
+${escapeHtml(post.Content)}
+</div>
+
+`;
+
+modal.style.display =
+“block”;
+
+document.body.style.overflow =
+“hidden”;
+
+history.replaceState(
+null,
+“”,
+#post-${post.id}
+);
+
+}
+
+/* =========================
+CLOSE ARTICLE
 ========================= */
 
 function closeArticle(){
 
-  document.getElementById(
-    "articleModal"
-  ).style.display =
-    "none";
+document.getElementById(
+“articleModal”
+).style.display =
+“none”;
 
-  document.body.style.overflow =
-    "";
+document.body.style.overflow =
+“”;
 
-  if(
-    location.hash.startsWith(
-      "#post-"
-    )
-  ){
+if(
+location.hash.startsWith(
+“#post-”
+)
+){
 
-    history.replaceState(
-      null,
-      "",
-      location.pathname +
-      location.search
-    );
-
-  }
+history.replaceState(
+null,
+“”,
+location.pathname +
+location.search
+);
 
 }
 
+}
 
 document.getElementById(
-  "articleModal"
+“articleModal”
 ).addEventListener(
-  "click",
-  function(e){
+“click”,
+function(e){
 
-    if(e.target === this){
+if(e.target === this){
 
-      closeArticle();
+closeArticle();
 
-    }
+}
 
-  }
+}
 );
 
-
 /* =========================
-   SEARCH
+SEARCH
 ========================= */
 
 document.getElementById(
-  "searchInput"
+“searchInput”
 ).addEventListener(
-  "input",
-  function(){
+“input”,
+function(){
 
-    currentSearch =
-      this.value;
+currentSearch =
+this.value;
 
-    renderPosts();
+renderHomepage();
 
-  }
+}
 );
 
-
 /* =========================
-   CATEGORY
+CATEGORY
 ========================= */
 
 document
 .querySelectorAll(
-  ".category-btn"
+“.category-btn”
 )
 .forEach(button => {
 
-  button.addEventListener(
-    "click",
-    function(){
+button.addEventListener(
+“click”,
+function(){
 
-      document
-      .querySelectorAll(
-        ".category-btn"
-      )
-      .forEach(btn =>
-        btn.classList.remove(
-          "active"
-        )
-      );
+document
+.querySelectorAll(
+“.category-btn”
+)
+.forEach(btn =>
+btn.classList.remove(
+“active”
+)
+);
 
-      this.classList.add(
-        "active"
-      );
+this.classList.add(
+“active”
+);
 
-      currentCategory =
-        this.dataset.category;
+currentCategory =
+this.dataset.category;
 
-      renderPosts();
+renderHomepage();
 
-    }
-  );
+}
+);
 
 });
 
-
 /* =========================
-   LIKE
+LIKE
 ========================= */
 
 async function likePost(
-  postId,
-  button
+postId,
+button
 ){
 
-  const visitorId =
-    getVisitorId();
+const visitorId =
+getVisitorId();
 
-  const {
-    data:existing
-  } =
-    await supabaseClient
-    .from("post_likes")
-    .select("id")
-    .eq(
-      "post_id",
-      postId
-    )
-    .eq(
-      "visitor_id",
-      visitorId
-    )
-    .maybeSingle();
+const {
+data:existing
+} =
+await supabaseClient
+.from(“post_likes”)
+.select(“id”)
+.eq(
+“post_id”,
+postId
+)
+.eq(
+“visitor_id”,
+visitorId
+)
+.maybeSingle();
 
-  if(existing){
+if(existing){
 
-    await supabaseClient
-    .from("post_likes")
-    .delete()
-    .eq(
-      "id",
-      existing.id
-    );
+await supabaseClient
+.from(“post_likes”)
+.delete()
+.eq(
+“id”,
+existing.id
+);
 
-  }else{
+}else{
 
-    await supabaseClient
-    .from("post_likes")
-    .insert({
-      post_id:postId,
-      visitor_id:visitorId
-    });
-
-  }
-
-  loadLikeCount(
-    postId,
-    button
-  );
+await supabaseClient
+.from(“post_likes”)
+.insert({
+post_id:postId,
+visitor_id:visitorId
+});
 
 }
 
+loadLikeCount(
+postId,
+button
+);
+
+}
 
 async function loadLikeCount(
-  postId,
-  button
+postId,
+button
 ){
 
-  const { count } =
-    await supabaseClient
-    .from("post_likes")
-    .select("*",{
-      count:"exact",
-      head:true
-    })
-    .eq(
-      "post_id",
-      postId
-    );
+const { count } =
+await supabaseClient
+.from(“post_likes”)
+.select(”*”,{
+count:“exact”,
+head:true
+})
+.eq(
+“post_id”,
+postId
+);
 
-  button.innerHTML =
-    `👍 <span>${
-      count || 0
-    }</span>`;
+button.innerHTML =
+👍 <span>${ count || 0 }</span>;
 
 }
 
-
 /* =========================
-   VISITOR ID
+VISITOR ID
 ========================= */
 
 function getVisitorId(){
 
-  let id =
-    localStorage.getItem(
-      "mk_visitor_id"
-    );
+let id =
+localStorage.getItem(
+“mk_visitor_id”
+);
 
-  if(!id){
+if(!id){
 
-    id =
-      crypto.randomUUID();
+id =
+crypto.randomUUID();
 
-    localStorage.setItem(
-      "mk_visitor_id",
-      id
-    );
-
-  }
-
-  return id;
+localStorage.setItem(
+“mk_visitor_id”,
+id
+);
 
 }
 
+return id;
+
+}
 
 /* =========================
-   COMMENTS
+COMMENTS
 ========================= */
 
-function toggleComments(
-  postId
+function toggleComments(postId){
+
+const box =
+document.getElementById(
+comments-${postId}
+);
+
+box.style.display =
+box.style.display === “block”
+? “none”
+: “block”;
+
+if(
+box.style.display === “block”
 ){
 
-  const box =
-    document.getElementById(
-      `comments-${postId}`
-    );
-
-  box.style.display =
-    box.style.display === "block"
-      ? "none"
-      : "block";
-
-  if(
-    box.style.display ===
-    "block"
-  ){
-
-    loadComments(postId);
-
-  }
+loadComments(postId);
 
 }
 
+}
 
-async function submitComment(
-  postId
-){
+async function submitComment(postId){
 
-  const name =
-    document.getElementById(
-      `name-${postId}`
-    ).value.trim();
+const name =
+document.getElementById(
+name-${postId}
+).value.trim();
 
-  const comment =
-    document.getElementById(
-      `comment-${postId}`
-    ).value.trim();
+const comment =
+document.getElementById(
+comment-${postId}
+).value.trim();
 
-  if(!name || !comment){
+if(!name || !comment){
 
-    alert(
-      "Ka cika sunanka da comment."
-    );
+alert(
+“Ka cika sunanka da comment.”
+);
 
-    return;
-
-  }
-
-  const visitorId =
-    getVisitorId();
-
-  const { error } =
-    await supabaseClient
-    .from("post_comments")
-    .insert({
-      post_id:postId,
-      visitor_id:visitorId,
-      name:name,
-      comment:comment
-    });
-
-  if(error){
-
-    console.error(error);
-
-    alert(
-      "An kasa tura comment."
-    );
-
-    return;
-
-  }
-
-  document.getElementById(
-    `name-${postId}`
-  ).value = "";
-
-  document.getElementById(
-    `comment-${postId}`
-  ).value = "";
-
-  loadComments(postId);
+return;
 
 }
 
+const visitorId =
+getVisitorId();
 
-async function loadComments(
-  postId
-){
+const { error } =
+await supabaseClient
+.from(“post_comments”)
+.insert({
+post_id:postId,
+visitor_id:visitorId,
+name:name,
+comment:comment
+});
 
-  const list =
-    document.getElementById(
-      `comments-list-${postId}`
-    );
+if(error){
 
-  const countElement =
-    document.getElementById(
-      `comment-count-${postId}`
-    );
+console.error(error);
 
-  const { data,error } =
-    await supabaseClient
-    .from("post_comments")
-    .select(
-      "id,name,comment,created_at"
-    )
-    .eq(
-      "post_id",
-      postId
-    )
-    .order(
-      "created_at",
-      {
-        ascending:false
-      }
-    );
+alert(
+“An kasa tura comment.”
+);
 
-  if(error){
-
-    console.error(error);
-
-    return;
-
-  }
-
-  countElement.textContent =
-    data.length;
-
-  list.innerHTML =
-    data
-    .map(
-      c => `
-
-        <div class="comment-item">
-
-          <div class="comment-name">
-
-            ${escapeHtml(
-              c.name
-            )}
-
-          </div>
-
-          <div>
-
-            ${escapeHtml(
-              c.comment
-            )}
-
-          </div>
-
-        </div>
-
-      `
-    )
-    .join("");
+return;
 
 }
 
+document.getElementById(
+name-${postId}
+).value = “”;
+
+document.getElementById(
+comment-${postId}
+).value = “”;
+
+loadComments(postId);
+
+}
+
+async function loadComments(postId){
+
+const list =
+document.getElementById(
+comments-list-${postId}
+);
+
+const countElement =
+document.getElementById(
+comment-count-${postId}
+);
+
+const { data,error } =
+await supabaseClient
+.from(“post_comments”)
+.select(
+“id,name,comment,created_at”
+)
+.eq(
+“post_id”,
+postId
+)
+.order(
+“created_at”,
+{
+ascending:false
+}
+);
+
+if(error){
+
+console.error(error);
+
+return;
+
+}
+
+countElement.textContent =
+data.length;
+
+list.innerHTML =
+data.map(
+c => `
+
+<div class="comment-item">
+<div class="comment-name">
+${escapeHtml(c.name)}
+</div>
+<div>
+${escapeHtml(c.comment)}
+</div>
+</div>
+
+`
+).join(””);
+
+}
 
 async function loadCommentCount(
-  postId,
-  element
+postId,
+element
 ){
 
-  const { count } =
-    await supabaseClient
-    .from("post_comments")
-    .select("*",{
-      count:"exact",
-      head:true
-    })
-    .eq(
-      "post_id",
-      postId
-    );
+const { count } =
+await supabaseClient
+.from(“post_comments”)
+.select(”*”,{
+count:“exact”,
+head:true
+})
+.eq(
+“post_id”,
+postId
+);
 
-  element.textContent =
-    count || 0;
+element.textContent =
+count || 0;
 
 }
-
 
 /* =========================
-   SHARE
+SHARE
 ========================= */
 
-async function sharePost(
-  postId
-){
+async function sharePost(postId){
 
-  const post =
-    allPosts.find(
-      p =>
-        Number(p.id) ===
-        Number(postId)
-    );
+const post =
+allPosts.find(
+p =>
+Number(p.id) ===
+Number(postId)
+);
 
-  if(!post){
-    return;
-  }
+if(!post){
+return;
+}
 
-  const url =
-    `${location.origin}${location.pathname}#post-${post.id}`;
+const url =
+${location.origin}${location.pathname}#post-${post.id};
 
-  const shareData = {
+const shareData = {
 
-    title:
-      post.Title,
+title:
+post.Title,
 
-    text:
-      `${post.Title}\n\nMK Youth Mobilizers Media`,
+text:
+${post.Title}\n\nMK Youth Mobilizers Media,
 
-    url:url
+url:url
 
-  };
+};
 
-  if(
-    navigator.share
-  ){
+if(navigator.share){
 
-    try{
+try{
 
-      await navigator.share(
-        shareData
-      );
+await navigator.share(
+shareData
+);
 
-      return;
+return;
 
-    }catch(e){}
-
-  }
-
-  try{
-
-    await navigator.clipboard.writeText(
-      url
-    );
-
-    alert(
-      "An kwafi link din post."
-    );
-
-  }catch(e){
-
-    window.open(
-      `https://wa.me/?text=${
-        encodeURIComponent(
-          post.Title +
-          "\n" +
-          url
-        )
-      }`,
-      "_blank"
-    );
-
-  }
+}catch(e){}
 
 }
 
+try{
+
+await navigator.clipboard.writeText(
+url
+);
+
+alert(
+“An kwafi link din post.”
+);
+
+}catch(e){
+
+window.open(
+https://wa.me/?text=${ encodeURIComponent( post.Title + "\n" + url ) },
+“_blank”
+);
+
+}
+
+}
 
 /* =========================
-   HELPERS
+HELPERS
 ========================= */
 
-function formatDate(
-  dateString
-){
+function formatDate(dateString){
 
-  if(!dateString){
-    return "";
-  }
-
-  const date =
-    new Date(dateString);
-
-  return date.toLocaleString(
-    "ha-NG",
-    {
-      day:"2-digit",
-      month:"long",
-      year:"numeric",
-      hour:"2-digit",
-      minute:"2-digit"
-    }
-  );
-
+if(!dateString){
+return “”;
 }
 
+const date =
+new Date(dateString);
+
+return date.toLocaleString(
+“ha-NG”,
+{
+day:“2-digit”,
+month:“long”,
+year:“numeric”,
+hour:“2-digit”,
+minute:“2-digit”
+}
+);
+
+}
 
 function makePreview(
-  text,
-  words
+text,
+words
 ){
 
-  if(!text){
-    return "";
-  }
+if(!text){
+return “”;
+}
 
-  const arr =
-    text
-    .trim()
-    .split(/\s+/);
+const arr =
+text.trim().split(/\s+/);
 
-  if(
-    arr.length <= words
-  ){
+if(arr.length <= words){
+return text;
+}
 
-    return text;
-
-  }
-
-  return (
-    arr
-    .slice(0,words)
-    .join(" ") +
-    "..."
-  );
+return (
+arr
+.slice(0,words)
+.join(” “) +
+“…”
+);
 
 }
 
+function isVideo(url){
 
-function isVideo(
-  url
-){
+if(!url){
+return false;
+}
 
-  if(!url){
-    return false;
-  }
+const clean =
+url
+.split(”?”)[0]
+.toLowerCase();
 
-  const clean =
-    url
-    .split("?")[0]
-    .toLowerCase();
-
-  return (
-    clean.endsWith(".mp4") ||
-    clean.endsWith(".webm") ||
-    clean.endsWith(".mov") ||
-    clean.endsWith(".m4v")
-  );
+return (
+clean.endsWith(”.mp4”) ||
+clean.endsWith(”.webm”) ||
+clean.endsWith(”.mov”) ||
+clean.endsWith(”.m4v”)
+);
 
 }
 
+function escapeHtml(value){
 
-function escapeHtml(
-  value
+if(
+value === null ||
+value === undefined
 ){
 
-  if(
-    value === null ||
-    value === undefined
-  ){
-
-    return "";
-
-  }
-
-  return String(value)
-    .replace(
-      /&/g,
-      "&amp;"
-    )
-    .replace(
-      /</g,
-      "&lt;"
-    )
-    .replace(
-      />/g,
-      "&gt;"
-    )
-    .replace(
-      /"/g,
-      "&quot;"
-    )
-    .replace(
-      /'/g,
-      "&#039;"
-    );
+return “”;
 
 }
 
+return String(value)
+.replace(/&/g,”&”)
+.replace(/</g,”<”)
+.replace(/>/g,”>”)
+.replace(/”/g,”"”)
+.replace(/’/g,”'”);
+
+}
 
 /* =========================
-   HASH
+HASH
 ========================= */
 
 function openHashPost(){
 
-  if(
-    location.hash.startsWith(
-      "#post-"
-    )
-  ){
+if(
+location.hash.startsWith(
+“#post-”
+)
+){
 
-    const id =
-      location.hash.replace(
-        "#post-",
-        ""
-      );
+const id =
+location.hash.replace(
+“#post-”,
+“”
+);
 
-    const post =
-      allPosts.find(
-        p =>
-          String(p.id) ===
-          String(id)
-      );
+const post =
+allPosts.find(
+p =>
+String(p.id) ===
+String(id)
+);
 
-    if(post){
+if(post){
 
-      openArticle(post);
-
-    }
-
-  }
+openArticle(post);
 
 }
 
+}
+
+}
 
 /* =========================
-   START
+START
 ========================= */
 
 async function start(){
 
-  await countVisitor();
+await countVisitor();
 
-  await loadLive();
+await loadLive();
 
-  await loadPosts();
+await loadPosts();
 
-  await loadMostRead();
+await loadMostRead();
 
-  openHashPost();
+openHashPost();
 
 }
-
 
 start();
 
 </script>
-
 </body>
 </html>
