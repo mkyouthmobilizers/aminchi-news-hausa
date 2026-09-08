@@ -121,8 +121,12 @@ nav{
 }
 
 @keyframes ticker{
-  from{transform:translateX(100%)}
-  to{transform:translateX(-100%)}
+  from{
+    transform:translateX(100%);
+  }
+  to{
+    transform:translateX(-100%);
+  }
 }
 
 .container{
@@ -153,12 +157,12 @@ nav{
   border-radius:10px;
   overflow:hidden;
   box-shadow:0 2px 8px rgba(0,0,0,.08);
+  cursor:pointer;
 }
 
-.hero-main img,
-.hero-side img{
+.hero-main img{
   width:100%;
-  height:260px;
+  height:300px;
   object-fit:cover;
 }
 
@@ -168,7 +172,7 @@ nav{
 }
 
 .hero-main h2{
-  font-size:26px;
+  font-size:27px;
   margin:8px 0;
 }
 
@@ -177,11 +181,14 @@ nav{
 }
 
 .hero-side img{
+  width:100%;
   height:130px;
+  object-fit:cover;
 }
 
 .hero-side h3{
   font-size:17px;
+  margin-top:7px;
 }
 
 .section-title{
@@ -222,6 +229,7 @@ nav{
 
 .trending-card h3{
   font-size:15px;
+  line-height:1.35;
 }
 
 .news-grid{
@@ -260,6 +268,7 @@ nav{
 .card h3{
   font-size:19px;
   margin-bottom:8px;
+  line-height:1.35;
 }
 
 .preview{
@@ -467,6 +476,7 @@ footer{
 }
 
 @media(max-width:900px){
+
   .hero{
     grid-template-columns:1fr;
   }
@@ -481,6 +491,7 @@ footer{
 }
 
 @media(max-width:600px){
+
   .header-inner{
     flex-wrap:wrap;
   }
@@ -511,173 +522,305 @@ footer{
 <body>
 
 <header>
+
   <div class="header-inner">
 
     <div class="logo">
-      <img src="561F33DB-6D50-45C9-8940-5E77FF098DDE.png" alt="MK Youth Mobilizers">
-      <h1>MK Youth Mobilizers<br><span>Media Team Tarauni</span></h1>
+
+      <img
+        src="561F33DB-6D50-45C9-8940-5E77FF098DDE.png"
+        alt="MK Youth Mobilizers"
+      >
+
+      <h1>
+        MK Youth Mobilizers<br>
+        <span>Media Team Tarauni</span>
+      </h1>
+
     </div>
 
     <div class="search">
+
       <input
         type="search"
         id="searchInput"
         placeholder="🔎 Search news..."
         oninput="handleSearch()"
       >
+
     </div>
 
   </div>
+
 </header>
 
+
 <nav>
+
   <div class="nav-inner">
 
-    <button class="active" onclick="filterCategory('Duka',this)">
+    <button
+      class="active"
+      onclick="filterCategory('Duka',this)"
+    >
       🏠 Duka
     </button>
 
-    <button onclick="filterCategory('Labarai',this)">
+    <button
+      onclick="filterCategory('Labarai',this)"
+    >
       📰 Labarai
     </button>
 
-    <button onclick="filterCategory('Siyasa',this)">
+    <button
+      onclick="filterCategory('Siyasa',this)"
+    >
       🏛️ Siyasa
     </button>
 
-    <button onclick="filterCategory('Wasanni',this)">
+    <button
+      onclick="filterCategory('Wasanni',this)"
+    >
       ⚽ Wasanni
     </button>
 
-    <button onclick="filterCategory('Nishaɗi',this)">
+    <button
+      onclick="filterCategory('Nishaɗi',this)"
+    >
       🎤 Nishaɗi
     </button>
 
-    <button onclick="filterCategory('Hotuna',this)">
+    <button
+      onclick="filterCategory('Hotuna',this)"
+    >
       📸 Hotuna
     </button>
 
-    <button onclick="filterCategory('Bidiyo',this)">
+    <button
+      onclick="filterCategory('Bidiyo',this)"
+    >
       🎥 Bidiyo
     </button>
 
   </div>
+
 </nav>
 
+
 <div class="ticker">
+
   <div class="ticker-inner">
-    <span class="ticker-text" id="tickerText">
+
+    <span
+      class="ticker-text"
+      id="tickerText"
+    >
       🔴 BREAKING NEWS — MK Youth Mobilizers Media Team Tarauni
     </span>
+
   </div>
+
 </div>
+
 
 <main class="container">
 
   <div class="visitor-box">
+
     👥 Visitors:
-    <strong id="visitorCount">10,000</strong>
+    <strong id="visitorCount">
+      10,000
+    </strong>
+
   </div>
 
-  <div class="live-box" id="liveBox">
+
+  <div
+    class="live-box"
+    id="liveBox"
+  >
+
     🔴 <strong>YouTube LIVE</strong>
-    <p id="liveText">Live stream information will appear here.</p>
+
+    <p id="liveText">
+      Live stream information will appear here.
+    </p>
+
     <a
       href="https://www.youtube.com/@officialsyouseep7865"
       target="_blank"
     >
       ▶ Visit YouTube Channel
     </a>
+
   </div>
+
 
   <section id="heroSection"></section>
 
-  <div class="section-title">
-    <h2>🔥 Trending News</h2>
-  </div>
-
-  <section id="trendingSection" class="trending"></section>
 
   <div class="section-title">
-    <h2>📰 Latest News</h2>
+
+    <h2>
+      🔥 Trending News
+    </h2>
+
   </div>
 
-  <section id="latestSection" class="news-grid"></section>
+
+  <section
+    id="trendingSection"
+    class="trending"
+  ></section>
+
+
+  <div class="section-title">
+
+    <h2>
+      📰 Latest News
+    </h2>
+
+  </div>
+
+
+  <section
+    id="latestSection"
+    class="news-grid"
+  ></section>
+
 
   <div class="load-more-wrap">
-    <button id="loadMoreBtn" onclick="loadMorePosts()">
+
+    <button
+      id="loadMoreBtn"
+      onclick="loadMorePosts()"
+    >
       Load More News
     </button>
+
   </div>
+
 
   <section class="most-read">
 
     <div class="most-read-box">
+
       <div class="section-title">
-        <h2>📅 Most Read Today</h2>
+
+        <h2>
+          📅 Most Read Today
+        </h2>
+
       </div>
 
       <div id="mostReadToday"></div>
+
     </div>
 
+
     <div class="most-read-box">
+
       <div class="section-title">
-        <h2>🗓️ Most Read This Week</h2>
+
+        <h2>
+          🗓️ Most Read This Week
+        </h2>
+
       </div>
 
       <div id="mostReadWeek"></div>
+
     </div>
 
   </section>
 
 </main>
 
-<div class="modal" id="articleModal">
+
+<div
+  class="modal"
+  id="articleModal"
+>
 
   <div class="modal-box">
 
     <div class="modal-header">
 
-      <img id="articleImage" src="" alt="">
+      <img
+        id="articleImage"
+        src=""
+        alt=""
+      >
 
-      <button class="close" onclick="closeArticle()">
+      <button
+        class="close"
+        onclick="closeArticle()"
+      >
         ×
       </button>
 
     </div>
 
+
     <div class="modal-content">
 
-      <span class="category" id="articleCategory">
+      <span
+        class="category"
+        id="articleCategory"
+      >
         Labarai
       </span>
 
+
       <h2 id="articleTitle"></h2>
 
-      <div class="meta" id="articleMeta"></div>
+
+      <div
+        class="meta"
+        id="articleMeta"
+      ></div>
+
 
       <div class="actions">
+
         <button onclick="likePost()">
-          ❤️ Like <span id="likeCount">0</span>
+
+          ❤️ Like
+          <span id="likeCount">
+            0
+          </span>
+
         </button>
+
 
         <button onclick="sharePost()">
           📤 Share
         </button>
+
       </div>
+
 
       <br>
 
-      <div class="article-text" id="articleContent"></div>
+
+      <div
+        class="article-text"
+        id="articleContent"
+      ></div>
+
 
       <div class="comments">
 
-        <h3>💬 Comments</h3>
+        <h3>
+          💬 Comments
+        </h3>
+
 
         <input
           id="commentName"
           placeholder="Your name"
         >
+
 
         <textarea
           id="commentText"
@@ -685,9 +828,11 @@ footer{
           placeholder="Write a comment..."
         ></textarea>
 
+
         <button onclick="addComment()">
           Post Comment
         </button>
+
 
         <div id="commentsList"></div>
 
@@ -699,10 +844,19 @@ footer{
 
 </div>
 
+
 <footer>
-  <p>© 2026 MK Youth Mobilizers Media Team Tarauni</p>
-  <p>Connecting • Inspiring • Empowering Youth</p>
+
+  <p>
+    © 2026 MK Youth Mobilizers Media Team Tarauni
+  </p>
+
+  <p>
+    Connecting • Inspiring • Empowering Youth
+  </p>
+
 </footer>
+
 
 <script>
 
@@ -720,38 +874,47 @@ const supabaseClient =
 
 
 /* =========================
-   GLOBAL VARIABLES
+   VARIABLES
 ========================= */
 
 let allPosts = [];
 
-let currentCategory = "Duka";
+let currentCategory =
+  "Duka";
 
-let currentSearch = "";
+let currentSearch =
+  "";
 
-let currentArticle = null;
+let currentArticle =
+  null;
 
-const POSTS_PER_PAGE = 10;
+const POSTS_PER_PAGE =
+  10;
 
-let visiblePostCount = POSTS_PER_PAGE;
+let visiblePostCount =
+  POSTS_PER_PAGE;
 
-const STARTING_VISITORS = 10000;
+const STARTING_VISITORS =
+  10000;
 
 
 /* =========================
-   VISITOR COUNTER
+   VISITOR
 ========================= */
 
 function getVisitorId(){
 
   let id =
-    localStorage.getItem("mk_visitor_id");
+    localStorage.getItem(
+      "mk_visitor_id"
+    );
 
   if(!id){
 
     if(
       window.crypto &&
-      typeof window.crypto.randomUUID === "function"
+      typeof window.crypto.randomUUID ===
+      "function"
     ){
 
       id =
@@ -777,6 +940,7 @@ function getVisitorId(){
   }
 
   return id;
+
 }
 
 
@@ -787,8 +951,9 @@ async function countVisitor(){
     const visitorId =
       getVisitorId();
 
-    const { data, error } =
-      await supabaseClient.rpc(
+    const { data,error } =
+      await supabaseClient
+      .rpc(
         "count_visitor",
         {
           visitor_id_input:
@@ -838,7 +1003,7 @@ async function loadPosts(){
 
   try{
 
-    const { data, error } =
+    const { data,error } =
       await supabaseClient
       .from("posts")
       .select(
@@ -885,7 +1050,7 @@ async function loadPosts(){
 
 
 /* =========================
-   FILTER
+   FILTERED POSTS
 ========================= */
 
 function getFilteredPosts(){
@@ -894,7 +1059,8 @@ function getFilteredPosts(){
     [...allPosts];
 
   if(
-    currentCategory !== "Duka"
+    currentCategory !==
+    "Duka"
   ){
 
     posts =
@@ -903,7 +1069,8 @@ function getFilteredPosts(){
           (
             post.category ||
             "Labarai"
-          ) === currentCategory
+          ) ===
+          currentCategory
       );
 
   }
@@ -918,37 +1085,63 @@ function getFilteredPosts(){
       .trim();
 
     posts =
-      posts.filter(post => {
+      posts.filter(
+        post => {
 
-        const title =
-          (
-            post.Title ||
-            ""
-          ).toLowerCase();
+          const title =
+            (
+              post.Title ||
+              ""
+            ).toLowerCase();
 
-        const content =
-          (
-            post.Content ||
-            ""
-          ).toLowerCase();
+          const content =
+            (
+              post.Content ||
+              ""
+            ).toLowerCase();
 
-        const category =
-          (
-            post.category ||
-            ""
-          ).toLowerCase();
+          const category =
+            (
+              post.category ||
+              ""
+            ).toLowerCase();
 
-        return (
-          title.includes(search) ||
-          content.includes(search) ||
-          category.includes(search)
-        );
+          return (
+            title.includes(search) ||
+            content.includes(search) ||
+            category.includes(search)
+          );
 
-      });
+        }
+      );
 
   }
 
   return posts;
+
+}
+
+
+/* =========================
+   IMPORTANT:
+   POSTS USED IN HERO
+   MUST NOT APPEAR IN LATEST
+========================= */
+
+function getLatestPosts(){
+
+  const filtered =
+    getFilteredPosts();
+
+  if(
+    filtered.length <= 3
+  ){
+
+    return [];
+
+  }
+
+  return filtered.slice(3);
 
 }
 
@@ -969,13 +1162,12 @@ function filterCategory(
     .querySelectorAll(
       ".nav-inner button"
     )
-    .forEach(btn => {
-
-      btn.classList.remove(
-        "active"
-      );
-
-    });
+    .forEach(
+      btn =>
+        btn.classList.remove(
+          "active"
+        )
+    );
 
   if(button){
 
@@ -1027,13 +1219,15 @@ function resetPagination(){
 
 function loadMorePosts(){
 
-  const filteredPosts =
-    getFilteredPosts();
+  const latestPosts =
+    getLatestPosts();
 
   if(
     visiblePostCount >=
-    filteredPosts.length
+    latestPosts.length
   ){
+
+    updateLoadMoreButton();
 
     return;
 
@@ -1051,31 +1245,32 @@ function loadMorePosts(){
 
 function updateLoadMoreButton(){
 
-  const btn =
+  const button =
     document.getElementById(
       "loadMoreBtn"
     );
 
-  if(!btn){
+  if(!button){
 
     return;
 
   }
 
-  const filteredPosts =
-    getFilteredPosts();
+  const latestPosts =
+    getLatestPosts();
 
   if(
+    latestPosts.length === 0 ||
     visiblePostCount >=
-    filteredPosts.length
+    latestPosts.length
   ){
 
-    btn.style.display =
+    button.style.display =
       "none";
 
   }else{
 
-    btn.style.display =
+    button.style.display =
       "inline-block";
 
   }
@@ -1097,6 +1292,10 @@ function renderHomepage(){
 
 }
 
+
+/* =========================
+   HERO
+========================= */
 
 function renderHero(){
 
@@ -1135,7 +1334,12 @@ function renderHero(){
         ${
           main.Image_url
           ?
-          `<img src="${escapeHtml(main.Image_url)}" alt="">`
+          `
+          <img
+            src="${escapeHtml(main.Image_url)}"
+            alt=""
+          >
+          `
           :
           ""
         }
@@ -1143,21 +1347,33 @@ function renderHero(){
         <div class="hero-main-content">
 
           <span class="category">
-            ${escapeHtml(main.category || "Labarai")}
+            ${escapeHtml(
+              main.category ||
+              "Labarai"
+            )}
           </span>
 
           <h2>
-            ${escapeHtml(main.Title)}
+            ${escapeHtml(
+              main.Title
+            )}
           </h2>
 
           <div class="meta">
-            ${formatDate(main.created_at)}
-            • 👁️ ${Number(main.views || 0)}
+            📅 ${formatDate(
+              main.created_at
+            )}
+            • 👁️ ${Number(
+              main.views || 0
+            )}
           </div>
 
           <p class="preview">
             ${escapeHtml(
-              getPreview(main.Content,180)
+              getPreview(
+                main.Content,
+                180
+              )
             )}
           </p>
 
@@ -1165,43 +1381,59 @@ function renderHero(){
 
       </div>
 
+
       <div>
 
         ${
-          side.map(post => `
+          side.map(
+            post =>
+              `
+              <div
+                class="hero-side"
+                onclick="openArticle(${post.id})"
+              >
 
-            <div
-              class="hero-side"
-              onclick="openArticle(${post.id})"
-            >
+                ${
+                  post.Image_url
+                  ?
+                  `
+                  <img
+                    src="${escapeHtml(
+                      post.Image_url
+                    )}"
+                    alt=""
+                  >
+                  `
+                  :
+                  ""
+                }
 
-              ${
-                post.Image_url
-                ?
-                `<img src="${escapeHtml(post.Image_url)}" alt="">`
-                :
-                ""
-              }
+                <div class="hero-side-content">
 
-              <div class="hero-side-content">
+                  <span class="category">
+                    ${escapeHtml(
+                      post.category ||
+                      "Labarai"
+                    )}
+                  </span>
 
-                <span class="category">
-                  ${escapeHtml(post.category || "Labarai")}
-                </span>
+                  <h3>
+                    ${escapeHtml(
+                      post.Title
+                    )}
+                  </h3>
 
-                <h3>
-                  ${escapeHtml(post.Title)}
-                </h3>
+                  <div class="meta">
+                    📅 ${formatDate(
+                      post.created_at
+                    )}
+                  </div>
 
-                <div class="meta">
-                  ${formatDate(post.created_at)}
                 </div>
 
               </div>
-
-            </div>
-
-          `).join("")
+              `
+          ).join("")
         }
 
       </div>
@@ -1242,46 +1474,61 @@ function renderTrending(){
   }
 
   container.innerHTML =
-    posts.map(post => `
+    posts.map(
+      post =>
+        `
+        <div
+          class="trending-card"
+          onclick="openArticle(${post.id})"
+        >
 
-      <div
-        class="trending-card"
-        onclick="openArticle(${post.id})"
-      >
+          ${
+            post.Image_url
+            ?
+            `
+            <img
+              src="${escapeHtml(
+                post.Image_url
+              )}"
+              alt=""
+            >
+            `
+            :
+            ""
+          }
 
-        ${
-          post.Image_url
-          ?
-          `<img src="${escapeHtml(post.Image_url)}" alt="">`
-          :
-          ""
-        }
+          <div>
 
-        <div>
+            <span class="category">
+              ${escapeHtml(
+                post.category ||
+                "Labarai"
+              )}
+            </span>
 
-          <span class="category">
-            ${escapeHtml(post.category || "Labarai")}
-          </span>
+            <h3>
+              ${escapeHtml(
+                post.Title
+              )}
+            </h3>
 
-          <h3>
-            ${escapeHtml(post.Title)}
-          </h3>
+            <div class="meta">
+              🔥 ${Number(
+                post.views || 0
+              )} views
+            </div>
 
-          <div class="meta">
-            🔥 ${Number(post.views || 0)} views
           </div>
 
         </div>
-
-      </div>
-
-    `).join("");
+        `
+    ).join("");
 
 }
 
 
 /* =========================
-   LATEST NEWS
+   LATEST
 ========================= */
 
 function renderLatest(){
@@ -1291,16 +1538,21 @@ function renderLatest(){
       "latestSection"
     );
 
-  const filteredPosts =
-    getFilteredPosts();
+  const latestPosts =
+    getLatestPosts();
 
-  if(!filteredPosts.length){
+  if(!latestPosts.length){
 
     container.innerHTML =
       `
       <div class="empty">
-        <h3>No news found</h3>
-        <p>Try another search or category.</p>
+        <h3>
+          No more news
+        </h3>
+
+        <p>
+          New stories will appear here.
+        </p>
       </div>
       `;
 
@@ -1310,14 +1562,14 @@ function renderLatest(){
 
   }
 
-  const visiblePosts =
-    filteredPosts.slice(
+  const visible =
+    latestPosts.slice(
       0,
       visiblePostCount
     );
 
   container.innerHTML =
-    visiblePosts
+    visible
     .map(
       post =>
         createPostCard(post)
@@ -1333,7 +1585,9 @@ function renderLatest(){
    POST CARD
 ========================= */
 
-function createPostCard(post){
+function createPostCard(
+  post
+){
 
   return `
     <article class="card">
@@ -1341,10 +1595,14 @@ function createPostCard(post){
       ${
         post.Image_url
         ?
-        `<img
-          src="${escapeHtml(post.Image_url)}"
+        `
+        <img
+          src="${escapeHtml(
+            post.Image_url
+          )}"
           alt=""
-        >`
+        >
+        `
         :
         ""
       }
@@ -1352,41 +1610,64 @@ function createPostCard(post){
       <div class="card-content">
 
         <span class="category">
-          ${escapeHtml(post.category || "Labarai")}
+          ${escapeHtml(
+            post.category ||
+            "Labarai"
+          )}
         </span>
 
         <h3>
-          ${escapeHtml(post.Title)}
+          ${escapeHtml(
+            post.Title
+          )}
         </h3>
 
         <div class="meta">
-          📅 ${formatDate(post.created_at)}
-          • 👁️ ${Number(post.views || 0)}
+
+          📅 ${formatDate(
+            post.created_at
+          )}
+
+          • 👁️ ${Number(
+            post.views || 0
+          )}
+
         </div>
 
         <p class="preview">
           ${escapeHtml(
-            getPreview(post.Content,150)
+            getPreview(
+              post.Content,
+              150
+            )
           )}
         </p>
 
         <div class="actions">
 
           <button
-            onclick="event.stopPropagation();likeCard(${post.id})"
+            onclick="
+              event.stopPropagation();
+              likeCard(${post.id})
+            "
           >
             ❤️ Like
           </button>
 
           <button
-            onclick="event.stopPropagation();shareCard(${post.id})"
+            onclick="
+              event.stopPropagation();
+              shareCard(${post.id})
+            "
           >
             📤 Share
           </button>
 
           <button
             class="read-more"
-            onclick="openArticle(${post.id})"
+            onclick="
+              openArticle(${post.id})
+            "
           >
             Read More →
           </button>
@@ -1402,7 +1683,7 @@ function createPostCard(post){
 
 
 /* =========================
-   OPEN ARTICLE
+   ARTICLE
 ========================= */
 
 async function openArticle(
@@ -1438,15 +1719,20 @@ async function openArticle(
   document.getElementById(
     "articleCategory"
   ).textContent =
-    post.category || "Labarai";
+    post.category ||
+    "Labarai";
 
   document.getElementById(
     "articleMeta"
   ).textContent =
     "📅 " +
-    formatDate(post.created_at) +
+    formatDate(
+      post.created_at
+    ) +
     " • 👁️ " +
-    Number(post.views || 0);
+    Number(
+      post.views || 0
+    );
 
   const image =
     document.getElementById(
@@ -1492,7 +1778,7 @@ async function openArticle(
 
 
 /* =========================
-   CLOSE ARTICLE
+   CLOSE
 ========================= */
 
 function closeArticle(){
@@ -1512,7 +1798,7 @@ function closeArticle(){
 
 
 /* =========================
-   POST VIEWS
+   VIEWS
 ========================= */
 
 async function incrementView(
@@ -1529,7 +1815,9 @@ async function incrementView(
       postId;
 
     if(
-      sessionStorage.getItem(key)
+      sessionStorage.getItem(
+        key
+      )
     ){
 
       return;
@@ -1544,16 +1832,20 @@ async function incrementView(
     await supabaseClient
       .from("post_views")
       .insert({
-        post_id:postId,
-        visitor_id:visitorId
+        post_id:
+          postId,
+        visitor_id:
+          visitorId
       });
 
-    await supabaseClient.rpc(
-      "increment_post_view",
-      {
-        post_id_input:postId
-      }
-    );
+    await supabaseClient
+      .rpc(
+        "increment_post_view",
+        {
+          post_id_input:
+            postId
+        }
+      );
 
     const post =
       allPosts.find(
@@ -1565,19 +1857,31 @@ async function incrementView(
     if(post){
 
       post.views =
-        Number(post.views || 0) + 1;
+        Number(
+          post.views || 0
+        ) + 1;
 
     }
 
-    document.getElementById(
-      "articleMeta"
-    ).textContent =
-      "📅 " +
-      formatDate(
-        post.created_at
-      ) +
-      " • 👁️ " +
-      Number(post.views || 0);
+    if(
+      currentArticle &&
+      Number(currentArticle.id) ===
+      Number(postId)
+    ){
+
+      document.getElementById(
+        "articleMeta"
+      ).textContent =
+        "📅 " +
+        formatDate(
+          post.created_at
+        ) +
+        " • 👁️ " +
+        Number(
+          post.views || 0
+        );
+
+    }
 
     renderTrending();
 
@@ -1603,7 +1907,7 @@ async function loadLikes(
 
   try{
 
-    const { count, error } =
+    const { count,error } =
       await supabaseClient
       .from("post_likes")
       .select(
@@ -1627,12 +1931,14 @@ async function loadLikes(
     document.getElementById(
       "likeCount"
     ).textContent =
-      Number(count || 0);
+      Number(
+        count || 0
+      );
 
   }catch(error){
 
     console.error(
-      "Like load error:",
+      "Like error:",
       error
     );
 
@@ -1691,7 +1997,9 @@ async function likePost(){
 }
 
 
-function likeCard(postId){
+function likeCard(
+  postId
+){
 
   openArticle(
     postId
@@ -1699,6 +2007,10 @@ function likeCard(postId){
 
 }
 
+
+/* =========================
+   SHARE
+========================= */
 
 async function sharePost(){
 
@@ -1730,9 +2042,8 @@ async function sharePost(){
 
     }else{
 
-      await navigator.clipboard.writeText(
-        url
-      );
+      await navigator.clipboard
+        .writeText(url);
 
       alert(
         "Link copied!"
@@ -1742,16 +2053,16 @@ async function sharePost(){
 
   }catch(error){
 
-    console.log(
-      error
-    );
+    console.log(error);
 
   }
 
 }
 
 
-function shareCard(postId){
+function shareCard(
+  postId
+){
 
   const post =
     allPosts.find(
@@ -1777,8 +2088,10 @@ function shareCard(postId){
   ){
 
     navigator.share({
-      title:post.Title,
-      text:post.Content,
+      title:
+        post.Title,
+      text:
+        post.Content,
       url:url
     });
 
@@ -1816,7 +2129,7 @@ async function loadComments(
 
   try{
 
-    const { data, error } =
+    const { data,error } =
       await supabaseClient
       .from("post_comments")
       .select("*")
@@ -1837,7 +2150,10 @@ async function loadComments(
 
     }
 
-    if(!data || !data.length){
+    if(
+      !data ||
+      !data.length
+    ){
 
       list.innerHTML =
         "<p>No comments yet.</p>";
@@ -1847,30 +2163,39 @@ async function loadComments(
     }
 
     list.innerHTML =
-      data.map(comment => `
+      data
+      .map(
+        comment =>
+          `
+          <div class="comment">
 
-        <div class="comment">
+            <strong>
+              ${escapeHtml(
+                comment.name
+              )}
+            </strong>
 
-          <strong>
-            ${escapeHtml(comment.name)}
-          </strong>
+            <div>
+              ${escapeHtml(
+                comment.comment
+              )}
+            </div>
 
-          <div>
-            ${escapeHtml(comment.comment)}
+            <small>
+              ${formatDate(
+                comment.created_at
+              )}
+            </small>
+
           </div>
-
-          <small>
-            ${formatDate(comment.created_at)}
-          </small>
-
-        </div>
-
-      `).join("");
+          `
+      )
+      .join("");
 
   }catch(error){
 
     console.error(
-      "Comment load error:",
+      "Comments error:",
       error
     );
 
@@ -1900,7 +2225,10 @@ async function addComment(){
       "commentText"
     ).value.trim();
 
-  if(!name || !comment){
+  if(
+    !name ||
+    !comment
+  ){
 
     alert(
       "Please enter your name and comment."
@@ -1952,7 +2280,7 @@ async function addComment(){
     );
 
     alert(
-      "Comment failed. Please try again."
+      "Comment failed."
     );
 
   }
@@ -1991,11 +2319,13 @@ async function loadMostReadBox(
 
   try{
 
-    const { data, error } =
-      await supabaseClient.rpc(
+    const { data,error } =
+      await supabaseClient
+      .rpc(
         "get_most_read_posts",
         {
-          days_back:days
+          days_back:
+            days
         }
       );
 
@@ -2005,7 +2335,10 @@ async function loadMostReadBox(
 
     }
 
-    if(!data || !data.length){
+    if(
+      !data ||
+      !data.length
+    ){
 
       box.innerHTML =
         "<p>No views yet.</p>";
@@ -2016,64 +2349,77 @@ async function loadMostReadBox(
 
     const posts =
       data
-      .map(item => {
+      .map(
+        item => {
 
-        const post =
-          allPosts.find(
-            p =>
-              Number(p.id) ===
-              Number(item.post_id)
-          );
+          const post =
+            allPosts.find(
+              p =>
+                Number(p.id) ===
+                Number(item.post_id)
+            );
 
-        if(!post){
+          if(!post){
 
-          return null;
+            return null;
+
+          }
+
+          return {
+            ...post,
+            readViews:
+              item.view_count
+          };
 
         }
-
-        return {
-          ...post,
-          readViews:
-            item.view_count
-        };
-
-      })
+      )
       .filter(Boolean);
 
     box.innerHTML =
-      posts.map(post => `
+      posts
+      .map(
+        post =>
+          `
+          <div
+            class="most-read-item"
+            onclick="openArticle(${post.id})"
+          >
 
-        <div
-          class="most-read-item"
-          onclick="openArticle(${post.id})"
-        >
+            ${
+              post.Image_url
+              ?
+              `
+              <img
+                src="${escapeHtml(
+                  post.Image_url
+                )}"
+                alt=""
+              >
+              `
+              :
+              ""
+            }
 
-          ${
-            post.Image_url
-            ?
-            `<img
-              src="${escapeHtml(post.Image_url)}"
-              alt=""
-            >`
-            :
-            ""
-          }
+            <div>
 
-          <div>
+              <strong>
+                ${escapeHtml(
+                  post.Title
+                )}
+              </strong>
 
-            <strong>
-              ${escapeHtml(post.Title)}
-            </strong>
+              <div class="meta">
+                👁️ ${Number(
+                  post.readViews || 0
+                )} reads
+              </div>
 
-            <div class="meta">
-              👁️ ${Number(post.readViews || 0)} reads
             </div>
 
           </div>
-
-        </div>
-
-      `).join("");
+          `
+      )
+      .join("");
 
   }catch(error){
 
@@ -2091,17 +2437,14 @@ async function loadMostReadBox(
 
 
 /* =========================
-   YOUTUBE LIVE
+   LIVE
 ========================= */
 
 async function loadLive(){
 
-  const liveText =
-    document.getElementById(
-      "liveText"
-    );
-
-  liveText.textContent =
+  document.getElementById(
+    "liveText"
+  ).textContent =
     "Follow our YouTube channel for live updates.";
 
 }
@@ -2193,7 +2536,7 @@ function escapeHtml(
 
 
 /* =========================
-   HASH OPEN
+   HASH
 ========================= */
 
 function openHashPost(){
@@ -2244,12 +2587,11 @@ async function start(){
 
 }
 
-
 start();
 
 
 /* =========================
-   CLOSE MODAL WHEN OUTSIDE
+   MODAL CLICK
 ========================= */
 
 document.getElementById(
@@ -2259,8 +2601,7 @@ document.getElementById(
   function(event){
 
     if(
-      event.target ===
-      this
+      event.target === this
     ){
 
       closeArticle();
