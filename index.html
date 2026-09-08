@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ha">
 <head>
 
 <meta charset="UTF-8">
@@ -7,7 +7,7 @@
 <meta name="viewport"
 content="width=device-width, initial-scale=1.0">
 
-<title>MK Youth Mobilizers Media Team Tarauni</title>
+<title>AMINCHI NEWS HAUSA</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -62,7 +62,7 @@ header{
 }
 
 .logo h1{
-  font-size:20px;
+  font-size:22px;
   line-height:1.2;
 }
 
@@ -123,9 +123,8 @@ nav{
 .ticker{
   background:#c40000;
   color:#fff;
-  padding:0;
   overflow:hidden;
-  min-height:38px;
+  min-height:40px;
 }
 
 .ticker-inner{
@@ -133,7 +132,7 @@ nav{
   margin:auto;
   display:flex;
   align-items:center;
-  min-height:38px;
+  min-height:40px;
   overflow:hidden;
 }
 
@@ -141,7 +140,7 @@ nav{
   background:#111;
   color:#fff;
   font-weight:bold;
-  padding:10px 15px;
+  padding:11px 15px;
   min-width:145px;
   text-align:center;
   z-index:2;
@@ -195,6 +194,29 @@ nav{
   border-radius:8px;
   display:inline-block;
   margin-bottom:18px;
+}
+
+
+/* =========================
+   LIVE
+========================= */
+
+.live-box{
+  background:#111;
+  color:#fff;
+  padding:20px;
+  border-radius:10px;
+  margin-bottom:25px;
+}
+
+.live-box a{
+  display:inline-block;
+  margin-top:10px;
+  background:#c40000;
+  color:#fff;
+  padding:10px 15px;
+  border-radius:5px;
+  text-decoration:none;
 }
 
 
@@ -454,29 +476,6 @@ nav{
 
 
 /* =========================
-   LIVE
-========================= */
-
-.live-box{
-  background:#111;
-  color:#fff;
-  padding:20px;
-  border-radius:10px;
-  margin:25px 0;
-}
-
-.live-box a{
-  display:inline-block;
-  margin-top:10px;
-  background:#c40000;
-  color:#fff;
-  padding:10px 15px;
-  border-radius:5px;
-  text-decoration:none;
-}
-
-
-/* =========================
    EMPTY
 ========================= */
 
@@ -617,7 +616,7 @@ footer{
   }
 
   .logo h1{
-    font-size:16px;
+    font-size:17px;
   }
 
   .search{
@@ -663,16 +662,12 @@ footer{
 
       <img
         src="561F33DB-6D50-45C9-8940-5E77FF098DDE.png"
-        alt="MK Youth Mobilizers"
+        alt="AMINCHI NEWS HAUSA"
       >
 
       <h1>
 
-        MK Youth Mobilizers<br>
-
-        <span>
-          Media Team Tarauni
-        </span>
+        AMINCHI NEWS HAUSA
 
       </h1>
 
@@ -684,7 +679,7 @@ footer{
       <input
         type="search"
         id="searchInput"
-        placeholder="🔎 Search news..."
+        placeholder="🔎 Nemo labarai..."
         oninput="handleSearch()"
       >
 
@@ -696,7 +691,7 @@ footer{
 
 
 <!-- =========================
-     NAV
+     NAVIGATION
 ========================= -->
 
 <nav>
@@ -752,7 +747,7 @@ footer{
 
 
 <!-- =========================
-     BREAKING NEWS TICKER
+     BREAKING NEWS
 ========================= -->
 
 <div
@@ -815,7 +810,7 @@ footer{
     </strong>
 
     <p id="liveText">
-      Live stream information will appear here.
+      Follow AMINCHI NEWS HAUSA for live updates.
     </p>
 
     <a
@@ -1029,21 +1024,21 @@ footer{
 
         <input
           id="commentName"
-          placeholder="Your name"
+          placeholder="Sunanka"
         >
 
 
         <textarea
           id="commentText"
           rows="4"
-          placeholder="Write a comment..."
+          placeholder="Rubuta comment..."
         ></textarea>
 
 
         <button
           onclick="addComment()"
         >
-          Post Comment
+          Tura Comment
         </button>
 
 
@@ -1067,11 +1062,11 @@ footer{
 <footer>
 
   <p>
-    © 2026 MK Youth Mobilizers Media Team Tarauni
+    © 2026 AMINCHI NEWS HAUSA
   </p>
 
   <p>
-    Connecting • Inspiring • Empowering Youth
+    Labaran Hausa • Siyasa • Wasanni • Nishaɗi
   </p>
 
 </footer>
@@ -1129,7 +1124,7 @@ function getVisitorId(){
 
   let id =
     localStorage.getItem(
-      "mk_visitor_id"
+      "aminchi_visitor_id"
     );
 
   if(!id){
@@ -1156,7 +1151,7 @@ function getVisitorId(){
     }
 
     localStorage.setItem(
-      "mk_visitor_id",
+      "aminchi_visitor_id",
       id
     );
 
@@ -1270,11 +1265,11 @@ async function loadPosts(){
       <div class="empty">
 
         <h3>
-          Unable to load posts
+          An kasa loda labarai
         </h3>
 
         <p>
-          Please try again later.
+          A sake gwadawa daga baya.
         </p>
 
       </div>
@@ -1432,7 +1427,7 @@ function getFilteredPosts(){
 
 
 /* =========================
-   LATEST POSTS
+   LATEST
 ========================= */
 
 function getLatestPosts(){
@@ -1456,7 +1451,7 @@ function getLatestPosts(){
 
 
 /* =========================
-   CATEGORY FILTER
+   CATEGORY
 ========================= */
 
 function filterCategory(
@@ -1502,14 +1497,10 @@ function filterCategory(
 
 function handleSearch(){
 
-  const input =
+  currentSearch =
     document.getElementById(
       "searchInput"
-    );
-
-
-  currentSearch =
-    input.value;
+    ).value;
 
 
   resetPagination();
@@ -1566,13 +1557,6 @@ function updateLoadMoreButton(){
     document.getElementById(
       "loadMoreBtn"
     );
-
-
-  if(!button){
-
-    return;
-
-  }
 
 
   const latestPosts =
@@ -1740,7 +1724,6 @@ function renderHero(){
 
       <div>
 
-
         ${
           side.map(
             post =>
@@ -1818,7 +1801,6 @@ function renderHero(){
           ).join("")
         }
 
-
       </div>
 
     </div>
@@ -1848,16 +1830,6 @@ function renderTrending(){
           Number(a.views || 0)
       )
       .slice(0,5);
-
-
-  if(!posts.length){
-
-    container.innerHTML =
-      "";
-
-    return;
-
-  }
 
 
   container.innerHTML =
@@ -1965,12 +1937,8 @@ function renderLatest(){
       <div class="empty">
 
         <h3>
-          No more news
+          Babu sauran labarai
         </h3>
-
-        <p>
-          New stories will appear here.
-        </p>
 
       </div>
 
@@ -2123,7 +2091,7 @@ function createPostCard(
               openArticle(${post.id})
             "
           >
-            Read More →
+            Karanta →
           </button>
 
 
@@ -2190,19 +2158,12 @@ async function openArticle(
     );
 
 
-  if(
+  breaking.style.display =
     post.breaking_news === true
-  ){
-
-    breaking.style.display =
-      "inline-block";
-
-  }else{
-
-    breaking.style.display =
-      "none";
-
-  }
+    ?
+    "inline-block"
+    :
+    "none";
 
 
   document.getElementById(
@@ -2290,7 +2251,7 @@ function closeArticle(){
 
 
 /* =========================
-   VIEWS
+   INCREMENT VIEW
 ========================= */
 
 async function incrementView(
@@ -2304,7 +2265,7 @@ async function incrementView(
 
 
     const key =
-      "mk_viewed_" +
+      "aminchi_viewed_" +
       postId;
 
 
@@ -2565,7 +2526,7 @@ async function sharePost(){
         .writeText(url);
 
       alert(
-        "Link copied!"
+        "An kwafi link!"
       );
 
     }
@@ -2628,7 +2589,7 @@ function shareCard(
       .then(
         () =>
           alert(
-            "Link copied!"
+            "An kwafi link!"
           )
       );
 
@@ -2652,7 +2613,7 @@ async function loadComments(
 
 
   list.innerHTML =
-    "Loading comments...";
+    "Ana loda comments...";
 
 
   try{
@@ -2686,7 +2647,7 @@ async function loadComments(
     ){
 
       list.innerHTML =
-        "<p>No comments yet.</p>";
+        "<p>Babu comment tukuna.</p>";
 
       return;
 
@@ -2743,7 +2704,7 @@ async function loadComments(
 
 
     list.innerHTML =
-      "<p>Unable to load comments.</p>";
+      "<p>An kasa loda comments.</p>";
 
   }
 
@@ -2777,7 +2738,7 @@ async function addComment(){
   ){
 
     alert(
-      "Please enter your name and comment."
+      "Da fatan ka saka suna da comment."
     );
 
     return;
@@ -2838,7 +2799,7 @@ async function addComment(){
 
 
     alert(
-      "Comment failed."
+      "Comment bai yi ba."
     );
 
   }
@@ -2903,7 +2864,7 @@ async function loadMostReadBox(
     ){
 
       box.innerHTML =
-        "<p>No views yet.</p>";
+        "<p>Babu views tukuna.</p>";
 
       return;
 
@@ -3022,7 +2983,7 @@ async function loadMostReadBox(
 
 
     box.innerHTML =
-      "<p>Unable to load.</p>";
+      "<p>An kasa loda.</p>";
 
   }
 
@@ -3038,7 +2999,7 @@ async function loadLive(){
   document.getElementById(
     "liveText"
   ).textContent =
-    "Follow our YouTube channel for live updates.";
+    "Bi mu AMINCHI NEWS HAUSA domin samun sabbin labarai da live updates.";
 
 }
 
@@ -3090,7 +3051,7 @@ function formatDate(
   return new Date(
     date
   ).toLocaleString(
-    "en-NG",
+    "ha-NG",
     {
 
       dateStyle:"medium",
@@ -3176,6 +3137,28 @@ function openHashPost(){
 
 
 /* =========================
+   MODAL CLICK
+========================= */
+
+document.getElementById(
+  "articleModal"
+).addEventListener(
+  "click",
+  function(event){
+
+    if(
+      event.target === this
+    ){
+
+      closeArticle();
+
+    }
+
+  }
+);
+
+
+/* =========================
    START
 ========================= */
 
@@ -3201,28 +3184,6 @@ async function start(){
 
 
 start();
-
-
-/* =========================
-   MODAL CLICK
-========================= */
-
-document.getElementById(
-  "articleModal"
-).addEventListener(
-  "click",
-  function(event){
-
-    if(
-      event.target === this
-    ){
-
-      closeArticle();
-
-    }
-
-  }
-);
 
 </script>
 
