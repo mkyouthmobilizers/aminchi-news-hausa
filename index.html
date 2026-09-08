@@ -598,17 +598,14 @@ footer{
 
 <body>
 
-<!-- HEADER -->
-
 <header>
 
   <div class="header-inner">
 
     <div class="logo">
 
-      <!-- SABON LOGO -->
       <img
-        src="9D8837D9-17A6-4645-AF4E-5D344B6D8159.png"
+        src="9D8837D9-17A6-4645-AF4E-5D344B6D8159.png?v=2"
         alt="AMINCHI NEWS HAUSA"
       >
 
@@ -633,60 +630,48 @@ footer{
 
 </header>
 
-<!-- NAVIGATION -->
-
 <nav>
 
   <div class="nav-inner">
 
-    <button
-      class="active"
-      onclick="filterCategory('Duka',this)"
-    >
+    <button class="active"
+      onclick="filterCategory('Duka',this)">
       🏠 Duka
     </button>
 
     <button
-      onclick="filterCategory('Labarai',this)"
-    >
+      onclick="filterCategory('Labarai',this)">
       📰 Labarai
     </button>
 
     <button
-      onclick="filterCategory('Siyasa',this)"
-    >
+      onclick="filterCategory('Siyasa',this)">
       🏛️ Siyasa
     </button>
 
     <button
-      onclick="filterCategory('Wasanni',this)"
-    >
+      onclick="filterCategory('Wasanni',this)">
       ⚽ Wasanni
     </button>
 
     <button
-      onclick="filterCategory('Nishaɗi',this)"
-    >
+      onclick="filterCategory('Nishaɗi',this)">
       🎤 Nishaɗi
     </button>
 
     <button
-      onclick="filterCategory('Hotuna',this)"
-    >
+      onclick="filterCategory('Hotuna',this)">
       📸 Hotuna
     </button>
 
     <button
-      onclick="filterCategory('Bidiyo',this)"
-    >
+      onclick="filterCategory('Bidiyo',this)">
       🎥 Bidiyo
     </button>
 
   </div>
 
 </nav>
-
-<!-- BREAKING NEWS -->
 
 <div
   class="ticker"
@@ -704,8 +689,7 @@ footer{
 
       <span
         class="ticker-text"
-        id="tickerText"
-      >
+        id="tickerText">
         Breaking News
       </span>
 
@@ -714,8 +698,6 @@ footer{
   </div>
 
 </div>
-
-<!-- MAIN -->
 
 <main class="container">
 
@@ -728,8 +710,6 @@ footer{
     </strong>
 
   </div>
-
-  <!-- LIVE -->
 
   <div
     class="live-box"
@@ -747,19 +727,16 @@ footer{
     <a
       href="https://www.youtube.com/@officialsyouseep7865"
       target="_blank"
+      rel="noopener"
     >
       ▶ Visit YouTube Channel
     </a>
 
   </div>
 
-  <!-- HERO -->
-
   <section
-    id="heroSection"
-  ></section>
-
-  <!-- TRENDING -->
+    id="heroSection">
+  </section>
 
   <div class="section-title">
 
@@ -771,10 +748,8 @@ footer{
 
   <section
     id="trendingSection"
-    class="trending"
-  ></section>
-
-  <!-- LATEST -->
+    class="trending">
+  </section>
 
   <div class="section-title">
 
@@ -786,23 +761,18 @@ footer{
 
   <section
     id="latestSection"
-    class="news-grid"
-  ></section>
-
-  <!-- LOAD MORE -->
+    class="news-grid">
+  </section>
 
   <div class="load-more-wrap">
 
     <button
       id="loadMoreBtn"
-      onclick="loadMorePosts()"
-    >
+      onclick="loadMorePosts()">
       Load More News
     </button>
 
   </div>
-
-  <!-- MOST READ -->
 
   <section class="most-read">
 
@@ -816,9 +786,7 @@ footer{
 
       </div>
 
-      <div
-        id="mostReadToday"
-      ></div>
+      <div id="mostReadToday"></div>
 
     </div>
 
@@ -832,17 +800,13 @@ footer{
 
       </div>
 
-      <div
-        id="mostReadWeek"
-      ></div>
+      <div id="mostReadWeek"></div>
 
     </div>
 
   </section>
 
 </main>
-
-<!-- ARTICLE MODAL -->
 
 <div
   class="modal"
@@ -861,8 +825,7 @@ footer{
 
       <button
         class="close"
-        onclick="closeArticle()"
-      >
+        onclick="closeArticle()">
         ×
       </button>
 
@@ -872,42 +835,34 @@ footer{
 
       <span
         class="category"
-        id="articleCategory"
-      >
+        id="articleCategory">
         Labarai
       </span>
 
       <span
         class="breaking-badge"
         id="articleBreaking"
-        style="display:none;"
-      >
+        style="display:none;">
         🚨 BREAKING NEWS
       </span>
 
-      <h2
-        id="articleTitle"
-      ></h2>
+      <h2 id="articleTitle"></h2>
 
       <div
         class="meta"
-        id="articleMeta"
-      ></div>
+        id="articleMeta">
+      </div>
 
       <div class="actions">
 
-        <button
-          onclick="likePost()"
-        >
+        <button onclick="likePost()">
           ❤️ Like
           <span id="likeCount">
             0
           </span>
         </button>
 
-        <button
-          onclick="sharePost()"
-        >
+        <button onclick="sharePost()">
           📤 Share
         </button>
 
@@ -917,10 +872,8 @@ footer{
 
       <div
         class="article-text"
-        id="articleContent"
-      ></div>
-
-      <!-- COMMENTS -->
+        id="articleContent">
+      </div>
 
       <div class="comments">
 
@@ -936,18 +889,14 @@ footer{
         <textarea
           id="commentText"
           rows="4"
-          placeholder="Rubuta comment..."
-        ></textarea>
+          placeholder="Rubuta comment...">
+        </textarea>
 
-        <button
-          onclick="addComment()"
-        >
+        <button onclick="addComment()">
           Tura Comment
         </button>
 
-        <div
-          id="commentsList"
-        ></div>
+        <div id="commentsList"></div>
 
       </div>
 
@@ -956,8 +905,6 @@ footer{
   </div>
 
 </div>
-
-<!-- FOOTER -->
 
 <footer>
 
@@ -1262,19 +1209,9 @@ function getFilteredPosts(){
             ).toLowerCase();
 
           return (
-
-            title.includes(
-              search
-            ) ||
-
-            content.includes(
-              search
-            ) ||
-
-            category.includes(
-              search
-            )
-
+            title.includes(search) ||
+            content.includes(search) ||
+            category.includes(search)
           );
 
         }
