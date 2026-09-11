@@ -1,1312 +1,979 @@
 <!DOCTYPE html>
 <html lang="ha">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AMINCHI NEWS HAUSA | Labaran Hausa</title>
-<t
-<meta name="description" content="AMINCHI NEWS HAUSA - Sabbin labaran Najeriya, Kano, Siyasa, Wasanni, Duniya, Nishaɗi da Kannywood.">
-<meta name="theme-color" content="#b40000">
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<style>
-
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
-html{
-  scroll-behavior:smooth;
-}
-
-body{
-  font-family:Arial,Helvetica,sans-serif;
-  background:#f3f4f6;
-  color:#111;
-  line-height:1.5;
-}
-
-button,
-input{
-  font:inherit;
-}
-
-/* =========================
-   HEADER
-========================= */
-
-.top-header{
-  background:#fff;
-  border-bottom:1px solid #ddd;
-}
-
-.header-inner{
-  max-width:1250px;
-  margin:auto;
-  min-height:82px;
-  padding:12px 18px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:20px;
-}
-
-.logo{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  min-width:230px;
-}
-
-.logo img{
-  width:58px;
-  height:58px;
-  object-fit:cover;
-  border-radius:50%;
-  border:2px solid #b40000;
-  background:#fff;
-}
-
-.logo-text{
-  display:flex;
-  flex-direction:column;
-}
-
-.logo-text h1{
-  font-size:23px;
-  font-weight:900;
-  line-height:1.1;
-}
-
-.logo-text p{
-  color:#b40000;
-  font-size:11px;
-  font-weight:bold;
-  text-transform:uppercase;
-  letter-spacing:.7px;
-}
-
-.search-area{
-  flex:1;
-  max-width:480px;
-}
-
-.search-box{
-  position:relative;
-}
-
-.search-box input{
-  width:100%;
-  border:1px solid #ccc;
-  border-radius:5px;
-  padding:13px 45px 13px 16px;
-  outline:none;
-  background:#fafafa;
-}
-
-.search-box input:focus{
-  border-color:#b40000;
-  background:#fff;
-}
-
-.search-icon{
-  position:absolute;
-  right:15px;
-  top:50%;
-  transform:translateY(-50%);
-}
-
-/* =========================
-   NAVIGATION
-========================= */
-
-.main-nav{
-  background:#111;
-}
-
-.nav-inner{
-  max-width:1250px;
-  margin:auto;
-  display:flex;
-  overflow-x:auto;
-  scrollbar-width:none;
-}
-
-.nav-inner::-webkit-scrollbar{
-  display:none;
-}
-
-.nav-inner button{
-  background:transparent;
-  border:0;
-  color:#fff;
-  padding:14px 16px;
-  white-space:nowrap;
-  cursor:pointer;
-  font-size:14px;
-  font-weight:bold;
-}
-
-.nav-inner button:hover,
-.nav-inner button.active{
-  background:#b40000;
-}
-
-/* =========================
-   BREAKING
-========================= */
-
-.breaking-bar{
-  background:#b40000;
-  color:#fff;
-}
-
-.breaking-inner{
-  max-width:1250px;
-  margin:auto;
-  display:flex;
-  align-items:center;
-  min-height:42px;
-  overflow:hidden;
-}
-
-.breaking-label{
-  background:#111;
-  padding:11px 18px;
-  font-size:13px;
-  font-weight:900;
-  white-space:nowrap;
-  z-index:2;
-}
-
-.breaking-content{
-  flex:1;
-  overflow:hidden;
-  white-space:nowrap;
-}
-
-.breaking-scroll{
-  display:inline-block;
-  padding-left:100%;
-  animation:breakingMove 28s linear infinite;
-  font-weight:bold;
-}
-
-@keyframes breakingMove{
-  from{
-    transform:translateX(0);
-  }
-  to{
-    transform:translateX(-100%);
-  }
-}
-
-/* =========================
-   MAIN
-========================= */
-
-.container{
-  max-width:1250px;
-  margin:auto;
-  padding:22px 18px 50px;
-}
-
-/* =========================
-   INFO BAR
-========================= */
-
-.info-row{
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-  margin-bottom:20px;
-}
-
-.info-box{
-  background:#111;
-  color:#fff;
-  padding:9px 15px;
-  border-radius:4px;
-  font-size:13px;
-}
-
-.info-box strong{
-  color:#fff;
-}
-
-/* =========================
-   LIVE
-========================= */
-
-.live-box{
-  background:#fff;
-  border:1px solid #ddd;
-  border-left:5px solid #b40000;
-  padding:17px 18px;
-  margin-bottom:25px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:15px;
-}
-
-.live-title{
-  font-weight:900;
-  margin-bottom:3px;
-}
-
-.live-description{
-  color:#666;
-  font-size:13px;
-}
-
-.live-button{
-  background:#b40000;
-  color:#fff;
-  text-decoration:none;
-  padding:10px 15px;
-  border-radius:4px;
-  font-size:13px;
-  font-weight:bold;
-  white-space:nowrap;
-}
-
-/* =========================
-   SECTION HEADER
-========================= */
-
-.section-header{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin:30px 0 15px;
-  border-bottom:2px solid #111;
-  padding-bottom:8px;
-}
-
-.section-header h2{
-  font-size:21px;
-  font-weight:900;
-  border-left:5px solid #b40000;
-  padding-left:10px;
-}
-
-.section-header span{
-  color:#777;
-  font-size:12px;
-}
-
-/* =========================
-   HERO
-========================= */
-
-.hero-grid{
-  display:grid;
-  grid-template-columns:2fr 1fr;
-  gap:15px;
-}
-
-.hero-main{
-  background:#fff;
-  cursor:pointer;
-  overflow:hidden;
-  border:1px solid #ddd;
-}
-
-.hero-main-image{
-  width:100%;
-  height:370px;
-  object-fit:cover;
-  display:block;
-}
-
-.hero-main-content{
-  padding:17px;
-}
-
-.hero-main-title{
-  font-size:29px;
-  line-height:1.2;
-  margin:7px 0 10px;
-  font-weight:900;
-}
-
-.hero-side{
-  display:flex;
-  flex-direction:column;
-  gap:15px;
-}
-
-.hero-side-card{
-  background:#fff;
-  display:grid;
-  grid-template-columns:145px 1fr;
-  min-height:145px;
-  border:1px solid #ddd;
-  cursor:pointer;
-  overflow:hidden;
-}
-
-.hero-side-card img{
-  width:145px;
-  height:145px;
-  object-fit:cover;
-}
-
-.hero-side-content{
-  padding:12px;
-}
-
-.hero-side-content h3{
-  font-size:17px;
-  line-height:1.3;
-  margin-top:6px;
-}
-
-/* =========================
-   LABELS
-========================= */
-
-.category{
-  display:inline-block;
-  background:#b40000;
-  color:#fff;
-  padding:4px 8px;
-  border-radius:2px;
-  font-size:11px;
-  font-weight:bold;
-}
-
-.breaking-badge{
-  display:inline-block;
-  background:#111;
-  color:#fff;
-  padding:4px 8px;
-  border-radius:2px;
-  font-size:10px;
-  font-weight:bold;
-  margin-right:5px;
-}
-
-/* =========================
-   TRENDING
-========================= */
-
-.trending-grid{
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:12px;
-}
-
-.trending-card{
-  background:#fff;
-  border:1px solid #ddd;
-  cursor:pointer;
-  overflow:hidden;
-}
-
-.trending-card img{
-  width:100%;
-  height:135px;
-  object-fit:cover;
-  display:block;
-}
-
-.trending-content{
-  padding:11px;
-}
-
-.trending-number{
-  font-size:23px;
-  font-weight:900;
-  color:#b40000;
-  float:left;
-  margin-right:8px;
-}
-
-.trending-card h3{
-  font-size:14px;
-  line-height:1.35;
-}
-
-/* =========================
-   NEWS LAYOUT
-========================= */
-
-.content-layout{
-  display:grid;
-  grid-template-columns:2fr 1fr;
-  gap:25px;
-  align-items:start;
-}
-
-.news-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:18px;
-}
-
-.news-card{
-  background:#fff;
-  border:1px solid #ddd;
-  overflow:hidden;
-  cursor:pointer;
-  transition:.2s;
-}
-
-.news-card:hover{
-  transform:translateY(-2px);
-  box-shadow:0 5px 18px rgba(0,0,0,.09);
-}
-
-.news-card-image{
-  width:100%;
-  height:220px;
-  object-fit:cover;
-  display:block;
-}
-
-.news-card-content{
-  padding:15px;
-}
-
-.news-card h3{
-  font-size:20px;
-  line-height:1.3;
-  margin:8px 0;
-}
-
-.preview{
-  color:#555;
-  font-size:14px;
-  line-height:1.6;
-}
-
-.meta{
-  color:#777;
-  font-size:11px;
-  margin-top:9px;
-}
-
-.read-button{
-  display:inline-block;
-  margin-top:12px;
-  background:#111;
-  color:#fff;
-  padding:8px 12px;
-  border-radius:3px;
-  font-size:12px;
-  font-weight:bold;
-}
-
-.news-card:hover .read-button{
-  background:#b40000;
-}
-
-/* =========================
-   SIDEBAR
-========================= */
-
-.sidebar-box{
-  background:#fff;
-  border:1px solid #ddd;
-  margin-bottom:20px;
-}
-
-.sidebar-title{
-  padding:12px 14px;
-  background:#111;
-  color:#fff;
-  font-size:15px;
-  font-weight:900;
-  border-left:5px solid #b40000;
-}
-
-.sidebar-item{
-  display:flex;
-  gap:10px;
-  padding:12px;
-  border-bottom:1px solid #eee;
-  cursor:pointer;
-}
-
-.sidebar-item:last-child{
-  border-bottom:0;
-}
-
-.sidebar-item img{
-  width:90px;
-  height:65px;
-  object-fit:cover;
-  flex-shrink:0;
-}
-
-.sidebar-item h3{
-  font-size:13px;
-  line-height:1.35;
-}
-
-/* =========================
-   LOAD MORE
-========================= */
-
-.load-more-wrap{
-  text-align:center;
-  margin:30px 0;
-}
-
-#loadMoreBtn{
-  border:0;
-  background:#111;
-  color:#fff;
-  padding:13px 30px;
-  border-radius:4px;
-  cursor:pointer;
-  font-weight:bold;
-}
-
-#loadMoreBtn:hover{
-  background:#b40000;
-}
-
-/* =========================
-   MEDIA SECTIONS
-========================= */
-
-.media-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:15px;
-}
-
-.media-card{
-  background:#111;
-  color:#fff;
-  overflow:hidden;
-  cursor:pointer;
-}
-
-.media-card img{
-  width:100%;
-  height:190px;
-  object-fit:cover;
-  display:block;
-}
-
-.media-card div{
-  padding:12px;
-}
-
-.media-card h3{
-  font-size:16px;
-}
-
-/* =========================
-   MODAL
-========================= */
-
-.modal{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.82);
-  z-index:5000;
-  overflow-y:auto;
-  padding:25px 15px;
-}
-
-.modal-box{
-  max-width:900px;
-  margin:auto;
-  background:#fff;
-  overflow:hidden;
-}
-
-.modal-image{
-  position:relative;
-}
-
-.modal-image img{
-  width:100%;
-  max-height:500px;
-  object-fit:cover;
-  display:block;
-}
-
-.close-button{
-  position:absolute;
-  right:12px;
-  top:12px;
-  width:40px;
-  height:40px;
-  border:0;
-  border-radius:50%;
-  background:#b40000;
-  color:#fff;
-  font-size:24px;
-  cursor:pointer;
-}
-
-.modal-content{
-  padding:22px;
-}
-
-.modal-content h2{
-  font-size:31px;
-  line-height:1.2;
-  margin:10px 0;
-}
-
-.article-text{
-  white-space:pre-wrap;
-  font-size:17px;
-  line-height:1.9;
-  color:#222;
-  margin-top:18px;
-}
-
-.share-button{
-  border:0;
-  background:#111;
-  color:#fff;
-  padding:10px 15px;
-  border-radius:4px;
-  cursor:pointer;
-  margin-top:15px;
-  font-weight:bold;
-}
-
-.share-button:hover{
-  background:#b40000;
-}
-
-/* =========================
-   EMPTY
-========================= */
-
-.empty{
-  background:#fff;
-  border:1px solid #ddd;
-  padding:45px 20px;
-  text-align:center;
-  color:#666;
-}
-
-/* =========================
-   FOOTER
-========================= */
-
-footer{
-  background:#111;
-  color:#fff;
-  margin-top:30px;
-}
-
-.footer-inner{
-  max-width:1250px;
-  margin:auto;
-  padding:35px 18px;
-  display:grid;
-  grid-template-columns:2fr 1fr 1fr;
-  gap:30px;
-}
-
-.footer-brand h2{
-  font-size:21px;
-  margin-bottom:8px;
-}
-
-.footer-brand p{
-  color:#bbb;
-  font-size:13px;
-}
-
-.footer-column h3{
-  margin-bottom:10px;
-  font-size:15px;
-}
-
-.footer-column p{
-  color:#bbb;
-  font-size:13px;
-  margin:5px 0;
-}
-
-.footer-bottom{
-  border-top:1px solid #333;
-  text-align:center;
-  padding:15px;
-  color:#aaa;
-  font-size:12px;
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media(max-width:1000px){
-
-  .hero-grid{
-    grid-template-columns:1fr;
-  }
-
-  .trending-grid{
-    grid-template-columns:repeat(3,1fr);
-  }
-
-  .content-layout{
-    grid-template-columns:1fr;
-  }
-
-  .sidebar{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:15px;
-  }
-
-  .sidebar-box{
-    margin-bottom:0;
-  }
-
-}
-
-@media(max-width:700px){
-
-  .header-inner{
-    flex-wrap:wrap;
-  }
-
-  .logo{
-    min-width:0;
-  }
-
-  .logo img{
-    width:50px;
-    height:50px;
-  }
-
-  .logo-text h1{
-    font-size:18px;
-  }
-
-  .search-area{
-    flex-basis:100%;
-    max-width:none;
-    order:3;
-  }
-
-  .breaking-label{
-    padding:11px 10px;
-    font-size:11px;
-  }
-
-  .hero-main-image{
-    height:245px;
-  }
-
-  .hero-main-title{
-    font-size:23px;
-  }
-
-  .hero-side-card{
-    grid-template-columns:115px 1fr;
-  }
-
-  .hero-side-card img{
-    width:115px;
-    height:115px;
-  }
-
-  .trending-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .news-grid{
-    grid-template-columns:1fr;
-  }
-
-  .news-card-image{
-    height:220px;
-  }
-
-  .sidebar{
-    display:block;
-  }
-
-  .media-grid{
-    grid-template-columns:1fr;
-  }
-
-  .live-box{
-    align-items:flex-start;
-    flex-direction:column;
-  }
-
-  .footer-inner{
-    grid-template-columns:1fr;
-  }
-
-}
-
-@media(max-width:450px){
-
-  .container{
-    padding-left:10px;
-    padding-right:10px;
-  }
-
-  .trending-grid{
-    grid-template-columns:1fr 1fr;
-    gap:8px;
-  }
-
-  .trending-card img{
-    height:110px;
-  }
-
-  .hero-side-card{
-    grid-template-columns:100px 1fr;
-  }
-
-  .hero-side-card img{
-    width:100px;
-    height:105px;
-  }
-
-  .hero-side-content h3{
-    font-size:14px;
-  }
-
-  .modal-content h2{
-    font-size:24px;
-  }
-
-}
-
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>AMINCHI NEWS HAUSA | Labaran Hausa</title>
+  <meta name="description" content="AMINCHI NEWS HAUSA - Sabbin labarai daga Kano, Najeriya da duniya. Siyasa, wasanni, kasuwanci, Kannywood da nishaɗi.">
+  <meta name="keywords" content="Aminchi News Hausa, labaran Hausa, Kano News, Najeriya, Siyasa, Wasanni, Kannywood">
+  <meta name="author" content="AMINCHI NEWS HAUSA">
+
+  <meta property="og:title" content="AMINCHI NEWS HAUSA">
+  <meta property="og:description" content="Sabbin labarai daga Kano, Najeriya da duniya.">
+  <meta property="og:type" content="website">
+
+  <link rel="icon" href="9D8837D9-17A6-4645-AF4E-5D344B6D8159.png">
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    body{
+      font-family:Arial,Helvetica,sans-serif;
+      background:#f4f4f4;
+      color:#111;
+      line-height:1.6;
+    }
+
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    img{
+      display:block;
+      width:100%;
+    }
+
+    .topbar{
+      background:#111;
+      color:#fff;
+      font-size:13px;
+    }
+
+    .topbar-inner{
+      max-width:1250px;
+      margin:auto;
+      padding:8px 18px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:15px;
+    }
+
+    .top-social{
+      display:flex;
+      gap:14px;
+      font-weight:bold;
+    }
+
+    .header{
+      background:#fff;
+      border-bottom:1px solid #ddd;
+      position:sticky;
+      top:0;
+      z-index:1000;
+    }
+
+    .header-inner{
+      max-width:1250px;
+      margin:auto;
+      min-height:82px;
+      padding:12px 18px;
+      display:flex;
+      align-items:center;
+      gap:25px;
+    }
+
+    .logo{
+      display:flex;
+      align-items:center;
+      min-width:240px;
+    }
+
+    .logo img{
+      width:230px;
+      max-height:65px;
+      object-fit:contain;
+    }
+
+    .search{
+      flex:1;
+      position:relative;
+    }
+
+    .search input{
+      width:100%;
+      height:45px;
+      border:1px solid #ccc;
+      border-radius:5px;
+      padding:0 45px 0 15px;
+      font-size:15px;
+      outline:none;
+    }
+
+    .search input:focus{
+      border-color:#c40000;
+    }
+
+    .search button{
+      position:absolute;
+      right:0;
+      top:0;
+      height:45px;
+      width:45px;
+      border:0;
+      background:#c40000;
+      color:white;
+      border-radius:0 5px 5px 0;
+      cursor:pointer;
+    }
+
+    .menu-btn{
+      display:none;
+      background:#c40000;
+      color:#fff;
+      border:0;
+      padding:10px 13px;
+      border-radius:4px;
+      font-size:20px;
+    }
+
+    .nav{
+      background:#c40000;
+      color:#fff;
+    }
+
+    .nav-inner{
+      max-width:1250px;
+      margin:auto;
+      display:flex;
+      overflow-x:auto;
+      scrollbar-width:none;
+    }
+
+    .nav-inner::-webkit-scrollbar{
+      display:none;
+    }
+
+    .nav a{
+      padding:13px 15px;
+      white-space:nowrap;
+      font-weight:bold;
+      font-size:14px;
+    }
+
+    .nav a:hover,
+    .nav a.active{
+      background:#970000;
+    }
+
+    .breaking{
+      background:#fff;
+      border-bottom:1px solid #ddd;
+    }
+
+    .breaking-inner{
+      max-width:1250px;
+      margin:auto;
+      display:flex;
+      align-items:center;
+      min-height:45px;
+    }
+
+    .breaking-title{
+      background:#111;
+      color:#fff;
+      padding:10px 16px;
+      font-weight:bold;
+      white-space:nowrap;
+    }
+
+    .breaking-scroll{
+      flex:1;
+      overflow:hidden;
+      padding:0 15px;
+      white-space:nowrap;
+    }
+
+    .breaking-scroll a{
+      color:#c40000;
+      font-weight:bold;
+    }
+
+    .container{
+      max-width:1250px;
+      margin:25px auto;
+      padding:0 18px;
+    }
+
+    .section-title{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      border-bottom:3px solid #c40000;
+      margin-bottom:15px;
+    }
+
+    .section-title h2{
+      font-size:21px;
+      background:#c40000;
+      color:#fff;
+      padding:8px 15px;
+    }
+
+    .section-title a{
+      color:#c40000;
+      font-weight:bold;
+      font-size:14px;
+    }
+
+    .hero{
+      display:grid;
+      grid-template-columns:2fr 1fr;
+      gap:15px;
+      margin-bottom:30px;
+    }
+
+    .hero-main{
+      position:relative;
+      height:430px;
+      overflow:hidden;
+      border-radius:4px;
+      background:#111;
+    }
+
+    .hero-main img{
+      height:100%;
+      object-fit:cover;
+    }
+
+    .hero-main::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(transparent 35%,rgba(0,0,0,.85));
+    }
+
+    .hero-content{
+      position:absolute;
+      bottom:0;
+      left:0;
+      right:0;
+      padding:25px;
+      color:#fff;
+      z-index:2;
+    }
+
+    .category{
+      display:inline-block;
+      background:#c40000;
+      color:#fff;
+      padding:4px 9px;
+      font-size:12px;
+      font-weight:bold;
+      margin-bottom:9px;
+      border-radius:3px;
+    }
+
+    .hero-content h1{
+      font-size:30px;
+      line-height:1.25;
+      margin-bottom:8px;
+    }
+
+    .meta{
+      color:#777;
+      font-size:12px;
+      margin-top:8px;
+    }
+
+    .hero-content .meta{
+      color:#ddd;
+    }
+
+    .side-news{
+      display:grid;
+      grid-template-rows:1fr 1fr;
+      gap:15px;
+    }
+
+    .side-card{
+      position:relative;
+      overflow:hidden;
+      background:#111;
+      min-height:207px;
+      border-radius:4px;
+    }
+
+    .side-card img{
+      height:100%;
+      object-fit:cover;
+    }
+
+    .side-card::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(transparent 30%,rgba(0,0,0,.9));
+    }
+
+    .side-card-content{
+      position:absolute;
+      bottom:0;
+      left:0;
+      right:0;
+      padding:15px;
+      color:#fff;
+      z-index:2;
+    }
+
+    .side-card h3{
+      font-size:18px;
+      line-height:1.3;
+    }
+
+    .main-layout{
+      display:grid;
+      grid-template-columns:minmax(0,2fr) minmax(280px,1fr);
+      gap:25px;
+    }
+
+    .news-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:18px;
+    }
+
+    .news-card{
+      background:#fff;
+      border:1px solid #ddd;
+      border-radius:4px;
+      overflow:hidden;
+      transition:.2s;
+    }
+
+    .news-card:hover{
+      transform:translateY(-2px);
+      box-shadow:0 5px 18px rgba(0,0,0,.1);
+    }
+
+    .news-image{
+      height:210px;
+      position:relative;
+      background:#ddd;
+      overflow:hidden;
+    }
+
+    .news-image img{
+      height:100%;
+      object-fit:cover;
+    }
+
+    .news-body{
+      padding:14px;
+    }
+
+    .news-body h3{
+      font-size:18px;
+      line-height:1.35;
+      margin-bottom:6px;
+    }
+
+    .news-body h3:hover{
+      color:#c40000;
+    }
+
+    .sidebar-box{
+      background:#fff;
+      border:1px solid #ddd;
+      margin-bottom:20px;
+    }
+
+    .sidebar-title{
+      background:#111;
+      color:#fff;
+      padding:11px 14px;
+      font-size:17px;
+      font-weight:bold;
+      border-left:5px solid #c40000;
+    }
+
+    .most-item{
+      display:flex;
+      gap:10px;
+      padding:12px;
+      border-bottom:1px solid #eee;
+    }
+
+    .most-number{
+      font-size:24px;
+      color:#c40000;
+      font-weight:bold;
+      min-width:30px;
+    }
+
+    .most-item h4{
+      font-size:14px;
+      line-height:1.35;
+    }
+
+    .visitor{
+      text-align:center;
+      padding:20px;
+    }
+
+    .visitor strong{
+      display:block;
+      font-size:30px;
+      color:#c40000;
+    }
+
+    .live-box{
+      background:#111;
+      color:#fff;
+      padding:20px;
+      margin-bottom:20px;
+      text-align:center;
+    }
+
+    .live-box h3{
+      color:#fff;
+      margin-bottom:8px;
+    }
+
+    .live-dot{
+      display:inline-block;
+      width:10px;
+      height:10px;
+      background:red;
+      border-radius:50%;
+      margin-right:5px;
+    }
+
+    .live-button{
+      display:inline-block;
+      background:#c40000;
+      color:#fff;
+      padding:9px 16px;
+      margin-top:12px;
+      border-radius:4px;
+      font-weight:bold;
+    }
+
+    .video-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:15px;
+    }
+
+    .video-card{
+      background:#111;
+      color:#fff;
+      border-radius:4px;
+      overflow:hidden;
+    }
+
+    .video-card img{
+      height:180px;
+      object-fit:cover;
+    }
+
+    .video-card h3{
+      padding:12px;
+      font-size:16px;
+    }
+
+    .category-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:10px;
+      margin-bottom:30px;
+    }
+
+    .category-box{
+      background:#111;
+      color:#fff;
+      padding:18px;
+      text-align:center;
+      font-weight:bold;
+      border-bottom:4px solid #c40000;
+    }
+
+    .category-box:hover{
+      background:#c40000;
+    }
+
+    .share-row{
+      display:flex;
+      gap:7px;
+      margin-top:10px;
+    }
+
+    .share-btn{
+      border:0;
+      padding:7px 10px;
+      border-radius:3px;
+      cursor:pointer;
+      background:#eee;
+      font-size:12px;
+      font-weight:bold;
+    }
+
+    .load-more{
+      text-align:center;
+      margin:25px 0;
+    }
+
+    .load-more button{
+      border:0;
+      background:#c40000;
+      color:#fff;
+      padding:12px 30px;
+      border-radius:4px;
+      cursor:pointer;
+      font-weight:bold;
+    }
+
+    .search-results{
+      display:none;
+      background:#fff;
+      border:1px solid #ddd;
+      padding:18px;
+      margin-bottom:25px;
+    }
+
+    .search-results h2{
+      color:#c40000;
+      margin-bottom:15px;
+    }
+
+    .no-results{
+      text-align:center;
+      padding:30px;
+      color:#777;
+    }
+
+    .footer{
+      background:#111;
+      color:#fff;
+      margin-top:40px;
+    }
+
+    .footer-inner{
+      max-width:1250px;
+      margin:auto;
+      padding:40px 18px;
+      display:grid;
+      grid-template-columns:2fr 1fr 1fr 1fr;
+      gap:30px;
+    }
+
+    .footer h3{
+      color:#fff;
+      border-left:4px solid #c40000;
+      padding-left:10px;
+      margin-bottom:15px;
+    }
+
+    .footer p,
+    .footer a{
+      color:#bbb;
+      font-size:14px;
+    }
+
+    .footer a{
+      display:block;
+      margin-bottom:7px;
+    }
+
+    .footer a:hover{
+      color:#fff;
+    }
+
+    .copyright{
+      border-top:1px solid #333;
+      text-align:center;
+      padding:15px;
+      color:#aaa;
+      font-size:13px;
+    }
+
+    .loading{
+      text-align:center;
+      padding:40px;
+      color:#777;
+    }
+
+    @media(max-width:900px){
+      .header-inner{
+        gap:10px;
+      }
+
+      .logo{
+        min-width:190px;
+      }
+
+      .logo img{
+        width:180px;
+      }
+
+      .hero{
+        grid-template-columns:1fr;
+      }
+
+      .side-news{
+        grid-template-columns:1fr 1fr;
+        grid-template-rows:none;
+      }
+
+      .main-layout{
+        grid-template-columns:1fr;
+      }
+
+      .footer-inner{
+        grid-template-columns:1fr 1fr;
+      }
+    }
+
+    @media(max-width:650px){
+      .topbar-inner{
+        justify-content:center;
+      }
+
+      .topbar-inner > span{
+        display:none;
+      }
+
+      .header{
+        position:relative;
+      }
+
+      .header-inner{
+        min-height:70px;
+      }
+
+      .logo{
+        min-width:0;
+        flex:1;
+      }
+
+      .logo img{
+        width:175px;
+      }
+
+      .search{
+        display:none;
+      }
+
+      .menu-btn{
+        display:block;
+      }
+
+      .nav-inner{
+        padding-left:5px;
+      }
+
+      .nav a{
+        padding:11px 12px;
+        font-size:13px;
+      }
+
+      .breaking-inner{
+        display:block;
+      }
+
+      .breaking-title{
+        text-align:center;
+      }
+
+      .breaking-scroll{
+        padding:8px 12px;
+      }
+
+      .container{
+        padding:0 10px;
+        margin:18px auto;
+      }
+
+      .hero-main{
+        height:300px;
+      }
+
+      .hero-content h1{
+        font-size:22px;
+      }
+
+      .side-news{
+        grid-template-columns:1fr;
+      }
+
+      .side-card{
+        min-height:200px;
+      }
+
+      .news-grid{
+        grid-template-columns:1fr;
+      }
+
+      .news-image{
+        height:220px;
+      }
+
+      .video-grid{
+        grid-template-columns:1fr;
+      }
+
+      .category-grid{
+        grid-template-columns:repeat(2,1fr);
+      }
+
+      .footer-inner{
+        grid-template-columns:1fr;
+      }
+
+      .section-title h2{
+        font-size:17px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<!-- =========================
-     HEADER
-========================= -->
+  <div class="topbar">
+    <div class="topbar-inner">
+      <span>AMINCHI NEWS HAUSA — Gidan Labaran Hausa</span>
 
-<header class="top-header">
-
-  <div class="header-inner">
-
-    <div class="logo">
-
-      <img
-        src="9D8837D9-17A6-4645-AF4E-5D344B6D8159.png?v=3"
-        alt="AMINCHI NEWS HAUSA"
-      >
-
-      <div class="logo-text">
-
-        <h1>AMINCHI NEWS HAUSA</h1>
-
-        <p>Labaran Hausa na zamani</p>
-
+      <div class="top-social">
+        <a href="https://www.youtube.com/@officialsyouseep7865" target="_blank">YouTube</a>
+        <a href="#">Facebook</a>
+        <a href="#">TikTok</a>
       </div>
-
     </div>
+  </div>
 
-    <div class="search-area">
+  <header class="header">
+    <div class="header-inner">
 
-      <div class="search-box">
+      <a class="logo" href="index.html">
+        <img
+          src="9D8837D9-17A6-4645-AF4E-5D344B6D8159.png"
+          alt="AMINCHI NEWS HAUSA">
+      </a>
 
+      <div class="search">
         <input
-          type="search"
           id="searchInput"
-          placeholder="🔎 Nemo labari..."
-          oninput="handleSearch()"
-        >
+          type="search"
+          placeholder="🔎 Nemo labarai..."
+          oninput="searchNews()">
 
-        <span class="search-icon">🔍</span>
-
+        <button onclick="searchNews()">🔎</button>
       </div>
 
-    </div>
-
-  </div>
-
-</header>
-
-<!-- =========================
-     NAVIGATION
-========================= -->
-
-<nav class="main-nav">
-
-  <div class="nav-inner">
-
-    <button class="active"
-      onclick="filterCategory('Duka',this)">
-      Gida
-    </button>
-
-    <button
-      onclick="filterCategory('Labarai',this)">
-      Labarai
-    </button>
-
-    <button
-      onclick="filterCategory('Najeriya',this)">
-      Najeriya
-    </button>
-
-    <button
-      onclick="filterCategory('Kano',this)">
-      Kano
-    </button>
-
-    <button
-      onclick="filterCategory('Siyasa',this)">
-      Siyasa
-    </button>
-
-    <button
-      onclick="filterCategory('Duniya',this)">
-      Duniya
-    </button>
-
-    <button
-      onclick="filterCategory('Wasanni',this)">
-      Wasanni
-    </button>
-
-    <button
-      onclick="filterCategory('Kasuwanci',this)">
-      Kasuwanci
-    </button>
-
-    <button
-      onclick="filterCategory('Nishaɗi',this)">
-      Nishaɗi
-    </button>
-
-    <button
-      onclick="filterCategory('Kannywood',this)">
-      Kannywood
-    </button>
-
-    <button
-      onclick="filterCategory('Hotuna',this)">
-      Hotuna
-    </button>
-
-    <button
-      onclick="filterCategory('Bidiyo',this)">
-      Bidiyo
-    </button>
-
-  </div>
-
-</nav>
-
-<!-- =========================
-     BREAKING NEWS
-========================= -->
-
-<div
-  class="breaking-bar"
-  id="breakingTicker"
-  style="display:none;"
->
-
-  <div class="breaking-inner">
-
-    <div class="breaking-label">
-      🚨 LABARI MAI ZAFI
-    </div>
-
-    <div class="breaking-content">
-
-      <span
-        class="breaking-scroll"
-        id="tickerText">
-      </span>
+      <button class="menu-btn" onclick="toggleMenu()">☰</button>
 
     </div>
+  </header>
 
-  </div>
-
-</div>
-
-<!-- =========================
-     MAIN
-========================= -->
-
-<main class="container">
-
-  <!-- INFO -->
-
-  <div class="info-row">
-
-    <div class="info-box">
-      👥 Masu ziyara:
-      <strong id="visitorCount">10,000</strong>
+  <nav class="nav" id="mainNav">
+    <div class="nav-inner">
+      <a href="#" class="active" onclick="filterNews('Duka',this);return false;">Duka</a>
+      <a href="#" onclick="filterNews('Labarai',this);return false;">Labarai</a>
+      <a href="#" onclick="filterNews('Kano',this);return false;">Kano</a>
+      <a href="#" onclick="filterNews('Najeriya',this);return false;">Najeriya</a>
+      <a href="#" onclick="filterNews('Siyasa',this);return false;">Siyasa</a>
+      <a href="#" onclick="filterNews('Duniya',this);return false;">Duniya</a>
+      <a href="#" onclick="filterNews('Wasanni',this);return false;">Wasanni</a>
+      <a href="#" onclick="filterNews('Kasuwanci',this);return false;">Kasuwanci</a>
+      <a href="#" onclick="filterNews('Kannywood',this);return false;">Kannywood</a>
+      <a href="#" onclick="filterNews('Nishaɗi',this);return false;">Nishaɗi</a>
+      <a href="#" onclick="filterNews('Hotuna',this);return false;">Hotuna</a>
+      <a href="#" onclick="filterNews('Bidiyo',this);return false;">Bidiyo</a>
     </div>
+  </nav>
 
-    <div class="info-box">
-      📰 AMINCHI NEWS HAUSA
-    </div>
-
-  </div>
-
-  <!-- LIVE -->
-
-  <div class="live-box">
-
-    <div>
-
-      <div class="live-title">
-        🔴 AMINCHI NEWS HAUSA LIVE
+  <section class="breaking">
+    <div class="breaking-inner">
+      <div class="breaking-title">🔴 BREAKING NEWS</div>
+      <div class="breaking-scroll" id="breakingNews">
+        Ana kawo muku sabbin labarai...
       </div>
-
-      <div
-        class="live-description"
-        id="liveText">
-        Bi mu domin samun sabbin labarai da rahotannin kai tsaye.
-      </div>
-
     </div>
-
-    <a
-      class="live-button"
-      href="https://www.youtube.com/@officialsyouseep7865"
-      target="_blank"
-      rel="noopener">
-      ▶ YouTube Channel
-    </a>
-
-  </div>
-
-  <!-- HERO -->
-
-  <div
-    id="heroSection">
-  </div>
-
-  <!-- TRENDING -->
-
-  <div class="section-header">
-
-    <h2>🔥 Manyan Labarai</h2>
-
-    <span>Trending</span>
-
-  </div>
-
-  <section
-    id="trendingSection"
-    class="trending-grid">
   </section>
 
-  <!-- CONTENT -->
+  <main class="container">
 
-  <div class="content-layout">
+    <div id="searchResults" class="search-results"></div>
 
-    <div>
+    <!-- HERO -->
+    <section>
+      <div class="section-title">
+        <h2>BABBAR LABARI</h2>
+        <a href="#" onclick="filterNews('Duka');return false;">Duba duka →</a>
+      </div>
 
-      <div class="section-header">
+      <div id="heroSection" class="hero">
+        <div class="loading">Ana kawo labarai...</div>
+      </div>
+    </section>
 
-        <h2>📰 Sabbin Labarai</h2>
+    <!-- FEATURED -->
+    <section>
+      <div class="section-title">
+        <h2>MANYAN LABARAI</h2>
+        <a href="#" onclick="filterNews('Duka');return false;">Duba duka →</a>
+      </div>
 
-        <span>Latest</span>
+      <div id="featuredNews" class="news-grid">
+        <div class="loading">Ana kawo labarai...</div>
+      </div>
+    </section>
+
+    <br>
+
+    <div class="main-layout">
+
+      <div>
+
+        <!-- LATEST -->
+        <section>
+          <div class="section-title">
+            <h2>SABABBIN LABARAI</h2>
+          </div>
+
+          <div id="latestNews" class="news-grid">
+            <div class="loading">Ana kawo labarai...</div>
+          </div>
+
+          <div class="load-more">
+            <button onclick="loadMore()">Kara kawo labarai</button>
+          </div>
+        </section>
+
+        <!-- VIDEO -->
+        <section>
+          <div class="section-title">
+            <h2>BIDIYO</h2>
+            <a href="#" onclick="filterNews('Bidiyo');return false;">Duba duka →</a>
+          </div>
+
+          <div id="videoNews" class="video-grid"></div>
+        </section>
 
       </div>
 
-      <section
-        id="latestSection"
-        class="news-grid">
-      </section>
+      <!-- SIDEBAR -->
+      <aside>
 
-      <div class="load-more-wrap">
+        <div class="live-box">
+          <h3><span class="live-dot"></span> AMINCHI LIVE</h3>
+          <p id="liveText">Babu live yanzu. Ku biyo mu domin samun sabbin updates.</p>
 
-        <button
-          id="loadMoreBtn"
-          onclick="loadMorePosts()">
-          Duba ƙarin labarai
-        </button>
-
-      </div>
-
-    </div>
-
-    <!-- SIDEBAR -->
-
-    <aside class="sidebar">
-
-      <div class="sidebar-box">
-
-        <div class="sidebar-title">
-          🔥 Mafi Karantawa Yau
+          <a
+            class="live-button"
+            href="https://www.youtube.com/@officialsyouseep7865"
+            target="_blank">
+            Kalli YouTube
+          </a>
         </div>
 
-        <div id="mostReadToday"></div>
-
-      </div>
-
-      <div class="sidebar-box">
-
-        <div class="sidebar-title">
-          📅 Mafi Karantawa Wannan Mako
+        <div class="sidebar-box">
+          <div class="sidebar-title">👁 MAFI KARANTAWA</div>
+          <div id="mostRead">
+            <div class="loading">Ana kawo...</div>
+          </div>
         </div>
 
-        <div id="mostReadWeek"></div>
+        <div class="sidebar-box">
+          <div class="sidebar-title">🌍 RUKUNONI</div>
 
+          <div class="category-grid" style="padding:12px;margin:0;">
+            <a class="category-box" href="#" onclick="filterNews('Kano');return false;">Kano</a>
+            <a class="category-box" href="#" onclick="filterNews('Najeriya');return false;">Najeriya</a>
+            <a class="category-box" href="#" onclick="filterNews('Siyasa');return false;">Siyasa</a>
+            <a class="category-box" href="#" onclick="filterNews('Duniya');return false;">Duniya</a>
+            <a class="category-box" href="#" onclick="filterNews('Wasanni');return false;">Wasanni</a>
+            <a class="category-box" href="#" onclick="filterNews('Kasuwanci');return false;">Kasuwanci</a>
+            <a class="category-box" href="#" onclick="filterNews('Kannywood');return false;">Kannywood</a>
+            <a class="category-box" href="#" onclick="filterNews('Nishaɗi');return false;">Nishaɗi</a>
+          </div>
+        </div>
+
+        <div class="sidebar-box visitor">
+          <div class="sidebar-title">📊 MASU ZIYARA</div>
+          <div style="padding-top:15px;">
+            <strong id="visitorCount">10,000+</strong>
+            <span>Masu ziyartar AMINCHI NEWS HAUSA</span>
+          </div>
+        </div>
+
+      </aside>
+
+    </div>
+
+  </main>
+
+  <footer class="footer">
+
+    <div class="footer-inner">
+
+      <div>
+        <h3>AMINCHI NEWS HAUSA</h3>
+
+        <p>
+          AMINCHI NEWS HAUSA kafar labarai ce da ke kawo
+          muku sahihan labarai daga Kano, Najeriya da duniya.
+        </p>
+
+        <br>
+
+        <p>
+          Labarai • Siyasa • Wasanni • Kasuwanci • Kannywood • Nishaɗi
+        </p>
       </div>
 
-    </aside>
+      <div>
+        <h3>RUKUNI</h3>
 
-  </div>
-
-  <!-- VIDEO -->
-
-  <div class="section-header">
-
-    <h2>🎥 AMINCHI VIDEO</h2>
-
-    <span>Bidiyo</span>
-
-  </div>
-
-  <section
-    id="videoSection"
-    class="media-grid">
-  </section>
-
-</main>
-
-<!-- =========================
-     ARTICLE MODAL
-========================= -->
-
-<div
-  class="modal"
-  id="articleModal">
-
-  <div class="modal-box">
-
-    <div class="modal-image">
-
-      <img
-        id="articleImage"
-        src=""
-        alt="">
-
-      <button
-        class="close-button"
-        onclick="closeArticle()">
-        ×
-      </button>
-
-    </div>
-
-    <div class="modal-content">
-
-      <span
-        class="category"
-        id="articleCategory">
-        Labarai
-      </span>
-
-      <span
-        class="breaking-badge"
-        id="articleBreaking"
-        style="display:none;">
-        🚨 LABARI MAI ZAFI
-      </span>
-
-      <h2 id="articleTitle"></h2>
-
-      <div
-        class="meta"
-        id="articleMeta">
+        <a href="#" onclick="filterNews('Kano');return false;">Kano</a>
+        <a href="#" onclick="filterNews('Najeriya');return false;">Najeriya</a>
+        <a href="#" onclick="filterNews('Siyasa');return false;">Siyasa</a>
+        <a href="#" onclick="filterNews('Duniya');return false;">Duniya</a>
       </div>
 
-      <button
-        class="share-button"
-        onclick="sharePost()">
-        📤 Raba wannan labarin
-      </button>
+      <div>
+        <h3>SAURAN RUKUNI</h3>
 
-      <div
-        class="article-text"
-        id="articleContent">
+        <a href="#" onclick="filterNews('Wasanni');return false;">Wasanni</a>
+        <a href="#" onclick="filterNews('Kasuwanci');return false;">Kasuwanci</a>
+        <a href="#" onclick="filterNews('Kannywood');return false;">Kannywood</a>
+        <a href="#" onclick="filterNews('Nishaɗi');return false;">Nishaɗi</a>
+      </div>
+
+      <div>
+        <h3>BIBIYAR MU</h3>
+
+        <a href="https://www.youtube.com/@officialsyouseep7865" target="_blank">
+          YouTube
+        </a>
+
+        <a href="#">Facebook</a>
+        <a href="#">TikTok</a>
+        <a href="#">Instagram</a>
+
+        <br>
+
+        <a href="admin.html">Admin</a>
       </div>
 
     </div>
 
-  </div>
-
-</div>
-
-<!-- =========================
-     FOOTER
-========================= -->
-
-<footer>
-
-  <div class="footer-inner">
-
-    <div class="footer-brand">
-
-      <h2>AMINCHI NEWS HAUSA</h2>
-
-      <p>
-        Gidan labarai na Hausa mai kawo
-        sahihan labarai daga Najeriya,
-        Kano da sauran sassan duniya.
-      </p>
-
+    <div class="copyright">
+      © 2026 AMINCHI NEWS HAUSA — Duk haƙƙi na nan.
     </div>
 
-    <div class="footer-column">
+  </footer>
 
-      <h3>Bangarori</h3>
-
-      <p>Najeriya</p>
-      <p>Kano</p>
-      <p>Siyasa</p>
-      <p>Wasanni</p>
-      <p>Duniya</p>
-
-    </div>
-
-    <div class="footer-column">
-
-      <h3>AMINCHI</h3>
-
-      <p>Game da mu</p>
-      <p>Tuntube mu</p>
-      <p>Privacy Policy</p>
-      <p>Editorial Policy</p>
-
-    </div>
-
-  </div>
-
-  <div class="footer-bottom">
-
-    © 2026 AMINCHI NEWS HAUSA —
-    Labaran Hausa • Siyasa • Wasanni • Nishaɗi
-
-  </div>
-
-</footer>
 
 <script>
-
-/* =========================
-   SUPABASE
-========================= */
 
 const SUPABASE_URL =
   "https://kszficrcngxipcllezgl.supabase.co";
@@ -1320,118 +987,11 @@ const supabaseClient =
     SUPABASE_KEY
   );
 
-/* =========================
-   VARIABLES
-========================= */
 
 let allPosts = [];
-
 let currentCategory = "Duka";
+let visibleCount = 10;
 
-let currentSearch = "";
-
-let currentArticle = null;
-
-const POSTS_PER_PAGE = 10;
-
-let visiblePostCount =
-  POSTS_PER_PAGE;
-
-const STARTING_VISITORS = 10000;
-
-/* =========================
-   VISITOR ID
-========================= */
-
-function getVisitorId(){
-
-  let id =
-    localStorage.getItem(
-      "aminchi_visitor_id"
-    );
-
-  if(!id){
-
-    if(
-      window.crypto &&
-      typeof window.crypto.randomUUID ===
-      "function"
-    ){
-
-      id =
-        window.crypto.randomUUID();
-
-    }else{
-
-      id =
-        "visitor-" +
-        Date.now() +
-        "-" +
-        Math.random()
-          .toString(36)
-          .slice(2);
-
-    }
-
-    localStorage.setItem(
-      "aminchi_visitor_id",
-      id
-    );
-
-  }
-
-  return id;
-
-}
-
-/* =========================
-   VISITOR COUNTER
-========================= */
-
-async function countVisitor(){
-
-  try{
-
-    const visitorId =
-      getVisitorId();
-
-    const { data,error } =
-      await supabaseClient
-      .rpc(
-        "count_visitor",
-        {
-          visitor_id_input:
-            visitorId
-        }
-      );
-
-    if(error){
-      throw error;
-    }
-
-    document.getElementById(
-      "visitorCount"
-    ).textContent =
-      (
-        STARTING_VISITORS +
-        Number(data || 0)
-      ).toLocaleString();
-
-  }catch(error){
-
-    console.error(
-      "Visitor error:",
-      error
-    );
-
-    document.getElementById(
-      "visitorCount"
-    ).textContent =
-      STARTING_VISITORS.toLocaleString();
-
-  }
-
-}
 
 /* =========================
    LOAD POSTS
@@ -1439,106 +999,58 @@ async function countVisitor(){
 
 async function loadPosts(){
 
-  try{
+  const { data, error } = await supabaseClient
+    .from("posts")
+    .select(`
+      id,
+      Title,
+      Content,
+      Image_url,
+      category,
+      views,
+      breaking_news,
+      featured,
+      created_at
+    `)
+    .order("created_at", { ascending:false });
 
-    const { data,error } =
-      await supabaseClient
-      .from("posts")
-      .select(
-        "id,Title,Content,Image_url,category,views,breaking_news,created_at"
-      )
-      .order(
-        "created_at",
-        {
-          ascending:false
-        }
-      );
+  if(error){
 
-    if(error){
-      throw error;
-    }
+    console.error(error);
 
-    allPosts =
-      (data || [])
-      .filter(
-        post =>
-          post.Image_url
-      );
-
-    renderBreakingNews();
-
-    renderHomepage();
-
-    renderVideoSection();
-
-  }catch(error){
-
-    console.error(
-      "Load posts error:",
-      error
-    );
-
-    document.getElementById(
-      "latestSection"
-    ).innerHTML =
-      `
-      <div class="empty">
-        <h3>An kasa loda labarai</h3>
-        <p>A sake gwadawa daga baya.</p>
-      </div>
-      `;
-
-  }
-
-}
-
-/* =========================
-   BREAKING NEWS
-========================= */
-
-function renderBreakingNews(){
-
-  const ticker =
-    document.getElementById(
-      "breakingTicker"
-    );
-
-  const text =
-    document.getElementById(
-      "tickerText"
-    );
-
-  const breaking =
-    allPosts.filter(
-      post =>
-        post.breaking_news === true
-    );
-
-  if(!breaking.length){
-
-    ticker.style.display =
-      "none";
+    document.getElementById("latestNews").innerHTML =
+      `<div class="no-results">
+        An samu matsala wajen kawo labarai.
+      </div>`;
 
     return;
-
   }
 
-  ticker.style.display =
-    "block";
+  allPosts = (data || []).filter(post =>
+    post.Image_url &&
+    post.Image_url.trim() !== ""
+  );
 
-  text.innerHTML =
-    breaking
-      .map(
-        post =>
-          `🚨 ${escapeHtml(
-            post.Title
-          )}`
-      )
-      .join(
-        " &nbsp;&nbsp; • &nbsp;&nbsp; "
-      );
+  renderAll();
 
 }
+
+
+/* =========================
+   RENDER EVERYTHING
+========================= */
+
+function renderAll(){
+
+  renderHero();
+  renderFeatured();
+  renderLatest();
+  renderBreaking();
+  renderMostRead();
+  renderVideos();
+
+}
+
 
 /* =========================
    FILTER
@@ -1546,159 +1058,39 @@ function renderBreakingNews(){
 
 function getFilteredPosts(){
 
-  let posts =
-    [...allPosts];
-
-  if(
-    currentCategory !==
-    "Duka"
-  ){
-
-    posts =
-      posts.filter(
-        post =>
-          (
-            post.category ||
-            "Labarai"
-          ) ===
-          currentCategory
-      );
-
+  if(currentCategory === "Duka"){
+    return allPosts;
   }
 
-  if(
-    currentSearch.trim()
-  ){
+  return allPosts.filter(post =>
+    String(post.category || "").toLowerCase() ===
+    currentCategory.toLowerCase()
+  );
 
-    const search =
-      currentSearch
-      .toLowerCase()
-      .trim();
+}
 
-    posts =
-      posts.filter(
-        post => {
 
-          const title =
-            (
-              post.Title ||
-              ""
-            ).toLowerCase();
+function filterNews(category, element){
 
-          const content =
-            (
-              post.Content ||
-              ""
-            ).toLowerCase();
+  currentCategory = category;
+  visibleCount = 10;
 
-          const category =
-            (
-              post.category ||
-              ""
-            ).toLowerCase();
+  document.querySelectorAll(".nav a")
+    .forEach(a => a.classList.remove("active"));
 
-          return (
-            title.includes(search) ||
-            content.includes(search) ||
-            category.includes(search)
-          );
-
-        }
-      );
-
+  if(element){
+    element.classList.add("active");
   }
 
-  return posts;
+  renderAll();
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
 
 }
 
-/* =========================
-   CATEGORY
-========================= */
-
-function filterCategory(
-  category,
-  button
-){
-
-  currentCategory =
-    category;
-
-  document
-    .querySelectorAll(
-      ".nav-inner button"
-    )
-    .forEach(
-      btn =>
-        btn.classList.remove(
-          "active"
-        )
-    );
-
-  if(button){
-
-    button.classList.add(
-      "active"
-    );
-
-  }
-
-  resetPagination();
-
-  renderHomepage();
-
-}
-
-/* =========================
-   SEARCH
-========================= */
-
-function handleSearch(){
-
-  currentSearch =
-    document.getElementById(
-      "searchInput"
-    ).value;
-
-  resetPagination();
-
-  renderHomepage();
-
-}
-
-/* =========================
-   PAGINATION
-========================= */
-
-function resetPagination(){
-
-  visiblePostCount =
-    POSTS_PER_PAGE;
-
-}
-
-function loadMorePosts(){
-
-  visiblePostCount +=
-    POSTS_PER_PAGE;
-
-  renderLatest();
-
-}
-
-/* =========================
-   HOMEPAGE
-========================= */
-
-function renderHomepage(){
-
-  renderHero();
-
-  renderTrending();
-
-  renderLatest();
-
-}
 
 /* =========================
    HERO
@@ -1706,234 +1098,138 @@ function renderHomepage(){
 
 function renderHero(){
 
-  const container =
-    document.getElementById(
-      "heroSection"
-    );
+  const posts = getFilteredPosts();
 
-  const posts =
-    getFilteredPosts();
+  const hero = document.getElementById("heroSection");
 
   if(!posts.length){
 
-    container.innerHTML =
-      "";
-
-    return;
-
-  }
-
-  const main =
-    posts[0];
-
-  const side =
-    posts.slice(1,4);
-
-  container.innerHTML =
-    `
-
-    <div class="section-header">
-
-      <h2>⭐ Manyan Labarai</h2>
-
-      <span>Featured</span>
-
-    </div>
-
-    <div class="hero-grid">
-
-      <article
-        class="hero-main"
-        onclick="openArticle(${main.id})">
-
-        <img
-          class="hero-main-image"
-          src="${escapeHtml(
-            main.Image_url
-          )}"
-          alt=""
-        >
-
-        <div class="hero-main-content">
-
-          ${
-            main.breaking_news === true
-            ?
-            `
-            <span class="breaking-badge">
-              🚨 BREAKING
-            </span>
-            `
-            :
-            ""
-          }
-
-          <span class="category">
-            ${escapeHtml(
-              main.category ||
-              "Labarai"
-            )}
-          </span>
-
-          <h1 class="hero-main-title">
-            ${escapeHtml(
-              main.Title
-            )}
-          </h1>
-
-          <p class="preview">
-            ${escapeHtml(
-              getPreview(
-                main.Content,
-                220
-              )
-            )}
-          </p>
-
-          <div class="meta">
-            📅 ${formatDate(
-              main.created_at
-            )}
-            • 👁️ ${Number(
-              main.views || 0
-            )}
-          </div>
-
-        </div>
-
-      </article>
-
-      <div class="hero-side">
-
-        ${
-          side.map(
-            post =>
-              `
-
-              <article
-                class="hero-side-card"
-                onclick="openArticle(${post.id})">
-
-                <img
-                  src="${escapeHtml(
-                    post.Image_url
-                  )}"
-                  alt=""
-                >
-
-                <div class="hero-side-content">
-
-                  <span class="category">
-                    ${escapeHtml(
-                      post.category ||
-                      "Labarai"
-                    )}
-                  </span>
-
-                  <h3>
-                    ${escapeHtml(
-                      post.Title
-                    )}
-                  </h3>
-
-                  <div class="meta">
-                    📅 ${formatDate(
-                      post.created_at
-                    )}
-                  </div>
-
-                </div>
-
-              </article>
-
-              `
-          ).join("")
-        }
-
-      </div>
-
-    </div>
-
-    `;
-
-}
-
-/* =========================
-   TRENDING
-========================= */
-
-function renderTrending(){
-
-  const container =
-    document.getElementById(
-      "trendingSection"
-    );
-
-  const posts =
-    [...allPosts]
-      .sort(
-        (a,b) =>
-          Number(b.views || 0) -
-          Number(a.views || 0)
-      )
-      .slice(0,5);
-
-  if(!posts.length){
-
-    container.innerHTML =
-      `<div class="empty">
-        Babu trending news tukuna.
+    hero.innerHTML =
+      `<div class="no-results">
+        Babu labari a wannan rukuni.
       </div>`;
 
     return;
+  }
+
+  const first =
+    posts.find(p => p.featured) || posts[0];
+
+  const others =
+    posts
+      .filter(p => p.id !== first.id)
+      .slice(0,2);
+
+
+  let html = `
+    <a
+      class="hero-main"
+      href="article.html?id=${first.id}">
+
+      <img
+        src="${escapeAttr(first.Image_url)}"
+        alt="${escapeAttr(first.Title)}">
+
+      <div class="hero-content">
+
+        <span class="category">
+          ${escapeHtml(first.category || "Labarai")}
+        </span>
+
+        <h1>
+          ${escapeHtml(first.Title)}
+        </h1>
+
+        <div class="meta">
+          ${formatDate(first.created_at)}
+          ${first.views ? " • " + Number(first.views) + " views" : ""}
+        </div>
+
+      </div>
+
+    </a>
+
+    <div class="side-news">
+  `;
+
+
+  others.forEach(post => {
+
+    html += `
+      <a
+        class="side-card"
+        href="article.html?id=${post.id}">
+
+        <img
+          src="${escapeAttr(post.Image_url)}"
+          alt="${escapeAttr(post.Title)}">
+
+        <div class="side-card-content">
+
+          <span class="category">
+            ${escapeHtml(post.category || "Labarai")}
+          </span>
+
+          <h3>
+            ${escapeHtml(post.Title)}
+          </h3>
+
+        </div>
+
+      </a>
+    `;
+
+  });
+
+
+  html += `</div>`;
+
+  hero.innerHTML = html;
+
+}
+
+
+/* =========================
+   FEATURED
+========================= */
+
+function renderFeatured(){
+
+  const container =
+    document.getElementById("featuredNews");
+
+  let posts =
+    getFilteredPosts()
+      .filter(post => post.featured);
+
+  if(!posts.length){
+
+    posts =
+      getFilteredPosts().slice(0,4);
+
+  }else{
+
+    posts = posts.slice(0,4);
 
   }
 
+
+  if(!posts.length){
+
+    container.innerHTML =
+      `<div class="no-results">
+        Babu Manyan Labarai yanzu.
+      </div>`;
+
+    return;
+  }
+
+
   container.innerHTML =
-    posts
-      .map(
-        (post,index) =>
-          `
-
-          <article
-            class="trending-card"
-            onclick="openArticle(${post.id})">
-
-            <img
-              src="${escapeHtml(
-                post.Image_url
-              )}"
-              alt=""
-            >
-
-            <div class="trending-content">
-
-              <span class="trending-number">
-                ${index + 1}
-              </span>
-
-              <span class="category">
-                ${escapeHtml(
-                  post.category ||
-                  "Labarai"
-                )}
-              </span>
-
-              <h3>
-                ${escapeHtml(
-                  post.Title
-                )}
-              </h3>
-
-            </div>
-
-          </article>
-
-          `
-      )
-      .join("");
+    posts.map(createNewsCard).join("");
 
 }
+
 
 /* =========================
    LATEST
@@ -1942,785 +1238,519 @@ function renderTrending(){
 function renderLatest(){
 
   const container =
-    document.getElementById(
-      "latestSection"
-    );
+    document.getElementById("latestNews");
 
   const posts =
-    getFilteredPosts();
+    getFilteredPosts()
+      .slice(0, visibleCount);
+
 
   if(!posts.length){
 
     container.innerHTML =
-      `
-      <div class="empty">
-        <h3>Babu labari</h3>
-        <p>Ba a samu labari mai dacewa ba.</p>
-      </div>
-      `;
-
-    document.getElementById(
-      "loadMoreBtn"
-    ).style.display =
-      "none";
+      `<div class="no-results">
+        Babu sauran labarai.
+      </div>`;
 
     return;
-
   }
 
-  const visible =
-    posts.slice(
-      0,
-      visiblePostCount
-    );
 
   container.innerHTML =
-    visible
-      .map(
-        post =>
-          createPostCard(post)
-      )
-      .join("");
-
-  const button =
-    document.getElementById(
-      "loadMoreBtn"
-    );
-
-  if(
-    visiblePostCount >=
-    posts.length
-  ){
-
-    button.style.display =
-      "none";
-
-  }else{
-
-    button.style.display =
-      "inline-block";
-
-  }
+    posts.map(createNewsCard).join("");
 
 }
 
+
 /* =========================
-   POST CARD
+   NEWS CARD
 ========================= */
 
-function createPostCard(
-  post
-){
+function createNewsCard(post){
 
   return `
+    <article class="news-card">
 
-    <article
-      class="news-card"
-      onclick="openArticle(${post.id})">
+      <a href="article.html?id=${post.id}">
 
-      <img
-        class="news-card-image"
-        src="${escapeHtml(
-          post.Image_url
-        )}"
-        alt=""
-      >
+        <div class="news-image">
 
-      <div class="news-card-content">
-
-        ${
-          post.breaking_news === true
-          ?
-          `
-          <span class="breaking-badge">
-            🚨 BREAKING
-          </span>
-          `
-          :
-          ""
-        }
-
-        <span class="category">
-          ${escapeHtml(
-            post.category ||
-            "Labarai"
-          )}
-        </span>
-
-        <h3>
-          ${escapeHtml(
-            post.Title
-          )}
-        </h3>
-
-        <p class="preview">
-          ${escapeHtml(
-            getPreview(
-              post.Content,
-              155
-            )
-          )}
-        </p>
-
-        <div class="meta">
-
-          📅 ${formatDate(
-            post.created_at
-          )}
-
-          • 👁️ ${Number(
-            post.views || 0
-          )} views
+          <img
+            src="${escapeAttr(post.Image_url)}"
+            alt="${escapeAttr(post.Title)}"
+            loading="lazy">
 
         </div>
 
-        <span class="read-button">
-          Karanta cikakken labari →
-        </span>
+        <div class="news-body">
 
+          <span class="category">
+            ${escapeHtml(post.category || "Labarai")}
+          </span>
+
+          <h3>
+            ${escapeHtml(post.Title)}
+          </h3>
+
+          <div class="meta">
+            ${formatDate(post.created_at)}
+            ${post.views ? " • " + Number(post.views) + " views" : ""}
+          </div>
+
+        </div>
+
+      </a>
+
+      <div style="padding:0 14px 14px;">
+        <button
+          class="share-btn"
+          onclick="shareNews(event, ${post.id})">
+          ↗ Share
+        </button>
       </div>
 
     </article>
-
   `;
 
 }
 
+
 /* =========================
-   OPEN ARTICLE
+   BREAKING
 ========================= */
 
-async function openArticle(
-  postId
-){
+function renderBreaking(){
 
-  const post =
-    allPosts.find(
-      p =>
-        Number(p.id) ===
-        Number(postId)
-    );
+  const box =
+    document.getElementById("breakingNews");
 
-  if(!post){
+  const posts =
+    allPosts.filter(p => p.breaking_news === true)
+      .slice(0,5);
+
+
+  if(!posts.length){
+
+    box.innerHTML =
+      "Babu Breaking News yanzu.";
+
     return;
   }
 
-  currentArticle =
-    post;
 
-  document.getElementById(
-    "articleTitle"
-  ).textContent =
-    post.Title || "";
-
-  document.getElementById(
-    "articleContent"
-  ).textContent =
-    post.Content || "";
-
-  document.getElementById(
-    "articleCategory"
-  ).textContent =
-    post.category ||
-    "Labarai";
-
-  const breaking =
-    document.getElementById(
-      "articleBreaking"
-    );
-
-  breaking.style.display =
-    post.breaking_news === true
-    ?
-    "inline-block"
-    :
-    "none";
-
-  document.getElementById(
-    "articleMeta"
-  ).textContent =
-    "📅 " +
-    formatDate(
-      post.created_at
-    ) +
-    " • 👁️ " +
-    Number(
-      post.views || 0
-    );
-
-  const image =
-    document.getElementById(
-      "articleImage"
-    );
-
-  image.src =
-    post.Image_url;
-
-  image.style.display =
-    "block";
-
-  document.getElementById(
-    "articleModal"
-  ).style.display =
-    "block";
-
-  document.body.style.overflow =
-    "hidden";
-
-  await incrementView(
-    post.id
-  );
+  box.innerHTML =
+    posts.map(post =>
+      `<a href="article.html?id=${post.id}">
+        ${escapeHtml(post.Title)}
+      </a>`
+    ).join(" &nbsp; | &nbsp; ");
 
 }
 
-/* =========================
-   CLOSE
-========================= */
-
-function closeArticle(){
-
-  document.getElementById(
-    "articleModal"
-  ).style.display =
-    "none";
-
-  document.body.style.overflow =
-    "";
-
-  currentArticle =
-    null;
-
-}
-
-/* =========================
-   VIEWS
-========================= */
-
-async function incrementView(
-  postId
-){
-
-  try{
-
-    const visitorId =
-      getVisitorId();
-
-    const key =
-      "aminchi_viewed_" +
-      postId;
-
-    if(
-      sessionStorage.getItem(
-        key
-      )
-    ){
-
-      return;
-
-    }
-
-    sessionStorage.setItem(
-      key,
-      "true"
-    );
-
-    await supabaseClient
-      .from("post_views")
-      .insert({
-
-        post_id:
-          postId,
-
-        visitor_id:
-          visitorId
-
-      });
-
-    await supabaseClient
-      .rpc(
-        "increment_post_view",
-        {
-          post_id_input:
-            postId
-        }
-      );
-
-    const post =
-      allPosts.find(
-        p =>
-          Number(p.id) ===
-          Number(postId)
-      );
-
-    if(post){
-
-      post.views =
-        Number(
-          post.views || 0
-        ) + 1;
-
-    }
-
-    renderTrending();
-
-  }catch(error){
-
-    console.error(
-      "View error:",
-      error
-    );
-
-  }
-
-}
-
-/* =========================
-   SHARE
-========================= */
-
-async function sharePost(){
-
-  if(!currentArticle){
-    return;
-  }
-
-  const url =
-    window.location.origin +
-    window.location.pathname +
-    "#post-" +
-    currentArticle.id;
-
-  try{
-
-    if(
-      navigator.share
-    ){
-
-      await navigator.share({
-
-        title:
-          currentArticle.Title,
-
-        text:
-          currentArticle.Content,
-
-        url:url
-
-      });
-
-    }else{
-
-      await navigator.clipboard
-        .writeText(url);
-
-      alert(
-        "An kwafi link din labarin."
-      );
-
-    }
-
-  }catch(error){
-
-    console.log(error);
-
-  }
-
-}
 
 /* =========================
    MOST READ
 ========================= */
 
-async function loadMostRead(){
-
-  await loadMostReadBox(
-    1,
-    "mostReadToday"
-  );
-
-  await loadMostReadBox(
-    7,
-    "mostReadWeek"
-  );
-
-}
-
-async function loadMostReadBox(
-  days,
-  elementId
-){
+async function renderMostRead(){
 
   const box =
-    document.getElementById(
-      elementId
-    );
+    document.getElementById("mostRead");
+
+  let posts = [];
+
 
   try{
 
-    const { data,error } =
+    const { data } =
       await supabaseClient
-      .rpc(
-        "get_most_read_posts",
-        {
-          days_back:
-            days
-        }
-      );
+        .rpc("get_most_read_posts");
 
-    if(error){
-      throw error;
+
+    if(data && data.length){
+      posts = data;
     }
 
-    if(
-      !data ||
-      !data.length
-    ){
+  }catch(e){
 
-      box.innerHTML =
-        `
-        <div style="padding:15px;color:#777;">
-          Babu views tukuna.
-        </div>
-        `;
+    console.log("RPC unavailable");
 
-      return;
+  }
 
-    }
 
-    const posts =
-      data
-      .map(
-        item => {
+  if(!posts.length){
 
-          const post =
-            allPosts.find(
-              p =>
-                Number(p.id) ===
-                Number(item.post_id)
-            );
+    posts =
+      [...allPosts]
+        .sort((a,b) =>
+          Number(b.views || 0) -
+          Number(a.views || 0)
+        )
+        .slice(0,5);
 
-          if(!post){
-            return null;
-          }
+  }
 
-          return {
-            ...post,
-            readViews:
-              item.view_count
-          };
 
-        }
-      )
-      .filter(Boolean)
-      .slice(0,5);
+  if(!posts.length){
 
     box.innerHTML =
-      posts
-      .map(
-        post =>
-          `
+      `<div class="loading">Babu labarai.</div>`;
 
-          <div
-            class="sidebar-item"
-            onclick="openArticle(${post.id})">
+    return;
+  }
 
-            <img
-              src="${escapeHtml(
-                post.Image_url
-              )}"
-              alt=""
-            >
 
-            <div>
+  box.innerHTML =
+    posts.slice(0,5).map((post,index) => {
 
-              <strong>
-                ${escapeHtml(
-                  post.Title
-                )}
-              </strong>
+      const id =
+        post.id || post.post_id;
 
-              <div class="meta">
-                👁️ ${Number(
-                  post.readViews || 0
-                )} reads
-              </div>
+      const title =
+        post.Title || post.title || "Labari";
 
+      return `
+        <a
+          class="most-item"
+          href="article.html?id=${id}">
+
+          <div class="most-number">
+            ${index + 1}
+          </div>
+
+          <div>
+
+            <h4>
+              ${escapeHtml(title)}
+            </h4>
+
+            <div class="meta">
+              ${Number(post.views || 0)} views
             </div>
 
           </div>
 
-          `
-      )
-      .join("");
-
-  }catch(error){
-
-    console.error(
-      "Most read error:",
-      error
-    );
-
-    box.innerHTML =
-      `
-      <div style="padding:15px;color:#777;">
-        An kasa loda.
-      </div>
+        </a>
       `;
 
-  }
+    }).join("");
 
 }
 
+
 /* =========================
-   VIDEO
+   VIDEOS
 ========================= */
 
-function renderVideoSection(){
+function renderVideos(){
 
-  const container =
-    document.getElementById(
-      "videoSection"
-    );
+  const box =
+    document.getElementById("videoNews");
 
-  const posts =
+  const videos =
     allPosts
-      .filter(
-        post =>
-          (
-            post.category ||
-            ""
-          ).toLowerCase()
-          ===
-          "bidiyo"
+      .filter(post =>
+        String(post.category || "")
+          .toLowerCase() === "bidiyo"
       )
       .slice(0,3);
 
-  if(!posts.length){
 
-    container.innerHTML =
-      `
-      <div class="empty">
-        <h3>AMINCHI VIDEO</h3>
-        <p>
-          Bidiyo za su bayyana a nan
-          idan an wallafa su.
-        </p>
-      </div>
-      `;
+  if(!videos.length){
 
+    box.innerHTML =
+      `<div class="no-results">
+        Babu bidiyo tukuna.
+      </div>`;
+
+    return;
+  }
+
+
+  box.innerHTML =
+    videos.map(post => `
+      <a
+        class="video-card"
+        href="article.html?id=${post.id}">
+
+        <img
+          src="${escapeAttr(post.Image_url)}"
+          alt="${escapeAttr(post.Title)}"
+          loading="lazy">
+
+        <h3>
+          ▶ ${escapeHtml(post.Title)}
+        </h3>
+
+      </a>
+    `).join("");
+
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+function searchNews(){
+
+  const query =
+    document.getElementById("searchInput")
+      .value
+      .trim()
+      .toLowerCase();
+
+  const resultsBox =
+    document.getElementById("searchResults");
+
+
+  if(!query){
+
+    resultsBox.style.display = "none";
     return;
 
   }
 
-  container.innerHTML =
-    posts
-    .map(
-      post =>
-        `
 
-        <article
-          class="media-card"
-          onclick="openArticle(${post.id})">
+  const results =
+    allPosts.filter(post => {
 
-          <img
-            src="${escapeHtml(
-              post.Image_url
-            )}"
-            alt=""
-          >
+      const title =
+        String(post.Title || "").toLowerCase();
 
-          <div>
+      const content =
+        String(post.Content || "").toLowerCase();
 
-            <span class="category">
-              Bidiyo
-            </span>
+      const category =
+        String(post.category || "").toLowerCase();
 
-            <h3>
-              ▶ ${escapeHtml(
-                post.Title
-              )}
-            </h3>
+      return (
+        title.includes(query) ||
+        content.includes(query) ||
+        category.includes(query)
+      );
 
-          </div>
+    });
 
-        </article>
 
-        `
-    )
-    .join("");
+  resultsBox.style.display = "block";
+
+
+  if(!results.length){
+
+    resultsBox.innerHTML = `
+      <h2>Sakamakon bincike</h2>
+      <div class="no-results">
+        Ba a sami labarin da ya dace da
+        "<strong>${escapeHtml(query)}</strong>" ba.
+      </div>
+    `;
+
+    return;
+  }
+
+
+  resultsBox.innerHTML = `
+    <h2>
+      Sakamakon bincike:
+      ${results.length}
+    </h2>
+
+    <div class="news-grid">
+      ${results.slice(0,20).map(createNewsCard).join("")}
+    </div>
+  `;
 
 }
 
+
 /* =========================
-   LIVE
+   LOAD MORE
 ========================= */
 
-async function loadLive(){
+function loadMore(){
 
-  document.getElementById(
-    "liveText"
-  ).textContent =
-    "Bi AMINCHI NEWS HAUSA domin samun sabbin labarai da rahotannin kai tsaye.";
+  visibleCount += 10;
+
+  renderLatest();
 
 }
 
+
 /* =========================
-   HELPERS
+   SHARE
 ========================= */
 
-function getPreview(
-  text,
-  length
-){
+async function shareNews(event,id){
 
-  text =
-    text || "";
+  event.preventDefault();
+  event.stopPropagation();
 
-  if(
-    text.length <= length
-  ){
+  const url =
+    window.location.origin +
+    window.location.pathname.replace("index.html","") +
+    "article.html?id=" + id;
 
-    return text;
+
+  const post =
+    allPosts.find(p => Number(p.id) === Number(id));
+
+
+  const title =
+    post ? post.Title : "AMINCHI NEWS HAUSA";
+
+
+  if(navigator.share){
+
+    try{
+
+      await navigator.share({
+        title:title,
+        text:title,
+        url:url
+      });
+
+    }catch(e){}
+
+  }else{
+
+    try{
+
+      await navigator.clipboard.writeText(url);
+
+      alert("An kwafi link ɗin labarin.");
+
+    }catch(e){
+
+      prompt("Kwafi wannan link:",url);
+
+    }
 
   }
 
-  return (
-    text.slice(
-      0,
-      length
-    ) +
-    "..."
-  );
+}
+
+
+/* =========================
+   VISITOR
+========================= */
+
+async function loadVisitors(){
+
+  try{
+
+    const visitorId =
+      localStorage.getItem("aminchi_visitor_id") ||
+      crypto.randomUUID();
+
+    localStorage.setItem(
+      "aminchi_visitor_id",
+      visitorId
+    );
+
+
+    const { data, error } =
+      await supabaseClient
+        .rpc("count_visitor", {
+          visitor_id:visitorId
+        });
+
+
+    if(!error && data !== null){
+
+      document.getElementById("visitorCount")
+        .textContent =
+        Number(data).toLocaleString();
+
+    }
+
+  }catch(e){
+
+    console.log("Visitor counter unavailable");
+
+  }
 
 }
 
-function formatDate(
-  date
-){
 
-  if(!date){
+/* =========================
+   MENU
+========================= */
+
+function toggleMenu(){
+
+  const nav =
+    document.getElementById("mainNav");
+
+  nav.scrollIntoView({
+    behavior:"smooth"
+  });
+
+}
+
+
+/* =========================
+   DATE
+========================= */
+
+function formatDate(date){
+
+  if(!date) return "";
+
+  try{
+
+    return new Date(date)
+      .toLocaleDateString("ha-NG",{
+        day:"numeric",
+        month:"long",
+        year:"numeric"
+      });
+
+  }catch(e){
+
     return "";
+
   }
 
-  return new Date(
-    date
-  ).toLocaleString(
-    "ha-NG",
-    {
-      dateStyle:"medium",
-      timeStyle:"short"
-    }
-  );
-
 }
 
-function escapeHtml(
-  value
-){
-
-  return String(
-    value || ""
-  )
-  .replace(
-    /&/g,
-    "&amp;"
-  )
-  .replace(
-    /</g,
-    "&lt;"
-  )
-  .replace(
-    />/g,
-    "&gt;"
-  )
-  .replace(
-    /"/g,
-    "&quot;"
-  )
-  .replace(
-    /'/g,
-    "&#039;"
-  );
-
-}
 
 /* =========================
-   HASH
+   SECURITY / HTML
 ========================= */
 
-function openHashPost(){
+function escapeHtml(value){
 
-  const hash =
-    window.location.hash;
-
-  if(
-    hash.startsWith(
-      "#post-"
-    )
-  ){
-
-    const id =
-      hash.replace(
-        "#post-",
-        ""
-      );
-
-    if(id){
-
-      openArticle(
-        Number(id)
-      );
-
-    }
-
-  }
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
 
 }
 
-/* =========================
-   MODAL CLICK
-========================= */
 
-document.getElementById(
-  "articleModal"
-).addEventListener(
-  "click",
-  function(event){
+function escapeAttr(value){
 
-    if(
-      event.target === this
-    ){
+  return escapeHtml(value);
 
-      closeArticle();
+}
 
-    }
-
-  }
-);
 
 /* =========================
    START
 ========================= */
 
-async function start(){
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
 
-  await Promise.allSettled([
+    loadPosts();
+    loadVisitors();
 
-    countVisitor(),
-
-    loadLive(),
-
-    loadPosts()
-
-  ]);
-
-  await loadMostRead();
-
-  openHashPost();
-
-}
-
-start();
+  }
+);
 
 </script>
 
