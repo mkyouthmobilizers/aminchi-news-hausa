@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mkyouthmobilizers.github.io/aminchi-news-hausa/sitemap.xml
