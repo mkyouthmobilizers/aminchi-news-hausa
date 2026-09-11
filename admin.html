@@ -4,7 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>AMINCHI NEWS HAUSA | Admin</title>
+<title>AMINCHI NEWS HAUSA — Admin Dashboard</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
 *{
@@ -16,55 +18,98 @@
 body{
   font-family:Arial,Helvetica,sans-serif;
   background:#f4f5f7;
-  color:#171717;
+  color:#111;
 }
 
-.container{
-  max-width:1000px;
-  margin:auto;
-  padding:20px;
+/* HEADER */
+.header{
+  background:#111;
+  color:#fff;
+  padding:15px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  position:sticky;
+  top:0;
+  z-index:100;
+  box-shadow:0 2px 10px rgba(0,0,0,.2);
 }
 
-.box{
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.brand img{
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  object-fit:cover;
   background:#fff;
-  border-radius:14px;
-  padding:25px;
-  margin-bottom:20px;
-  box-shadow:0 3px 15px rgba(0,0,0,.08);
 }
 
-.logo-title{
-  text-align:center;
-  color:#c40000;
-  font-size:30px;
-  font-weight:900;
+.brand h1{
+  font-size:20px;
 }
 
-.subtitle{
-  text-align:center;
-  color:#777;
-  margin:8px 0 25px;
-}
-
-h2{
-  color:#c40000;
-  margin-bottom:18px;
-}
-
-label{
+.brand span{
   display:block;
-  font-weight:700;
-  margin:15px 0 7px;
+  color:#aaa;
+  font-size:12px;
+  margin-top:3px;
+}
+
+.logout{
+  background:#c40000;
+  border:0;
+  color:white;
+  padding:10px 15px;
+  border-radius:7px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+/* MAIN */
+.container{
+  width:95%;
+  max-width:1400px;
+  margin:25px auto;
+}
+
+/* LOGIN */
+.login-box{
+  width:100%;
+  max-width:430px;
+  margin:70px auto;
+  background:white;
+  padding:30px;
+  border-radius:15px;
+  box-shadow:0 5px 25px rgba(0,0,0,.12);
+}
+
+.login-box h2{
+  text-align:center;
+  margin-bottom:25px;
+}
+
+.logo-login{
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  display:block;
+  margin:0 auto 15px;
+  object-fit:cover;
 }
 
 input,
 textarea,
 select{
   width:100%;
-  padding:14px;
-  border:1px solid #ccc;
-  border-radius:9px;
-  font-size:16px;
+  padding:13px;
+  border:1px solid #ddd;
+  border-radius:8px;
+  font-size:15px;
   outline:none;
   background:#fff;
 }
@@ -76,570 +121,775 @@ select:focus{
 }
 
 textarea{
-  min-height:180px;
+  min-height:220px;
   resize:vertical;
 }
 
-button{
-  border:0;
-  border-radius:9px;
-  padding:13px 18px;
-  font-size:15px;
-  font-weight:700;
-  cursor:pointer;
+.form-group{
+  margin-bottom:17px;
 }
 
-button:disabled{
-  opacity:.6;
-  cursor:not-allowed;
+.form-group label{
+  display:block;
+  font-weight:bold;
+  margin-bottom:7px;
 }
 
-.primary{
+.required{
+  color:#c40000;
+}
+
+.login-btn,
+.publish-btn{
   width:100%;
   background:#c40000;
-  color:#fff;
-  font-size:17px;
-  margin-top:20px;
+  color:white;
+  border:0;
+  padding:14px;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:bold;
+  font-size:16px;
 }
 
-.login-btn{
-  background:#111;
-}
-
-.logout{
-  width:100%;
-  background:#222;
-  color:#fff;
-}
-
-.cancel{
-  width:100%;
-  background:#777;
-  color:#fff;
-  margin-top:10px;
-  display:none;
+.login-btn:hover,
+.publish-btn:hover{
+  background:#a80000;
 }
 
 .message{
+  margin-top:15px;
   text-align:center;
-  margin-top:15px;
-  font-weight:700;
-  line-height:1.5;
+  font-size:14px;
 }
 
-.success{
-  color:#087f23;
+/* DASHBOARD */
+.dashboard-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
 }
 
-.error{
-  color:#c40000;
+.dashboard-title h2{
+  font-size:25px;
 }
 
-/* OPTIONS */
+.dashboard-title p{
+  color:#666;
+  margin-top:5px;
+}
 
-.options{
+/* STATS */
+.stats{
   display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-  margin-top:15px;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+  margin-bottom:25px;
 }
 
-.option{
+.stat{
+  background:white;
+  padding:20px;
+  border-radius:12px;
+  box-shadow:0 2px 10px rgba(0,0,0,.07);
+  border-left:5px solid #c40000;
+}
+
+.stat .number{
+  font-size:28px;
+  font-weight:bold;
+  margin-bottom:5px;
+}
+
+.stat .label{
+  color:#666;
+  font-size:14px;
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:380px 1fr;
+  gap:20px;
+}
+
+/* CARDS */
+.card{
+  background:white;
+  border-radius:12px;
+  padding:20px;
+  box-shadow:0 2px 10px rgba(0,0,0,.07);
+  margin-bottom:20px;
+}
+
+.card h3{
+  margin-bottom:18px;
+  font-size:19px;
+}
+
+/* CHECKBOX */
+.check-row{
+  display:flex;
+  gap:20px;
+  flex-wrap:wrap;
+  margin:15px 0;
+}
+
+.check{
   display:flex;
   align-items:center;
-  gap:10px;
-  padding:15px;
+  gap:7px;
+  font-weight:bold;
+}
+
+.check input{
+  width:auto;
+}
+
+/* FILE */
+.file-box{
+  border:2px dashed #ccc;
+  padding:20px;
   border-radius:10px;
-  border:1px solid #ddd;
+  text-align:center;
+  background:#fafafa;
 }
-
-.option input{
-  width:22px;
-  height:22px;
-  margin:0;
-}
-
-.breaking{
-  background:#fff2f2;
-  border-color:#e3a2a2;
-}
-
-.breaking label{
-  color:#c40000;
-  margin:0;
-}
-
-.featured{
-  background:#fffaf0;
-  border-color:#e3c27b;
-}
-
-.featured label{
-  color:#8a5a00;
-  margin:0;
-}
-
-/* PREVIEW */
 
 .preview{
-  margin-top:15px;
-  text-align:center;
-}
-
-.preview img,
-.preview video{
+  display:none;
   width:100%;
-  max-height:350px;
-  object-fit:contain;
+  max-height:220px;
+  object-fit:cover;
   border-radius:10px;
+  margin-top:12px;
 }
 
-/* POSTS */
-
-.post-card{
-  border:1px solid #ddd;
-  border-radius:12px;
-  padding:16px;
-  margin-top:18px;
-}
-
-.post-card img,
-.post-card video{
-  width:100%;
-  max-height:350px;
-  object-fit:contain;
-  border-radius:10px;
-  margin:12px 0;
-}
-
-.post-title{
-  font-size:21px;
-  font-weight:800;
-  margin:8px 0;
-}
-
-.post-content{
-  color:#555;
-  line-height:1.6;
-  white-space:pre-wrap;
-}
-
-.badges{
+/* BUTTONS */
+.btn-row{
   display:flex;
-  flex-wrap:wrap;
-  gap:7px;
+  gap:10px;
+  margin-top:15px;
+}
+
+.btn{
+  border:0;
+  padding:11px 15px;
+  border-radius:7px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.btn-primary{
+  background:#c40000;
+  color:white;
+}
+
+.btn-secondary{
+  background:#eee;
+  color:#111;
+}
+
+.btn-danger{
+  background:#b00000;
+  color:white;
+}
+
+.btn-dark{
+  background:#111;
+  color:white;
+}
+
+/* TABLE */
+.table-top{
+  display:flex;
+  gap:10px;
+  margin-bottom:15px;
+}
+
+.table-top input{
+  flex:1;
+}
+
+.table-wrap{
+  overflow-x:auto;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:800px;
+}
+
+th,
+td{
+  padding:12px;
+  border-bottom:1px solid #eee;
+  text-align:left;
+  vertical-align:middle;
+}
+
+th{
+  background:#111;
+  color:white;
+}
+
+.news-img{
+  width:75px;
+  height:55px;
+  object-fit:cover;
+  border-radius:6px;
 }
 
 .badge{
   display:inline-block;
-  padding:6px 10px;
+  padding:5px 8px;
   border-radius:20px;
-  font-size:12px;
-  font-weight:700;
+  font-size:11px;
+  font-weight:bold;
+  margin:2px;
 }
 
-.category{
-  background:#111;
-  color:#fff;
+.badge-red{
+  background:#ffe0e0;
+  color:#b00000;
 }
 
-.breaking-badge{
-  background:#c40000;
-  color:#fff;
+.badge-green{
+  background:#e1f6e7;
+  color:#16813a;
 }
 
-.featured-badge{
-  background:#f0b000;
+.badge-black{
+  background:#eee;
   color:#111;
 }
 
 .actions{
   display:flex;
-  gap:10px;
-  margin-top:15px;
+  gap:6px;
+  flex-wrap:wrap;
 }
 
-.edit{
-  flex:1;
+.actions button{
+  padding:7px 9px;
+  border:0;
+  border-radius:5px;
+  cursor:pointer;
+  font-size:12px;
+  font-weight:bold;
+}
+
+.edit-btn{
   background:#111;
-  color:#fff;
+  color:white;
 }
 
-.delete{
-  flex:1;
+.delete-btn{
   background:#c40000;
-  color:#fff;
+  color:white;
 }
 
 /* LIVE */
-
-.live-box{
-  border:2px solid #ddd;
-  border-radius:12px;
-  padding:20px;
-}
-
-.live-title{
-  text-align:center;
-  font-size:25px;
-  font-weight:900;
-  color:#c40000;
-  margin-bottom:8px;
-}
-
 .live-status{
-  text-align:center;
-  background:#f2f2f2;
-  padding:13px;
+  padding:12px;
   border-radius:8px;
-  margin-top:15px;
-  font-weight:700;
+  background:#f1f1f1;
+  margin-bottom:12px;
 }
 
-.end-live{
-  width:100%;
-  background:#222;
-  color:#fff;
-  margin-top:10px;
+.live-on{
+  color:#16813a;
+  font-weight:bold;
 }
 
-.back{
-  display:block;
-  text-align:center;
+.live-off{
   color:#c40000;
-  font-weight:700;
-  text-decoration:none;
-  margin:25px;
+  font-weight:bold;
+}
+
+/* LOADING */
+.loading{
+  text-align:center;
+  padding:25px;
+  color:#777;
+}
+
+.empty{
+  text-align:center;
+  padding:30px;
+  color:#777;
 }
 
 /* MOBILE */
+@media(max-width:1000px){
+  .stats{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+}
 
 @media(max-width:600px){
+  .header{
+    padding:12px;
+  }
 
-.container{
-  padding:12px;
-}
+  .brand h1{
+    font-size:16px;
+  }
 
-.box{
-  padding:18px;
-}
+  .brand img{
+    width:40px;
+    height:40px;
+  }
 
-.logo-title{
-  font-size:24px;
-}
+  .logout{
+    padding:8px 10px;
+    font-size:12px;
+  }
 
-.options{
-  grid-template-columns:1fr;
-}
+  .container{
+    width:94%;
+    margin:18px auto;
+  }
 
-.actions{
-  flex-direction:column;
-}
+  .stats{
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+  }
 
+  .stat{
+    padding:15px;
+  }
+
+  .stat .number{
+    font-size:23px;
+  }
+
+  .dashboard-title{
+    display:block;
+  }
+
+  .card{
+    padding:15px;
+  }
+
+  .btn-row{
+    flex-direction:column;
+  }
+
+  .btn{
+    width:100%;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
-
 <!-- LOGIN -->
+<div id="loginPage">
 
-<div class="box" id="loginArea">
+  <div class="login-box">
 
-<div class="logo-title">
-AMINCHI NEWS HAUSA
-</div>
+    <img
+      src="9D8837D9-17A6-4645-AF4E-5D344B6D8159.png"
+      class="logo-login"
+      alt="AMINCHI NEWS HAUSA"
+    >
 
-<p class="subtitle">
-Admin Panel
-</p>
+    <h2>AMINCHI NEWS HAUSA</h2>
 
-<label>Email</label>
+    <p style="text-align:center;color:#777;margin-bottom:25px;">
+      Admin Newsroom Login
+    </p>
 
-<input
-type="email"
-id="loginEmail"
-placeholder="Enter admin email"
-autocomplete="email"
->
+    <div class="form-group">
+      <label>Email</label>
+      <input
+        type="email"
+        id="loginEmail"
+        placeholder="Admin email"
+      >
+    </div>
 
-<label>Password</label>
+    <div class="form-group">
+      <label>Password</label>
+      <input
+        type="password"
+        id="loginPassword"
+        placeholder="Password"
+      >
+    </div>
 
-<input
-type="password"
-id="loginPassword"
-placeholder="Enter admin password"
-autocomplete="current-password"
->
+    <button class="login-btn" onclick="login()">
+      LOGIN
+    </button>
 
-<button
-class="primary login-btn"
-id="loginBtn"
->
-🔐 Login
-</button>
+    <div id="loginMessage" class="message"></div>
 
-<div id="loginMessage" class="message"></div>
+  </div>
 
 </div>
 
 
 <!-- ADMIN -->
+<div id="adminPage" style="display:none;">
 
-<div id="adminArea" style="display:none">
+  <!-- HEADER -->
+  <header class="header">
+
+    <div class="brand">
+
+      <img
+        src="9D8837D9-17A6-4645-AF4E-5D344B6D8159.png"
+        alt="Logo"
+      >
+
+      <div>
+        <h1>AMINCHI NEWS HAUSA</h1>
+        <span>Professional Newsroom CMS</span>
+      </div>
+
+    </div>
+
+    <button class="logout" onclick="logout()">
+      Logout
+    </button>
+
+  </header>
 
 
-<!-- CREATE POST -->
+  <main class="container">
 
-<div class="box">
+    <!-- TITLE -->
+    <div class="dashboard-title">
 
-<div class="logo-title">
-AMINCHI NEWS HAUSA
+      <div>
+        <h2>📊 News Dashboard</h2>
+
+        <p>
+          Sarrafa labarai, hotuna, breaking news da featured stories.
+        </p>
+      </div>
+
+    </div>
+
+
+    <!-- STATS -->
+    <section class="stats">
+
+      <div class="stat">
+        <div class="number" id="totalNews">0</div>
+        <div class="label">📰 Total News</div>
+      </div>
+
+      <div class="stat">
+        <div class="number" id="totalBreaking">0</div>
+        <div class="label">🚨 Breaking News</div>
+      </div>
+
+      <div class="stat">
+        <div class="number" id="totalFeatured">0</div>
+        <div class="label">⭐ Featured News</div>
+      </div>
+
+      <div class="stat">
+        <div class="number" id="totalViews">0</div>
+        <div class="label">👁️ Total Views</div>
+      </div>
+
+    </section>
+
+
+    <div class="grid">
+
+
+      <!-- LEFT -->
+      <div>
+
+
+        <!-- NEW STORY -->
+        <div class="card">
+
+          <h3 id="formTitle">
+            📝 Sabon Labari
+          </h3>
+
+          <input type="hidden" id="editId">
+
+
+          <div class="form-group">
+
+            <label>
+              Taken Labari <span class="required">*</span>
+            </label>
+
+            <input
+              type="text"
+              id="title"
+              placeholder="Rubuta taken labarin..."
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>
+              Category <span class="required">*</span>
+            </label>
+
+            <select id="category">
+
+              <option value="Labarai">Labarai</option>
+              <option value="Kano">Kano</option>
+              <option value="Najeriya">Najeriya</option>
+              <option value="Siyasa">Siyasa</option>
+              <option value="Duniya">Duniya</option>
+              <option value="Wasanni">Wasanni</option>
+              <option value="Kasuwanci">Kasuwanci</option>
+              <option value="Kannywood">Kannywood</option>
+              <option value="Nishaɗi">Nishaɗi</option>
+              <option value="Hotuna">Hotuna</option>
+              <option value="Bidiyo">Bidiyo</option>
+
+            </select>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>
+              Hoton Labari <span class="required">*</span>
+            </label>
+
+            <div class="file-box">
+
+              <input
+                type="file"
+                id="imageFile"
+                accept="image/*"
+                onchange="previewImage(event)"
+              >
+
+              <p style="font-size:12px;color:#777;margin-top:8px;">
+                Hoto dole ne ga sabon labari.
+              </p>
+
+              <img
+                id="imagePreview"
+                class="preview"
+                alt="Preview"
+              >
+
+            </div>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>
+              Cikakken Labari <span class="required">*</span>
+            </label>
+
+            <textarea
+              id="content"
+              placeholder="Rubuta cikakken labarin a nan..."
+            ></textarea>
+
+          </div>
+
+
+          <div class="check-row">
+
+            <label class="check">
+
+              <input
+                type="checkbox"
+                id="breaking"
+              >
+
+              🚨 Breaking News
+
+            </label>
+
+
+            <label class="check">
+
+              <input
+                type="checkbox"
+                id="featured"
+              >
+
+              ⭐ Featured / Manyan Labarai
+
+            </label>
+
+          </div>
+
+
+          <button
+            class="publish-btn"
+            id="publishBtn"
+            onclick="savePost()"
+          >
+            🚀 Publish News
+          </button>
+
+
+          <div class="btn-row">
+
+            <button
+              class="btn btn-secondary"
+              onclick="resetForm()"
+            >
+              Clear Form
+            </button>
+
+          </div>
+
+
+          <div id="formMessage" class="message"></div>
+
+        </div>
+
+
+        <!-- YOUTUBE LIVE -->
+        <div class="card">
+
+          <h3>🔴 YouTube Live</h3>
+
+          <div id="liveStatus" class="live-status">
+            Ana duba status...
+          </div>
+
+          <div class="form-group">
+
+            <label>YouTube Video / Live ID</label>
+
+            <input
+              type="text"
+              id="youtubeId"
+              placeholder="Misali: dQw4w9WgXcQ"
+            >
+
+          </div>
+
+          <div class="btn-row">
+
+            <button
+              class="btn btn-primary"
+              onclick="activateLive()"
+            >
+              🔴 Activate Live
+            </button>
+
+            <button
+              class="btn btn-dark"
+              onclick="endLive()"
+            >
+              ⛔ End Live
+            </button>
+
+          </div>
+
+          <div id="liveMessage" class="message"></div>
+
+        </div>
+
+
+      </div>
+
+
+      <!-- RIGHT -->
+      <div>
+
+        <div class="card">
+
+          <h3>📰 All News</h3>
+
+
+          <div class="table-top">
+
+            <input
+              type="search"
+              id="adminSearch"
+              placeholder="🔎 Nemo labari..."
+              oninput="searchAdminNews()"
+            >
+
+            <button
+              class="btn btn-primary"
+              onclick="loadPosts()"
+            >
+              🔄 Refresh
+            </button>
+
+          </div>
+
+
+          <div class="table-wrap">
+
+            <table>
+
+              <thead>
+
+                <tr>
+
+                  <th>Hoto</th>
+
+                  <th>Title</th>
+
+                  <th>Category</th>
+
+                  <th>Status</th>
+
+                  <th>Views</th>
+
+                  <th>Date</th>
+
+                  <th>Action</th>
+
+                </tr>
+
+              </thead>
+
+              <tbody id="postsTable">
+
+                <tr>
+                  <td colspan="7" class="loading">
+                    Ana loading...
+                  </td>
+                </tr>
+
+              </tbody>
+
+            </table>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
 </div>
 
-<p
-class="subtitle"
-id="formTitle"
->
-Sabon Labari
-</p>
-
-
-<label>
-📰 Taken Labari
-</label>
-
-<input
-type="text"
-id="title"
-placeholder="Rubuta taken labarin..."
->
-
-
-<label>
-🗂️ Rukuni / Category
-</label>
-
-<select id="category">
-
-<option value="Labarai">📰 Labarai</option>
-
-<option value="Kano">🏙️ Kano</option>
-
-<option value="Najeriya">🇳🇬 Najeriya</option>
-
-<option value="Siyasa">🏛️ Siyasa</option>
-
-<option value="Duniya">🌍 Duniya</option>
-
-<option value="Wasanni">⚽ Wasanni</option>
-
-<option value="Kasuwanci">💼 Kasuwanci</option>
-
-<option value="Kannywood">🎬 Kannywood</option>
-
-<option value="Nishaɗi">🎤 Nishaɗi</option>
-
-<option value="Hotuna">📸 Hotuna</option>
-
-<option value="Bidiyo">🎥 Bidiyo</option>
-
-</select>
-
-
-<div class="options">
-
-<div class="option breaking">
-
-<input
-type="checkbox"
-id="breakingNews"
->
-
-<label for="breakingNews">
-🚨 BREAKING NEWS
-</label>
-
-</div>
-
-
-<div class="option featured">
-
-<input
-type="checkbox"
-id="featured"
->
-
-<label for="featured">
-⭐ MANYAN LABARAI
-</label>
-
-</div>
-
-</div>
-
-
-<label>
-📝 Cikakken Labari
-</label>
-
-<textarea
-id="content"
-placeholder="Rubuta cikakken labarin a nan..."
-></textarea>
-
-
-<label>
-📸 Hoto ko 🎥 Bidiyo
-</label>
-
-<p style="font-size:13px;color:#777;margin-bottom:8px">
-Dole ne ka saka hoto ko bidiyo kafin ka wallafa.
-</p>
-
-<input
-type="file"
-id="media"
-accept="image/*,video/*"
->
-
-<div
-id="preview"
-class="preview"
-></div>
-
-
-<button
-id="publishBtn"
-class="primary"
->
-🚀 Wallafa Labari
-</button>
-
-
-<button
-id="cancelBtn"
-class="cancel"
->
-Cancel Edit
-</button>
-
-
-<div
-id="message"
-class="message"
-></div>
-
-</div>
-
-
-<!-- YOUTUBE LIVE -->
-
-<div class="box">
-
-<div class="live-box">
-
-<div class="live-title">
-🔴 YouTube LIVE
-</div>
-
-<p class="subtitle">
-Saka link ɗin YouTube Live ɗinka.
-</p>
-
-<label>
-YouTube Live Link
-</label>
-
-<input
-type="text"
-id="liveUrl"
-placeholder="https://www.youtube.com/watch?v=XXXXXXXXXXX"
->
-
-<button
-id="saveLiveBtn"
-class="primary"
->
-🔴 Activate Live
-</button>
-
-<button
-id="removeLiveBtn"
-class="end-live"
->
-⏹️ End Live
-</button>
-
-<div
-id="liveMessage"
-class="message"
-></div>
-
-<div
-id="liveStatus"
-class="live-status"
->
-Checking live status...
-</div>
-
-</div>
-
-</div>
-
-
-<!-- MANAGE POSTS -->
-
-<div class="box">
-
-<h2>
-📰 Manage Labarai
-</h2>
-
-<div id="posts">
-
-<div class="empty">
-Loading posts...
-</div>
-
-</div>
-
-</div>
-
-
-<!-- LOGOUT -->
-
-<div class="box">
-
-<button
-id="logoutBtn"
-class="logout"
->
-🚪 Logout
-</button>
-
-</div>
-
-</div>
-
-
-<a
-class="back"
-href="index.html"
->
-← Komawa AMINCHI NEWS HAUSA
-</a>
-
-</div>
-
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
 
-/* SUPABASE */
+/* =========================
+   SUPABASE
+========================= */
 
 const SUPABASE_URL =
 "https://kszficrcngxipcllezgl.supabase.co";
@@ -647,1208 +897,1385 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
 "sb_publishable_hsMkfMvXMbAXXt8Z7LvAvg_52miDaJe";
 
-const BUCKET =
-"post-media";
-
-const client =
-window.supabase.createClient(
-SUPABASE_URL,
-SUPABASE_KEY
+const supabaseClient =
+supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
 );
 
 
-/* ELEMENTS */
+/* =========================
+   VARIABLES
+========================= */
 
-const loginArea =
-document.getElementById("loginArea");
+let allPosts = [];
 
-const adminArea =
-document.getElementById("adminArea");
-
-const loginEmail =
-document.getElementById("loginEmail");
-
-const loginPassword =
-document.getElementById("loginPassword");
-
-const loginBtn =
-document.getElementById("loginBtn");
-
-const loginMessage =
-document.getElementById("loginMessage");
-
-const logoutBtn =
-document.getElementById("logoutBtn");
-
-const titleInput =
-document.getElementById("title");
-
-const categoryInput =
-document.getElementById("category");
-
-const breakingInput =
-document.getElementById("breakingNews");
-
-const featuredInput =
-document.getElementById("featured");
-
-const contentInput =
-document.getElementById("content");
-
-const mediaInput =
-document.getElementById("media");
-
-const preview =
-document.getElementById("preview");
-
-const publishBtn =
-document.getElementById("publishBtn");
-
-const cancelBtn =
-document.getElementById("cancelBtn");
-
-const message =
-document.getElementById("message");
-
-const postsContainer =
-document.getElementById("posts");
-
-const formTitle =
-document.getElementById("formTitle");
-
-const liveUrl =
-document.getElementById("liveUrl");
-
-const saveLiveBtn =
-document.getElementById("saveLiveBtn");
-
-const removeLiveBtn =
-document.getElementById("removeLiveBtn");
-
-const liveMessage =
-document.getElementById("liveMessage");
-
-const liveStatus =
-document.getElementById("liveStatus");
+let currentUser = null;
 
 
-let editingId = null;
-let oldMediaUrl = null;
+/* =========================
+   AUTH CHECK
+========================= */
 
+async function checkAuth(){
 
-/* MESSAGES */
+  const {
+    data:{
+      session
+    }
+  } =
+  await supabaseClient.auth.getSession();
 
-function showLoginMessage(text,type){
+  if(session){
 
-loginMessage.textContent =
-text;
+    currentUser = session.user;
 
-loginMessage.className =
-"message " + type;
+    showAdmin();
+
+  }else{
+
+    showLogin();
+
+  }
 
 }
 
 
-function showMessage(text,type){
+/* =========================
+   LOGIN
+========================= */
 
-message.textContent =
-text;
+async function login(){
 
-message.className =
-"message " + type;
+  const email =
+    document.getElementById("loginEmail").value.trim();
+
+  const password =
+    document.getElementById("loginPassword").value;
+
+  const message =
+    document.getElementById("loginMessage");
+
+
+  if(!email || !password){
+
+    message.style.color="#c40000";
+
+    message.innerText =
+      "Cika email da password.";
+
+    return;
+
+  }
+
+
+  message.style.color="#555";
+
+  message.innerText =
+    "Ana shiga...";
+
+
+  const {
+    data,
+    error
+  } =
+  await supabaseClient.auth.signInWithPassword({
+
+    email:email,
+
+    password:password
+
+  });
+
+
+  if(error){
+
+    message.style.color="#c40000";
+
+    message.innerText =
+      error.message;
+
+    return;
+
+  }
+
+
+  currentUser =
+    data.user;
+
+  showAdmin();
+
+}
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+async function logout(){
+
+  await supabaseClient.auth.signOut();
+
+  showLogin();
 
 }
 
 
-function showLiveMessage(text,type){
+/* =========================
+   SHOW LOGIN
+========================= */
 
-liveMessage.textContent =
-text;
+function showLogin(){
 
-liveMessage.className =
-"message " + type;
+  document.getElementById("loginPage")
+    .style.display="block";
 
-}
-
-
-/* LOGIN */
-
-loginBtn.addEventListener(
-"click",
-async function(){
-
-const email =
-loginEmail.value.trim();
-
-const password =
-loginPassword.value;
-
-if(!email || !password){
-
-showLoginMessage(
-"❌ Saka email da password.",
-"error"
-);
-
-return;
+  document.getElementById("adminPage")
+    .style.display="none";
 
 }
 
-loginBtn.disabled =
-true;
 
-showLoginMessage(
-"Logging in...",
-"success"
-);
-
-try{
-
-const result =
-await client.auth.signInWithPassword({
-
-email:email,
-
-password:password
-
-});
-
-if(result.error){
-
-throw result.error;
-
-}
-
-showAdmin();
-
-}
-
-catch(error){
-
-showLoginMessage(
-"❌ " + error.message,
-"error"
-);
-
-}
-
-loginBtn.disabled =
-false;
-
-});
-
-
-/* SHOW ADMIN */
+/* =========================
+   SHOW ADMIN
+========================= */
 
 function showAdmin(){
 
-loginArea.style.display =
-"none";
+  document.getElementById("loginPage")
+    .style.display="none";
 
-adminArea.style.display =
-"block";
+  document.getElementById("adminPage")
+    .style.display="block";
 
-loadPosts();
+  loadPosts();
 
-loadLive();
-
-}
-
-
-/* LOGOUT */
-
-logoutBtn.addEventListener(
-"click",
-async function(){
-
-await client.auth.signOut();
-
-adminArea.style.display =
-"none";
-
-loginArea.style.display =
-"block";
-
-loginPassword.value =
-"";
-
-});
-
-
-/* SESSION */
-
-async function checkSession(){
-
-const result =
-await client.auth.getSession();
-
-if(result.data.session){
-
-showAdmin();
-
-}
-
-}
-
-checkSession();
-
-
-/* MEDIA PREVIEW */
-
-mediaInput.addEventListener(
-"change",
-function(){
-
-preview.innerHTML =
-"";
-
-const file =
-mediaInput.files[0];
-
-if(!file){
-
-return;
-
-}
-
-if(
-file.size >
-50 * 1024 * 1024
-){
-
-showMessage(
-"❌ File ya wuce 50 MB.",
-"error"
-);
-
-mediaInput.value =
-"";
-
-return;
-
-}
-
-const url =
-URL.createObjectURL(file);
-
-if(
-file.type.startsWith("image/")
-){
-
-const img =
-document.createElement("img");
-
-img.src =
-url;
-
-preview.appendChild(img);
-
-}
-
-else if(
-file.type.startsWith("video/")
-){
-
-const video =
-document.createElement("video");
-
-video.src =
-url;
-
-video.controls =
-true;
-
-video.playsInline =
-true;
-
-preview.appendChild(video);
-
-}
-
-});
-
-
-/* UPLOAD */
-
-async function uploadMedia(file){
-
-const safeName =
-file.name.replace(
-/[^a-zA-Z0-9.-]/g,
-"-"
-);
-
-const fileName =
-Date.now() +
-"-" +
-safeName;
-
-const result =
-await client.storage
-.from(BUCKET)
-.upload(
-fileName,
-file,
-{
-cacheControl:"3600",
-upsert:false,
-contentType:file.type
-}
-);
-
-if(result.error){
-
-throw new Error(
-"Upload failed: " +
-result.error.message
-);
-
-}
-
-const publicResult =
-client.storage
-.from(BUCKET)
-.getPublicUrl(fileName);
-
-return publicResult.data.publicUrl;
+  loadLive();
 
 }
 
 
-/* PUBLISH / UPDATE */
-
-publishBtn.addEventListener(
-"click",
-async function(){
-
-const title =
-titleInput.value.trim();
-
-const category =
-categoryInput.value;
-
-const content =
-contentInput.value.trim();
-
-const breakingNews =
-breakingInput.checked;
-
-const featured =
-featuredInput.checked;
-
-const file =
-mediaInput.files[0];
-
-
-/* VALIDATION */
-
-if(!title){
-
-showMessage(
-"❌ Rubuta taken labari.",
-"error"
-);
-
-return;
-
-}
-
-if(!content){
-
-showMessage(
-"❌ Rubuta cikakken labari.",
-"error"
-);
-
-return;
-
-}
-
-
-/* PHOTO REQUIRED */
-
-if(!file && !oldMediaUrl){
-
-showMessage(
-"❌ Dole ne ka saka hoto ko bidiyo.",
-"error"
-);
-
-return;
-
-}
-
-publishBtn.disabled =
-true;
-
-
-try{
-
-let mediaUrl =
-oldMediaUrl;
-
-
-/* UPLOAD */
-
-if(file){
-
-showMessage(
-"📤 Ana uploading media...",
-"success"
-);
-
-mediaUrl =
-await uploadMedia(file);
-
-}
-
-
-/* UPDATE */
-
-if(editingId){
-
-const result =
-await client
-.from("posts")
-.update({
-
-Title:title,
-
-category:category,
-
-Content:content,
-
-Image_url:mediaUrl,
-
-breaking_news:breakingNews,
-
-featured:featured
-
-})
-.eq(
-"id",
-editingId
-);
-
-if(result.error){
-
-throw result.error;
-
-}
-
-showMessage(
-"✅ An sabunta labarin.",
-"success"
-);
-
-}
-
-
-/* INSERT */
-
-else{
-
-showMessage(
-"📰 Ana wallafa labari...",
-"success"
-);
-
-const result =
-await client
-.from("posts")
-.insert([{
-
-Title:title,
-
-category:category,
-
-Content:content,
-
-Image_url:mediaUrl,
-
-breaking_news:breakingNews,
-
-featured:featured
-
-}]);
-
-if(result.error){
-
-throw result.error;
-
-}
-
-showMessage(
-"✅ An wallafa labarin successfully!",
-"success"
-);
-
-}
-
-resetForm();
-
-loadPosts();
-
-}
-
-catch(error){
-
-console.error(error);
-
-showMessage(
-"❌ " + error.message,
-"error"
-);
-
-}
-
-publishBtn.disabled =
-false;
-
-});
-
-
-/* LOAD POSTS */
+/* =========================
+   LOAD POSTS
+========================= */
 
 async function loadPosts(){
 
-postsContainer.innerHTML =
-'<div class="empty">Loading posts...</div>';
+  const table =
+    document.getElementById("postsTable");
 
-const result =
-await client
-.from("posts")
-.select("*")
-.order(
-"id",
-{
-ascending:false
-}
-);
-
-if(result.error){
-
-postsContainer.innerHTML =
-`<div class="empty">
-❌ ${result.error.message}
-</div>`;
-
-return;
-
-}
-
-const posts =
-result.data || [];
-
-if(posts.length === 0){
-
-postsContainer.innerHTML =
-'<div class="empty">Babu labarai tukuna.</div>';
-
-return;
-
-}
-
-postsContainer.innerHTML =
-"";
+  table.innerHTML = `
+    <tr>
+      <td colspan="7" class="loading">
+        Ana loading...
+      </td>
+    </tr>
+  `;
 
 
-posts.forEach(
-function(post){
-
-const card =
-document.createElement("div");
-
-card.className =
-"post-card";
-
-
-/* BADGES */
-
-const badges =
-document.createElement("div");
-
-badges.className =
-"badges";
-
-
-const categoryBadge =
-document.createElement("span");
-
-categoryBadge.className =
-"badge category";
-
-categoryBadge.textContent =
-post.category ||
-"Labarai";
-
-badges.appendChild(
-categoryBadge
-);
+  const {
+    data,
+    error
+  } =
+  await supabaseClient
+  .from("posts")
+  .select(`
+    id,
+    Title,
+    Content,
+    Image_url,
+    category,
+    views,
+    breaking_news,
+    featured,
+    created_at
+  `)
+  .order("created_at",{ascending:false});
 
 
-if(post.breaking_news === true){
+  if(error){
 
-const badge =
-document.createElement("span");
+    table.innerHTML = `
+      <tr>
+        <td colspan="7" class="empty">
+          An samu matsala wajen loading news.<br><br>
+          ${escapeHtml(error.message)}
+        </td>
+      </tr>
+    `;
 
-badge.className =
-"badge breaking-badge";
+    return;
 
-badge.textContent =
-"🚨 BREAKING";
+  }
 
-badges.appendChild(badge);
+
+  allPosts =
+    data || [];
+
+
+  updateStats();
+
+  renderPosts(allPosts);
 
 }
 
 
-if(post.featured === true){
+/* =========================
+   STATS
+========================= */
 
-const badge =
-document.createElement("span");
+function updateStats(){
 
-badge.className =
-"badge featured-badge";
-
-badge.textContent =
-"⭐ MANYAN LABARAI";
-
-badges.appendChild(badge);
-
-}
+  const total =
+    allPosts.length;
 
 
-card.appendChild(badges);
+  const breaking =
+    allPosts.filter(
+      post => post.breaking_news === true
+    ).length;
 
 
-/* MEDIA */
+  const featured =
+    allPosts.filter(
+      post => post.featured === true
+    ).length;
 
-if(post.Image_url){
 
-const url =
-post.Image_url;
+  const views =
+    allPosts.reduce(
+      (sum,post) =>
+        sum + Number(post.views || 0),
+      0
+    );
 
-const lower =
-url.toLowerCase();
 
-if(
-lower.includes(".mp4") ||
-lower.includes(".webm") ||
-lower.includes(".mov") ||
-lower.includes(".m4v")
-){
+  document.getElementById("totalNews")
+    .innerText =
+    total.toLocaleString();
 
-const video =
-document.createElement("video");
 
-video.src =
-url;
+  document.getElementById("totalBreaking")
+    .innerText =
+    breaking.toLocaleString();
 
-video.controls =
-true;
 
-video.playsInline =
-true;
+  document.getElementById("totalFeatured")
+    .innerText =
+    featured.toLocaleString();
 
-card.appendChild(video);
 
-}
-
-else{
-
-const img =
-document.createElement("img");
-
-img.src =
-url;
-
-img.alt =
-post.Title || "News";
-
-card.appendChild(img);
-
-}
+  document.getElementById("totalViews")
+    .innerText =
+    views.toLocaleString();
 
 }
 
 
-/* TITLE */
+/* =========================
+   RENDER POSTS
+========================= */
 
-const title =
-document.createElement("div");
+function renderPosts(posts){
 
-title.className =
-"post-title";
-
-title.textContent =
-post.Title ||
-"Untitled";
-
-card.appendChild(title);
+  const table =
+    document.getElementById("postsTable");
 
 
-/* CONTENT */
+  if(!posts.length){
 
-const content =
-document.createElement("p");
+    table.innerHTML = `
+      <tr>
+        <td colspan="7" class="empty">
+          Babu labari a yanzu.
+        </td>
+      </tr>
+    `;
 
-content.className =
-"post-content";
+    return;
 
-content.textContent =
-post.Content ||
-"";
-
-card.appendChild(content);
-
-
-/* ACTIONS */
-
-const actions =
-document.createElement("div");
-
-actions.className =
-"actions";
+  }
 
 
-const editBtn =
-document.createElement("button");
+  table.innerHTML =
+    posts.map(post => {
 
-editBtn.className =
-"edit";
-
-editBtn.textContent =
-"✏️ Edit";
-
-editBtn.onclick =
-function(){
-
-startEdit(post);
-
-};
+      const image =
+        post.Image_url
+        ? `<img
+             src="${escapeAttr(post.Image_url)}"
+             class="news-img"
+             alt="News"
+           >`
+        : "—";
 
 
-const deleteBtn =
-document.createElement("button");
+      const status = `
 
-deleteBtn.className =
-"delete";
+        ${
+          post.breaking_news
+          ?
+          `<span class="badge badge-red">
+             BREAKING
+           </span>`
+          :
+          ""
+        }
 
-deleteBtn.textContent =
-"🗑️ Delete";
+        ${
+          post.featured
+          ?
+          `<span class="badge badge-green">
+             FEATURED
+           </span>`
+          :
+          ""
+        }
 
-deleteBtn.onclick =
-function(){
-
-deletePost(post);
-
-};
-
-
-actions.appendChild(editBtn);
-
-actions.appendChild(deleteBtn);
-
-card.appendChild(actions);
-
-postsContainer.appendChild(card);
-
-});
-
-}
+      `;
 
 
-/* EDIT */
+      return `
 
-function startEdit(post){
+        <tr>
 
-editingId =
-post.id;
+          <td>
+            ${image}
+          </td>
 
-oldMediaUrl =
-post.Image_url || null;
 
-titleInput.value =
-post.Title || "";
+          <td>
 
-categoryInput.value =
-post.category || "Labarai";
+            <strong>
+              ${escapeHtml(post.Title || "")}
+            </strong>
 
-contentInput.value =
-post.Content || "";
+          </td>
 
-breakingInput.checked =
-post.breaking_news === true;
 
-featuredInput.checked =
-post.featured === true;
+          <td>
 
-mediaInput.value =
-"";
+            <span class="badge badge-black">
+              ${escapeHtml(post.category || "Labarai")}
+            </span>
 
-preview.innerHTML =
-"";
+          </td>
 
-if(post.Image_url){
 
-const img =
-document.createElement("img");
+          <td>
+            ${status || "—"}
+          </td>
 
-img.src =
-post.Image_url;
 
-preview.appendChild(img);
+          <td>
+            👁️ ${Number(post.views || 0).toLocaleString()}
+          </td>
 
-}
 
-formTitle.textContent =
-"✏️ Gyara Labari";
+          <td>
+            ${formatDate(post.created_at)}
+          </td>
 
-publishBtn.textContent =
-"💾 Update Labari";
 
-cancelBtn.style.display =
-"block";
+          <td>
 
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
+            <div class="actions">
+
+              <button
+                class="edit-btn"
+                onclick="editPost(${post.id})"
+              >
+                ✏️ Edit
+              </button>
+
+
+              <button
+                class="delete-btn"
+                onclick="deletePost(${post.id})"
+              >
+                🗑️ Delete
+              </button>
+
+            </div>
+
+          </td>
+
+        </tr>
+
+      `;
+
+    }).join("");
 
 }
 
 
-/* RESET */
+/* =========================
+   SEARCH
+========================= */
 
-cancelBtn.addEventListener(
-"click",
-resetForm
-);
+function searchAdminNews(){
 
+  const query =
+    document.getElementById("adminSearch")
+      .value
+      .toLowerCase()
+      .trim();
+
+
+  if(!query){
+
+    renderPosts(allPosts);
+
+    return;
+
+  }
+
+
+  const filtered =
+    allPosts.filter(post => {
+
+      const title =
+        String(post.Title || "")
+          .toLowerCase();
+
+      const category =
+        String(post.category || "")
+          .toLowerCase();
+
+      const content =
+        String(post.Content || "")
+          .toLowerCase();
+
+
+      return (
+        title.includes(query) ||
+        category.includes(query) ||
+        content.includes(query)
+      );
+
+    });
+
+
+  renderPosts(filtered);
+
+}
+
+
+/* =========================
+   IMAGE PREVIEW
+========================= */
+
+function previewImage(event){
+
+  const file =
+    event.target.files[0];
+
+  const preview =
+    document.getElementById("imagePreview");
+
+
+  if(!file){
+
+    preview.style.display="none";
+
+    return;
+
+  }
+
+
+  if(!file.type.startsWith("image/")){
+
+    alert("Ka zabi image kawai.");
+
+    event.target.value="";
+
+    preview.style.display="none";
+
+    return;
+
+  }
+
+
+  const reader =
+    new FileReader();
+
+
+  reader.onload =
+    function(e){
+
+      preview.src =
+        e.target.result;
+
+      preview.style.display="block";
+
+    };
+
+
+  reader.readAsDataURL(file);
+
+}
+
+
+/* =========================
+   SAVE POST
+========================= */
+
+async function savePost(){
+
+  const editId =
+    document.getElementById("editId").value;
+
+
+  const title =
+    document.getElementById("title")
+      .value.trim();
+
+
+  const category =
+    document.getElementById("category")
+      .value;
+
+
+  const content =
+    document.getElementById("content")
+      .value.trim();
+
+
+  const breaking =
+    document.getElementById("breaking")
+      .checked;
+
+
+  const featured =
+    document.getElementById("featured")
+      .checked;
+
+
+  const file =
+    document.getElementById("imageFile")
+      .files[0];
+
+
+  const message =
+    document.getElementById("formMessage");
+
+
+  if(!title){
+
+    showFormMessage(
+      "Rubuta taken labari.",
+      "red"
+    );
+
+    return;
+
+  }
+
+
+  if(!content){
+
+    showFormMessage(
+      "Rubuta cikakken labari.",
+      "red"
+    );
+
+    return;
+
+  }
+
+
+  /*
+    New post MUST have image.
+    During edit, old image can remain.
+  */
+
+  if(!editId && !file){
+
+    showFormMessage(
+      "Dole ne ka saka hoton labari.",
+      "red"
+    );
+
+    return;
+
+  }
+
+
+  if(file){
+
+    if(!file.type.startsWith("image/")){
+
+      showFormMessage(
+        "File din dole ya zama hoto.",
+        "red"
+      );
+
+      return;
+
+    }
+
+
+    if(file.size > 50 * 1024 * 1024){
+
+      showFormMessage(
+        "Hoto ya wuce 50MB.",
+        "red"
+      );
+
+      return;
+
+    }
+
+  }
+
+
+  const button =
+    document.getElementById("publishBtn");
+
+
+  button.disabled=true;
+
+  button.innerText =
+    "Ana publishing...";
+
+
+  try{
+
+    let imageUrl = null;
+
+
+    /*
+      If editing and no new image,
+      keep existing image.
+    */
+
+    if(editId){
+
+      const oldPost =
+        allPosts.find(
+          post =>
+            String(post.id) ===
+            String(editId)
+        );
+
+
+      imageUrl =
+        oldPost?.Image_url || null;
+
+    }
+
+
+    /*
+      Upload new image
+    */
+
+    if(file){
+
+      const extension =
+        file.name
+          .split(".")
+          .pop()
+          .toLowerCase();
+
+
+      const fileName =
+        `news-${Date.now()}-${Math.random()
+          .toString(36)
+          .substring(2,8)}.${extension}`;
+
+
+      const filePath =
+        fileName;
+
+
+      const {
+        error:uploadError
+      } =
+      await supabaseClient
+      .storage
+      .from("post-media")
+      .upload(
+        filePath,
+        file,
+        {
+          cacheControl:"3600",
+          upsert:false
+        }
+      );
+
+
+      if(uploadError){
+
+        throw new Error(
+          "Upload image failed: " +
+          uploadError.message
+        );
+
+      }
+
+
+      const {
+        data:publicData
+      } =
+      supabaseClient
+      .storage
+      .from("post-media")
+      .getPublicUrl(filePath);
+
+
+      imageUrl =
+        publicData.publicUrl;
+
+    }
+
+
+    /*
+      UPDATE
+    */
+
+    if(editId){
+
+      const {
+        error
+      } =
+      await supabaseClient
+      .from("posts")
+      .update({
+
+        Title:title,
+
+        Content:content,
+
+        Image_url:imageUrl,
+
+        category:category,
+
+        breaking_news:breaking,
+
+        featured:featured
+
+      })
+      .eq("id",editId);
+
+
+      if(error){
+
+        throw error;
+
+      }
+
+
+      showFormMessage(
+        "An gyara labarin successfully ✅",
+        "green"
+      );
+
+    }
+
+
+    /*
+      INSERT
+    */
+
+    else{
+
+      const {
+        error
+      } =
+      await supabaseClient
+      .from("posts")
+      .insert({
+
+        Title:title,
+
+        Content:content,
+
+        Image_url:imageUrl,
+
+        category:category,
+
+        breaking_news:breaking,
+
+        featured:featured,
+
+        views:0
+
+      });
+
+
+      if(error){
+
+        throw error;
+
+      }
+
+
+      showFormMessage(
+        "An wallafa labarin successfully ✅",
+        "green"
+      );
+
+    }
+
+
+    resetForm();
+
+    await loadPosts();
+
+  }
+
+  catch(error){
+
+    console.error(error);
+
+    showFormMessage(
+      error.message ||
+      "An samu matsala.",
+      "red"
+    );
+
+  }
+
+
+  button.disabled=false;
+
+  button.innerText =
+    "🚀 Publish News";
+
+}
+
+
+/* =========================
+   EDIT POST
+========================= */
+
+function editPost(id){
+
+  const post =
+    allPosts.find(
+      item =>
+        String(item.id) ===
+        String(id)
+    );
+
+
+  if(!post){
+
+    alert("Ba a samu labarin ba.");
+
+    return;
+
+  }
+
+
+  document.getElementById("editId")
+    .value =
+    post.id;
+
+
+  document.getElementById("title")
+    .value =
+    post.Title || "";
+
+
+  document.getElementById("category")
+    .value =
+    post.category || "Labarai";
+
+
+  document.getElementById("content")
+    .value =
+    post.Content || "";
+
+
+  document.getElementById("breaking")
+    .checked =
+    post.breaking_news === true;
+
+
+  document.getElementById("featured")
+    .checked =
+    post.featured === true;
+
+
+  document.getElementById("formTitle")
+    .innerText =
+    "✏️ Gyara Labari";
+
+
+  document.getElementById("publishBtn")
+    .innerText =
+    "💾 Save Changes";
+
+
+  const preview =
+    document.getElementById("imagePreview");
+
+
+  if(post.Image_url){
+
+    preview.src =
+      post.Image_url;
+
+    preview.style.display="block";
+
+  }
+
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+/* =========================
+   DELETE
+========================= */
+
+async function deletePost(id){
+
+  const post =
+    allPosts.find(
+      item =>
+        String(item.id) ===
+        String(id)
+    );
+
+
+  if(!post){
+
+    return;
+
+  }
+
+
+  const confirmed =
+    confirm(
+      `Kana tabbatar kana son goge wannan labarin?\n\n${post.Title}`
+    );
+
+
+  if(!confirmed){
+
+    return;
+
+  }
+
+
+  const {
+    error
+  } =
+  await supabaseClient
+  .from("posts")
+  .delete()
+  .eq("id",id);
+
+
+  if(error){
+
+    alert(
+      "An samu matsala wajen delete:\n" +
+      error.message
+    );
+
+    return;
+
+  }
+
+
+  alert(
+    "An goge labarin successfully."
+  );
+
+
+  loadPosts();
+
+}
+
+
+/* =========================
+   RESET FORM
+========================= */
 
 function resetForm(){
 
-editingId =
-null;
-
-oldMediaUrl =
-null;
-
-titleInput.value =
-"";
-
-categoryInput.value =
-"Labarai";
-
-contentInput.value =
-"";
-
-breakingInput.checked =
-false;
-
-featuredInput.checked =
-false;
-
-mediaInput.value =
-"";
-
-preview.innerHTML =
-"";
-
-formTitle.textContent =
-"Sabon Labari";
-
-publishBtn.textContent =
-"🚀 Wallafa Labari";
-
-cancelBtn.style.display =
-"none";
-
-}
+  document.getElementById("editId")
+    .value="";
 
 
-/* DELETE */
+  document.getElementById("title")
+    .value="";
 
-async function deletePost(post){
 
-const yes =
-confirm(
-"Ka tabbata kana son goge wannan labarin?"
-);
+  document.getElementById("content")
+    .value="";
 
-if(!yes){
 
-return;
+  document.getElementById("category")
+    .value="Labarai";
 
-}
 
-try{
+  document.getElementById("breaking")
+    .checked=false;
 
-const result =
-await client
-.from("posts")
-.delete()
-.eq(
-"id",
-post.id
-);
 
-if(result.error){
+  document.getElementById("featured")
+    .checked=false;
 
-throw result.error;
 
-}
+  document.getElementById("imageFile")
+    .value="";
 
-showMessage(
-"✅ An goge labarin.",
-"success"
-);
 
-loadPosts();
+  const preview =
+    document.getElementById("imagePreview");
 
-}
 
-catch(error){
+  preview.src="";
 
-showMessage(
-"❌ Delete failed: " +
-error.message,
-"error"
-);
+  preview.style.display="none";
 
-}
+
+  document.getElementById("formTitle")
+    .innerText =
+    "📝 Sabon Labari";
+
+
+  document.getElementById("publishBtn")
+    .innerText =
+    "🚀 Publish News";
+
+
+  document.getElementById("formMessage")
+    .innerText="";
 
 }
 
 
-/* YOUTUBE ID */
+/* =========================
+   FORM MESSAGE
+========================= */
 
-function getYouTubeId(url){
+function showFormMessage(text,type){
 
-try{
+  const message =
+    document.getElementById("formMessage");
 
-const parsed =
-new URL(url);
 
-if(
-parsed.hostname.includes("youtube.com")
-){
+  message.innerText=text;
 
-return parsed.searchParams.get("v");
 
-}
+  if(type==="red"){
 
-if(
-parsed.hostname === "youtu.be"
-){
+    message.style.color="#c40000";
 
-return parsed.pathname.substring(1);
+  }else{
 
-}
+    message.style.color="#16813a";
 
-return null;
-
-}
-
-catch(error){
-
-return null;
-
-}
+  }
 
 }
 
 
-/* ACTIVATE LIVE */
-
-saveLiveBtn.addEventListener(
-"click",
-async function(){
-
-const url =
-liveUrl.value.trim();
-
-if(!url){
-
-showLiveMessage(
-"❌ Saka YouTube Live link.",
-"error"
-);
-
-return;
-
-}
-
-const videoId =
-getYouTubeId(url);
-
-if(!videoId){
-
-showLiveMessage(
-"❌ YouTube link ba daidai ba ne.",
-"error"
-);
-
-return;
-
-}
-
-saveLiveBtn.disabled =
-true;
-
-try{
-
-const result =
-await client
-.from("live_stream")
-.upsert({
-
-id:1,
-
-youtube_id:videoId,
-
-active:true
-
-});
-
-if(result.error){
-
-throw result.error;
-
-}
-
-showLiveMessage(
-"✅ LIVE ya kunna.",
-"success"
-);
-
-liveStatus.textContent =
-"🔴 LIVE IS ACTIVE";
-
-}
-
-catch(error){
-
-showLiveMessage(
-"❌ " + error.message,
-"error"
-);
-
-}
-
-saveLiveBtn.disabled =
-false;
-
-});
-
-
-/* END LIVE */
-
-removeLiveBtn.addEventListener(
-"click",
-async function(){
-
-try{
-
-const result =
-await client
-.from("live_stream")
-.update({
-active:false
-})
-.eq(
-"id",
-1
-);
-
-if(result.error){
-
-throw result.error;
-
-}
-
-showLiveMessage(
-"⏹️ An kashe LIVE.",
-"success"
-);
-
-liveStatus.textContent =
-"Live is currently OFF";
-
-}
-
-catch(error){
-
-showLiveMessage(
-"❌ " + error.message,
-"error"
-);
-
-}
-
-});
-
-
-/* LOAD LIVE */
+/* =========================
+   YOUTUBE LIVE
+========================= */
 
 async function loadLive(){
 
-try{
+  const status =
+    document.getElementById("liveStatus");
 
-const result =
-await client
-.from("live_stream")
-.select(
-"id,youtube_id,active"
-)
-.eq(
-"id",
-1
-)
-.maybeSingle();
 
-if(result.error){
+  const {
+    data,
+    error
+  } =
+  await supabaseClient
+  .from("live_stream")
+  .select("*")
+  .limit(1)
+  .maybeSingle();
 
-liveStatus.textContent =
-"❌ " + result.error.message;
 
-return;
+  if(error){
+
+    status.innerHTML = `
+      <span class="live-off">
+        Live system bai samu database ba.
+      </span>
+    `;
+
+    return;
+
+  }
+
+
+  if(!data){
+
+    status.innerHTML = `
+      <span class="live-off">
+        ⚫ Live yana OFF.
+      </span>
+    `;
+
+    return;
+
+  }
+
+
+  document.getElementById("youtubeId")
+    .value =
+    data.youtube_id || "";
+
+
+  if(data.active){
+
+    status.innerHTML = `
+      <span class="live-on">
+        🔴 LIVE yana ON yanzu.
+      </span>
+    `;
+
+  }else{
+
+    status.innerHTML = `
+      <span class="live-off">
+        ⚫ Live yana OFF.
+      </span>
+    `;
+
+  }
 
 }
 
-if(
-result.data &&
-result.data.active === true &&
-result.data.youtube_id
-){
 
-liveUrl.value =
-"https://www.youtube.com/watch?v=" +
-result.data.youtube_id;
+/* =========================
+   ACTIVATE LIVE
+========================= */
 
-liveStatus.textContent =
-"🔴 LIVE IS ACTIVE";
+async function activateLive(){
+
+  const youtubeId =
+    document.getElementById("youtubeId")
+      .value.trim();
+
+
+  const message =
+    document.getElementById("liveMessage");
+
+
+  if(!youtubeId){
+
+    message.style.color="#c40000";
+
+    message.innerText =
+      "Saka YouTube Video/Live ID.";
+
+    return;
+
+  }
+
+
+  const {
+    data:existing
+  } =
+  await supabaseClient
+  .from("live_stream")
+  .select("id")
+  .limit(1)
+  .maybeSingle();
+
+
+  let result;
+
+
+  if(existing){
+
+    result =
+    await supabaseClient
+    .from("live_stream")
+    .update({
+
+      youtube_id:youtubeId,
+
+      active:true
+
+    })
+    .eq("id",existing.id);
+
+  }else{
+
+    result =
+    await supabaseClient
+    .from("live_stream")
+    .insert({
+
+      youtube_id:youtubeId,
+
+      active:true
+
+    });
+
+  }
+
+
+  if(result.error){
+
+    message.style.color="#c40000";
+
+    message.innerText =
+      result.error.message;
+
+    return;
+
+  }
+
+
+  message.style.color="#16813a";
+
+  message.innerText =
+    "YouTube Live an kunna successfully ✅";
+
+
+  loadLive();
 
 }
 
-else{
 
-liveStatus.textContent =
-"Live is currently OFF";
+/* =========================
+   END LIVE
+========================= */
+
+async function endLive(){
+
+  const {
+    error
+  } =
+  await supabaseClient
+  .from("live_stream")
+  .update({
+    active:false
+  })
+  .neq("id",0);
+
+
+  const message =
+    document.getElementById("liveMessage");
+
+
+  if(error){
+
+    message.style.color="#c40000";
+
+    message.innerText =
+      error.message;
+
+    return;
+
+  }
+
+
+  message.style.color="#16813a";
+
+  message.innerText =
+    "Live ya tsaya successfully.";
+
+  loadLive();
 
 }
 
+
+/* =========================
+   DATE
+========================= */
+
+function formatDate(date){
+
+  if(!date){
+
+    return "—";
+
+  }
+
+
+  try{
+
+    return new Date(date)
+      .toLocaleDateString(
+        "ha-NG",
+        {
+          day:"2-digit",
+          month:"short",
+          year:"numeric"
+        }
+      );
+
+  }catch{
+
+    return "—";
+
+  }
+
 }
 
-catch(error){
 
-liveStatus.textContent =
-"❌ " + error.message;
+/* =========================
+   ESCAPE HTML
+========================= */
+
+function escapeHtml(value){
+
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
 
 }
 
+
+function escapeAttr(value){
+
+  return escapeHtml(value);
+
 }
+
+
+/* =========================
+   AUTH STATE
+========================= */
+
+supabaseClient.auth
+.onAuthStateChange(
+  function(event,session){
+
+    if(session){
+
+      currentUser =
+        session.user;
+
+      showAdmin();
+
+    }else{
+
+      showLogin();
+
+    }
+
+  }
+);
+
+
+/* =========================
+   START
+========================= */
+
+checkAuth();
 
 </script>
 
