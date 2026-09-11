@@ -6,4 +6,41 @@
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
+
+  <url>
+    <loc>https://mkyouthmobilizers.github.io/aminchi-news-hausa/article.html?id=8</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://mkyouthmobilizers.github.io/aminchi-news-hausa/article.html?id=7</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://mkyouthmobilizers.github.io/aminchi-news-hausa/article.html?id=5</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://mkyouthmobilizers.github.io/aminchi-news-hausa/article.html?id=3</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://mkyouthmobilizers.github.io/aminchi-news-hausa/article.html?id=2</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://mkyouthmobilizers.github.io/aminchi-news-hausa/article.html?id=6</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>
