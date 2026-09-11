@@ -2,6 +2,8 @@ name: Update Sitemap
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "0 3 * * *"
   push:
     branches:
       - main
@@ -17,28 +19,71 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Update sitemap
-        shell: bash
+      - name: Generate sitemap from Supabase
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
         run: |
-          BASE_URL="https://mkyouthmobilizers.github.io/aminchi-news-hausa"
-          SITEMAP="sitemap.xml"
+          python3 - <<'PY'
+          import os
+          import json
+          import urllib.request
+          from xml.sax.saxutils import escape
 
-          cat > "$SITEMAP" <<EOF
-          <?xml version="1.0" encoding="UTF-8"?>
-          <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+          supabase_url = os.environ["SUPABASE_URL"]
+          supabase_key = os.environ["SUPABASE_KEY"]
 
-            <url>
-              <loc>${BASE_URL}/</loc>
-              <changefreq>daily</changefreq>
-              <priority>1.0</priority>
-            </url>
-          EOF
+          url = (
+              supabase_url
+              + "/rest/v1/posts"
+              + "?select=id,created_at"
+              + "&order=created_at.desc"
+          )
 
-          echo "Sitemap created with homepage."
+          req = urllib.request.Request(
+              url,
+              headers={
+                  "apikey": supabase_key,
+                  "Authorization": "Bearer " + supabase_key
+              }
+          )
 
-          cat >> "$SITEMAP" <<EOF
-          </urlset>
-          EOF
+          with urllib.request.urlopen(req) as response:
+              posts = json.loads(response.read().decode())
+
+          base_url = "https://mkyouthmobilizers.github.io/aminchi-news-hausa"
+
+          lines = [
+              '<?xml version="1.0" encoding="UTF-8"?>',
+              '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+              "",
+              "  <url>",
+              f"    <loc>{base_url}/</loc>",
+              "    <changefreq>daily</changefreq>",
+              "    <priority>1.0</priority>",
+              "  </url>",
+          ]
+
+          for post in posts:
+              post_id = str(post["id"])
+
+              lines.extend([
+                  "",
+                  "  <url>",
+                  f"    <loc>{base_url}/article.html?id={escape(post_id)}</loc>",
+                  "    <changefreq>weekly</changefreq>",
+                  "    <priority>0.8</priority>",
+                  "  </url>",
+              ])
+
+          lines.append("")
+          lines.append("</urlset>")
+
+          with open("sitemap.xml", "w", encoding="utf-8") as f:
+              f.write("\n".join(lines))
+
+          print(f"Generated sitemap with {len(posts)} articles.")
+          PY
 
       - name: Commit sitemap
         run: |
@@ -50,6 +95,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No sitemap changes."
           else
-            git commit -m "Update sitemap"
+            git commit -m "Automatically update sitemap"
             git push
           fi
