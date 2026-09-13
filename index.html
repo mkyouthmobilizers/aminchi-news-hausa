@@ -15,31 +15,36 @@
     gtag('js', new Date());
     gtag('config', 'G-9L83DHC30P');
   </script>
-  <!-- =========================
-       SEO
-  ========================== -->
-  <title>
-    AMINCHI NEWS HAUSA | Labaran Hausa, Kano da Najeriya
-  </title>
+  <!-- SEO -->
+  <title>AMINCHI NEWS HAUSA | Labaran Hausa, Kano da Najeriya</title>
+  <meta name="author" content="AMINCHI NEWS HAUSA">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <!-- Canonical -->
   <link rel="canonical"
-        href="https://mkyouthmobilizers.github.io/aminchi-news-hausa/">
-  <!-- =========================
-       OPEN GRAPH
-  ========================== -->
-  <!-- =========================
-       X / TWITTER
-  ========================== -->
-  <!-- =========================
-       FAVICON
-  ========================== -->
+    href="https://mkyouthmobilizers.github.io/aminchi-news-hausa/">
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="AMINCHI NEWS HAUSA | Labaran Hausa, Kano da Najeriya">
+  <meta property="og:description"
+    content="AMINCHI NEWS HAUSA — Gidan labaran Hausa daga Kano, Najeriya da duniya.">
+  <meta property="og:url"
+    content="https://mkyouthmobilizers.github.io/aminchi-news-hausa/">
+  <meta property="og:image"
+    content="https://mkyouthmobilizers.github.io/aminchi-news-hausa/9D8837D9-17A6-4645-AF4E-5D344B6D8159.png">
+  <meta property="og:site_name" content="AMINCHI NEWS HAUSA">
+  <!-- X / Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AMINCHI NEWS HAUSA">
+  <meta name="twitter:description"
+    content="Sabbin labaran Hausa daga Kano, Najeriya da duniya.">
+  <meta name="twitter:image"
+    content="https://mkyouthmobilizers.github.io/aminchi-news-hausa/9D8837D9-17A6-4645-AF4E-5D344B6D8159.png">
+  <!-- FAVICON -->
   <link rel="icon"
-        type="image/png"
-        href="9D8837D9-17A6-4645-AF4E-5D344B6D8159.png">
-  <!-- =========================
-       STRUCTURED DATA
-       AMINCHI NEWS HAUSA
-  ========================== -->
+    type="image/png"
+    href="9D8837D9-17A6-4645-AF4E-5D344B6D8159.png">
+  <!-- STRUCTURED DATA -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -82,9 +87,6 @@
   </script>
   <!-- Supabase -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <!-- =========================
-       CSS
-  ========================== -->
   <style>
     *{
       box-sizing:border-box;
@@ -249,7 +251,7 @@
       align-items:center;
       justify-content:space-between;
       border-bottom:3px solid #c40000;
-      margin-bottom:15px;
+      margin-bottom:18px;
     }
     .section-title h2{
       font-size:21px;
@@ -262,17 +264,20 @@
       font-weight:bold;
       font-size:14px;
     }
+    /* =========================
+       BIGGER HERO
+    ========================== */
     .hero{
       display:grid;
       grid-template-columns:2fr 1fr;
-      gap:15px;
-      margin-bottom:30px;
+      gap:18px;
+      margin-bottom:35px;
     }
     .hero-main{
       position:relative;
-      height:430px;
+      height:500px;
       overflow:hidden;
-      border-radius:4px;
+      border-radius:6px;
       background:#111;
     }
     .hero-main img{
@@ -284,8 +289,8 @@
       position:absolute;
       inset:0;
       background:linear-gradient(
-        transparent 35%,
-        rgba(0,0,0,.85)
+        transparent 30%,
+        rgba(0,0,0,.88)
       );
     }
     .hero-content{
@@ -293,7 +298,7 @@
       bottom:0;
       left:0;
       right:0;
-      padding:25px;
+      padding:30px;
       color:#fff;
       z-index:2;
     }
@@ -301,14 +306,14 @@
       display:inline-block;
       background:#c40000;
       color:#fff;
-      padding:4px 9px;
+      padding:5px 10px;
       font-size:12px;
       font-weight:bold;
-      margin-bottom:9px;
+      margin-bottom:10px;
       border-radius:3px;
     }
     .hero-content h1{
-      font-size:30px;
+      font-size:32px;
       line-height:1.25;
       margin-bottom:8px;
     }
@@ -323,14 +328,14 @@
     .side-news{
       display:grid;
       grid-template-rows:1fr 1fr;
-      gap:15px;
+      gap:18px;
     }
     .side-card{
       position:relative;
       overflow:hidden;
       background:#111;
-      min-height:207px;
-      border-radius:4px;
+      min-height:241px;
+      border-radius:6px;
     }
     .side-card img{
       height:100%;
@@ -341,8 +346,8 @@
       position:absolute;
       inset:0;
       background:linear-gradient(
-        transparent 30%,
-        rgba(0,0,0,.9)
+        transparent 25%,
+        rgba(0,0,0,.92)
       );
     }
     .side-card-content{
@@ -350,12 +355,12 @@
       bottom:0;
       left:0;
       right:0;
-      padding:15px;
+      padding:18px;
       color:#fff;
       z-index:2;
     }
     .side-card h3{
-      font-size:18px;
+      font-size:19px;
       line-height:1.3;
     }
     .main-layout{
@@ -365,39 +370,48 @@
         minmax(280px,1fr);
       gap:25px;
     }
+    /* =========================
+       BIGGER NEWS CARDS
+    ========================== */
     .news-grid{
       display:grid;
       grid-template-columns:repeat(2,1fr);
-      gap:18px;
+      gap:22px;
     }
     .news-card{
       background:#fff;
       border:1px solid #ddd;
-      border-radius:4px;
+      border-radius:6px;
       overflow:hidden;
       transition:.2s;
     }
     .news-card:hover{
       transform:translateY(-2px);
-      box-shadow:0 5px 18px rgba(0,0,0,.1);
+      box-shadow:0 5px 18px rgba(0,0,0,.12);
     }
     .news-image{
-      height:210px;
+      height:280px;
       position:relative;
       background:#ddd;
       overflow:hidden;
     }
     .news-image img{
+      width:100%;
       height:100%;
       object-fit:cover;
+      object-position:center;
+      transition:transform .3s ease;
+    }
+    .news-card:hover .news-image img{
+      transform:scale(1.03);
     }
     .news-body{
-      padding:14px;
+      padding:16px;
     }
     .news-body h3{
-      font-size:18px;
-      line-height:1.35;
-      margin-bottom:6px;
+      font-size:19px;
+      line-height:1.4;
+      margin-bottom:7px;
     }
     .news-body h3:hover{
       color:#c40000;
@@ -462,16 +476,16 @@
     .video-grid{
       display:grid;
       grid-template-columns:repeat(3,1fr);
-      gap:15px;
+      gap:18px;
     }
     .video-card{
       background:#111;
       color:#fff;
-      border-radius:4px;
+      border-radius:6px;
       overflow:hidden;
     }
     .video-card img{
-      height:180px;
+      height:220px;
       object-fit:cover;
     }
     .video-card h3{
@@ -576,6 +590,9 @@
       padding:40px;
       color:#777;
     }
+    /* =========================
+       TABLET
+    ========================== */
     @media(max-width:900px){
       .header-inner{
         gap:10px;
@@ -589,17 +606,29 @@
       .hero{
         grid-template-columns:1fr;
       }
+      .hero-main{
+        height:460px;
+      }
       .side-news{
         grid-template-columns:1fr 1fr;
         grid-template-rows:none;
       }
+      .side-card{
+        min-height:280px;
+      }
       .main-layout{
         grid-template-columns:1fr;
+      }
+      .news-image{
+        height:300px;
       }
       .footer-inner{
         grid-template-columns:1fr 1fr;
       }
     }
+    /* =========================
+       MOBILE
+    ========================== */
     @media(max-width:650px){
       .topbar-inner{
         justify-content:center;
@@ -646,26 +675,43 @@
         padding:0 10px;
         margin:18px auto;
       }
+      /* BIG MOBILE HERO */
       .hero-main{
-        height:300px;
+        height:360px;
+      }
+      .hero-content{
+        padding:20px;
       }
       .hero-content h1{
-        font-size:22px;
+        font-size:24px;
       }
       .side-news{
         grid-template-columns:1fr;
       }
       .side-card{
-        min-height:200px;
+        min-height:260px;
       }
+      /* ONE BIG NEWS CARD PER ROW */
       .news-grid{
         grid-template-columns:1fr;
+        gap:20px;
       }
+      /* BIG MOBILE NEWS IMAGE */
       .news-image{
-        height:220px;
+        height:300px;
+      }
+      .news-body{
+        padding:17px;
+      }
+      .news-body h3{
+        font-size:20px;
+        line-height:1.4;
       }
       .video-grid{
         grid-template-columns:1fr;
+      }
+      .video-card img{
+        height:260px;
       }
       .category-grid{
         grid-template-columns:repeat(2,1fr);
@@ -677,17 +723,30 @@
         font-size:17px;
       }
     }
+    /* EXTRA SMALL PHONES */
+    @media(max-width:400px){
+      .hero-main{
+        height:330px;
+      }
+      .news-image{
+        height:280px;
+      }
+      .hero-content h1{
+        font-size:21px;
+      }
+      .news-body h3{
+        font-size:19px;
+      }
+    }
   </style>
 </head>
 <body>
-  <!-- =========================
-       TOP BAR
-  ========================== -->
+  <!-- TOP BAR -->
   <div class="topbar">
-<div class="topbar-inner">
-  <span>
-    AMINCHI NEWS HAUSA — Gidan Labaran Hausa
-  </span>
+    <div class="topbar-inner">
+      <span>
+        AMINCHI NEWS HAUSA — Gidan Labaran Hausa
+      </span>
   <div class="top-social">
     <a
       href="https://www.youtube.com/@officialsyouseep7865"
@@ -704,11 +763,9 @@
   </div>
 </div>
   </div>
-  <!-- =========================
-       HEADER
-  ========================== -->
+  <!-- HEADER -->
   <header class="header">
-<div class="header-inner">
+    <div class="header-inner">
   <a
     class="logo"
     href="index.html">
@@ -737,80 +794,64 @@
   </button>
 </div>
   </header>
-  <!-- =========================
-       NAVIGATION
-  ========================== -->
+  <!-- NAVIGATION -->
   <nav
     class="nav"
     id="mainNav"
     aria-label="Babban menu">
 <div class="nav-inner">
-  <a
-    href="#"
+  <a href="#"
     class="active"
     onclick="filterNews('Duka',this);return false;">
     Duka
   </a>
-  <a
-    href="#"
+  <a href="#"
     onclick="filterNews('Labarai',this);return false;">
     Labarai
   </a>
-  <a
-    href="#"
+  <a href="#"
     onclick="filterNews('Kano',this);return false;">
     Kano
   </a>
-  <a
-    href="#"
+  <a href="#"
     onclick="filterNews('Najeriya',this);return false;">
     Najeriya
   </a>
-  <a
-    href="#"
+  <a href="#"
     onclick="filterNews('Siyasa',this);return false;">
     Siyasa
   </a>
-  <a
-    href="#"
+  <a href="#"
     onclick="filterNews('Duniya',this);return false;">
     Duniya
   </a>
-  <a
-    href="#"
+  <a href="#"
     onclick="filterNews('Wasanni',this);return false;">
     Wasanni
   </a>
-  <a
-    href="#"
+  <a href="#"
     onclick="filterNews('Kasuwanci',this);return false;">
     Kasuwanci
   </a>
-  <a
-    href="#"
+  <a href="#"
     onclick="filterNews('Kannywood',this);return false;">
     Kannywood
   </a>
-  <a
-    href="#"
+  <a href="#"
     onclick="filterNews('Nishaɗi',this);return false;">
     Nishaɗi
   </a>
-  <a
-    href="#"
+  <a href="#"
     onclick="filterNews('Hotuna',this);return false;">
     Hotuna
   </a>
-  <a
-    href="#"
+  <a href="#"
     onclick="filterNews('Bidiyo',this);return false;">
     Bidiyo
   </a>
 </div>
   </nav>
-  <!-- =========================
-       BREAKING NEWS
-  ========================== -->
+  <!-- BREAKING NEWS -->
   <section class="breaking">
 <div class="breaking-inner">
   <div class="breaking-title">
@@ -823,9 +864,7 @@
   </div>
 </div>
   </section>
-  <!-- =========================
-       MAIN
-  ========================== -->
+  <!-- MAIN -->
   <main class="container">
 <div
   id="searchResults"
@@ -952,50 +991,42 @@
       <div
         class="category-grid"
         style="padding:12px;margin:0;">
-        <a
-          class="category-box"
+        <a class="category-box"
           href="#"
           onclick="filterNews('Kano');return false;">
           Kano
         </a>
-        <a
-          class="category-box"
+        <a class="category-box"
           href="#"
           onclick="filterNews('Najeriya');return false;">
           Najeriya
         </a>
-        <a
-          class="category-box"
+        <a class="category-box"
           href="#"
           onclick="filterNews('Siyasa');return false;">
           Siyasa
         </a>
-        <a
-          class="category-box"
+        <a class="category-box"
           href="#"
           onclick="filterNews('Duniya');return false;">
           Duniya
         </a>
-        <a
-          class="category-box"
+        <a class="category-box"
           href="#"
           onclick="filterNews('Wasanni');return false;">
           Wasanni
         </a>
-        <a
-          class="category-box"
+        <a class="category-box"
           href="#"
           onclick="filterNews('Kasuwanci');return false;">
           Kasuwanci
         </a>
-        <a
-          class="category-box"
+        <a class="category-box"
           href="#"
           onclick="filterNews('Kannywood');return false;">
           Kannywood
         </a>
-        <a
-          class="category-box"
+        <a class="category-box"
           href="#"
           onclick="filterNews('Nishaɗi');return false;">
           Nishaɗi
@@ -1005,9 +1036,7 @@
   </aside>
 </div>
   </main>
-  <!-- =========================
-       FOOTER
-  ========================== -->
+  <!-- FOOTER -->
   <footer class="footer">
 <div class="footer-inner">
   <div>
@@ -1029,23 +1058,19 @@
     <h3>
       RUKUNI
     </h3>
-    <a
-      href="#"
+    <a href="#"
       onclick="filterNews('Kano');return false;">
       Kano
     </a>
-    <a
-      href="#"
+    <a href="#"
       onclick="filterNews('Najeriya');return false;">
       Najeriya
     </a>
-    <a
-      href="#"
+    <a href="#"
       onclick="filterNews('Siyasa');return false;">
       Siyasa
     </a>
-    <a
-      href="#"
+    <a href="#"
       onclick="filterNews('Duniya');return false;">
       Duniya
     </a>
@@ -1054,23 +1079,19 @@
     <h3>
       SAURAN RUKUNI
     </h3>
-    <a
-      href="#"
+    <a href="#"
       onclick="filterNews('Wasanni');return false;">
       Wasanni
     </a>
-    <a
-      href="#"
+    <a href="#"
       onclick="filterNews('Kasuwanci');return false;">
       Kasuwanci
     </a>
-    <a
-      href="#"
+    <a href="#"
       onclick="filterNews('Kannywood');return false;">
       Kannywood
     </a>
-    <a
-      href="#"
+    <a href="#"
       onclick="filterNews('Nishaɗi');return false;">
       Nishaɗi
     </a>
@@ -1123,9 +1144,7 @@
   Duk haƙƙi na nan.
 </div>
   </footer>
-  <!-- =========================
-       JAVASCRIPT
-  ========================== -->
+  <!-- JAVASCRIPT -->
   <script>
     const SUPABASE_URL =
       "https://kszficrcngxipcllezgl.supabase.co";
@@ -1139,9 +1158,7 @@
     let allPosts = [];
     let currentCategory = "Duka";
     let visibleCount = 10;
-    /* =========================
-       LOAD POSTS
-    ========================== */
+    /* LOAD POSTS */
     async function loadPosts(){
       const { data, error } =
         await supabaseClient
@@ -1181,9 +1198,7 @@
         );
       renderAll();
     }
-    /* =========================
-       RENDER EVERYTHING
-    ========================== */
+    /* RENDER */
     function renderAll(){
       renderHero();
       renderFeatured();
@@ -1192,9 +1207,7 @@
       renderMostRead();
       renderVideos();
     }
-    /* =========================
-       FILTER
-    ========================== */
+    /* FILTER */
     function getFilteredPosts(){
       if(
         currentCategory === "Duka"
@@ -1234,9 +1247,7 @@
         behavior:"smooth"
       });
     }
-    /* =========================
-       HERO
-    ========================== */
+    /* HERO */
     function renderHero(){
       const posts =
         getFilteredPosts();
@@ -1331,9 +1342,7 @@
       html += `</div>`;
       hero.innerHTML = html;
     }
-    /* =========================
-       FEATURED
-    ========================== */
+    /* FEATURED */
     function renderFeatured(){
       const container =
         document.getElementById(
@@ -1367,9 +1376,7 @@
           )
           .join("");
     }
-    /* =========================
-       LATEST
-    ========================== */
+    /* LATEST */
     function renderLatest(){
       const container =
         document.getElementById(
@@ -1395,9 +1402,7 @@
           )
           .join("");
     }
-    /* =========================
-       NEWS CARD
-    ========================== */
+    /* NEWS CARD */
     function createNewsCard(
       post
     ){
@@ -1440,7 +1445,7 @@
             </div>
           </a>
           <div
-            style="padding:0 14px 14px;">
+            style="padding:0 16px 16px;">
             <button
               class="share-btn"
               onclick="shareNews(event, ${Number(post.id)})">
@@ -1450,9 +1455,7 @@
         </article>
       `;
     }
-    /* =========================
-       BREAKING
-    ========================== */
+    /* BREAKING */
     function renderBreaking(){
       const box =
         document.getElementById(
@@ -1485,9 +1488,7 @@
             " &nbsp; | &nbsp; "
           );
     }
-    /* =========================
-       MOST READ
-    ========================== */
+    /* MOST READ */
     async function renderMostRead(){
       const box =
         document.getElementById(
@@ -1548,8 +1549,7 @@
                 <a
                   class="most-item"
                   href="article.html?id=${encodeURIComponent(id)}">
-                  <div
-                    class="most-number">
+                  <div class="most-number">
                     ${index + 1}
                   </div>
                   <div>
@@ -1573,9 +1573,7 @@
           )
           .join("");
     }
-    /* =========================
-       VIDEOS
-    ========================== */
+    /* VIDEOS */
     function renderVideos(){
       const box =
         document.getElementById(
@@ -1619,9 +1617,7 @@
           )
           .join("");
     }
-    /* =========================
-       SEARCH
-    ========================== */
+    /* SEARCH */
     function searchNews(){
       const query =
         document.getElementById(
@@ -1695,16 +1691,12 @@
         </div>
       `;
     }
-    /* =========================
-       LOAD MORE
-    ========================== */
+    /* LOAD MORE */
     function loadMore(){
       visibleCount += 10;
       renderLatest();
     }
-    /* =========================
-       SHARE
-    ========================== */
+    /* SHARE */
     async function shareNews(
       event,
       id
@@ -1753,9 +1745,7 @@
         }
       }
     }
-    /* =========================
-       MENU
-    ========================== */
+    /* MENU */
     function toggleMenu(){
       const nav =
         document.getElementById(
@@ -1765,9 +1755,7 @@
         behavior:"smooth"
       });
     }
-    /* =========================
-       DATE
-    ========================== */
+    /* DATE */
     function formatDate(
       date
     ){
@@ -1786,9 +1774,7 @@
         return "";
       }
     }
-    /* =========================
-       SECURITY / HTML
-    ========================== */
+    /* SECURITY */
     function escapeHtml(
       value
     ){
@@ -1823,9 +1809,7 @@
         value
       );
     }
-    /* =========================
-       START
-    ========================== */
+    /* START */
     document.addEventListener(
       "DOMContentLoaded",
       () => {
